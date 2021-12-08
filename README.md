@@ -5,9 +5,10 @@
     <li>2 года в SaaS компании Pyrus</li>
     <li>1 год в такси</li>
     <li>Нативная разработка (URLSession, UI кодом, CoreData)</li>
-</ui>
+</ul>
 
- 👋🏻 Я - Ефимов Игорь. Умею работать с:
+
+👋🏻 Я - Ефимов Игорь. Умею работать с:
   * Git
   * Networking
   * Databases
