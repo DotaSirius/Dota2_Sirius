@@ -1,0 +1,52 @@
+# Mac OS X
+.DS_Store
+ 
+# Xcode
+build/*
+DerivedData/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+profile
+*.moved-aside
+
+# AppCode
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Bundler
+/vendor/bundle
+ 
+# Cocoapods
+Pods/*
+Examples/**/Pods
+Inhouse/Resources/pod-versions.json
+
+# Tanker Config
+Tools/update-translates.config
+
+# Fastlane
+artifacts
+report.xml
+fastlane/test_output
+fastlane/metadata
+fastlane/Preview.html
+*-AdHoc.appiconset
+spm-sources
+
+# Swift Package Manager
+.build
+
+# Build time tracker
+.buildtime
+
+# Build configurations
+ResolvedExtensionConfigs/*
