@@ -23,7 +23,7 @@ struct NetworkService {
         completion: @escaping (Result<T, Error>) -> Void
     ) -> Cancellable? {
         do {
-            let configuratedURLRequest = try NetworkService.configureRequest(request: request)
+            let configuratedURLRequest = try configureRequest(request: request)
                 
             let task = urlSession.dataTask(with: configuratedURLRequest) { data, result, _ in
                 if let response = result as? HTTPURLResponse, let unwrappedData = data {
@@ -32,11 +32,10 @@ struct NetworkService {
                     switch handledResult {
                     case .success:
                         let jsonDecoder = JSONDecoder()
-//                        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-//                        jsonDecoder.dateDecodingStrategy = .millisecondsSince1970
                         
                         guard let result = try? jsonDecoder.decode(T.self, from: unwrappedData) else {
-                            fatalError("Failed to decode received data.")
+                            completion(.failure(HTTPError.decodingFailed))
+                            return
                         }
                             
                         completion(.success(result))
@@ -54,7 +53,7 @@ struct NetworkService {
         }
     }
     
-    static func configureRequest(request: HTTPRequest) throws -> URLRequest {
+    private func configureRequest(request: HTTPRequest) throws -> URLRequest {
         guard let url = URL(string: request.route) else { throw HTTPError.missingURL }
         
         var generatedRequest = URLRequest(url: url)
