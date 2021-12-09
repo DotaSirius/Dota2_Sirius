@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D28DBFB27626AD7004A4F53 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DBFA27626AD7004A4F53 /* NetworkService.swift */; };
+		5D28DBFF27626DE1004A4F53 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DBFE27626DE1004A4F53 /* PlayerModel.swift */; };
+		5D28DC0127626DED004A4F53 /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0027626DED004A4F53 /* MatchModel.swift */; };
+		5D28DC0327626DFB004A4F53 /* PlayerInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0227626DFB004A4F53 /* PlayerInfoModel.swift */; };
+		5D28DC0527626E18004A4F53 /* MatchInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0427626E18004A4F53 /* MatchInfoModel.swift */; };
+		5D28DC0727626F18004A4F53 /* PlayersModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0627626F18004A4F53 /* PlayersModulePresenter.swift */; };
+		5D28DC0927627269004A4F53 /* PlayerModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0827627269004A4F53 /* PlayerModuleViewController.swift */; };
+		5D28DC0E27627787004A4F53 /* PlayersModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0D27627787004A4F53 /* PlayersModule.swift */; };
 		5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFA25727623B8500B054D9 /* ColorPalette.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
@@ -15,6 +23,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D28DBFA27626AD7004A4F53 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		5D28DBFE27626DE1004A4F53 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
+		5D28DC0027626DED004A4F53 /* MatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
+		5D28DC0227626DFB004A4F53 /* PlayerInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoModel.swift; sourceTree = "<group>"; };
+		5D28DC0427626E18004A4F53 /* MatchInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfoModel.swift; sourceTree = "<group>"; };
+		5D28DC0627626F18004A4F53 /* PlayersModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersModulePresenter.swift; sourceTree = "<group>"; };
+		5D28DC0827627269004A4F53 /* PlayerModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModuleViewController.swift; sourceTree = "<group>"; };
+		5D28DC0D27627787004A4F53 /* PlayersModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersModule.swift; sourceTree = "<group>"; };
 		5EBFA25727623B8500B054D9 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +51,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D28DBF5276269C0004A4F53 /* PlayersModule */ = {
+			isa = PBXGroup;
+			children = (
+				5D28DC0A276272C0004A4F53 /* Model */,
+				5D28DC0B276272C9004A4F53 /* Presenter */,
+				5D28DC0C276272D2004A4F53 /* View */,
+				5D28DC0D27627787004A4F53 /* PlayersModule.swift */,
+			);
+			path = PlayersModule;
+			sourceTree = "<group>";
+		};
+		5D28DBF6276269CE004A4F53 /* MatchesModule */ = {
+			isa = PBXGroup;
+			children = (
+				5D28DC0027626DED004A4F53 /* MatchModel.swift */,
+			);
+			path = MatchesModule;
+			sourceTree = "<group>";
+		};
+		5D28DBF7276269D7004A4F53 /* MatchInfoModule */ = {
+			isa = PBXGroup;
+			children = (
+				5D28DC0427626E18004A4F53 /* MatchInfoModel.swift */,
+			);
+			path = MatchInfoModule;
+			sourceTree = "<group>";
+		};
+		5D28DBF8276269F5004A4F53 /* PlayerInfoModule */ = {
+			isa = PBXGroup;
+			children = (
+				5D28DC0227626DFB004A4F53 /* PlayerInfoModel.swift */,
+			);
+			path = PlayerInfoModule;
+			sourceTree = "<group>";
+		};
+		5D28DBF927626A20004A4F53 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5D28DBFA27626AD7004A4F53 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5D28DC0A276272C0004A4F53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D28DBFE27626DE1004A4F53 /* PlayerModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5D28DC0B276272C9004A4F53 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5D28DC0627626F18004A4F53 /* PlayersModulePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5D28DC0C276272D2004A4F53 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5D28DC0827627269004A4F53 /* PlayerModuleViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B61F593C2760A4FB00D08CEA = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +137,11 @@
 		B61F59472760A4FB00D08CEA /* DotaStats */ = {
 			isa = PBXGroup;
 			children = (
+				5D28DBF927626A20004A4F53 /* Services */,
+				5D28DBF8276269F5004A4F53 /* PlayerInfoModule */,
+				5D28DBF5276269C0004A4F53 /* PlayersModule */,
+				5D28DBF6276269CE004A4F53 /* MatchesModule */,
+				5D28DBF7276269D7004A4F53 /* MatchInfoModule */,
 				B61F59482760A4FB00D08CEA /* AppDelegate.swift */,
 				5EBFA25727623B8500B054D9 /* ColorPalette.swift */,
 				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
@@ -142,8 +230,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D28DBFF27626DE1004A4F53 /* PlayerModel.swift in Sources */,
+				5D28DC0527626E18004A4F53 /* MatchInfoModel.swift in Sources */,
+				5D28DC0127626DED004A4F53 /* MatchModel.swift in Sources */,
+				5D28DC0E27627787004A4F53 /* PlayersModule.swift in Sources */,
 				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
+				5D28DC0327626DFB004A4F53 /* PlayerInfoModel.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
+				5D28DC0727626F18004A4F53 /* PlayersModulePresenter.swift in Sources */,
+				5D28DBFB27626AD7004A4F53 /* NetworkService.swift in Sources */,
+				5D28DC0927627269004A4F53 /* PlayerModuleViewController.swift in Sources */,
 				5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
