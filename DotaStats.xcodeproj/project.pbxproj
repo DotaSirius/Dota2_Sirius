@@ -13,11 +13,23 @@
 		300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F92762334900A7A0EF /* HTTPError.swift */; };
 		300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */; };
 		300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */; };
+		300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */; };
+		300FCA132762618000A7A0EF /* NetworkServiceSimpleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA122762618000A7A0EF /* NetworkServiceSimpleTest.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
 		B61F59552760A4FD00D08CEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B61F59532760A4FD00D08CEA /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		300FCA0C27625B8500A7A0EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B61F593D2760A4FB00D08CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B61F59442760A4FB00D08CEA;
+			remoteInfo = DotaStats;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		300FC9F32762237900A7A0EF /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -26,6 +38,9 @@
 		300FC9F92762334900A7A0EF /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNetworkResponse.swift; sourceTree = "<group>"; };
 		300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCommunicationResult.swift; sourceTree = "<group>"; };
+		300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaStatsTests.swift; sourceTree = "<group>"; };
+		300FCA122762618000A7A0EF /* NetworkServiceSimpleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceSimpleTest.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +50,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		300FCA0527625B8500A7A0EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B61F59422760A4FB00D08CEA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -106,10 +128,28 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		300FCA0927625B8500A7A0EF /* DotaStatsTests */ = {
+			isa = PBXGroup;
+			children = (
+				300FCA112762614700A7A0EF /* Networking */,
+				300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */,
+			);
+			path = DotaStatsTests;
+			sourceTree = "<group>";
+		};
+		300FCA112762614700A7A0EF /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				300FCA122762618000A7A0EF /* NetworkServiceSimpleTest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		B61F593C2760A4FB00D08CEA = {
 			isa = PBXGroup;
 			children = (
 				B61F59472760A4FB00D08CEA /* DotaStats */,
+				300FCA0927625B8500A7A0EF /* DotaStatsTests */,
 				B61F59462760A4FB00D08CEA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				B61F59452760A4FB00D08CEA /* DotaStats.app */,
+				300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,6 +187,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		300FCA0727625B8500A7A0EF /* DotaStatsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 300FCA1027625B8500A7A0EF /* Build configuration list for PBXNativeTarget "DotaStatsTests" */;
+			buildPhases = (
+				300FCA0427625B8500A7A0EF /* Sources */,
+				300FCA0527625B8500A7A0EF /* Frameworks */,
+				300FCA0627625B8500A7A0EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				300FCA0D27625B8500A7A0EF /* PBXTargetDependency */,
+			);
+			name = DotaStatsTests;
+			productName = DotaStatsTests;
+			productReference = 300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B61F59442760A4FB00D08CEA /* DotaStats */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B61F59592760A4FD00D08CEA /* Build configuration list for PBXNativeTarget "DotaStats" */;
@@ -173,6 +232,10 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					300FCA0727625B8500A7A0EF = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = B61F59442760A4FB00D08CEA;
+					};
 					B61F59442760A4FB00D08CEA = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -192,11 +255,19 @@
 			projectRoot = "";
 			targets = (
 				B61F59442760A4FB00D08CEA /* DotaStats */,
+				300FCA0727625B8500A7A0EF /* DotaStatsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		300FCA0627625B8500A7A0EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B61F59432760A4FB00D08CEA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -209,6 +280,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		300FCA0427625B8500A7A0EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */,
+				300FCA132762618000A7A0EF /* NetworkServiceSimpleTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B61F59412760A4FB00D08CEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +306,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		300FCA0D27625B8500A7A0EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B61F59442760A4FB00D08CEA /* DotaStats */;
+			targetProxy = 300FCA0C27625B8500A7A0EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		B61F59532760A4FD00D08CEA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -238,6 +326,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		300FCA0E27625B8500A7A0EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.delet-dis.DotaStatsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DotaStats.app/DotaStats";
+			};
+			name = Debug;
+		};
+		300FCA0F27625B8500A7A0EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.delet-dis.DotaStatsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DotaStats.app/DotaStats";
+			};
+			name = Release;
+		};
 		B61F59572760A4FD00D08CEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -413,6 +545,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		300FCA1027625B8500A7A0EF /* Build configuration list for PBXNativeTarget "DotaStatsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				300FCA0E27625B8500A7A0EF /* Debug */,
+				300FCA0F27625B8500A7A0EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B61F59402760A4FB00D08CEA /* Build configuration list for PBXProject "DotaStats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

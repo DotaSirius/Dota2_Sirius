@@ -18,30 +18,34 @@ struct NetworkService {
         self.urlSession = urlSession
     }
     
+    @discardableResult
     func processRequest<T: Decodable>(
         request: HTTPRequest,
         completion: @escaping (Result<T, Error>) -> Void
     ) -> Cancellable? {
         do {
             let configuratedURLRequest = try configureRequest(request: request)
-                
-            let task = urlSession.dataTask(with: configuratedURLRequest) { data, result, _ in
-                if let response = result as? HTTPURLResponse, let unwrappedData = data {
-                    let handledResult = HTTPNetworkResponse.handleNetworkResponse(for: response)
-                        
-                    switch handledResult {
-                    case .success:
-                        let jsonDecoder = JSONDecoder()
-                        
-                        guard let result = try? jsonDecoder.decode(T.self, from: unwrappedData) else {
-                            completion(.failure(HTTPError.decodingFailed))
-                            return
-                        }
-                            
-                        completion(.success(result))
-                    case .failure:
+
+            let task = urlSession.dataTask(with: configuratedURLRequest) { data, response, _ in
+                guard let response = response as? HTTPURLResponse, let unwrappedData = data else {
+                    print("sssss")
+                    completion(.failure(HTTPError.decodingFailed))
+                    return
+                }
+                let handledResult = HTTPNetworkResponse.handleNetworkResponse(for: response)
+                    
+                switch handledResult {
+                case .success:
+                    let jsonDecoder = JSONDecoder()
+                    
+                    guard let result = try? jsonDecoder.decode(T.self, from: unwrappedData) else {
                         completion(.failure(HTTPError.decodingFailed))
+                        return
                     }
+                        
+                    completion(.success(result))
+                case .failure:
+                    completion(.failure(HTTPError.decodingFailed))
                 }
             }
                 
