@@ -33,6 +33,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		300FC9EC27621E4200A7A0EF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				300FC9EE27621E8800A7A0EF /* Networking */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		300FC9ED27621E6100A7A0EF /* NetworkingModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkingModels;
+			sourceTree = "<group>";
+		};
+		300FC9EE27621E8800A7A0EF /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				300FC9ED27621E6100A7A0EF /* NetworkingModels */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		B61F593C2760A4FB00D08CEA = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +75,7 @@
 		B61F59472760A4FB00D08CEA /* DotaStats */ = {
 			isa = PBXGroup;
 			children = (
+				300FC9EC27621E4200A7A0EF /* Data */,
 				B61F59482760A4FB00D08CEA /* AppDelegate.swift */,
 				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
 				B61F595C2760A5B800D08CEA /* Resources */,
