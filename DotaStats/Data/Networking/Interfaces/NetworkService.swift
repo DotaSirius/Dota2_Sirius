@@ -28,7 +28,6 @@ struct NetworkService {
 
             let task = urlSession.dataTask(with: configuratedURLRequest) { data, response, _ in
                 guard let response = response as? HTTPURLResponse, let unwrappedData = data else {
-                    print("sssss")
                     completion(.failure(HTTPError.decodingFailed))
                     return
                 }
