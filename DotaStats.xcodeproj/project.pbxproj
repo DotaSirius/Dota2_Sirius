@@ -75,13 +75,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		300FC9ED27621E6100A7A0EF /* NetworkingModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetworkingModels;
-			sourceTree = "<group>";
-		};
 		300FC9EE27621E8800A7A0EF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,7 +82,6 @@
 				300FC9F12762226B00A7A0EF /* Encoding */,
 				300FC9F02762226100A7A0EF /* EndPoint */,
 				300FC9EF2762225600A7A0EF /* Service */,
-				300FC9ED27621E6100A7A0EF /* NetworkingModels */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
