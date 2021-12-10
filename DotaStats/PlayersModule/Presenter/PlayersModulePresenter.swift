@@ -27,7 +27,7 @@ extension PlayersModulePresenter: PlayersModuleInput {
 // MARK: - PlayersModuleViewOutput
 
 extension PlayersModulePresenter: PlayersModuleViewOutput{
-    func didSelect(_ player: Player) {
+    func playerSelected(_ player: Player) {
         // TODO
     }
 }
