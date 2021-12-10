@@ -29,7 +29,7 @@ struct Matches : Decodable {
     let seriesId : Int?
     let seriesType : Int?
     let skill : Int?
-    let players : [Player]?
+    let players : [Player]
     let patch : Int?
     let region : Int?
     let `throw` : Int?
@@ -50,16 +50,15 @@ struct Matches : Decodable {
 //    let all_word_counts
 //    let my_word_counts
     
-    
-    struct Chat : Decodable {
-        let time : Int
-        let unit : String
-        let key : String
-        let slot : Int
-        let playerSlot : Int
+    struct Chat : Decodable, Equatable {
+        let time : Int?
+        let unit : String?
+        let key : String?
+        let slot : Int?
+        let playerSlot : Int?
     }
 
-    struct  DraftTiming : Decodable {
+    struct  DraftTiming : Decodable, Equatable {
         let order : Int
         let pick : Bool
         let activeTeam : Int
@@ -72,90 +71,91 @@ struct Matches : Decodable {
     struct Player : Decodable {
         let matchId : Int
         let playerSlot : Int
-        let abilityUpgradesArr : [Int]
-        let accountId : Int
-        let assists : Int
-        let Backpack0 : Int
-        let Backpack1 : Int
-        let Backpack2 : Int
-        let buybackLog : [BuybackLog]
-        let campsStacked : Int
-        let connectionLog : [ConnectionLog]
-        let creepsStacked : Int
-        let deaths : Int
-        let denies : Int
-        let dnT : [Int]
-        let gold : Int
-        let goldPerMin : Int
-        let goldSpent : Int
-        let goldT : [Int]
-        let heroDamage : Int
-        let heroHealing : Int
-        let heroId : Int
-        let Item0 : Int
-        let Item1 : Int
-        let Item2 : Int
-        let Item3 : Int
-        let Item4 : Int
-        let Item5 : Int
-        let kills : Int
-        let killsLog : [KillsLog]
-        let lastHits : Int
-        let leaverStatus : Int
-        let level : Int
-        let lhT : [Int]
-        let obsPlaced : Int
-        let partyId : Int
-        let pings : Int
-        let purchaseLog : [PurchaseLog]
-        let runePickups : Int
-        let runesLog : [RunesLog]
-        let senPlaced : Int
-        let stuns : Int
-        let times : [Int]
-        let towerDamage : Int
-        let xpPerMin : Int
-        let xpT : [Int]
-        let personaname : String
-        let name : String
-        let radiantWin : Bool
-        let startTime : Int
-        let duration : Int
-        let cluster : Int
-        let lobbyType : Int
-        let gameMode : Int
-        let patch : Int
-        let region : Int
-        let isRadiant : Bool
-        let win : Int
-        let lose : Int
-        let totalGold : Int
-        let totalXp : Int
-        let killsPerMin : Int
-        let kda : Int
-        let abandons : Int
-        let neutralKills : Int
-        let towerKills : Int
-        let courierKills : Int
-        let laneKills : Int
-        let heroKills : Int
-        let observerKills : Int
-        let sentryKills : Int
-        let roshanKills : Int
-        let necronomiconKills : Int
-        let ancientKills : Int
-        let buybackCount : Int
-        let observerUses : Int
-        let sentryUses : Int
-        let laneEfficiency : Int
-        let laneEfficiencyPct : Int
-        let lane : Int
-        let laneRole : Int
-        let isRoaming : Bool
-        let actionsPerMin : Int
-        let lifeStateDead : Int
-        let rankTier : Int
-        let cosmetics : [Int]
+        let abilityUpgradesArr : [Int]?
+        let accountId : Int?
+        let assists : Int?
+        let backpack0 : Int?
+        let backpack1 : Int?
+        let backpack2 : Int?
+        let buybackLog : [BuybackLog]?
+        let campsStacked : Int?
+        let connectionLog : [ConnectionLog]?
+        let creepsStacked : Int?
+        let deaths : Int?
+        let denies : Int?
+        let dnT : [Int]?
+        let gold : Int?
+        let goldPerMin : Int?
+        let goldSpent : Int?
+        let goldT : [Int]?
+        let heroDamage : Int?
+        let heroHealing : Int?
+        let heroId : Int?
+        let item0 : Int?
+        let item1 : Int?
+        let item2 : Int?
+        let item3 : Int?
+        let item4 : Int?
+        let item5 : Int?
+        let kills : Int?
+        let killsLog : [KillsLog]?
+        let lastHits : Int?
+        let leaverStatus : Int?
+        let level : Int?
+        let lhT : [Int]?
+        let obsPlaced : Int?
+        let partyId : Int?
+        let partySize : Int?
+        let pings : Int?
+        let purchaseLog : [PurchaseLog]?
+        let runePickups : Int?
+        let runesLog : [RunesLog]?
+        let senPlaced : Int?
+        let stuns : Int?
+        let times : [Int]?
+        let towerDamage : Int?
+        let xpPerMin : Int?
+        let xpT : [Int]?
+        let personaname : String?
+        let name : String?
+        let radiantWin : Bool?
+        let startTime : Int?
+        let duration : Int?
+        let cluster : Int?
+        let lobbyType : Int?
+        let gameMode : Int?
+        let patch : Int?
+        let region : Int?
+        let isRadiant : Bool?
+        let win : Int?
+        let lose : Int?
+        let totalGold : Int?
+        let totalXp : Int?
+        let killsPerMin : Int?
+        let kda : Int?
+        let abandons : Int?
+        let neutralKills : Int?
+        let towerKills : Int?
+        let courierKills : Int?
+        let laneKills : Int?
+        let heroKills : Int?
+        let observerKills : Int?
+        let sentryKills : Int?
+        let roshanKills : Int?
+        let necronomiconKills : Int?
+        let ancientKills : Int?
+        let buybackCount : Int?
+        let observerUses : Int?
+        let sentryUses : Int?
+        let laneEfficiency : Int?
+        let laneEfficiencyPct : Int?
+        let lane : Int?
+        let laneRole : Int?
+        let isRoaming : Bool?
+        let actionsPerMin : Int?
+        let lifeStateDead : Int?
+        let rankTier : Int?
+        let cosmetics : [Int]?
    
     //    let ability_uses
     //    let ability_targets
@@ -195,31 +195,31 @@ struct Matches : Decodable {
     //    let benchmarks
     }
 
-    struct BuybackLog : Decodable {
+    struct BuybackLog : Decodable, Equatable {
         let time : Int
         let slot : Int
         let playerSlot : Int
     }
 
-    struct ConnectionLog : Decodable {
+    struct ConnectionLog : Decodable, Equatable {
         let time : Int
         let event : String
         let playerSlot : Int
     }
 
 
-    struct KillsLog : Decodable {
+    struct KillsLog : Decodable, Equatable {
         let time : Int
         let key : String
     }
 
-    struct PurchaseLog : Decodable {
+    struct PurchaseLog : Decodable, Equatable {
         let time : Int
         let key : String
         let charges : Int
     }
 
-    struct RunesLog : Decodable {
+    struct RunesLog : Decodable, Equatable {
         let time : Int
         let key : Int
     }
