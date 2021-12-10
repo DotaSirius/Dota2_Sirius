@@ -9,8 +9,10 @@
 import Foundation
 import XCTest
 
-class NetworkServiceSimpleTest: XCTestCase {
-    func test() throws {
+class NetworkServiceReceivingDataTest: XCTestCase {
+    private func receiveData() -> [String]? {
+        var receivedResult: [String]? = nil
+        
         let expectations = expectation(description: "\(#function)\(#line)")
         
         let urlSession = URLSession(configuration: .default)
@@ -25,35 +27,54 @@ class NetworkServiceSimpleTest: XCTestCase {
             switch result {
             case .success(let constants):
                 expectations.fulfill()
-                    
-                self.testArrayContainsSomeData(array: constants)
                 
-                self.testArrayContainsSomeSonstants(array: constants)
-                
-                self.testEveryCellOfArrayContainsSomeData(array: constants)
+                receivedResult = constants
             case .failure:
                 break
             }
         }
         
         waitForExpectations(timeout: 10, handler: .none)
+        
+        return receivedResult
     }
     
-    func testArrayContainsSomeData(array: [String]) {
-        XCTAssertFalse(array.isEmpty)
+    func testArrayContainsSomeData() throws {
+        let response = receiveData()
+        
+        guard let response = response else {
+            XCTAssert(response != nil)
+            return
+        }
+
+        XCTAssertFalse(response.isEmpty)
     }
     
-    private func testEveryCellOfArrayContainsSomeData(array: [String]) {
-        array.forEach { string in
+    func testEveryCellOfArrayContainsSomeData() throws {
+        let response = receiveData()
+        
+        guard let response = response else {
+            XCTAssert(response != nil)
+            return
+        }
+        
+        response.forEach { string in
             XCTAssertFalse(string.isEmpty)
         }
     }
     
-    private func testArrayContainsSomeSonstants(array: [String]) {
+    func testArrayContainsSomeSonstants() throws {
+        let response = receiveData()
+        
+        guard let response = response else {
+            XCTAssert(response != nil)
+            return
+        }
+        
         let arrayOfConstants = ["abilities", "region", "cluster", "countries"]
         
         arrayOfConstants.forEach { constant in
-            XCTAssert(array.contains(constant))
+            XCTAssert(response.contains(constant))
         }
     }
 }
