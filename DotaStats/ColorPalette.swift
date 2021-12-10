@@ -4,7 +4,7 @@ class ColorPalette {
     var  mainBackground: UIColor {
         UIColor(red: 24/255, green: 40/255, blue: 57/255, alpha: 1)
     }
-
+    
     var separator: UIColor {
         UIColor(red: 62/255, green: 73/255, blue: 88/255, alpha: 1)
     }
@@ -19,6 +19,10 @@ class ColorPalette {
     
     var subtitle: UIColor {
         UIColor(red: 133/255, green: 139/255, blue: 146/255, alpha: 1)
+    }
+    
+    var secondCell: UIColor {
+        UIColor(red: 43/255, green: 55/255, blue: 71/255, alpha: 1)
     }
 }
 
