@@ -24,9 +24,9 @@ struct NetworkService {
         completion: @escaping (Result<T, Error>) -> Void
     ) -> Cancellable? {
         do {
-            let configuratedURLRequest = try configureRequest(request: request)
+            let configuredURLRequest = try configureRequest(request: request)
 
-            let task = urlSession.dataTask(with: configuratedURLRequest) { data, response, _ in
+            let task = urlSession.dataTask(with: configuredURLRequest) { data, response, _ in
                 guard let response = response as? HTTPURLResponse, let unwrappedData = data else {
                     completion(.failure(HTTPError.decodingFailed))
                     return
