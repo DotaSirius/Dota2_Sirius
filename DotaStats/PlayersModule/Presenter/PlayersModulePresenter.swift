@@ -20,10 +20,12 @@ final class PlayersModulePresenter {
 }
 
 // MARK: - PlayersModuleInput
+
 extension PlayersModulePresenter: PlayersModuleInput {
 }
 
 // MARK: - PlayersModuleViewOutput
+
 extension PlayersModulePresenter: PlayersModuleViewOutput{
     func didSelect(_ player: Player) {
         // TODO

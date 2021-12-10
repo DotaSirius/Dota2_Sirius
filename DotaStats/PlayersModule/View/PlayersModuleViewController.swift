@@ -27,6 +27,7 @@ final class PlayersModuleViewController: UIViewController  {
 }
 
 // MARK: - PlayersModuleViewInput
+
 extension PlayersModuleViewController: PlayersModuleViewInput {
     func showLoading() {
         // TODO
