@@ -43,7 +43,7 @@ class NetworkServiceReceivingDataTest: XCTestCase {
         let response = receiveData()
 
         guard let response = response else {
-            XCTAssert(response != nil)
+			XCTAssertNotNil(response)
             return
         }
 
@@ -54,7 +54,7 @@ class NetworkServiceReceivingDataTest: XCTestCase {
         let response = receiveData()
 
         guard let response = response else {
-            XCTAssert(response != nil)
+            XCTAssertNotNil(response)
             return
         }
 
