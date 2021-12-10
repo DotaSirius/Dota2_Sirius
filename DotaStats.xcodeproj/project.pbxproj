@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3CF36DAF27622D6E0008596F /* ProMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF36DAE27622D6E0008596F /* ProMatches.swift */; };
+		3CF36DB1276230C00008596F /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF36DB0276230C00008596F /* Matches.swift */; };
+		3CF36DB3276238810008596F /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF36DB2276238810008596F /* Players.swift */; };
+		3CF36DB5276247690008596F /* File.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF36DB4276247680008596F /* File.json */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3CF36DAE27622D6E0008596F /* ProMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProMatches.swift; sourceTree = "<group>"; };
+		3CF36DB0276230C00008596F /* Matches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
+		3CF36DB2276238810008596F /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		3CF36DB4276247680008596F /* File.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = File.json; path = ../../../tmp/Testing.playground/Resources/File.json; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
@@ -33,27 +41,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		300FC9EC27621E4200A7A0EF /* Data */ = {
+		3CF36DAB27622D070008596F /* NetworkingModels */ = {
 			isa = PBXGroup;
 			children = (
-				300FC9EE27621E8800A7A0EF /* Networking */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		300FC9ED27621E6100A7A0EF /* NetworkingModels */ = {
-			isa = PBXGroup;
-			children = (
+				3CF36DAE27622D6E0008596F /* ProMatches.swift */,
+				3CF36DB0276230C00008596F /* Matches.swift */,
+				3CF36DB2276238810008596F /* Players.swift */,
 			);
 			path = NetworkingModels;
 			sourceTree = "<group>";
 		};
-		300FC9EE27621E8800A7A0EF /* Networking */ = {
+		3CF36DAC27622D220008596F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				300FC9ED27621E6100A7A0EF /* NetworkingModels */,
+				3CF36DAB27622D070008596F /* NetworkingModels */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		3CF36DAD27622D2B0008596F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3CF36DAC27622D220008596F /* Networking */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		B61F593C2760A4FB00D08CEA = {
@@ -75,7 +86,7 @@
 		B61F59472760A4FB00D08CEA /* DotaStats */ = {
 			isa = PBXGroup;
 			children = (
-				300FC9EC27621E4200A7A0EF /* Data */,
+				3CF36DAD27622D2B0008596F /* Data */,
 				B61F59482760A4FB00D08CEA /* AppDelegate.swift */,
 				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
 				B61F595C2760A5B800D08CEA /* Resources */,
@@ -87,6 +98,7 @@
 		B61F595C2760A5B800D08CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3CF36DB4276247680008596F /* File.json */,
 				B61F59532760A4FD00D08CEA /* LaunchScreen.storyboard */,
 				B61F59512760A4FD00D08CEA /* Assets.xcassets */,
 			);
@@ -152,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B61F59552760A4FD00D08CEA /* LaunchScreen.storyboard in Resources */,
+				3CF36DB5276247690008596F /* File.json in Resources */,
 				B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +177,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
+				3CF36DB3276238810008596F /* Players.swift in Sources */,
+				3CF36DB1276230C00008596F /* Matches.swift in Sources */,
+				3CF36DAF27622D6E0008596F /* ProMatches.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
