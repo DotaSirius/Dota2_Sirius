@@ -1,6 +1,6 @@
 import Foundation
 
-protocol NetworkSeviceProtocol: AnyObject {
+protocol NetworkService: AnyObject {
     func proPlayers() -> [Player]
     func playersByName(_ name: String) -> [Player]
     func proMatches() -> [Match]
@@ -9,7 +9,7 @@ protocol NetworkSeviceProtocol: AnyObject {
     func matchInfoById(_ id: Int) -> MatchInfo
 }
 
-class NetworkService: NetworkSeviceProtocol {
+class NetworkServiceImp: NetworkService {
     func proPlayers() -> [Player] {
         <#code#>
     }

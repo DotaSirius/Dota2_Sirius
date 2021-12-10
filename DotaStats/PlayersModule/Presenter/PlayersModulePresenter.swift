@@ -1,34 +1,37 @@
 import Foundation
 
 protocol PlayersModuleInput: AnyObject {
-    func showLoading()
-    func showPlayers(_ players: [Player])
+    func show()
 }
 
 protocol PlayersModuleOutput: AnyObject {
-    var view: PlayersModuleInput? { get set }
-    init(networkService: NetworkSeviceProtocol)
-    func players() -> [Player]
-    func playerByName(_ name: String) -> [Player]
-    func didSelectPlayer(_ player: Player)
+    func playersModule(_ module: PlayersModuleInput, didSelectPlayer player: Player)
 }
 
-class PlayersModulePresenter: PlayersModuleOutput {
-    weak var view: PlayersModuleInput?
+final class PlayersModulePresenter {
+    weak var view: PlayersModuleViewInput?
     
-    required init(networkService: NetworkSeviceProtocol) {
-        <#code#>
+    required init(networkService: NetworkService) {
+        // TODO
     }
-    
+}
+
+// MARK: - PlayersModuleInput
+extension PlayersModulePresenter: PlayersModuleInput {
+    func show() {
+        // TODO
+    }
+}
+
+// MARK: - PlayersModuleViewOutput
+extension PlayersModulePresenter: PlayersModuleViewOutput{
     func players() -> [Player] {
-        <#code#>
+        // TODO
+        return [Player]()
     }
     
-    func playerByName(_ name: String) -> [Player] {
-        <#code#>
-    }
-    
-    func didSelectPlayer(_ player: Player) {
-        <#code#>
+    func playersByName(_ name: String) -> [Player] {
+        // TODO
+        return [Player]()
     }
 }

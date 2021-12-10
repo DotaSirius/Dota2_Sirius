@@ -1,14 +1,15 @@
 import Foundation
 
-class PlayersModule {
-    private let view: PlayersModuleInput
-    private let presenter: PlayersModuleOutput
-    private let networkService: NetworkSeviceProtocol
+final class PlayersModule {
+    let output: PlayersModuleOutput
+    let input: PlayersModuleInput
+    let viewControler: PlayersModuleViewController
     
-    init() {
-        networkService = NetworkService()
-        presenter = PlayersModulePresenter(networkService: networkService)
-        view = PlayerModuleViewController(presenter: presenter)
-        presenter.view = view
+    init(output: PlayersModuleOutput, networkService: NetworkService) {
+        self.output = output
+        let presenter = PlayersModulePresenter(networkService: networkService)
+        presenter.view = viewControler
+        input = presenter
+        viewControler = PlayersModuleViewController(output: presenter)
     }
 }

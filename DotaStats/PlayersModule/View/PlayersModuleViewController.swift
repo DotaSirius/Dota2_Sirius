@@ -10,10 +10,10 @@ protocol PlayersModuleViewOutput: AnyObject {
     func playersByName(_ name: String) -> [Player]
 }
 
-class PlayersModuleViewController: UIViewController  {
-    private var output: PlayersModuleOutput
+final class PlayersModuleViewController: UIViewController  {
+    private var output: PlayersModuleViewOutput
     
-    init(output: PlayersModuleOutput) {
+    init(output: PlayersModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,18 +35,5 @@ extension PlayersModuleViewController: PlayersModuleViewInput {
     
     func showPlayers(_ players: [Player]) {
         // TODO
-    }
-}
-
-// MARK: - PlayersModuleViewOutput
-extension PlayersModuleViewController: PlayersModuleViewOutput {
-    func players() -> [Player] {
-        // TODO
-        return [Player]()
-    }
-    
-    func playersByName(_ name: String) -> [Player] {
-        // TODO
-        return [Player]()
     }
 }
