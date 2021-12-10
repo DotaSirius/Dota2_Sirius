@@ -10,7 +10,7 @@ import Foundation
 struct HTTPNetworkResponse {
     static func handleNetworkResponse(for response: HTTPURLResponse?) -> NetworkCommunicationResult<String> {
         guard let res = response else {
-            return NetworkCommunicationResult.failure(HTTPError.UnwrappingError)
+            return NetworkCommunicationResult.failure(HTTPError.unwrappingError)
         }
 
         switch res.statusCode {
