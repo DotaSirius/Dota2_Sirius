@@ -1,6 +1,6 @@
 import Foundation
 
-final class PlayersModule {
+final class PlayersModuleBuilder {
     let viewControler: PlayersModuleViewController
     private let presenter: PlayersModulePresenter
     var output: PlayersModuleOutput {
