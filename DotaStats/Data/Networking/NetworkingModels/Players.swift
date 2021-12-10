@@ -1,10 +1,10 @@
 struct Players {
-    let tracked_until : String
-    let solo_competitive_rank : String
-    let competitive_rank : String
-    let rank_tier : Int
-    let leaderboard_rank : Int
-    let mmr_estimate : Estimate
+    let trackedUntil : String
+    let soloCompetitiveRank : String
+    let competitiveRank : String
+    let rankTier : Int
+    let leaderboardRank : Int
+    let mmrEstimate : Estimate
     let profile : Profile
     
 
@@ -15,7 +15,7 @@ struct Estimate {
 }
 
 struct Profile {
-    let account_id : Int
+    let accountId : Int
     let personaname : String
     let name : String
     let plus : Bool
@@ -25,7 +25,7 @@ struct Profile {
     let avatarmedium : String
     let avatarfull : String
     let profileurl : String
-    let last_login : String
+    let lastLogin : String
     let loccountrycode : String
     let is_contributor : Bool
 }
