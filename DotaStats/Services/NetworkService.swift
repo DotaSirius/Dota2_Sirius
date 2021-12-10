@@ -9,30 +9,34 @@ protocol NetworkService: AnyObject {
     func matchInfoById(_ id: Int) -> MatchInfo
 }
 
-class NetworkServiceImp: NetworkService {
+final class NetworkServiceImp: NetworkService {
     func proPlayers() -> [Player] {
-        <#code#>
+        // TODO
+        return [Player]()
     }
     
     func playersByName(_ name: String) -> [Player] {
-        <#code#>
+        // TODO
+        return [Player]()
     }
     
     func proMatches() -> [Match] {
-        <#code#>
+        // TODO
+        return [Match]()
     }
     
     func matchById(_ id: Int) -> Match {
-        <#code#>
+        // TODO
+        return Match()
     }
     
     func playerInfoById(_ id: Int) -> PlayerInfo {
-        <#code#>
+        // TODO
+        return PlayerInfo()
     }
     
     func matchInfoById(_ id: Int) -> MatchInfo {
-        <#code#>
+        // TODO
+        return MatchInfo()
     }
-    
-    
 }

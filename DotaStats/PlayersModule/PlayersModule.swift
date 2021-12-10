@@ -8,8 +8,8 @@ final class PlayersModule {
     init(output: PlayersModuleOutput, networkService: NetworkService) {
         self.output = output
         let presenter = PlayersModulePresenter(networkService: networkService)
-        presenter.view = viewControler
         input = presenter
         viewControler = PlayersModuleViewController(output: presenter)
+        presenter.view = viewControler
     }
 }

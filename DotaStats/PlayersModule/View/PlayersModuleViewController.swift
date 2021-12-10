@@ -11,7 +11,7 @@ protocol PlayersModuleViewOutput: AnyObject {
 }
 
 final class PlayersModuleViewController: UIViewController  {
-    private var output: PlayersModuleViewOutput
+    private var output: PlayersModuleViewOutput?
     
     init(output: PlayersModuleViewOutput) {
         self.output = output
