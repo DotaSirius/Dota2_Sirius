@@ -1,7 +1,6 @@
 import Foundation
 
 protocol PlayersModuleInput: AnyObject {
-    func show()
 }
 
 protocol PlayersModuleOutput: AnyObject {
@@ -10,28 +9,23 @@ protocol PlayersModuleOutput: AnyObject {
 
 final class PlayersModulePresenter {
     weak var view: PlayersModuleViewInput?
+    private let networkService: NetworkService
+    let output: PlayersModuleOutput
     
-    required init(networkService: NetworkService) {
-        // TODO
+    required init(networkService: NetworkService,
+                  output: PlayersModuleOutput) {
+        self.networkService = networkService
+        self.output = output
     }
 }
 
 // MARK: - PlayersModuleInput
 extension PlayersModulePresenter: PlayersModuleInput {
-    func show() {
-        // TODO
-    }
 }
 
 // MARK: - PlayersModuleViewOutput
 extension PlayersModulePresenter: PlayersModuleViewOutput{
-    func players() -> [Player] {
+    func didSelect(_ player: Player) {
         // TODO
-        return [Player]()
-    }
-    
-    func playersByName(_ name: String) -> [Player] {
-        // TODO
-        return [Player]()
     }
 }

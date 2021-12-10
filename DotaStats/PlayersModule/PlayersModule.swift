@@ -1,14 +1,17 @@
 import Foundation
 
 final class PlayersModule {
-    let output: PlayersModuleOutput
-    let input: PlayersModuleInput
     let viewControler: PlayersModuleViewController
+    private let presenter: PlayersModulePresenter
+    var output: PlayersModuleOutput {
+        presenter.output
+    }
+    var input: PlayersModuleInput {
+        presenter
+    }
     
     init(output: PlayersModuleOutput, networkService: NetworkService) {
-        self.output = output
-        let presenter = PlayersModulePresenter(networkService: networkService)
-        input = presenter
+        presenter = PlayersModulePresenter(networkService: networkService, output: output)
         viewControler = PlayersModuleViewController(output: presenter)
         presenter.view = viewControler
     }

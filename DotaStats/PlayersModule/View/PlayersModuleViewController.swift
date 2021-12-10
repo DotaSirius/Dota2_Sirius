@@ -6,8 +6,7 @@ protocol PlayersModuleViewInput: AnyObject {
 }
 
 protocol PlayersModuleViewOutput: AnyObject {
-    func players() -> [Player]
-    func playersByName(_ name: String) -> [Player]
+    func didSelect(_ player: Player)
 }
 
 final class PlayersModuleViewController: UIViewController  {
