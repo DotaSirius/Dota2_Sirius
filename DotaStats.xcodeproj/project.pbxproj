@@ -82,6 +82,7 @@
 				300FC9F12762226B00A7A0EF /* Encoding */,
 				300FC9F02762226100A7A0EF /* EndPoint */,
 				300FC9EF2762225600A7A0EF /* Service */,
+				EA852AD8CE2823342620362B /* NetworkingModels */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -174,6 +175,13 @@
 				B61F59512760A4FD00D08CEA /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EA852AD8CE2823342620362B /* NetworkingModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkingModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
