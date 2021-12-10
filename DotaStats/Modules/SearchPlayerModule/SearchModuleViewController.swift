@@ -1,29 +1,44 @@
-//
-//  SearchModuleViewController.swift
-//  DotaStats
-//
-//  Created by Дмитрий Юдин on 10.12.2021.
-//
-
 import UIKit
 
-class SearchModuleViewController: UIViewController {
+enum SearchPlayerModuleError: Error {
+    // TODO: correct error types
+    case sampleError
+}
+
+protocol SearchPlayerModuleViewInput: AnyObject {
+    func updateState(_ state: SearchPlayerModuleViewState)
+}
+
+protocol SearchPlayerModuleViewOutput: AnyObject {
+    var count: Int { get }
+    func getData(indexPath: IndexPath) -> Player
+    func playerSelected(_ player: Player)
+    func search(_ name: String)
+}
+
+class SearchPlayerModuleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
+// MARK: - SearchModuleViewInput
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension SearchPlayerModuleViewController: SearchPlayerModuleInput {
+    func updateState(_ state: SearchPlayerModuleViewState) {
+        // TODO: make update view
+        switch state {
+        case .loading:
+            // TODO: show activity indicator
+            break
+        case .success(let array):
+            // TODO: show data
+            print(array)
+        case .failure(let searchModuleError):
+            // TODO: show error
+            print(searchModuleError)
+        }
     }
-    */
-
 }

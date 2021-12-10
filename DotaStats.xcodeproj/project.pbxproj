@@ -20,6 +20,9 @@
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
 		B61F59552760A4FD00D08CEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B61F59532760A4FD00D08CEA /* LaunchScreen.storyboard */; };
+		F0D3A7B62763BD0E00B77615 /* SearchModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3A7B52763BD0E00B77615 /* SearchModulePresenter.swift */; };
+		F0D3A7B82763BDB900B77615 /* SearchModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3A7B72763BDB900B77615 /* SearchModuleViewController.swift */; };
+		F0D3A7BA2763CFAE00B77615 /* SearchPlayerModuleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D3A7B92763CFAE00B77615 /* SearchPlayerModuleViewState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		B61F59512760A4FD00D08CEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B61F59542760A4FD00D08CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B61F59562760A4FD00D08CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0D3A7B52763BD0E00B77615 /* SearchModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModulePresenter.swift; sourceTree = "<group>"; };
+		F0D3A7B72763BDB900B77615 /* SearchModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleViewController.swift; sourceTree = "<group>"; };
+		F0D3A7B92763CFAE00B77615 /* SearchPlayerModuleViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleViewState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 				5D28DBF8276269F5004A4F53 /* PlayerInfoModule */,
 				5D28DBF5276269C0004A4F53 /* PlayersModule */,
 				5D28DBF6276269CE004A4F53 /* MatchesModule */,
+				F0D3A7B42763BCCF00B77615 /* SearchPlayerModule */,
 				5D28DBF7276269D7004A4F53 /* MatchInfoModule */,
 			);
 			path = Modules;
@@ -190,6 +197,16 @@
 				B61F59512760A4FD00D08CEA /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F0D3A7B42763BCCF00B77615 /* SearchPlayerModule */ = {
+			isa = PBXGroup;
+			children = (
+				F0D3A7B52763BD0E00B77615 /* SearchModulePresenter.swift */,
+				F0D3A7B72763BDB900B77615 /* SearchModuleViewController.swift */,
+				F0D3A7B92763CFAE00B77615 /* SearchPlayerModuleViewState.swift */,
+			);
+			path = SearchPlayerModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,14 +280,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D28DBFF27626DE1004A4F53 /* Player.swift in Sources */,
+				F0D3A7B82763BDB900B77615 /* SearchModuleViewController.swift in Sources */,
 				5D28DC0527626E18004A4F53 /* MatchInfo.swift in Sources */,
 				5D28DC0127626DED004A4F53 /* Match.swift in Sources */,
 				5D28DC0E27627787004A4F53 /* PlayersModuleBuilder.swift in Sources */,
 				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
 				5D28DC0327626DFB004A4F53 /* PlayerInfo.swift in Sources */,
+				F0D3A7B62763BD0E00B77615 /* SearchModulePresenter.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
 				5D28DC0727626F18004A4F53 /* PlayersModulePresenter.swift in Sources */,
 				5D28DBFB27626AD7004A4F53 /* NetworkService.swift in Sources */,
+				F0D3A7BA2763CFAE00B77615 /* SearchPlayerModuleViewState.swift in Sources */,
 				5D28DC0927627269004A4F53 /* PlayersModuleViewController.swift in Sources */,
 				5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */,
 			);
