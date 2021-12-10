@@ -23,7 +23,6 @@ class DotaStatsTests: XCTestCase {
     }
 
     func testPerformanceExample() throws {
-//        NetworkServiceSimpleTest().testExample()
         measure {
             // Put the code you want to measure the time of here.
         }
