@@ -43,7 +43,7 @@ class NetworkServiceReceivingDataTest: XCTestCase {
         let response = receiveData()
 
         guard let response = response else {
-			XCTAssertNotNil(response)
+            XCTFail("Missing response")
             return
         }
 
@@ -54,7 +54,7 @@ class NetworkServiceReceivingDataTest: XCTestCase {
         let response = receiveData()
 
         guard let response = response else {
-            XCTAssertNotNil(response)
+            XCTFail("Missing response")
             return
         }
 
@@ -67,7 +67,7 @@ class NetworkServiceReceivingDataTest: XCTestCase {
         let response = receiveData()
 
         guard let response = response else {
-            XCTAssert(response != nil)
+            XCTFail("Missing response")
             return
         }
 
