@@ -7,8 +7,8 @@ struct Match : Decodable {
     let matchId : Int
     let duration : Int
     let startTime : Date
-    let radiantTeamId : Int
-    let radiantName : String
+    let radiantTeamId : Int?
+    let radiantName : String?
     let direTeamId : Int
     let direName : String
     let leagueid : Int
@@ -18,7 +18,7 @@ struct Match : Decodable {
     let radiantScore : Int
     let direScore : Int
     let radiantWin : Bool
-    let radiant : Bool
+    let radiant : Bool?
 }
 
 //let jsonData: Data

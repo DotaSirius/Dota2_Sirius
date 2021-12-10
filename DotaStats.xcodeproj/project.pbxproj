@@ -15,6 +15,8 @@
 		300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */; };
 		300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */; };
 		300FCA132762618000A7A0EF /* NetworkServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */; };
+		303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */; };
+		303AC4D2276371A600A8C462 /* MockMatches.json in Resources */ = {isa = PBXBuildFile; fileRef = 303AC4D1276371A600A8C462 /* MockMatches.json */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
@@ -44,6 +46,8 @@
 		300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaStatsTests.swift; sourceTree = "<group>"; };
 		300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceReceivingDataTest.swift; sourceTree = "<group>"; };
+		303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesDecodingTest.swift; sourceTree = "<group>"; };
+		303AC4D1276371A600A8C462 /* MockMatches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatches.json; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
@@ -139,9 +143,27 @@
 		300FCA112762614700A7A0EF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				303AC4CD276370CA00A8C462 /* Models */,
 				300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		303AC4CD276370CA00A8C462 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				303AC4CE276370D400A8C462 /* Data */,
+				303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		303AC4CE276370D400A8C462 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				303AC4D1276371A600A8C462 /* MockMatches.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		B61F593C2760A4FB00D08CEA = {
@@ -274,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				303AC4D2276371A600A8C462 /* MockMatches.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */,
+				303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */,
 				300FCA132762618000A7A0EF /* NetworkServiceReceivingDataTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
