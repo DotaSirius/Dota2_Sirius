@@ -27,7 +27,7 @@ final class NetworkServiceImp: NetworkService {
     
     func matchById(_ id: Int) -> Match {
         // TODO
-        Match()
+        Match(matchId: "", startTime: 0, leagueName: "", radiantTeam: "", radiant: true, radiantScore: 0, direScore: 0, direTeam: "", duration: "")
     }
     
     func playerInfoById(_ id: Int) -> PlayerInfo {
