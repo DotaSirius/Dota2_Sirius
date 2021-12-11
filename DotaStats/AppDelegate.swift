@@ -10,6 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = MatchViewController()
         window!.rootViewController = vc
         window!.makeKeyAndVisible()
+        
+        
         return true
     }
 }
