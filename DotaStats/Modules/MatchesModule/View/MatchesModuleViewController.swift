@@ -1,15 +1,15 @@
 import UIKit
 
 protocol MatchesModuleViewInput: AnyObject {
-    func updateState()
-    func updateSection()
+    func updateState(matchesModuleState: MatchesModuleState)
+    func updateSection(section: Int)
 }
 
 protocol MatchesModuleViewOutput: AnyObject {
-    func getSectionCount()
-    func getRowsInSection()
-    func getData()
-    func cellTapped()
+    func getSectionCount() -> Int
+    func getRowsInSection(section: Int) -> Int
+    func getData(indexPath: IndexPath) -> MatchCellType
+    func cellTapped(indexPath: IndexPath)
 }
 
 final class MatchesModuleViewController: UIViewController  {
@@ -32,11 +32,11 @@ final class MatchesModuleViewController: UIViewController  {
 // MARK: - MatchesModuleViewInput
 
 extension MatchesModuleViewController: MatchesModuleViewInput {
-    func updateState() {
+    func updateState(matchesModuleState: MatchesModuleState) {
         // TODO
     }
     
-    func updateSection() {
+    func updateSection(section: Int) {
         // TODO
     }
 }

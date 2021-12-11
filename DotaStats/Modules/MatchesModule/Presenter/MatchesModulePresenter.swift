@@ -27,19 +27,22 @@ extension MatchesModulePresenter: MatchesModuleInput {
 // MARK: - MatchesModuleViewOutput
 
 extension MatchesModulePresenter: MatchesModuleViewOutput{
-    func getSectionCount() {
+    func getSectionCount() -> Int {
         // TODO
+        0
     }
     
-    func getRowsInSection() {
+    func getRowsInSection(section: Int) -> Int {
         // TODO
+        0
     }
     
-    func getData() {
+    func getData(indexPath: IndexPath) -> MatchCellType {
         // TODO
+        MatchCellType.tournamentViewState(TournamentViewState(leagueName: ""))
     }
     
-    func cellTapped() {
+    func cellTapped(indexPath: IndexPath) {
         // TODO
     }
 }
