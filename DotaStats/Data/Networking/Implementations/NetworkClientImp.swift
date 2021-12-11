@@ -17,7 +17,7 @@ struct NetworkClientImp: NetworkClient {
 	@discardableResult
 	func processRequest<T: Decodable>(
 		request: HTTPRequest,
-		completion: @escaping (Result<T, Error>) -> Void
+		completion: @escaping (Result<T, HTTPError>) -> Void
 	) -> Cancellable? {
 		do {
 			let configuredURLRequest = try configureRequest(request: request)
@@ -47,7 +47,7 @@ struct NetworkClientImp: NetworkClient {
 			task.resume()
 			return task
 		} catch {
-			completion(.failure(error))
+            completion(.failure(HTTPError.failed))
 			return nil
 		}
 	}
@@ -59,12 +59,10 @@ struct NetworkClientImp: NetworkClient {
 
 		generatedRequest.httpMethod = request.httpMethod.rawValue
 		generatedRequest.httpBody = request.body
-
-		if case request.headers = request.headers {
-			for processingHeader in request.headers {
-				generatedRequest.addValue(processingHeader.key, forHTTPHeaderField: processingHeader.value)
-			}
-		}
+        
+        request.headers.forEach{
+            generatedRequest.addValue($0.key, forHTTPHeaderField: $0.value)
+        }
 
 		return generatedRequest
 	}
