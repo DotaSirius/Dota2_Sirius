@@ -16,7 +16,6 @@
 		5D28DC0927627269004A4F53 /* PlayersModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0827627269004A4F53 /* PlayersModuleViewController.swift */; };
 		5D28DC0E27627787004A4F53 /* PlayersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0D27627787004A4F53 /* PlayersModuleBuilder.swift */; };
 		5EA21EBF276408BE001A53FA /* TournamentViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA21EBE276408BE001A53FA /* TournamentViewState.swift */; };
-		5EA21EC1276408E8001A53FA /* MatchViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA21EC0276408E8001A53FA /* MatchViewState.swift */; };
 		5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFA25727623B8500B054D9 /* ColorPalette.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
@@ -34,7 +33,6 @@
 		5D28DC0827627269004A4F53 /* PlayersModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersModuleViewController.swift; sourceTree = "<group>"; };
 		5D28DC0D27627787004A4F53 /* PlayersModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersModuleBuilder.swift; sourceTree = "<group>"; };
 		5EA21EBE276408BE001A53FA /* TournamentViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewState.swift; sourceTree = "<group>"; };
-		5EA21EC0276408E8001A53FA /* MatchViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewState.swift; sourceTree = "<group>"; };
 		5EBFA25727623B8500B054D9 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 			children = (
 				5D28DC0027626DED004A4F53 /* Match.swift */,
 				5EA21EBE276408BE001A53FA /* TournamentViewState.swift */,
-				5EA21EC0276408E8001A53FA /* MatchViewState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,7 +277,6 @@
 				5EA21EBF276408BE001A53FA /* TournamentViewState.swift in Sources */,
 				5D28DC0927627269004A4F53 /* PlayersModuleViewController.swift in Sources */,
 				5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */,
-				5EA21EC1276408E8001A53FA /* MatchViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
