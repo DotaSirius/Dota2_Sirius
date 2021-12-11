@@ -21,7 +21,7 @@
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatch.json */; };
 		3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5232763C72600AC0DD4 /* MockPlayer.json */; };
-		5E7FA7142764D19100DA5500 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FA7132764D19100DA5500 /* MainTabBarController.swift */; };
+		5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED64A912764D57500E4CF5B /* MainTabBarController.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
@@ -66,7 +66,7 @@
 		3CF8F5222763C5C000AC0DD4 /* MockMatch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatch.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
 		3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDecodingTest.swift; sourceTree = "<group>"; };
-		5E7FA7132764D19100DA5500 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = "../../Desktop/курс2/MainTabBarController.swift"; sourceTree = "<group>"; };
+		5ED64A912764D57500E4CF5B /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
@@ -219,9 +219,9 @@
 		B61F59472760A4FB00D08CEA /* DotaStats */ = {
 			isa = PBXGroup;
 			children = (
+				5ED64A912764D57500E4CF5B /* MainTabBarController.swift */,
 				300FC9EC27621E4200A7A0EF /* Data */,
 				B61F59482760A4FB00D08CEA /* AppDelegate.swift */,
-				5E7FA7132764D19100DA5500 /* MainTabBarController.swift */,
 				EC4E6F8C2764C8250085B61D /* ColorPalette.swift */,
 				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
 				EC4E6FA72764C85E0085B61D /* Services */,
@@ -485,7 +485,7 @@
 				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,
 				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
 				EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */,
-				5E7FA7142764D19100DA5500 /* MainTabBarController.swift in Sources */,
+				5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */,
 				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */,
 				EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */,

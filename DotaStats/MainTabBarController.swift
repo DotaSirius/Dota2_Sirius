@@ -1,10 +1,11 @@
 import UIKit
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
-        tabBar.backgroundColor = ColorPalette.alternatеBackgroundColor
+        super.viewDidLoad()
+        tabBar.backgroundColor = ColorPalette.alternatеBackground
         tabBar.unselectedItemTintColor = ColorPalette.text
-        tabBar.tintColor = .orange
+        tabBar.tintColor = ColorPalette.accent
         let viewControllers = [
             CostilViewController(), // TODO: replace with Matches and Players viewControllers.
             CostilViewController()
