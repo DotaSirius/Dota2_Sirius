@@ -11,7 +11,7 @@ public protocol Cancellable {
     func cancel()
 }
 
-struct NetworkService {
+struct NetworkClient {
     private let urlSession: URLSession
     
     init(urlSession: URLSession) {

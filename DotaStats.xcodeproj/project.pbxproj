@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		300FC9F42762237900A7A0EF /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F32762237900A7A0EF /* NetworkService.swift */; };
+		300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F32762237900A7A0EF /* NetworkClient.swift */; };
 		300FC9F627622FA500A7A0EF /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F527622FA500A7A0EF /* HTTPRequest.swift */; };
 		300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F72762304300A7A0EF /* HTTPMethod.swift */; };
 		300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F92762334900A7A0EF /* HTTPError.swift */; };
@@ -28,6 +28,15 @@
 		EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* Matches.swift */; };
 		EA8522C781197B1ACBBE601B /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
 		EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* ProMatches.swift */; };
+		EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F8C2764C8250085B61D /* ColorPalette.swift */; };
+		EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F912764C8550085B61D /* MatchInfo.swift */; };
+		EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F942764C8550085B61D /* PlayersModulePresenter.swift */; };
+		EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F952764C8550085B61D /* PlayersModuleBuilder.swift */; };
+		EC4E6FA32764C8550085B61D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F972764C8550085B61D /* Player.swift */; };
+		EC4E6FA42764C8550085B61D /* PlayersModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F992764C8550085B61D /* PlayersModuleViewController.swift */; };
+		EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F9C2764C8550085B61D /* PlayerInfo.swift */; };
+		EC4E6FA62764C8550085B61D /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F9F2764C8550085B61D /* Match.swift */; };
+		EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FA82764C85E0085B61D /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		300FC9F32762237900A7A0EF /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		300FC9F32762237900A7A0EF /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		300FC9F527622FA500A7A0EF /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		300FC9F72762304300A7A0EF /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		300FC9F92762334900A7A0EF /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
@@ -65,6 +74,15 @@
 		EA85264F7CF441C52C30E6D7 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		EA85276324310C6574CACFC6 /* ProMatches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProMatches.swift; sourceTree = "<group>"; };
 		EA852BF972642EE930F2680C /* Matches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
+		EC4E6F8C2764C8250085B61D /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		EC4E6F912764C8550085B61D /* MatchInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchInfo.swift; sourceTree = "<group>"; };
+		EC4E6F942764C8550085B61D /* PlayersModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersModulePresenter.swift; sourceTree = "<group>"; };
+		EC4E6F952764C8550085B61D /* PlayersModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersModuleBuilder.swift; sourceTree = "<group>"; };
+		EC4E6F972764C8550085B61D /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		EC4E6F992764C8550085B61D /* PlayersModuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersModuleViewController.swift; sourceTree = "<group>"; };
+		EC4E6F9C2764C8550085B61D /* PlayerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
+		EC4E6F9F2764C8550085B61D /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		EC4E6FA82764C85E0085B61D /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +152,7 @@
 		300FC9F22762236A00A7A0EF /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				300FC9F32762237900A7A0EF /* NetworkService.swift */,
+				300FC9F32762237900A7A0EF /* NetworkClient.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -201,7 +219,10 @@
 			children = (
 				300FC9EC27621E4200A7A0EF /* Data */,
 				B61F59482760A4FB00D08CEA /* AppDelegate.swift */,
+				EC4E6F8C2764C8250085B61D /* ColorPalette.swift */,
 				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
+				EC4E6FA72764C85E0085B61D /* Services */,
+				EC4E6F8E2764C8550085B61D /* Modules */,
 				B61F595C2760A5B800D08CEA /* Resources */,
 				B61F59562760A4FD00D08CEA /* Info.plist */,
 			);
@@ -225,6 +246,108 @@
 				EA85276324310C6574CACFC6 /* ProMatches.swift */,
 			);
 			path = NetworkingModels;
+			sourceTree = "<group>";
+		};
+		EC4E6F8E2764C8550085B61D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F8F2764C8550085B61D /* MatchInfoModule */,
+				EC4E6F922764C8550085B61D /* PlayersModule */,
+				EC4E6F9A2764C8550085B61D /* PlayerInfoModule */,
+				EC4E6F9D2764C8550085B61D /* MatchesModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		EC4E6F8F2764C8550085B61D /* MatchInfoModule */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F902764C8550085B61D /* Model */,
+			);
+			path = MatchInfoModule;
+			sourceTree = "<group>";
+		};
+		EC4E6F902764C8550085B61D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F912764C8550085B61D /* MatchInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC4E6F922764C8550085B61D /* PlayersModule */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F932764C8550085B61D /* Presenter */,
+				EC4E6F952764C8550085B61D /* PlayersModuleBuilder.swift */,
+				EC4E6F962764C8550085B61D /* Model */,
+				EC4E6F982764C8550085B61D /* View */,
+			);
+			path = PlayersModule;
+			sourceTree = "<group>";
+		};
+		EC4E6F932764C8550085B61D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F942764C8550085B61D /* PlayersModulePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		EC4E6F962764C8550085B61D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F972764C8550085B61D /* Player.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC4E6F982764C8550085B61D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F992764C8550085B61D /* PlayersModuleViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EC4E6F9A2764C8550085B61D /* PlayerInfoModule */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F9B2764C8550085B61D /* Model */,
+			);
+			path = PlayerInfoModule;
+			sourceTree = "<group>";
+		};
+		EC4E6F9B2764C8550085B61D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F9C2764C8550085B61D /* PlayerInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC4E6F9D2764C8550085B61D /* MatchesModule */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F9E2764C8550085B61D /* Model */,
+			);
+			path = MatchesModule;
+			sourceTree = "<group>";
+		};
+		EC4E6F9E2764C8550085B61D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6F9F2764C8550085B61D /* Match.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC4E6FA72764C85E0085B61D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6FA82764C85E0085B61D /* NetworkService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,17 +465,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */,
 				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
+				EC4E6FA42764C8550085B61D /* PlayersModuleViewController.swift in Sources */,
 				300FC9F627622FA500A7A0EF /* HTTPRequest.swift in Sources */,
-				300FC9F42762237900A7A0EF /* NetworkService.swift in Sources */,
+				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
+				EC4E6FA32764C8550085B61D /* Player.swift in Sources */,
 				300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */,
 				300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */,
+				EC4E6FA62764C8550085B61D /* Match.swift in Sources */,
 				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
+				EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */,
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
+				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
 				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,
 				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
+				EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */,
+				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */,
+				EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
