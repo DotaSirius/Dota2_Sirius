@@ -1,5 +1,5 @@
 //
-//  NetworkingInterface.swift
+//  NetworkClient.swift
 //  DotaStats
 //
 //  Created by Igor Efimov on 09.12.2021.
@@ -11,7 +11,7 @@ public protocol Cancellable {
     func cancel()
 }
 
-struct NetworkService {
+struct NetworkClient {
     private let urlSession: URLSession
     
     init(urlSession: URLSession) {

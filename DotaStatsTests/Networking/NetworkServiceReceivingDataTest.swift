@@ -17,11 +17,11 @@ class NetworkServiceReceivingDataTest: XCTestCase {
 
         let urlSession = URLSession(configuration: .default)
 
-        let networkService = NetworkService(urlSession: urlSession)
+        let networkClient = NetworkClient(urlSession: urlSession)
 
         let constantsRequest = HTTPRequest(route: "https://api.opendota.com/api/constants")
 
-        networkService.processRequest(
+        networkClient.processRequest(
             request: constantsRequest
         ) { (result: Result<[String], Error>) in
             switch result {
