@@ -23,7 +23,7 @@ class NetworkServiceReceivingDataTest: XCTestCase {
 
         networkClient.processRequest(
             request: constantsRequest
-        ) { (result: Result<[String], Error>) in
+        ) { (result: Result<[String], HTTPError>) in
             switch result {
             case .success(let constants):
                 expectations.fulfill()
