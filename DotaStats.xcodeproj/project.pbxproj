@@ -39,6 +39,9 @@
 		EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FA82764C85E0085B61D /* NetworkService.swift */; };
 		EC4E6FAB2764CCE10085B61D /* NetworkClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */; };
 		EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */; };
+		ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA0D042764ED8B00DF81ED /* MatchesService.swift */; };
+		ECAA0D062764ED8B00DF81ED /* MatchesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA0D042764ED8B00DF81ED /* MatchesService.swift */; };
+		ECAA0D0A2764F6BF00DF81ED /* MatchesServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA0D082764F6BF00DF81ED /* MatchesServiceTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,8 @@
 		EC4E6F9F2764C8550085B61D /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		EC4E6FA82764C85E0085B61D /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientImp.swift; sourceTree = "<group>"; };
+		ECAA0D042764ED8B00DF81ED /* MatchesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesService.swift; sourceTree = "<group>"; };
+		ECAA0D082764F6BF00DF81ED /* MatchesServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesServiceTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +169,7 @@
 		300FCA0927625B8500A7A0EF /* DotaStatsTests */ = {
 			isa = PBXGroup;
 			children = (
+				ECAA0D072764F6A700DF81ED /* Services */,
 				300FCA112762614700A7A0EF /* Networking */,
 				300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */,
 			);
@@ -350,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4E6FA82764C85E0085B61D /* NetworkService.swift */,
+				ECAA0D042764ED8B00DF81ED /* MatchesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -360,6 +367,14 @@
 				EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */,
 			);
 			path = Implementations;
+			sourceTree = "<group>";
+		};
+		ECAA0D072764F6A700DF81ED /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				ECAA0D082764F6BF00DF81ED /* MatchesServiceTest.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,8 +481,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */,
+				ECAA0D0A2764F6BF00DF81ED /* MatchesServiceTest.swift in Sources */,
 				300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */,
 				3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */,
+				ECAA0D062764ED8B00DF81ED /* MatchesService.swift in Sources */,
 				303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */,
 				EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
 				300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */,
@@ -495,6 +512,7 @@
 				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,
 				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
 				EC4E6FAB2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
+				ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */,
 				EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */,
 				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */,
