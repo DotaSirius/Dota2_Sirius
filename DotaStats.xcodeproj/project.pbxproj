@@ -16,6 +16,14 @@
 		300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA122762618000A7A0EF /* NetworkClientReceivingDataTest.swift */; };
 		303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */; };
 		303AC4D2276371A600A8C462 /* MockMatches.json in Resources */ = {isa = PBXBuildFile; fileRef = 303AC4D1276371A600A8C462 /* MockMatches.json */; };
+		303AC4D32764EF5400A8C462 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F527622FA500A7A0EF /* HTTPRequest.swift */; };
+		303AC4D42764EFA600A8C462 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F32762237900A7A0EF /* NetworkClient.swift */; };
+		303AC4D52764EFAF00A8C462 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F72762304300A7A0EF /* HTTPMethod.swift */; };
+		303AC4D62764EFB200A8C462 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F92762334900A7A0EF /* HTTPError.swift */; };
+		303AC4D72764EFB500A8C462 /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */; };
+		303AC4D82764EFBA00A8C462 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* Matches.swift */; };
+		303AC4D92764EFBC00A8C462 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
+		303AC4DA2764EFBF00A8C462 /* ProMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* ProMatches.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatch.json */; };
@@ -463,11 +471,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */,
+				303AC4D82764EFBA00A8C462 /* Matches.swift in Sources */,
+				303AC4D92764EFBC00A8C462 /* Players.swift in Sources */,
 				300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */,
 				3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */,
 				303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */,
+				303AC4D32764EF5400A8C462 /* HTTPRequest.swift in Sources */,
+				303AC4DA2764EFBF00A8C462 /* ProMatches.swift in Sources */,
+				303AC4D52764EFAF00A8C462 /* HTTPMethod.swift in Sources */,
 				EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
 				300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */,
+				303AC4D62764EFB200A8C462 /* HTTPError.swift in Sources */,
+				303AC4D42764EFA600A8C462 /* NetworkClient.swift in Sources */,
+				303AC4D72764EFB500A8C462 /* HTTPNetworkResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
