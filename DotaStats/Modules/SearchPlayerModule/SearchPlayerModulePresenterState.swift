@@ -3,7 +3,7 @@ import Foundation
 enum SearchPlayerModulePresenterState {
     case none
     case loading(Cancellable?)
-    case result(Result<[Players], Error>)
+    case result(Result<[Players], HTTPError>)
 }
 
 extension SearchPlayerModulePresenterState {

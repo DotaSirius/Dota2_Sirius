@@ -11,7 +11,17 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
 }
 
 class SearchPlayerModuleViewController: UIViewController {
-
+    private var output: SearchPlayerModuleViewOutput?
+    
+    init(output: SearchPlayerModuleViewOutput) {
+        self.output = output
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
