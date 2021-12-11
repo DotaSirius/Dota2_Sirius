@@ -59,12 +59,10 @@ struct NetworkClientImp: NetworkClient {
 
 		generatedRequest.httpMethod = request.httpMethod.rawValue
 		generatedRequest.httpBody = request.body
-
-		if case request.headers = request.headers {
-			for processingHeader in request.headers {
-				generatedRequest.addValue(processingHeader.key, forHTTPHeaderField: processingHeader.value)
-			}
-		}
+        
+        request.headers.forEach{
+            generatedRequest.addValue($0.key, forHTTPHeaderField: $0.value)
+        }
 
 		return generatedRequest
 	}
