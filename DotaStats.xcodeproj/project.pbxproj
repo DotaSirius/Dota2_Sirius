@@ -12,7 +12,6 @@
 		300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F72762304300A7A0EF /* HTTPMethod.swift */; };
 		300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F92762334900A7A0EF /* HTTPError.swift */; };
 		300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */; };
-		300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */; };
 		300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */; };
 		300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA122762618000A7A0EF /* NetworkClientReceivingDataTest.swift */; };
 		303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */; };
@@ -57,7 +56,6 @@
 		300FC9F72762304300A7A0EF /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		300FC9F92762334900A7A0EF /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNetworkResponse.swift; sourceTree = "<group>"; };
-		300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCommunicationResult.swift; sourceTree = "<group>"; };
 		300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaStatsTests.swift; sourceTree = "<group>"; };
 		300FCA122762618000A7A0EF /* NetworkClientReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientReceivingDataTest.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				300FC9F72762304300A7A0EF /* HTTPMethod.swift */,
 				300FC9F92762334900A7A0EF /* HTTPError.swift */,
 				300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */,
-				300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -485,7 +482,6 @@
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
 				EC4E6FA32764C8550085B61D /* Player.swift in Sources */,
 				300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */,
-				300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */,
 				EC4E6FA62764C8550085B61D /* Match.swift in Sources */,
 				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
 				EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */,
