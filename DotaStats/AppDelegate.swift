@@ -7,8 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = CostilViewController()
-        vc.view.backgroundColor = UIColor.white
+        let vc = MatchViewController()
         window!.rootViewController = vc
         window!.makeKeyAndVisible()
         return true

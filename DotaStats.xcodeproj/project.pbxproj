@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFA25727623B8500B054D9 /* ColorPalette.swift */; };
+		983ED37D276241EC00E20EA9 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983ED37C276241EC00E20EA9 /* MatchViewController.swift */; };
+		983ED37F2762427600E20EA9 /* MatchPlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983ED37E2762427600E20EA9 /* MatchPlayerCell.swift */; };
+		98F42E1A27635D9C007C8D6E /* MainMatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E1927635D9B007C8D6E /* MainMatchInfo.swift */; };
+		98F42E1C27636D67007C8D6E /* AdditionalMatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E1B27636D67007C8D6E /* AdditionalMatchInfo.swift */; };
+		98F42E1E27636FA5007C8D6E /* PlayerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E1D27636FA5007C8D6E /* PlayerList.swift */; };
+		98F42E2027637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E1F27637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift */; };
+		98F42E2227638768007C8D6E /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E2127638768007C8D6E /* MatchModel.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
@@ -16,6 +23,13 @@
 
 /* Begin PBXFileReference section */
 		5EBFA25727623B8500B054D9 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		983ED37C276241EC00E20EA9 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
+		983ED37E2762427600E20EA9 /* MatchPlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPlayerCell.swift; sourceTree = "<group>"; };
+		98F42E1927635D9B007C8D6E /* MainMatchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMatchInfo.swift; sourceTree = "<group>"; };
+		98F42E1B27636D67007C8D6E /* AdditionalMatchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMatchInfo.swift; sourceTree = "<group>"; };
+		98F42E1D27636FA5007C8D6E /* PlayerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerList.swift; sourceTree = "<group>"; };
+		98F42E1F27637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMatchInfoCellConfigurable.swift; sourceTree = "<group>"; };
+		98F42E2127638768007C8D6E /* MatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +73,13 @@
 				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
 				B61F595C2760A5B800D08CEA /* Resources */,
 				B61F59562760A4FD00D08CEA /* Info.plist */,
+				98F42E1F27637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift */,
+				983ED37C276241EC00E20EA9 /* MatchViewController.swift */,
+				98F42E1927635D9B007C8D6E /* MainMatchInfo.swift */,
+				98F42E1B27636D67007C8D6E /* AdditionalMatchInfo.swift */,
+				983ED37E2762427600E20EA9 /* MatchPlayerCell.swift */,
+				98F42E1D27636FA5007C8D6E /* PlayerList.swift */,
+				98F42E2127638768007C8D6E /* MatchModel.swift */,
 			);
 			path = DotaStats;
 			sourceTree = "<group>";
@@ -142,8 +163,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98F42E1C27636D67007C8D6E /* AdditionalMatchInfo.swift in Sources */,
+				98F42E2227638768007C8D6E /* MatchModel.swift in Sources */,
+				983ED37D276241EC00E20EA9 /* MatchViewController.swift in Sources */,
+				98F42E2027637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift in Sources */,
 				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
+				98F42E1E27636FA5007C8D6E /* PlayerList.swift in Sources */,
+				983ED37F2762427600E20EA9 /* MatchPlayerCell.swift in Sources */,
+				98F42E1A27635D9C007C8D6E /* MainMatchInfo.swift in Sources */,
 				5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
