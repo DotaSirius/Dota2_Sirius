@@ -9,7 +9,11 @@ protocol SearchPlayerModuleOutput: AnyObject {
 final class SearchPlayerModulePresenter {
     let output: SearchPlayerModuleOutput
     
-    weak var view: SearchPlayerModuleViewInput?
+    weak var view: SearchPlayerModuleViewInput? {
+        didSet {
+            view?.updateState(viewState)
+        }
+    }
     
     private let networkService: PlayerSearchNetworkService
     
@@ -26,11 +30,9 @@ final class SearchPlayerModulePresenter {
             return .loading
         case .result(let result):
             switch result {
-            case .success(let players):
-                self.players = players
+            case .success:
                 return .success
-            case .failure(let error):
-                print(error)
+            case .failure:
                 return .failure
             }
         }
@@ -47,7 +49,7 @@ final class SearchPlayerModulePresenter {
                 case .failure(let error):
                     print(error)
                 }
-            default:
+            case .none, .loading:
                 break
             }
             
@@ -80,7 +82,6 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
                 self.state = .result(result)
             }
             state = .loading(token)
-            
         } else {
             state = .none
         }
@@ -90,20 +91,3 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
 // MARK: - SearchPlayerModuleInput
 
 extension SearchPlayerModulePresenter: SearchPlayerModuleInput {}
-//
-//    switch state {
-//    case .loading(let token):
-//        if oldValue == SearchPlayerModulePresenterState.loading {
-//
-//        }
-//    case .result(let resultData):
-//        switch resultData {
-//        case .success(let players):
-//            self.players = players
-//            viewState = .success
-//        case .failure(let error):
-//            print(error)
-//            viewState = .failure
-//        }
-//    }
-// }
