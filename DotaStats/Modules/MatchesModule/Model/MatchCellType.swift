@@ -9,9 +9,9 @@ extension MatchCellType {
     var reuseIdentifier: String {
         switch self {
         case .tournamentViewState:
-            return ""
+            return "ListTournamentsCell"
         case .matchViewState:
-            return ""
+            return "ListMatchesCell"
         }
     }
 }
