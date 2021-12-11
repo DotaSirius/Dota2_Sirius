@@ -1,9 +1,9 @@
 import Foundation
 
 enum SearchPlayerModuleViewState {
-    // вопрос: нужен ли пустой стейт для вью? в случае если нет результата по запросу 
-    // case empty
+    case startScreen
+    case empty
     case loading
-    case success([Player])
-    case failure(SearchPlayerModuleError)
+    case success
+    case failure
 }

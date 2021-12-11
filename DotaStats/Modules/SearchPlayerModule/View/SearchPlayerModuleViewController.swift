@@ -1,18 +1,12 @@
 import UIKit
 
-enum SearchPlayerModuleError: Error {
-    // TODO: correct error types
-    case sampleError
-}
-
 protocol SearchPlayerModuleViewInput: AnyObject {
     func updateState(_ state: SearchPlayerModuleViewState)
 }
 
 protocol SearchPlayerModuleViewOutput: AnyObject {
     var count: Int { get }
-    func getData(indexPath: IndexPath) -> Player
-    func playerSelected(_ player: Player)
+    func getData(indexPath: IndexPath) -> Players
     func search(_ name: String)
 }
 
@@ -30,15 +24,21 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleInput {
     func updateState(_ state: SearchPlayerModuleViewState) {
         // TODO: make update view
         switch state {
+        case .startScreen:
+            // TODO: Start Screen
+            print("startScreen")
+        case .empty:
+            // TODO: anything not found
+            print("emptyView")
         case .loading:
-            // TODO: show activity indicator
-            break
-        case .success(let array):
-            // TODO: show data
-            print(array)
-        case .failure(let searchModuleError):
-            // TODO: show error
-            print(searchModuleError)
+            // TODO: Actrivity View
+            print("loading")
+        case .success:
+            // TODO: Show players
+            print("success")
+        case .failure:
+            // TODO: show error image 
+            print("error")
         }
     }
 }
