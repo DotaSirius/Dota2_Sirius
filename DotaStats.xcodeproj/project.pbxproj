@@ -7,40 +7,74 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D28DBFB27626AD7004A4F53 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DBFA27626AD7004A4F53 /* NetworkService.swift */; };
-		5D28DBFF27626DE1004A4F53 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DBFE27626DE1004A4F53 /* Player.swift */; };
-		5D28DC0127626DED004A4F53 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0027626DED004A4F53 /* Match.swift */; };
-		5D28DC0327626DFB004A4F53 /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0227626DFB004A4F53 /* PlayerInfo.swift */; };
-		5D28DC0527626E18004A4F53 /* MatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0427626E18004A4F53 /* MatchInfo.swift */; };
-		5D28DC0727626F18004A4F53 /* PlayersModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0627626F18004A4F53 /* PlayersModulePresenter.swift */; };
-		5D28DC0927627269004A4F53 /* PlayersModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0827627269004A4F53 /* PlayersModuleViewController.swift */; };
-		5D28DC0E27627787004A4F53 /* PlayersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D28DC0D27627787004A4F53 /* PlayersModuleBuilder.swift */; };
-		5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFA25727623B8500B054D9 /* ColorPalette.swift */; };
+		300FC9F42762237900A7A0EF /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F32762237900A7A0EF /* NetworkService.swift */; };
+		300FC9F627622FA500A7A0EF /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F527622FA500A7A0EF /* HTTPRequest.swift */; };
+		300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F72762304300A7A0EF /* HTTPMethod.swift */; };
+		300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F92762334900A7A0EF /* HTTPError.swift */; };
+		300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */; };
+		300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */; };
+		300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */; };
+		300FCA132762618000A7A0EF /* NetworkServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */; };
+		303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */; };
+		303AC4D2276371A600A8C462 /* MockMatches.json in Resources */ = {isa = PBXBuildFile; fileRef = 303AC4D1276371A600A8C462 /* MockMatches.json */; };
+		3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */; };
+		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
+		3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatch.json */; };
+		3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5232763C72600AC0DD4 /* MockPlayer.json */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
 		B61F59552760A4FD00D08CEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B61F59532760A4FD00D08CEA /* LaunchScreen.storyboard */; };
+		EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* Matches.swift */; };
+		EA8522C781197B1ACBBE601B /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
+		EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* ProMatches.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		300FCA0C27625B8500A7A0EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B61F593D2760A4FB00D08CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B61F59442760A4FB00D08CEA;
+			remoteInfo = DotaStats;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		5D28DBFA27626AD7004A4F53 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		5D28DBFE27626DE1004A4F53 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		5D28DC0027626DED004A4F53 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
-		5D28DC0227626DFB004A4F53 /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
-		5D28DC0427626E18004A4F53 /* MatchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfo.swift; sourceTree = "<group>"; };
-		5D28DC0627626F18004A4F53 /* PlayersModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersModulePresenter.swift; sourceTree = "<group>"; };
-		5D28DC0827627269004A4F53 /* PlayersModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersModuleViewController.swift; sourceTree = "<group>"; };
-		5D28DC0D27627787004A4F53 /* PlayersModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersModuleBuilder.swift; sourceTree = "<group>"; };
-		5EBFA25727623B8500B054D9 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		300FC9F32762237900A7A0EF /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		300FC9F527622FA500A7A0EF /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		300FC9F72762304300A7A0EF /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		300FC9F92762334900A7A0EF /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
+		300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNetworkResponse.swift; sourceTree = "<group>"; };
+		300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCommunicationResult.swift; sourceTree = "<group>"; };
+		300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaStatsTests.swift; sourceTree = "<group>"; };
+		300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceReceivingDataTest.swift; sourceTree = "<group>"; };
+		303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesDecodingTest.swift; sourceTree = "<group>"; };
+		303AC4D1276371A600A8C462 /* MockMatches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatches.json; sourceTree = "<group>"; };
+		3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfoDecodingTest.swift; sourceTree = "<group>"; };
+		3CF8F5222763C5C000AC0DD4 /* MockMatch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatch.json; sourceTree = "<group>"; };
+		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
+		3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDecodingTest.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
 		B61F59512760A4FD00D08CEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B61F59542760A4FD00D08CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B61F59562760A4FD00D08CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA85264F7CF441C52C30E6D7 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		EA85276324310C6574CACFC6 /* ProMatches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProMatches.swift; sourceTree = "<group>"; };
+		EA852BF972642EE930F2680C /* Matches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		300FCA0527625B8500A7A0EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B61F59422760A4FB00D08CEA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -51,112 +85,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5D28DBF5276269C0004A4F53 /* PlayersModule */ = {
+		300FC9EC27621E4200A7A0EF /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5D28DC0A276272C0004A4F53 /* Model */,
-				5D28DC0B276272C9004A4F53 /* Presenter */,
-				5D28DC0C276272D2004A4F53 /* View */,
-				5D28DC0D27627787004A4F53 /* PlayersModuleBuilder.swift */,
+				300FC9EE27621E8800A7A0EF /* Networking */,
 			);
-			path = PlayersModule;
+			path = Data;
 			sourceTree = "<group>";
 		};
-		5D28DBF6276269CE004A4F53 /* MatchesModule */ = {
+		300FC9EE27621E8800A7A0EF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				5DAE5681276369390013D8DB /* Model */,
+				300FC9F22762236A00A7A0EF /* Interfaces */,
+				300FC9F12762226B00A7A0EF /* Encoding */,
+				300FC9F02762226100A7A0EF /* EndPoint */,
+				300FC9EF2762225600A7A0EF /* Service */,
+				EA852AD8CE2823342620362B /* NetworkingModels */,
 			);
-			path = MatchesModule;
+			path = Networking;
 			sourceTree = "<group>";
 		};
-		5D28DBF7276269D7004A4F53 /* MatchInfoModule */ = {
+		300FC9EF2762225600A7A0EF /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				5DAE56802763691D0013D8DB /* Model */,
+				300FC9F527622FA500A7A0EF /* HTTPRequest.swift */,
+				300FC9F72762304300A7A0EF /* HTTPMethod.swift */,
+				300FC9F92762334900A7A0EF /* HTTPError.swift */,
+				300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */,
+				300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */,
 			);
-			path = MatchInfoModule;
+			path = Service;
 			sourceTree = "<group>";
 		};
-		5D28DBF8276269F5004A4F53 /* PlayerInfoModule */ = {
+		300FC9F02762226100A7A0EF /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
-				5DAE5682276372210013D8DB /* Model */,
 			);
-			path = PlayerInfoModule;
+			path = EndPoint;
 			sourceTree = "<group>";
 		};
-		5D28DBF927626A20004A4F53 /* Services */ = {
+		300FC9F12762226B00A7A0EF /* Encoding */ = {
 			isa = PBXGroup;
 			children = (
-				5D28DBFA27626AD7004A4F53 /* NetworkService.swift */,
 			);
-			path = Services;
+			path = Encoding;
 			sourceTree = "<group>";
 		};
-		5D28DC0A276272C0004A4F53 /* Model */ = {
+		300FC9F22762236A00A7A0EF /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				5D28DBFE27626DE1004A4F53 /* Player.swift */,
+				300FC9F32762237900A7A0EF /* NetworkService.swift */,
 			);
-			path = Model;
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
-		5D28DC0B276272C9004A4F53 /* Presenter */ = {
+		300FCA0927625B8500A7A0EF /* DotaStatsTests */ = {
 			isa = PBXGroup;
 			children = (
-				5D28DC0627626F18004A4F53 /* PlayersModulePresenter.swift */,
+				300FCA112762614700A7A0EF /* Networking */,
+				300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */,
 			);
-			path = Presenter;
+			path = DotaStatsTests;
 			sourceTree = "<group>";
 		};
-		5D28DC0C276272D2004A4F53 /* View */ = {
+		300FCA112762614700A7A0EF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				5D28DC0827627269004A4F53 /* PlayersModuleViewController.swift */,
+				303AC4CD276370CA00A8C462 /* Models */,
+				300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */,
 			);
-			path = View;
+			path = Networking;
 			sourceTree = "<group>";
 		};
-		5DAE56802763691D0013D8DB /* Model */ = {
+		303AC4CD276370CA00A8C462 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5D28DC0427626E18004A4F53 /* MatchInfo.swift */,
+				303AC4CE276370D400A8C462 /* Data */,
+				303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */,
+				3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */,
+				3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		5DAE5681276369390013D8DB /* Model */ = {
+		303AC4CE276370D400A8C462 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5D28DC0027626DED004A4F53 /* Match.swift */,
+				303AC4D1276371A600A8C462 /* MockMatches.json */,
+				3CF8F5222763C5C000AC0DD4 /* MockMatch.json */,
+				3CF8F5232763C72600AC0DD4 /* MockPlayer.json */,
 			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5DAE5682276372210013D8DB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5D28DC0227626DFB004A4F53 /* PlayerInfo.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5DAE568327638FC60013D8DB /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				5D28DBF8276269F5004A4F53 /* PlayerInfoModule */,
-				5D28DBF5276269C0004A4F53 /* PlayersModule */,
-				5D28DBF6276269CE004A4F53 /* MatchesModule */,
-				5D28DBF7276269D7004A4F53 /* MatchInfoModule */,
-			);
-			path = Modules;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		B61F593C2760A4FB00D08CEA = {
 			isa = PBXGroup;
 			children = (
 				B61F59472760A4FB00D08CEA /* DotaStats */,
+				300FCA0927625B8500A7A0EF /* DotaStatsTests */,
 				B61F59462760A4FB00D08CEA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				B61F59452760A4FB00D08CEA /* DotaStats.app */,
+				300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,10 +199,8 @@
 		B61F59472760A4FB00D08CEA /* DotaStats */ = {
 			isa = PBXGroup;
 			children = (
-				5D28DBF927626A20004A4F53 /* Services */,
-				5DAE568327638FC60013D8DB /* Modules */,
+				300FC9EC27621E4200A7A0EF /* Data */,
 				B61F59482760A4FB00D08CEA /* AppDelegate.swift */,
-				5EBFA25727623B8500B054D9 /* ColorPalette.swift */,
 				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
 				B61F595C2760A5B800D08CEA /* Resources */,
 				B61F59562760A4FD00D08CEA /* Info.plist */,
@@ -192,9 +217,37 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EA852AD8CE2823342620362B /* NetworkingModels */ = {
+			isa = PBXGroup;
+			children = (
+				EA852BF972642EE930F2680C /* Matches.swift */,
+				EA85264F7CF441C52C30E6D7 /* Players.swift */,
+				EA85276324310C6574CACFC6 /* ProMatches.swift */,
+			);
+			path = NetworkingModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		300FCA0727625B8500A7A0EF /* DotaStatsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 300FCA1027625B8500A7A0EF /* Build configuration list for PBXNativeTarget "DotaStatsTests" */;
+			buildPhases = (
+				300FCA0427625B8500A7A0EF /* Sources */,
+				300FCA0527625B8500A7A0EF /* Frameworks */,
+				300FCA0627625B8500A7A0EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				300FCA0D27625B8500A7A0EF /* PBXTargetDependency */,
+			);
+			name = DotaStatsTests;
+			productName = DotaStatsTests;
+			productReference = 300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B61F59442760A4FB00D08CEA /* DotaStats */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B61F59592760A4FD00D08CEA /* Build configuration list for PBXNativeTarget "DotaStats" */;
@@ -222,6 +275,10 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					300FCA0727625B8500A7A0EF = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = B61F59442760A4FB00D08CEA;
+					};
 					B61F59442760A4FB00D08CEA = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -241,11 +298,22 @@
 			projectRoot = "";
 			targets = (
 				B61F59442760A4FB00D08CEA /* DotaStats */,
+				300FCA0727625B8500A7A0EF /* DotaStatsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		300FCA0627625B8500A7A0EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				303AC4D2276371A600A8C462 /* MockMatches.json in Resources */,
+				3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */,
+				3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B61F59432760A4FB00D08CEA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,25 +326,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		300FCA0427625B8500A7A0EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */,
+				300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */,
+				3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */,
+				303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */,
+				300FCA132762618000A7A0EF /* NetworkServiceReceivingDataTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B61F59412760A4FB00D08CEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D28DBFF27626DE1004A4F53 /* Player.swift in Sources */,
-				5D28DC0527626E18004A4F53 /* MatchInfo.swift in Sources */,
-				5D28DC0127626DED004A4F53 /* Match.swift in Sources */,
-				5D28DC0E27627787004A4F53 /* PlayersModuleBuilder.swift in Sources */,
 				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
-				5D28DC0327626DFB004A4F53 /* PlayerInfo.swift in Sources */,
+				300FC9F627622FA500A7A0EF /* HTTPRequest.swift in Sources */,
+				300FC9F42762237900A7A0EF /* NetworkService.swift in Sources */,
+				300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */,
+				300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */,
+				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
+				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
-				5D28DC0727626F18004A4F53 /* PlayersModulePresenter.swift in Sources */,
-				5D28DBFB27626AD7004A4F53 /* NetworkService.swift in Sources */,
-				5D28DC0927627269004A4F53 /* PlayersModuleViewController.swift in Sources */,
-				5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */,
+				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,
+				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
+				EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		300FCA0D27625B8500A7A0EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B61F59442760A4FB00D08CEA /* DotaStats */;
+			targetProxy = 300FCA0C27625B8500A7A0EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B61F59532760A4FD00D08CEA /* LaunchScreen.storyboard */ = {
@@ -290,6 +378,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		300FCA0E27625B8500A7A0EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.delet-dis.DotaStatsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DotaStats.app/DotaStats";
+			};
+			name = Debug;
+		};
+		300FCA0F27625B8500A7A0EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.delet-dis.DotaStatsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DotaStats.app/DotaStats";
+			};
+			name = Release;
+		};
 		B61F59572760A4FD00D08CEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -465,6 +597,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		300FCA1027625B8500A7A0EF /* Build configuration list for PBXNativeTarget "DotaStatsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				300FCA0E27625B8500A7A0EF /* Debug */,
+				300FCA0F27625B8500A7A0EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B61F59402760A4FB00D08CEA /* Build configuration list for PBXProject "DotaStats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
