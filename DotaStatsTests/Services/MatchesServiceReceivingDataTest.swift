@@ -26,10 +26,8 @@ class MatchesServiceReceivingDataTest: XCTestCase {
                 expectations.fulfill()
                 
                 receivedResult = proMatches
-            case .failure(_):
+            case .failure:
                 XCTFail("Missing response")
-                
-                break
             }
         }
         
@@ -38,12 +36,37 @@ class MatchesServiceReceivingDataTest: XCTestCase {
         return receivedResult
     }
     
-    func testArrayContainsSomeData() throws {
+    func testResponseContainsSomeData() throws {
         let response = receiveData()
 
         guard response != nil else {
             XCTFail("Missing response")
             return
+        }
+    }
+    
+    func testResponseContainsArrayyOfMatches() throws {
+        let response = receiveData()
+        
+        guard let response = response else {
+            XCTFail("Missing response")
+            return
+        }
+
+        XCTAssertFalse(response.matches.isEmpty)
+    }
+    
+    func testAnyMatchContainsRequiredData() throws {
+        let response = receiveData()
+        
+        guard let response = response else {
+            XCTFail("Missing response")
+            return
+        }
+        
+        response.matches.forEach { match in
+            XCTAssert(match.matchId > 0)
+            XCTAssert(match.duration > 0)
         }
     }
 }
