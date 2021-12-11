@@ -18,7 +18,6 @@ public enum HTTPError: String, Error {
     case fragmentResponse = "Error Found : The API's response's body has fragments."
     case unwrappingError = "Error Found : Unable to unwrape the data."
     case dataTaskFailed = "Error Found : The Data Task object failed."
-    case success = "Successful Network Request"
     case authenticationError = "Error Found : You must be Authenticated"
     case badRequest = "Error Found : Bad Request"
     case pageNotFound = "Error Found : Page/Route rquested not found."
