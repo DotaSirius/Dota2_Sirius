@@ -6,27 +6,37 @@
 //
 
 import Foundation
-
-struct MatchTableViewData {
-    let TableContent: [MatchTableViewCellData]
-}
+import UIKit
 
 struct MatchTableViewCellData {
-    let reuseIdentifier: String
-    let type: MatchTableViewCellType
+    var type: MatchTableViewCellType
 }
 
 enum MatchTableViewCellType {
     case mainMatchInfo (MainMatchInfo)
     case additionalMatchInfo (AdditionalMatchInfo)
-    //case playerList (PlayerList)
+    case matchPlayerInfo (PlayerList)
+}
+
+extension MatchTableViewCellType {
+    var reuseIdentificator: String {
+        switch self {
+        case .mainMatchInfo:
+            return MainMatchInfoTableViewCell.reuseIdentifier
+        case .additionalMatchInfo:
+            return AdditionalMatchInfoTableViewCell.reuseIdentifier
+        case .matchPlayerInfo:
+            return MatchPlayerCell.reuseIdentifier
+        }
+    }
 }
 
 struct MainMatchInfo {
     let winnersLabelText: String
     let gameTimeLabelText: String
     let firstTeamScoreLabelText: String
-    let secondTeamScoreLabel: String
+    let secondTeamScoreLabelText: String
+    let matchEndTimeLabelText: String
 }
 
 struct AdditionalMatchInfo {
@@ -36,5 +46,11 @@ struct AdditionalMatchInfo {
 }
 
 struct PlayerList {
-    let Player: String //добавить поля в таблице
+    let playerNameLabelText: String
+    let playerRankText: String
+    let playerKillsText: String
+    let playerDeathsText: String
+    let playerAssitsText: String
+    let playerGoldText: String
+    let playerImage: UIImage
 }

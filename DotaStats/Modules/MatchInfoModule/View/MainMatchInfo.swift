@@ -12,7 +12,6 @@ class MainMatchInfoTableViewCell: UITableViewCell {
     static let reuseIdentifier = "MainMatchInfoTableViewCell"
     private let timeScoreStackView = UIStackView()
     private let mainMatchInfoStackView = UIStackView()
-    private let colorPalette = ColorPalette()
     
     private let winnersLabel = UILabel()
     private let firstTeamScoreLabel = UILabel()
@@ -30,23 +29,22 @@ class MainMatchInfoTableViewCell: UITableViewCell {
     }
     
     func setup() {
-        contentView.backgroundColor = colorPalette.mainBackground
+        contentView.backgroundColor = ColorPalette.mainBackground
         [mainMatchInfoStackView].forEach{contentView.addSubview($0)}
         
-        winnersLabel.textColor = colorPalette.win
+        winnersLabel.textColor = ColorPalette.win
         winnersLabel.font = UIFont.systemFont(ofSize: 30) //изменить шрифт
         
-        gameTimeLabel.textColor = colorPalette.mainText
+        gameTimeLabel.textColor = ColorPalette.mainText
         gameTimeLabel.font = UIFont.systemFont(ofSize: 20) //изменить шрифт
         
-        firstTeamScoreLabel.textColor = colorPalette.win
+        firstTeamScoreLabel.textColor = ColorPalette.win
         firstTeamScoreLabel.font = UIFont.systemFont(ofSize: 30) //изменить шрифт
         
-        secondTeamScoreLabel.textColor = colorPalette.lose
+        secondTeamScoreLabel.textColor = ColorPalette.lose
         secondTeamScoreLabel.font = UIFont.systemFont(ofSize: 30) //изменить шрифт
         
-        matchEndTimeLabel.text = "ENDED 14 HOURS AGO" //данные придут из сети
-        matchEndTimeLabel.textColor = colorPalette.subtitle
+        matchEndTimeLabel.textColor = ColorPalette.subtitle
         matchEndTimeLabel.font = UIFont.systemFont(ofSize: 15) //изменить шрифт
         
         createStackView(stackView: timeScoreStackView, axis: .horizontal, spacing: 24)
@@ -66,24 +64,31 @@ class MainMatchInfoTableViewCell: UITableViewCell {
     
      func setUpConstraints() {
         [mainMatchInfoStackView].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
-         mainMatchInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+         mainMatchInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
          mainMatchInfoStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
          mainMatchInfoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
 }
 
 extension MainMatchInfoTableViewCell:  DetailedMatchInfoCellConfigurable {
-//    func configure(with data: MatchTableViewCellType) {
-//        winnersLabel.text = "Radiant Victory" // из сети
-//        gameTimeLabel.text = "24:10" //данные придут из сети
-//        firstTeamScoreLabel.text = "29" //данные придут из сети
-//        secondTeamScoreLabel.text = "5" //данные придут из сети
-//    }
+        func configure(with data: MatchTableViewCellData) {
+            switch data.type {
+            case .mainMatchInfo(let data):
+                winnersLabel.text = data.winnersLabelText
+                gameTimeLabel.text = data.gameTimeLabelText
+                firstTeamScoreLabel.text = data.firstTeamScoreLabelText
+                secondTeamScoreLabel.text = data.secondTeamScoreLabelText
+                matchEndTimeLabel.text = data.matchEndTimeLabelText
+                
+            default : break
+            }
+    }
     
-        func configure(with data: String) {
-            winnersLabel.text = "Radiant Victory" // из сети
-            gameTimeLabel.text = "24:10" //данные придут из сети
-            firstTeamScoreLabel.text = "29" //данные придут из сети
-            secondTeamScoreLabel.text = "5" //данные придут из сети
-        }
+//        func configure(with data: String) {
+//            matchEndTimeLabel.text = "ENDED 14 HOURS AGO" //данные придут из сети
+//            winnersLabel.text = "Radiant Victory" // из сети
+//            gameTimeLabel.text = "24:10" //данные придут из сети
+//            firstTeamScoreLabel.text = "29" //данные придут из сети
+//            secondTeamScoreLabel.text = "5" //данные придут из сети
+//        }
 }

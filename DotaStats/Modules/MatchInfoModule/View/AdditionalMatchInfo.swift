@@ -8,7 +8,7 @@
 import UIKit
 
 class AdditionalMatchInfoTableViewCell: UITableViewCell {
-private let colorPalette = ColorPalette()
+    private let colorPalette = ColorPalette()
 
     static let reuseIdentifier = "AdditionalMatchInfoTableViewCell"
     
@@ -29,50 +29,51 @@ private let colorPalette = ColorPalette()
         setup()
         setUpConstraints()
     }
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func setup() {
-        contentView.backgroundColor = colorPalette.mainBackground
-        [idRegionSkillStackView].forEach{contentView.addSubview($0)}
+        contentView.backgroundColor = ColorPalette.mainBackground
+        [idRegionSkillStackView].forEach { contentView.addSubview($0) }
         
         matchIdNameLabel.text = "ID"
-        matchIdNameLabel.textColor = colorPalette.subtitle
-        matchIdNameLabel.font = UIFont.systemFont(ofSize: 15) //изменить шрифт
+        matchIdNameLabel.textColor = ColorPalette.subtitle
+        matchIdNameLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
         
         regionNameLabel.text = "REGION"
-        regionNameLabel.textColor = colorPalette.subtitle
-        regionNameLabel.font = UIFont.systemFont(ofSize: 15) //изменить шрифт
+        regionNameLabel.textColor = ColorPalette.subtitle
+        regionNameLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
         
         skillNameLabel.text = "SKILL"
-        skillNameLabel.textColor = colorPalette.subtitle
-        skillNameLabel.font = UIFont.systemFont(ofSize: 15) //изменить шрифт
+        skillNameLabel.textColor = ColorPalette.subtitle
+        skillNameLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
         
-        matchIdLabel.textColor = colorPalette.mainText
-        matchIdLabel.font = UIFont.systemFont(ofSize: 15) //изменить шрифт
+        matchIdLabel.textColor = ColorPalette.mainText
+        matchIdLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
         
-        regionLabel.textColor = colorPalette.mainText
-        regionLabel.font = UIFont.systemFont(ofSize: 15) //изменить шрифт
+        regionLabel.textColor = ColorPalette.mainText
+        regionLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
         
-        skillLabel.textColor = colorPalette.mainText
-        skillLabel.font = UIFont.systemFont(ofSize: 15) //изменить шрифт
-        
+        skillLabel.textColor = ColorPalette.mainText
+        skillLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
         
         createStackView(stackView: idStackView, axis: .vertical, spacing: 8)
-        [matchIdNameLabel, matchIdLabel].forEach{idStackView.addArrangedSubview($0)}
+        [matchIdNameLabel, matchIdLabel].forEach { idStackView.addArrangedSubview($0) }
         
         createStackView(stackView: regionStackView, axis: .vertical, spacing: 8)
-        [regionNameLabel, regionLabel].forEach{regionStackView.addArrangedSubview($0)}
+        [regionNameLabel, regionLabel].forEach { regionStackView.addArrangedSubview($0) }
         
         createStackView(stackView: skillStackView, axis: .vertical, spacing: 9)
-        [skillNameLabel, skillLabel].forEach{skillStackView.addArrangedSubview($0)}
+        [skillNameLabel, skillLabel].forEach { skillStackView.addArrangedSubview($0) }
         
         createStackView(stackView: idRegionSkillStackView, axis: .horizontal, spacing: 24)
-        [idStackView, regionStackView, skillStackView].forEach{idRegionSkillStackView.addArrangedSubview($0)}
-}
+        [idStackView, regionStackView, skillStackView].forEach { idRegionSkillStackView.addArrangedSubview($0) }
+    }
     
-    func createStackView(stackView:UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
+    func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
         stackView.axis = axis
         stackView.distribution = UIStackView.Distribution.equalSpacing
         stackView.alignment = UIStackView.Alignment.center
@@ -80,7 +81,7 @@ private let colorPalette = ColorPalette()
     }
     
     func setUpConstraints() {
-        [idRegionSkillStackView].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
+        [idRegionSkillStackView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         idRegionSkillStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32).isActive = true
         idRegionSkillStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         idRegionSkillStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
@@ -88,15 +89,19 @@ private let colorPalette = ColorPalette()
 }
 
 extension AdditionalMatchInfoTableViewCell: DetailedMatchInfoCellConfigurable {
-//    func configure(with data: MatchTableViewCellType) {
+    func configure(with data: MatchTableViewCellData) {
+        
+        switch data.type {
+        case .additionalMatchInfo(let data):
+            matchIdLabel.text = data.matchIdLabelText
+            regionLabel.text = data.regionLabelText
+            skillLabel.text = data.skillLabelText
+        default : break
+        }
+    }
+//    func configure(with data: String) {
 //        matchIdLabel.text = "74753461439" //данные придут из сети
 //        regionLabel.text = "Stockholm" //данные придут из сети
 //        skillLabel.text = "Normal Skill" //данные придут из сети
 //    }
-    func configure(with data: String) {
-        matchIdLabel.text = "74753461439" //данные придут из сети
-        regionLabel.text = "Stockholm" //данные придут из сети
-        skillLabel.text = "Normal Skill" //данные придут из сети
-    }
-    
 }

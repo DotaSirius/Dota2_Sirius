@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
+		5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBFA25727623B8500B054D9 /* ColorPalette.swift */; };
+		983ED37D276241EC00E20EA9 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983ED37C276241EC00E20EA9 /* MatchViewController.swift */; };
+		983ED37F2762427600E20EA9 /* MatchPlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983ED37E2762427600E20EA9 /* MatchPlayerCell.swift */; };
+		98F42E1A27635D9C007C8D6E /* MainMatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E1927635D9B007C8D6E /* MainMatchInfo.swift */; };
+		98F42E1C27636D67007C8D6E /* AdditionalMatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E1B27636D67007C8D6E /* AdditionalMatchInfo.swift */; };
+		98F42E1E27636FA5007C8D6E /* PlayerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E1D27636FA5007C8D6E /* PlayerList.swift */; };
+		98F42E2027637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E1F27637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift */; };
+		98F42E2227638768007C8D6E /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E2127638768007C8D6E /* MatchModel.swift */; };
+=======
 		300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F32762237900A7A0EF /* NetworkClient.swift */; };
 		300FC9F627622FA500A7A0EF /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F527622FA500A7A0EF /* HTTPRequest.swift */; };
 		300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F72762304300A7A0EF /* HTTPMethod.swift */; };
@@ -21,20 +31,15 @@
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatch.json */; };
 		3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5232763C72600AC0DD4 /* MockPlayer.json */; };
-		98F42E3D2764D26C007C8D6E /* DetailedMatchInfoCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E362764D26B007C8D6E /* DetailedMatchInfoCellConfigurable.swift */; };
-		98F42E3E2764D26C007C8D6E /* MatchPlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E372764D26B007C8D6E /* MatchPlayerCell.swift */; };
-		98F42E3F2764D26C007C8D6E /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E382764D26B007C8D6E /* MatchModel.swift */; };
-		98F42E402764D26C007C8D6E /* AdditionalMatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E392764D26B007C8D6E /* AdditionalMatchInfo.swift */; };
-		98F42E412764D26C007C8D6E /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E3A2764D26C007C8D6E /* MatchViewController.swift */; };
-		98F42E432764D26C007C8D6E /* MainMatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E3C2764D26C007C8D6E /* MainMatchInfo.swift */; };
-		98F42E452764D42B007C8D6E /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E442764D42B007C8D6E /* ColorPalette.swift */; };
-		98F42E4727654BEB007C8D6E /* PresentorMethodsDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F42E4627654BEB007C8D6E /* PresentorMethodsDraft.swift */; };
+>>>>>>> main
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
+		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
 		B61F59552760A4FD00D08CEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B61F59532760A4FD00D08CEA /* LaunchScreen.storyboard */; };
 		EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* Matches.swift */; };
 		EA8522C781197B1ACBBE601B /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
 		EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* ProMatches.swift */; };
+		EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F8C2764C8250085B61D /* ColorPalette.swift */; };
 		EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F912764C8550085B61D /* MatchInfo.swift */; };
 		EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F942764C8550085B61D /* PlayersModulePresenter.swift */; };
 		EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F952764C8550085B61D /* PlayersModuleBuilder.swift */; };
@@ -56,6 +61,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
+		5EBFA25727623B8500B054D9 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		983ED37C276241EC00E20EA9 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
+		983ED37E2762427600E20EA9 /* MatchPlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchPlayerCell.swift; sourceTree = "<group>"; };
+		98F42E1927635D9B007C8D6E /* MainMatchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMatchInfo.swift; sourceTree = "<group>"; };
+		98F42E1B27636D67007C8D6E /* AdditionalMatchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalMatchInfo.swift; sourceTree = "<group>"; };
+		98F42E1D27636FA5007C8D6E /* PlayerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerList.swift; sourceTree = "<group>"; };
+		98F42E1F27637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMatchInfoCellConfigurable.swift; sourceTree = "<group>"; };
+		98F42E2127638768007C8D6E /* MatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
+=======
 		300FC9F32762237900A7A0EF /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		300FC9F527622FA500A7A0EF /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		300FC9F72762304300A7A0EF /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
@@ -71,22 +86,17 @@
 		3CF8F5222763C5C000AC0DD4 /* MockMatch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatch.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
 		3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDecodingTest.swift; sourceTree = "<group>"; };
-		98F42E362764D26B007C8D6E /* DetailedMatchInfoCellConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedMatchInfoCellConfigurable.swift; sourceTree = "<group>"; };
-		98F42E372764D26B007C8D6E /* MatchPlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchPlayerCell.swift; sourceTree = "<group>"; };
-		98F42E382764D26B007C8D6E /* MatchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
-		98F42E392764D26B007C8D6E /* AdditionalMatchInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionalMatchInfo.swift; sourceTree = "<group>"; };
-		98F42E3A2764D26C007C8D6E /* MatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
-		98F42E3C2764D26C007C8D6E /* MainMatchInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMatchInfo.swift; sourceTree = "<group>"; };
-		98F42E442764D42B007C8D6E /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
-		98F42E4627654BEB007C8D6E /* PresentorMethodsDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentorMethodsDraft.swift; sourceTree = "<group>"; };
+>>>>>>> main
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
 		B61F59512760A4FD00D08CEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B61F59542760A4FD00D08CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B61F59562760A4FD00D08CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA85264F7CF441C52C30E6D7 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		EA85276324310C6574CACFC6 /* ProMatches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProMatches.swift; sourceTree = "<group>"; };
 		EA852BF972642EE930F2680C /* Matches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
+		EC4E6F8C2764C8250085B61D /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		EC4E6F912764C8550085B61D /* MatchInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchInfo.swift; sourceTree = "<group>"; };
 		EC4E6F942764C8550085B61D /* PlayersModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersModulePresenter.swift; sourceTree = "<group>"; };
 		EC4E6F952764C8550085B61D /* PlayersModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersModuleBuilder.swift; sourceTree = "<group>"; };
@@ -208,20 +218,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		98F42E272764D0C1007C8D6E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				98F42E362764D26B007C8D6E /* DetailedMatchInfoCellConfigurable.swift */,
-				98F42E3A2764D26C007C8D6E /* MatchViewController.swift */,
-				98F42E4627654BEB007C8D6E /* PresentorMethodsDraft.swift */,
-				98F42E392764D26B007C8D6E /* AdditionalMatchInfo.swift */,
-				98F42E3C2764D26C007C8D6E /* MainMatchInfo.swift */,
-				98F42E372764D26B007C8D6E /* MatchPlayerCell.swift */,
-				98F42E382764D26B007C8D6E /* MatchModel.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		B61F593C2760A4FB00D08CEA = {
 			isa = PBXGroup;
 			children = (
@@ -243,13 +239,21 @@
 		B61F59472760A4FB00D08CEA /* DotaStats */ = {
 			isa = PBXGroup;
 			children = (
-				98F42E442764D42B007C8D6E /* ColorPalette.swift */,
 				300FC9EC27621E4200A7A0EF /* Data */,
 				B61F59482760A4FB00D08CEA /* AppDelegate.swift */,
+				EC4E6F8C2764C8250085B61D /* ColorPalette.swift */,
+				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
 				EC4E6FA72764C85E0085B61D /* Services */,
 				EC4E6F8E2764C8550085B61D /* Modules */,
 				B61F595C2760A5B800D08CEA /* Resources */,
 				B61F59562760A4FD00D08CEA /* Info.plist */,
+				98F42E1F27637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift */,
+				983ED37C276241EC00E20EA9 /* MatchViewController.swift */,
+				98F42E1927635D9B007C8D6E /* MainMatchInfo.swift */,
+				98F42E1B27636D67007C8D6E /* AdditionalMatchInfo.swift */,
+				983ED37E2762427600E20EA9 /* MatchPlayerCell.swift */,
+				98F42E1D27636FA5007C8D6E /* PlayerList.swift */,
+				98F42E2127638768007C8D6E /* MatchModel.swift */,
 			);
 			path = DotaStats;
 			sourceTree = "<group>";
@@ -287,7 +291,6 @@
 		EC4E6F8F2764C8550085B61D /* MatchInfoModule */ = {
 			isa = PBXGroup;
 			children = (
-				98F42E272764D0C1007C8D6E /* View */,
 				EC4E6F902764C8550085B61D /* Model */,
 			);
 			path = MatchInfoModule;
@@ -491,32 +494,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
+				98F42E1C27636D67007C8D6E /* AdditionalMatchInfo.swift in Sources */,
+				98F42E2227638768007C8D6E /* MatchModel.swift in Sources */,
+				983ED37D276241EC00E20EA9 /* MatchViewController.swift in Sources */,
+				98F42E2027637DDE007C8D6E /* DetailedMatchInfoCellConfigurable.swift in Sources */,
+=======
 				EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */,
-				98F42E3F2764D26C007C8D6E /* MatchModel.swift in Sources */,
+>>>>>>> main
+				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
 				EC4E6FA42764C8550085B61D /* PlayersModuleViewController.swift in Sources */,
-				98F42E412764D26C007C8D6E /* MatchViewController.swift in Sources */,
 				300FC9F627622FA500A7A0EF /* HTTPRequest.swift in Sources */,
-				98F42E4727654BEB007C8D6E /* PresentorMethodsDraft.swift in Sources */,
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
 				EC4E6FA32764C8550085B61D /* Player.swift in Sources */,
 				300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */,
 				300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */,
-				98F42E452764D42B007C8D6E /* ColorPalette.swift in Sources */,
 				EC4E6FA62764C8550085B61D /* Match.swift in Sources */,
 				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
-				98F42E3E2764D26C007C8D6E /* MatchPlayerCell.swift in Sources */,
 				EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */,
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
-				98F42E402764D26C007C8D6E /* AdditionalMatchInfo.swift in Sources */,
-				98F42E432764D26C007C8D6E /* MainMatchInfo.swift in Sources */,
 				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
-				98F42E3D2764D26C007C8D6E /* DetailedMatchInfoCellConfigurable.swift in Sources */,
+<<<<<<< HEAD
+				98F42E1E27636FA5007C8D6E /* PlayerList.swift in Sources */,
+				983ED37F2762427600E20EA9 /* MatchPlayerCell.swift in Sources */,
+				98F42E1A27635D9C007C8D6E /* MainMatchInfo.swift in Sources */,
+				5EBFA25827623B8500B054D9 /* ColorPalette.swift in Sources */,
+=======
 				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,
 				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
 				EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */,
 				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */,
+				EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */,
+>>>>>>> main
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

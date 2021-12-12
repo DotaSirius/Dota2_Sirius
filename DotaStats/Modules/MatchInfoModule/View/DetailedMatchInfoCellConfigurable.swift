@@ -8,6 +8,6 @@
 import Foundation
 
 protocol DetailedMatchInfoCellConfigurable {
-    //func configure(with data: MatchCollectionViewCellType)
-    func configure(with data: String)
+    func configure(with data: MatchTableViewCellData)
+    //func configure(with data: String)
 }

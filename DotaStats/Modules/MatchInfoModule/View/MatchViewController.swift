@@ -3,7 +3,7 @@ import UIKit
 class MatchViewController: UIViewController {
     private let colorPalette = ColorPalette()
 
-    var data: MatchTableViewData?
+    var data: MatchTableViewCellData?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -14,16 +14,18 @@ class MatchViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = colorPalette.mainBackground
+        tableView.backgroundColor = ColorPalette.mainBackground
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = colorPalette.mainBackground
+        view.backgroundColor = ColorPalette.mainBackground
         view.addSubview(tableView)
         setUpConstraints()
+        
     }
+    
     
     func setUpConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,37 +38,34 @@ class MatchViewController: UIViewController {
 
 extension MatchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5 //data?.collectionContent.count ?? 0
+        15 // данные из сети
     }
 
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseIdentifier = "MainMatchInfoTableViewCell"
-        guard
-            let cell = tableView.dequeueReusableCell(
+        let data = getCellData(indexpath: indexPath.row)
+        let reuseIdentifier = data.type.reuseIdentificator
+        guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: reuseIdentifier,
                 for: indexPath) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
         else {
             return UITableViewCell()
         }
-        let data = ""
         cell.configure(with: data)
         return cell
     }
     
+}
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let reuseIdentifier = data?.tableContent[indexPath.row].reuseIdentifier else {
-//                return UITableViewCell()
-//            }
+//        let reuseIdentifier = "MatchPlayerCell"
 //        guard
 //            let cell = tableView.dequeueReusableCell(
 //                withIdentifier: reuseIdentifier,
-//                for: indexPath) as? (UITableViewCell & DetailedMatchInfoCellConfigurable),
-//            let data = data?.TableContent[indexPath.row].type
+//                for: indexPath) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
 //        else {
 //            return UITableViewCell()
 //        }
+//        let data = ""
 //        cell.configure(with: data)
 //        return cell
 //    }
-    
-}
