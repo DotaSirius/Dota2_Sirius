@@ -3,7 +3,7 @@ import Foundation
 protocol MatchesModuleInput: AnyObject {}
 
 protocol MatchesModuleOutput: AnyObject {
-    func matchesModule(_ module: MatchesModuleInput, didSelectPlayer match: Match)
+    func matchesModule(_ module: MatchesModuleInput, didSelectPlayer matchId: Int)
 }
 
 final class MatchesModulePresenter {
@@ -67,7 +67,8 @@ final class MatchesModulePresenter {
                 let newMatch = MatchCollectionPresenterData(
                     rowSection: tournaments[match.leagueName]!,
                     isOpen: false,
-                    matchCellType: newCell
+                    matchCellType: newCell,
+                    id: match.matchId
                 )
                 self.matches.append(newMatch)
             } else {
@@ -80,7 +81,8 @@ final class MatchesModulePresenter {
                 let newMatch = MatchCollectionPresenterData(
                     rowSection: tournaments[match.leagueName]!,
                     isOpen: false,
-                    matchCellType: newCell
+                    matchCellType: newCell,
+                    id: match.matchId
                 )
                 self.matches.append(newMatch)
             }
@@ -96,21 +98,37 @@ extension MatchesModulePresenter: MatchesModuleInput {}
 
 extension MatchesModulePresenter: MatchesModuleViewOutput {
     func getSectionCount() -> Int {
-        // TODO:
-        0
+        let sectionMax = matches.max { $0.rowSection.section < $1.rowSection.section }
+        return sectionMax?.rowSection.section ?? 0
     }
     
     func getRowsInSection(section: Int) -> Int {
-        // TODO:
-        0
+        var rowsInSection = 0
+        for match in matches {
+            if (match.rowSection.section == section) {
+                rowsInSection += 1
+            }
+        }
+        
+        return rowsInSection
     }
     
     func getData(indexPath: IndexPath) -> MatchCellType {
-        // TODO:
-        MatchCellType.tournamentViewState(TournamentViewState(leagueName: ""))
+        for match in matches {
+            if (match.rowSection.section == indexPath.section && match.rowSection.row == indexPath.row) {
+                return match.matchCellType
+            }
+        }
+        return MatchCellType.tournamentViewState(TournamentViewState(leagueName: ""))
     }
     
     func cellTapped(indexPath: IndexPath) {
-        // TODO:
+        var matchId = 0
+        for match in matches {
+            if (match.rowSection.section == indexPath.section && match.rowSection.row == indexPath.row) {
+                matchId = match.id
+            }
+        }
+        output.matchesModule(self, didSelectPlayer: matchId)
     }
 }
