@@ -57,7 +57,6 @@
 		F0DF329C27674C2E004670C0 /* SearchPlayerModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF329B27674C2E004670C0 /* SearchPlayerModuleBuilder.swift */; };
 		F0DF32A127676931004670C0 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A027676931004670C0 /* ImageService.swift */; };
 		F0DF32A32767850C004670C0 /* PlayerSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A22767850C004670C0 /* PlayerSearch.swift */; };
-		F0DF32A527678A0D004670C0 /* ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A427678A0D004670C0 /* ImageLoading.swift */; };
 		F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */; };
 		F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */; };
 		F0F2EE4F2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4E2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift */; };
@@ -116,7 +115,6 @@
 		F0DF329B27674C2E004670C0 /* SearchPlayerModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleBuilder.swift; sourceTree = "<group>"; };
 		F0DF32A027676931004670C0 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		F0DF32A22767850C004670C0 /* PlayerSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearch.swift; sourceTree = "<group>"; };
-		F0DF32A427678A0D004670C0 /* ImageLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoading.swift; sourceTree = "<group>"; };
 		F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModulePresenter.swift; sourceTree = "<group>"; };
 		F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleViewController.swift; sourceTree = "<group>"; };
 		F0F2EE4E2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleViewState.swift; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				F0F2EE4E2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift */,
-				F0DF32A427678A0D004670C0 /* ImageLoading.swift */,
 				F0F2EE512764E2C900EAB7E5 /* SearchPlayerModulePresenterState.swift */,
 				F0DF32A22767850C004670C0 /* PlayerSearch.swift */,
 			);
@@ -570,7 +567,6 @@
 				5E33F69A2764D89600749EC7 /* TournamentViewState.swift in Sources */,
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
 				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
-				F0DF32A527678A0D004670C0 /* ImageLoading.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
 				F0DF32A127676931004670C0 /* ImageService.swift in Sources */,
 				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,

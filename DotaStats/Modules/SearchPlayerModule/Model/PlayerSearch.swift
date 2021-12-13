@@ -1,7 +1,6 @@
 import UIKit
 
 struct PlayerSearch {
-    var token: Cancellable? = nil
     var avatar: UIImage? = nil
     let accountId: Int
     let avatarFull: String?

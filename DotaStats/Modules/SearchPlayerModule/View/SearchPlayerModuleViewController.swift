@@ -2,7 +2,7 @@ import UIKit
 
 protocol SearchPlayerModuleViewInput: AnyObject {
     func updateState(_ state: SearchPlayerModuleViewState)
-    func reloadCellForIndexPath(_ indexPath: IndexPath, withImage image: UIImage)
+    func reload(at indexPath: IndexPath)
 }
 
 protocol SearchPlayerModuleViewOutput: AnyObject {
@@ -10,7 +10,6 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
     func getData(indexPath: IndexPath) -> PlayerSearch
     func search(_ name: String)
     func playerSelected(_ player: PlayerSearch)
-    func cellEndDisplayingForIndexPath(_ indexPath: IndexPath)
 }
 
 class SearchPlayerModuleViewController: UIViewController {
@@ -55,7 +54,7 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
         }
     }
     
-    func reloadCellForIndexPath(_ indexPath: IndexPath, withImage image: UIImage) {
-        
+    func reload(at indexPath: IndexPath) {
+        //
     }
 }

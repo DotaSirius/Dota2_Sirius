@@ -19,7 +19,7 @@ final class SearchPlayerModulePresenter {
     private let imageNetworkService: ImageNetworkService
     
     private var players = [PlayerSearch]()
-    private var imageLoading = [IndexPath: ImageLoading]()
+    private var imageRequestTokens = [IndexPath: Cancellable]()
     
     private var viewState: SearchPlayerModuleViewState {
         viewState(from: state)
@@ -58,6 +58,12 @@ final class SearchPlayerModulePresenter {
         self.imageNetworkService = imageNetworkService
         state = .none
     }
+    
+    deinit {
+        imageRequestTokens.forEach { _, request in
+            request.cancel()
+        }
+    }
 }
 
 // MARK: - SearchModuleViewOutput
@@ -68,19 +74,19 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
     }
     
     func getData(indexPath: IndexPath) -> PlayerSearch {
-        players[indexPath.row].avatar = imageLoading[indexPath]?.avatar
-        if let urlString = players[indexPath.row].avatarFull, let url = URL(string: urlString)  {
-            let token = imageNetworkService.loadImageFromURL(url) { [weak self] result in
-                guard let self = self else { return }
+        if let urlString = players[indexPath.row].avatarFull,
+            let url = URL(string: urlString)  {
+            let imageRequestToken = imageNetworkService.loadImageFromURL(url) { [weak self] result in
                 switch result {
                 case .success(let image):
-                    self.imageLoading[indexPath]?.avatar = image
-                    self.view?.reloadCellForIndexPath(indexPath, withImage: image)
+                    self?.players[indexPath.row].avatar = image
+                    self?.imageRequestTokens[indexPath] = nil
+                    self?.view?.reload(at: indexPath)
                 case .failure(_):
                     break
                 }
             }
-            imageLoading[indexPath]?.token = token
+            imageRequestTokens[indexPath] = imageRequestToken
         }
         
         return players[indexPath.row]
@@ -88,7 +94,7 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
     
     func search(_ name: String) {
         if !name.isEmpty {
-            let token = playerSearchService.playersByName(name) { [weak self] result in
+            let searchRequestToken = playerSearchService.playersByName(name) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let search):
@@ -98,7 +104,7 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
                     self.state = .failure(error)
                 }
             }
-            state = .loading(token)
+            state = .loading(searchRequestToken)
         } else {
             state = .none
         }
@@ -106,11 +112,6 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
     
     func playerSelected(_ player: PlayerSearch) {
         output.searchModule(self, didSelectPlayer: player)
-    }
-    
-    func cellEndDisplayingForIndexPath(_ indexPath: IndexPath) {
-        imageLoading[indexPath]?.token?.cancel()
-        imageLoading[indexPath] = nil
     }
 }
 
