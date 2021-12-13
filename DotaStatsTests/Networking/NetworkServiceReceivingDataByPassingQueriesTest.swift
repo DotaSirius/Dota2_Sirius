@@ -10,13 +10,10 @@ final class NetworkServiceReceivingDataByPassingQueriesTest: XCTestCase {
 
         let networkClient = NetworkClientImp(urlSession: urlSession)
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-
         let searchPlayersRequest = HTTPRequest(
             route: "https://api.opendota.com/api/search",
             queryItems: [HTTPRequestQueryItem("q", "username")],
-            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(formatter)
+            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(DateFormatter.ISO8601WithSecondsFormatter)
         )
 
         networkClient.processRequest(
