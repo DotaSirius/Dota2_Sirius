@@ -30,6 +30,8 @@ class NetworkServiceReceivingDataTest: XCTestCase {
 
                 receivedResult = constants
             case .failure:
+                XCTFail("Missing response")
+                
                 break
             }
         }
