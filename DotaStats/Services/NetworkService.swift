@@ -1,5 +1,9 @@
 import Foundation
 
+protocol PlayerSearchNetworkService: AnyObject {
+    func playersByName(_ name: String, completion: @escaping (Result<[Players], HTTPError>) -> Void) -> Cancellable?
+}
+
 protocol NetworkService: AnyObject {
     func proPlayers() -> [Player]
     func playersByName(_ name: String) -> [Player]
