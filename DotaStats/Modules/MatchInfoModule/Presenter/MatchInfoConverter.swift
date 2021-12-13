@@ -4,6 +4,8 @@ protocol MatchInfoConverter: AnyObject {
     func getMainMatchInfo() -> MainMatchInfo
     func getAdditionalMatchInfo() -> AdditionalMatchInfo
     func getPlayerInfo(number: Int) -> PlayerList
+    func getDireMatchInfo() -> TeamMatchInfo
+    func getRadiantMatchInfo() -> TeamMatchInfo
 }
 
 class MatchInfoConverterImp: MatchInfoConverter {
@@ -12,8 +14,9 @@ class MatchInfoConverterImp: MatchInfoConverter {
     private var matchInfoRaw: Matches
     
     init(networkService: NetworkService) {
+        // TODO: - We get data from network, but this part of networkService is not implemented yet, so I did this..
         self.networkService = networkService
-        matchInfoRaw = Matches(matchId: 1, barracksStatusDire: nil, barracksStatusRadiant: nil, chat: nil, cluster: nil, direScore: nil, draftTimings: nil, duration: nil, engine: nil, firstBloodTime: nil, gameMode: nil, humanPlayers: nil, leagueid: nil, lobbyType: nil, matchSeqNum: nil, negativeVotes: nil, positiveVotes: nil, radiantScore: nil, radiantWin: nil, startTime: nil, towerStatusDire: nil, towerStatusRadiant: nil, version: nil, replaySalt: nil, seriesId: nil, seriesType: nil, skill: nil, players: [Matches.Player(matchId: 1, playerSlot: 2, abilityUpgradesArr: nil, accountId: nil, assists: nil, backpack0: nil, backpack1: nil, backpack2: nil, buybackLog: nil, campsStacked: nil, connectionLog: nil, creepsStacked: nil, deaths: nil, denies: nil, dnT: nil, gold: nil, goldPerMin: nil, goldSpent: nil, goldT: nil, heroDamage: nil, heroHealing: nil, heroId: nil, item0: nil, item1: nil, item2: nil, item3: nil, item4: nil, item5: nil, kills: nil, killsLog: nil, lastHits: nil, leaverStatus: nil, level: nil, lhT: nil, obsPlaced: nil, partyId: nil, partySize: nil, pings: nil, purchaseLog: nil, runePickups: nil, runesLog: nil, senPlaced: nil, stuns: nil, times: nil, towerDamage: nil, xpPerMin: nil, xpT: nil, personaname: nil, name: nil, radiantWin: nil, startTime: nil, duration: nil, cluster: nil, lobbyType: nil, gameMode: nil, patch: nil, region: nil, isRadiant: nil, win: nil, lose: nil, totalGold: nil, totalXp: nil, killsPerMin: nil, kda: nil, abandons: nil, neutralKills: nil, towerKills: nil, courierKills: nil, laneKills: nil, heroKills: nil, observerKills: nil, sentryKills: nil, roshanKills: nil, necronomiconKills: nil, ancientKills: nil, buybackCount: nil, observerUses: nil, sentryUses: nil, laneEfficiency: nil, laneEfficiencyPct: nil, lane: nil, laneRole: nil, isRoaming: nil, actionsPerMin: nil, lifeStateDead: nil, rankTier: nil, cosmetics: nil)], patch: nil, region: nil, throw: nil, comeback: nil, loss: nil, win: nil, replayUrl: nil)
+        matchInfoRaw = Matches(matchId: 12345678, barracksStatusDire: nil, barracksStatusRadiant: nil, chat: nil, cluster: nil, direScore: 44, draftTimings: nil, duration: 1371, engine: nil, firstBloodTime: nil, gameMode: nil, humanPlayers: nil, leagueid: nil, lobbyType: nil, matchSeqNum: nil, negativeVotes: nil, positiveVotes: nil, radiantScore: 34, radiantWin: true, startTime: nil, towerStatusDire: nil, towerStatusRadiant: nil, version: nil, replaySalt: nil, seriesId: nil, seriesType: nil, skill: nil, players: [Matches.Player(matchId: 1, playerSlot: 2, abilityUpgradesArr: nil, accountId: nil, assists: nil, backpack0: nil, backpack1: nil, backpack2: nil, buybackLog: nil, campsStacked: nil, connectionLog: nil, creepsStacked: nil, deaths: nil, denies: nil, dnT: nil, gold: nil, goldPerMin: nil, goldSpent: nil, goldT: nil, heroDamage: nil, heroHealing: nil, heroId: nil, item0: nil, item1: nil, item2: nil, item3: nil, item4: nil, item5: nil, kills: nil, killsLog: nil, lastHits: nil, leaverStatus: nil, level: nil, lhT: nil, obsPlaced: nil, partyId: nil, partySize: nil, pings: nil, purchaseLog: nil, runePickups: nil, runesLog: nil, senPlaced: nil, stuns: nil, times: nil, towerDamage: nil, xpPerMin: nil, xpT: nil, personaname: nil, name: nil, radiantWin: nil, startTime: nil, duration: nil, cluster: nil, lobbyType: nil, gameMode: nil, patch: nil, region: nil, isRadiant: nil, win: nil, lose: nil, totalGold: nil, totalXp: nil, killsPerMin: nil, kda: nil, abandons: nil, neutralKills: nil, towerKills: nil, courierKills: nil, laneKills: nil, heroKills: nil, observerKills: nil, sentryKills: nil, roshanKills: nil, necronomiconKills: nil, ancientKills: nil, buybackCount: nil, observerUses: nil, sentryUses: nil, laneEfficiency: nil, laneEfficiencyPct: nil, lane: nil, laneRole: nil, isRoaming: nil, actionsPerMin: nil, lifeStateDead: nil, rankTier: nil, cosmetics: nil)], patch: nil, region: nil, throw: nil, comeback: nil, loss: nil, win: nil, replayUrl: nil)
         // matchInfoRaw = networkService.get()
     }
         
@@ -50,6 +53,27 @@ class MatchInfoConverterImp: MatchInfoConverter {
         return PlayerList(playerNameLabelText: playerNameLabelText, playerRankText: playerRankText, playerKillsText: playerKillsText, playerDeathsText: playerDeathsText, playerAssitsText: playerAssitsText, playerGoldText: playerGoldText)
     }
     
+    func getRadiantMatchInfo() -> TeamMatchInfo {
+        let teamNameLabelText = "Radiant"
+        guard
+            let isRadiantWin = matchInfoRaw.radiantWin
+        else {
+            return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: "")
+        }
+        let teamWinLabel = isRadiantWin ? "Winner" : ""
+        return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: teamWinLabel)
+    }
+    
+    func getDireMatchInfo() -> TeamMatchInfo {
+        let teamNameLabelText = "Dire"
+        guard
+            let isRadiantWin = matchInfoRaw.radiantWin
+        else {
+            return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: "")
+        }
+        let teamWinLabel = isRadiantWin ? "" : "Winner"
+        return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: teamWinLabel)
+    }
     // MARK: - PlayerList converters
 
     func convert(playerName: String?) -> String {
@@ -115,6 +139,7 @@ class MatchInfoConverterImp: MatchInfoConverter {
         return "\(score)"
     }
     
+    // How long ago match was ended. Not implemented yet, because in future startTime will be converted from Int to Date in Networking
     func convert(startTime: Int?, duration: Int?) -> String {
         return "0 HOURS AGO."
     }

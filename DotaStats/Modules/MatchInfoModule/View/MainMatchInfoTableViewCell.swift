@@ -1,15 +1,7 @@
-//
-//  MainMatchInfo.swift
-//  DotaStats
-//
-//  Created by Костина Вероника  on 10.12.2021.
-//
 import UIKit
 
-class MainMatchInfoTableViewCell: UITableViewCell {
+final class MainMatchInfoTableViewCell: UITableViewCell {
     static let reuseIdentifier = "MainMatchInfoTableViewCell"
-    private let timeScoreStackView = UIStackView()
-    private let mainMatchInfoStackView = UIStackView()
     
     private let winnersLabel = UILabel()
     private let firstTeamScoreLabel = UILabel()
@@ -30,42 +22,47 @@ class MainMatchInfoTableViewCell: UITableViewCell {
     
     func setup() {
         contentView.backgroundColor = ColorPalette.mainBackground
-        [mainMatchInfoStackView].forEach { contentView.addSubview($0) }
-        // TODO: - изменить шрифт
+        [winnersLabel, gameTimeLabel, matchEndTimeLabel, firstTeamScoreLabel, secondTeamScoreLabel].forEach { contentView.addSubview($0) }
+        
         winnersLabel.textColor = ColorPalette.win
-        winnersLabel.font = UIFont.systemFont(ofSize: 30) // изменить шрифт
+        winnersLabel.font = UIFont.systemFont(ofSize: 30)
+        winnersLabel.numberOfLines = 0
+        winnersLabel.textAlignment = .center
         
         gameTimeLabel.textColor = ColorPalette.mainText
-        gameTimeLabel.font = UIFont.systemFont(ofSize: 20) // изменить шрифт
+        gameTimeLabel.font = UIFont.systemFont(ofSize: 20)
         
         firstTeamScoreLabel.textColor = ColorPalette.win
-        firstTeamScoreLabel.font = UIFont.systemFont(ofSize: 30) // изменить шрифт
+        firstTeamScoreLabel.font = UIFont.systemFont(ofSize: 30)
         
         secondTeamScoreLabel.textColor = ColorPalette.lose
-        secondTeamScoreLabel.font = UIFont.systemFont(ofSize: 30) // изменить шрифт
+        secondTeamScoreLabel.font = UIFont.systemFont(ofSize: 30)
         
         matchEndTimeLabel.textColor = ColorPalette.subtitle
-        matchEndTimeLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
-        
-        createStackView(stackView: timeScoreStackView, axis: .horizontal, spacing: 24)
-        [firstTeamScoreLabel, gameTimeLabel, secondTeamScoreLabel].forEach { timeScoreStackView.addArrangedSubview($0) }
-        
-        createStackView(stackView: mainMatchInfoStackView, axis: .vertical, spacing: 8)
-        [winnersLabel, timeScoreStackView, matchEndTimeLabel].forEach { mainMatchInfoStackView.addArrangedSubview($0) }
-    }
-    
-    func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
-        stackView.axis = axis
-        stackView.distribution = UIStackView.Distribution.equalSpacing
-        stackView.alignment = UIStackView.Alignment.center
-        stackView.spacing = spacing
+        matchEndTimeLabel.font = UIFont.systemFont(ofSize: 15)
+        matchEndTimeLabel.numberOfLines = 0
+        matchEndTimeLabel.textAlignment = .center
     }
     
     func setUpConstraints() {
-        [mainMatchInfoStackView].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
-        mainMatchInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-        mainMatchInfoStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        mainMatchInfoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        [winnersLabel, gameTimeLabel, matchEndTimeLabel, firstTeamScoreLabel, secondTeamScoreLabel].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+        winnersLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+        winnersLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+        winnersLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        
+        firstTeamScoreLabel.topAnchor.constraint(equalTo: winnersLabel.bottomAnchor, constant: 8).isActive = true
+        firstTeamScoreLabel.trailingAnchor.constraint(equalTo: gameTimeLabel.leadingAnchor, constant: -16).isActive = true
+        
+        secondTeamScoreLabel.topAnchor.constraint(equalTo: winnersLabel.bottomAnchor, constant: 8).isActive = true
+        secondTeamScoreLabel.leadingAnchor.constraint(equalTo: gameTimeLabel.trailingAnchor, constant: 16).isActive = true
+
+        gameTimeLabel.centerYAnchor.constraint(equalTo: firstTeamScoreLabel.centerYAnchor).isActive = true
+        gameTimeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        
+        matchEndTimeLabel.topAnchor.constraint(equalTo: firstTeamScoreLabel.bottomAnchor, constant: 8).isActive = true
+        matchEndTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
+        matchEndTimeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        matchEndTimeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
 }
 
@@ -78,9 +75,7 @@ extension MainMatchInfoTableViewCell: DetailedMatchInfoCellConfigurable {
             firstTeamScoreLabel.text = data.firstTeamScoreLabelText
             secondTeamScoreLabel.text = data.secondTeamScoreLabelText
             matchEndTimeLabel.text = data.matchEndTimeLabelText
-                
-        default: break
-            // TODO: - Handle this case
+        default: break // TO DO: заменить break
         }
     }
 }

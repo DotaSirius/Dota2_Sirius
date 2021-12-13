@@ -1,6 +1,6 @@
 import UIKit
 
-final class MatchPlayerCell: UITableViewCell {
+class MatchPlayerCell: UITableViewCell {
     static let reuseIdentifier = "MatchPlayerCell"
     
     let playerImageView: UIImageView = {
@@ -10,12 +10,12 @@ final class MatchPlayerCell: UITableViewCell {
         playerImageView.clipsToBounds = true
         playerImageView.widthAnchor.constraint(equalToConstant: 72).isActive = true
         playerImageView.heightAnchor.constraint(equalToConstant: 54).isActive = true
-        return playerImageView        
+        return playerImageView
     }()
 
     private let playerRankNameStack = UIStackView()
     private let playerMainInfoStack = UIStackView()
-
+    
     private let playerNameLabel = UILabel()
     private let playerRankLabel = UILabel()
     private let playerKillsLabel = UILabel()
@@ -55,17 +55,16 @@ final class MatchPlayerCell: UITableViewCell {
         
         playerGoldLabel.textColor = ColorPalette.accent
         playerGoldLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
-    }
-
-    func setUpConstraints() {
-        [playerMainInfoStack].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         
         createStackView(stackView: playerRankNameStack, axis: .vertical, spacing: 8)
         [playerNameLabel, playerRankLabel].forEach { playerRankNameStack.addArrangedSubview($0) }
         
         createStackView(stackView: playerMainInfoStack, axis: .horizontal, spacing: 3)
         [playerImageView, playerRankNameStack, playerKillsLabel, playerDeathsLabel, playerAssitsLabel, playerGoldLabel].forEach { playerMainInfoStack.addArrangedSubview($0) }
-        
+    }
+
+    func setUpConstraints() {
+        [playerMainInfoStack].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         playerMainInfoStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
         playerMainInfoStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
         playerMainInfoStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
@@ -92,7 +91,6 @@ extension MatchPlayerCell: DetailedMatchInfoCellConfigurable {
             playerGoldLabel.text = data.playerGoldText
         // playerImageView.image = data.playerImage
         default: break
-            // TODO: - Handle this case
         }
     }
 }

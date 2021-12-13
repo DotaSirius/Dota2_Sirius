@@ -4,7 +4,6 @@ protocol MatchInfoModuleInput: AnyObject {}
 
 protocol MatchInfoModuleOutput: AnyObject {
     // TODO: - Integration with Coordinator
-//    func playersModule(_ module: MatchInfoModuleInput, didSelectPlayer player: Player)
 }
 
 protocol MatchInfoModuleViewOutput: AnyObject {
@@ -19,9 +18,6 @@ final class MatchInfoModulePresenter {
     private let converter: MatchInfoConverter
 
     private var convertedData: [MatchTableViewCellType]
-//            MatchTableViewCellType.mainMatchInfo(MainMatchInfo(winnersLabelText: "Raidant Victory", gameTimeLabelText: "24:45", firstTeamScoreLabelText: "35", secondTeamScoreLabelText: "11", matchEndTimeLabelText: "34:28")),
-//            MatchTableViewCellType.additionalMatchInfo(AdditionalMatchInfo(matchIdLabelText: "12345678", regionLabelText: "Europe", skillLabelText: "Normal")),
-//            MatchTableViewCellType.matchPlayerInfo(PlayerList(playerNameLabelText: "Slayer", playerRankText: "Immortal", playerKillsText: "18", playerDeathsText: "2", playerAssitsText: "10", playerGoldText: "32012")),
 
     required init(converter: MatchInfoConverter, output: MatchInfoModuleOutput) {
         self.converter = converter
@@ -29,11 +25,18 @@ final class MatchInfoModulePresenter {
         self.convertedData = [
             MatchTableViewCellType.mainMatchInfo(converter.getMainMatchInfo()),
             MatchTableViewCellType.additionalMatchInfo(converter.getAdditionalMatchInfo()),
+            MatchTableViewCellType.teamMatchInfo(converter.getRadiantMatchInfo()),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 0)),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 1)),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 2)),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 3)),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 4)),
+            MatchTableViewCellType.teamMatchInfo(converter.getDireMatchInfo()),
+            MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 5)),
+            MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 6)),
+            MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 7)),
+            MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 8)),
+            MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 9)),
         ]
     }
 }
