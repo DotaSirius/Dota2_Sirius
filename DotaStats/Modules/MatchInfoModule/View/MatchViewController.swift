@@ -10,8 +10,8 @@ class MatchViewController: UIViewController {
         tableView.register(AdditionalMatchInfoTableViewCell.self, forCellReuseIdentifier: AdditionalMatchInfoTableViewCell.reuseIdentifier)
         tableView.register(MainMatchInfoTableViewCell.self, forCellReuseIdentifier: MainMatchInfoTableViewCell.reuseIdentifier)
         tableView.register(MatchPlayerCell.self, forCellReuseIdentifier: MatchPlayerCell.reuseIdentifier)
-        
-        
+        tableView.register(TeamMatchInfoTableViewCell.self, forCellReuseIdentifier: TeamMatchInfoTableViewCell.reuseIdentifier)
+        tableView.register(PlayersTableHeaderCell.self, forCellReuseIdentifier: PlayersTableHeaderCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = ColorPalette.mainBackground
