@@ -18,7 +18,13 @@
 		303AC4D2276371A600A8C462 /* MockMatches.json in Resources */ = {isa = PBXBuildFile; fileRef = 303AC4D1276371A600A8C462 /* MockMatches.json */; };
 		303AC4D82764EFBA00A8C462 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* Matches.swift */; };
 		303AC4D92764EFBC00A8C462 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
-		303AC4DB2767418A00A8C462 /* ProMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* ProMatches.swift */; };
+		303AC4DB2767418A00A8C462 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* Match.swift */; };
+		3C875A3D27678AA700294A75 /* ProPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875A3C27678AA700294A75 /* ProPlayers.swift */; };
+		3C875A3F27678AB800294A75 /* MockProPlayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C875A3E27678AB800294A75 /* MockProPlayers.json */; };
+		3C875A4127678ABF00294A75 /* ProPlayersDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875A4027678ABF00294A75 /* ProPlayersDecodingTest.swift */; };
+		3C875A4327678B0600294A75 /* PlayersServiceRecievingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875A4227678B0600294A75 /* PlayersServiceRecievingDataTest.swift */; };
+		3C875A4427678B2E00294A75 /* PlayersSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875A3B27678A9B00294A75 /* PlayersSearchService.swift */; };
+		3C875A4527678B4200294A75 /* ProPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C875A3C27678AA700294A75 /* ProPlayers.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatch.json */; };
@@ -81,6 +87,11 @@
 		3C181D2F2764DE77000B1FEA /* FoundPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundPlayers.swift; sourceTree = "<group>"; };
 		3C181D312764E0B2000B1FEA /* MockFoundPlayers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockFoundPlayers.json; sourceTree = "<group>"; };
 		3C181D332764E14D000B1FEA /* FoundPlayersDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundPlayersDecodingTest.swift; sourceTree = "<group>"; };
+		3C875A3B27678A9B00294A75 /* PlayersSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersSearchService.swift; sourceTree = "<group>"; };
+		3C875A3C27678AA700294A75 /* ProPlayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPlayers.swift; path = ../../../../../TmpDota/ProPlayers.swift; sourceTree = "<group>"; };
+		3C875A3E27678AB800294A75 /* MockProPlayers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MockProPlayers.json; path = ../../../../../TmpDota/MockProPlayers.json; sourceTree = "<group>"; };
+		3C875A4027678ABF00294A75 /* ProPlayersDecodingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPlayersDecodingTest.swift; path = ../../../../TmpDota/ProPlayersDecodingTest.swift; sourceTree = "<group>"; };
+		3C875A4227678B0600294A75 /* PlayersServiceRecievingDataTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayersServiceRecievingDataTest.swift; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/PlayersServiceRecievingDataTest.swift"; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfoDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatch.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
@@ -193,6 +204,7 @@
 			children = (
 				303AC4CE276370D400A8C462 /* Data */,
 				303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */,
+				3C875A4027678ABF00294A75 /* ProPlayersDecodingTest.swift */,
 				3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */,
 				3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */,
 				3C181D332764E14D000B1FEA /* FoundPlayersDecodingTest.swift */,
@@ -206,6 +218,7 @@
 				303AC4D1276371A600A8C462 /* MockMatches.json */,
 				3CF8F5222763C5C000AC0DD4 /* MockMatch.json */,
 				3CF8F5232763C72600AC0DD4 /* MockPlayer.json */,
+				3C875A3E27678AB800294A75 /* MockProPlayers.json */,
 				3C181D312764E0B2000B1FEA /* MockFoundPlayers.json */,
 			);
 			path = Data;
@@ -259,8 +272,9 @@
 			children = (
 				EA852BF972642EE930F2680C /* Matches.swift */,
 				EA85264F7CF441C52C30E6D7 /* Players.swift */,
-				EA85276324310C6574CACFC6 /* ProMatches.swift */,
+				EA85276324310C6574CACFC6 /* Match.swift */,
 				3C181D2F2764DE77000B1FEA /* FoundPlayers.swift */,
+				3C875A3C27678AA700294A75 /* ProPlayers.swift */,
 			);
 			path = NetworkingModels;
 			sourceTree = "<group>";
@@ -365,6 +379,7 @@
 			children = (
 				EC4E6FA82764C85E0085B61D /* NetworkService.swift */,
 				ECAA0D042764ED8B00DF81ED /* MatchesService.swift */,
+				3C875A3B27678A9B00294A75 /* PlayersSearchService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -381,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				ECAA0D082764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift */,
+				3C875A4227678B0600294A75 /* PlayersServiceRecievingDataTest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -487,8 +503,8 @@
 			files = (
 				303AC4D2276371A600A8C462 /* MockMatches.json in Resources */,
 				3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */,
+				3C875A3F27678AB800294A75 /* MockProPlayers.json in Resources */,
 				3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */,
-				3C181D322764E0B2000B1FEA /* MockFoundPlayers.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,21 +530,21 @@
 				303AC4D82764EFBA00A8C462 /* Matches.swift in Sources */,
 				303AC4D92764EFBC00A8C462 /* Players.swift in Sources */,
 				300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */,
-				3C181D342764E14D000B1FEA /* FoundPlayersDecodingTest.swift in Sources */,
 				3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */,
 				ECAA0D062764ED8B00DF81ED /* MatchesService.swift in Sources */,
 				303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */,
 				EC1415E6276728E200715D00 /* NetworkClient.swift in Sources */,
 				EC1415E8276728F200715D00 /* HTTPMethod.swift in Sources */,
+				3C875A4127678ABF00294A75 /* ProPlayersDecodingTest.swift in Sources */,
+				3C875A4427678B2E00294A75 /* PlayersSearchService.swift in Sources */,
+				3C875A4527678B4200294A75 /* ProPlayers.swift in Sources */,
 				EC1415E7276728EA00715D00 /* HTTPRequest.swift in Sources */,
-				303AC4D32764EF5400A8C462 /* HTTPRequest.swift in Sources */,
-				303AC4DA2764EFBF00A8C462 /* Match.swift in Sources */,
-				303AC4D52764EFAF00A8C462 /* HTTPMethod.swift in Sources */,
 				EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
+				3C875A4327678B0600294A75 /* PlayersServiceRecievingDataTest.swift in Sources */,
 				EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */,
 				300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */,
 				EC1415EA2767290800715D00 /* HTTPNetworkResponse.swift in Sources */,
-				303AC4DB2767418A00A8C462 /* ProMatches.swift in Sources */,
+				303AC4DB2767418A00A8C462 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,7 +565,7 @@
 				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
 				EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */,
 				5E33F69A2764D89600749EC7 /* TournamentViewState.swift in Sources */,
-				3C181D302764DE77000B1FEA /* FoundPlayers.swift in Sources */,
+				3C875A3D27678AA700294A75 /* ProPlayers.swift in Sources */,
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
 				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
