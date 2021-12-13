@@ -15,16 +15,32 @@ protocol MatchInfoModuleOutput {
 final class AppCoordinator {
     let tabBarController: MainTabBarController = MainTabBarController()
 
-    func addControllers() {
-        let playersBuilder = PlayersModuleBuilder(
-            output: self,
-            networkService: NetworkServiceImp())
-        let matchesBuilder = PlayersModuleBuilder(
-            output: self,
-            networkService: NetworkServiceImp())
+    init() {
+        let playersBuilder = playersBuilder()
+        let matchesBuilder = matchesBuilder()
         tabBarController.setViewControllers([playersBuilder.viewControler, matchesBuilder.viewControler], animated: false)
         tabBarController.setViewControllers(items: ["matches", "players"])
     }
+}
+
+extension AppCoordinator {
+    func playersBuilder() -> PlayersModuleBuilder {
+        PlayersModuleBuilder(
+            output: self,
+            networkService: NetworkServiceImp()
+        )
+    }
+    
+    func matchesBuilder() -> PlayersModuleBuilder {
+        PlayersModuleBuilder(
+            output: self,
+            networkService: NetworkServiceImp()
+        )
+    }
+    
+    //func playerInfoModuleBuilder() -> PlayersInfoModule { }
+    //func matchInfoModuleBuilder() -> MatchInfoModule { }
+    //func searchPlayerModuleBuilder() -> SearchPlayerModuleModule { }
 }
 
 extension AppCoordinator: MatchesModuleOutput {
