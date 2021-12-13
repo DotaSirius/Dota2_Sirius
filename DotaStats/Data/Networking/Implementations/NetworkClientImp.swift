@@ -58,10 +58,8 @@ struct NetworkClientImp: NetworkClient {
     private func configureRequest(request: HTTPRequest) throws -> URLRequest {
         guard var components = URLComponents(string: request.route) else { throw HTTPError.missingURL }
 
-        var queriesArray = [URLQueryItem]()
-
-        request.queryItems.forEach { query in
-            queriesArray.append(URLQueryItem(name: query.key, value: query.value))
+        let queriesArray = request.queryItems.map { query in
+            URLQueryItem(name: query.key, value: query.value)
         }
 
         components.queryItems = queriesArray
