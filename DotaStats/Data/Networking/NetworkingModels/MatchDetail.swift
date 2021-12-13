@@ -1,6 +1,6 @@
 import Foundation
 
-struct Matches : Decodable {
+struct MatchDetail : Decodable {
     
     let matchId: Int
     let barracksStatusDire: Int?
