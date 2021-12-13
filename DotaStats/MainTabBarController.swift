@@ -6,9 +6,14 @@ final class MainTabBarController: UITabBarController {
         tabBar.backgroundColor = ColorPalette.alternatеBackground
         tabBar.unselectedItemTintColor = ColorPalette.text
         tabBar.tintColor = ColorPalette.accent
+        
+        let coordinator = Coordinator()
+        let network = NetworkServiceImp()
+        
+        let matchInfoBuilder = MatchInfoModuleBuilder(output: coordinator, networkService: network)
+        
         let viewControllers = [
-            CostilViewController(), // TODO: replace with Matches and Players viewControllers.
-            CostilViewController()
+            matchInfoBuilder.viewControler
         ]
         setViewControllers(viewControllers, animated: false)
         let items = ["matches", "players"]
