@@ -58,7 +58,8 @@ final class MatchesModulePresenter {
                 radiantTeam: match.radiantName ?? "Radiant team",
                 radiant: match.radiantWin,
                 score: "\(match.radiantScore):\(match.direScore)",
-                direTeam: match.direName ?? "Dire team"
+                direTeam: match.direName ?? "Dire team",
+                id: match.matchId
             )
             
             if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName } ) {
@@ -100,15 +101,14 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     
     func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState {
         if let index = tournaments.firstIndex(where: { $0.tournamentNumber == indexPath.section } ) {
-            if (tournaments[index].isOpen) {
-                return tournaments[index].matches[indexPath.row]
-            }
+            return tournaments[index].matches[indexPath.row]
         }
         return TournamentViewState.MatchViewState(
             radiantTeam: "",
             radiant: false,
             score: "",
-            direTeam: "")
+            direTeam: "",
+            id: 0)
     }
     
     func getDataTournament(section: Int) -> TournamentViewState {
@@ -118,17 +118,15 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
         return TournamentViewState(leagueName: "")
     }
     
-    func cellTapped(indexPath: IndexPath) {
-        /*for (index, tournament) in tournaments.enumerated() {
-            if (tournament.rowSection.section == indexPath.section && match.rowSection.row == indexPath.row) {
-                switch match.matchCellType {
-                    case .tournamentViewState(_):
-                        view?.updateSection(section: indexPath.section)
-                        matches[index].isOpen = !matches[index].isOpen
-                    case .matchViewState(_):
-                        output.matchesModule(self, didSelectPlayer: match.id)
-                }
-            }
-        }*/
+    func matchTapped(indexPath: IndexPath) {
+        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == indexPath.section } ) {
+            output.matchesModule(self, didSelectPlayer: tournaments[index].matches[indexPath.row].id)
+        }
+    }
+    
+    func tournamentTapped(section: Int) {
+        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == section } ) {
+            tournaments[index].isOpen = !tournaments[index].isOpen
+        }
     }
 }

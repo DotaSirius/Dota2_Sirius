@@ -7,5 +7,6 @@ struct TournamentViewState {
         var radiant: Bool
         var score: String // "radiantScore:direScore"
         var direTeam: String
+        var id: Int
     }
 }

@@ -10,7 +10,8 @@ protocol MatchesModuleViewOutput: AnyObject {
     func getRowsInSection(section: Int) -> Int
     func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState
     func getDataTournament(section: Int) -> TournamentViewState
-    func cellTapped(indexPath: IndexPath)
+    func matchTapped(indexPath: IndexPath)
+    func tournamentTapped(section: Int)
 }
 
 final class MatchesModuleViewController: UIViewController  {
