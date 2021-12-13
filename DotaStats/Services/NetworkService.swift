@@ -10,7 +10,7 @@ protocol NetworkService: AnyObject {
     func proMatches() -> [Match]
     func matchById(_ id: Int) -> Match
     func playerInfoById(_ id: Int) -> PlayerInfo
-    func matchInfoById(_ id: Int) -> MatchInfo
+    func matchInfoById(_ id: Int) -> MainMatchInfo
 }
 
 final class NetworkServiceImp: NetworkService {
@@ -39,8 +39,8 @@ final class NetworkServiceImp: NetworkService {
         PlayerInfo()
     }
     
-    func matchInfoById(_ id: Int) -> MatchInfo {
+    func matchInfoById(_ id: Int) -> MainMatchInfo {
         // TODO
-        MatchInfo()
+        MainMatchInfo(winnersLabelText: "", gameTimeLabelText: "", firstTeamScoreLabelText: "", secondTeamScoreLabelText: "", matchEndTimeLabelText: "")
     }
 }
