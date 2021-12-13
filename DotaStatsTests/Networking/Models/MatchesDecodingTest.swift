@@ -23,8 +23,9 @@ class MatchesDecodingTest: XCTestCase {
         jsonDecoder.dateDecodingStrategy = .secondsSince1970
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
 
-        let decodedData = try jsonDecoder.decode([ProMatches].self,
+        let decodedData = try jsonDecoder.decode([Match].self,
                                                          from: jsonData)
+		let match = decodedData[0]
 
         let firstMatch = decodedData[0]
         XCTAssertEqual(firstMatch.duration, 1892)
