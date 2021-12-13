@@ -12,11 +12,11 @@ final class SearchPlayerModuleBuilder {
     }
 
     init(output: SearchPlayerModuleOutput,
-         playerSearchNetworkService: PlayerSearchNetworkService,
+         playerSearchService: PlayerSearchService,
          imageNetworkService: ImageNetworkService)
     {
         presenter = SearchPlayerModulePresenter(output: output,
-                                                playerNetworkService: playerSearchNetworkService,
+                                                playerSearchService: playerSearchService,
                                                 imageNetworkService: imageNetworkService)
         viewControler = SearchPlayerModuleViewController(output: presenter)
         presenter.view = viewControler

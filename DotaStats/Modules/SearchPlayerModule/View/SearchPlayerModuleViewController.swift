@@ -7,9 +7,9 @@ protocol SearchPlayerModuleViewInput: AnyObject {
 
 protocol SearchPlayerModuleViewOutput: AnyObject {
     var count: Int { get }
-    func getData(indexPath: IndexPath) -> Players
+    func getData(indexPath: IndexPath) -> PlayerSearch
     func search(_ name: String)
-    func playerSelected(_ player: Players)
+    func playerSelected(_ player: PlayerSearch)
     func cellEndDisplayingForIndexPath(_ indexPath: IndexPath)
 }
 

@@ -3,7 +3,7 @@ import Foundation
 protocol SearchPlayerModuleInput: AnyObject {}
 
 protocol SearchPlayerModuleOutput: AnyObject {
-    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: Players)
+    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerSearch)
 }
 
 final class SearchPlayerModulePresenter {
@@ -15,11 +15,11 @@ final class SearchPlayerModulePresenter {
         }
     }
     
-    private let playerNetworkService: PlayerSearchNetworkService
+    private let playerSearchService: PlayerSearchService
     private let imageNetworkService: ImageNetworkService
     
-    private var players = [Players]()
-    private var imageTokens = [IndexPath: Cancellable]()
+    private var players = [PlayerSearch]()
+    private var imageLoading = [IndexPath: ImageLoading]()
     
     private var viewState: SearchPlayerModuleViewState {
         viewState(from: state)
@@ -31,13 +31,10 @@ final class SearchPlayerModulePresenter {
             return .startScreen
         case .loading:
             return .loading
-        case .result(let result):
-            switch result {
-            case .success:
-                return players.isEmpty ? .empty : .success
-            case .failure:
-                return .failure
-            }
+        case .success(let players):
+            return players.isEmpty ? .empty : .success
+        case .failure:
+            return .failure
         }
     }
     
@@ -45,14 +42,9 @@ final class SearchPlayerModulePresenter {
         didSet {
             oldValue.token?.cancel()
             switch state {
-            case .result(let requestResult):
-                switch requestResult {
-                case .success(let players):
-                    self.players = players
-                case .failure(_):
-                    break
-                }
-            case .none, .loading:
+            case .success(let result):
+                players = result
+            case .none, .loading, .failure:
                 break
             }
             
@@ -60,9 +52,9 @@ final class SearchPlayerModulePresenter {
         }
     }
     
-    init(output: SearchPlayerModuleOutput, playerNetworkService: PlayerSearchNetworkService, imageNetworkService: ImageNetworkService) {
+    init(output: SearchPlayerModuleOutput, playerSearchService: PlayerSearchService, imageNetworkService: ImageNetworkService) {
         self.output = output
-        self.playerNetworkService = playerNetworkService
+        self.playerSearchService = playerSearchService
         self.imageNetworkService = imageNetworkService
         state = .none
     }
@@ -75,31 +67,36 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
         players.count
     }
     
-    func getData(indexPath: IndexPath) -> Players {
-        let player = players[indexPath.row]
-        if let urlString = player.profile?.avatarfull, let url = URL(string: urlString)  {
-            imageTokens[indexPath]?.cancel()
+    func getData(indexPath: IndexPath) -> PlayerSearch {
+        players[indexPath.row].avatar = imageLoading[indexPath]?.avatar
+        if let urlString = players[indexPath.row].avatarFull, let url = URL(string: urlString)  {
             let token = imageNetworkService.loadImageFromURL(url) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let image):
+                    self.imageLoading[indexPath]?.avatar = image
                     self.view?.reloadCellForIndexPath(indexPath, withImage: image)
-                    self.imageTokens[indexPath] = nil
                 case .failure(_):
                     break
                 }
             }
-            imageTokens[indexPath] = token
+            imageLoading[indexPath]?.token = token
         }
         
-        return player
+        return players[indexPath.row]
     }
     
     func search(_ name: String) {
         if !name.isEmpty {
-            let token = playerNetworkService.playersByName(name) { [weak self] result in
+            let token = playerSearchService.playersByName(name) { [weak self] result in
                 guard let self = self else { return }
-                self.state = .result(result)
+                switch result {
+                case .success(let search):
+                    let searchPlayers = search.map { PlayerSearch(from: $0) }
+                    self.state = .success(searchPlayers)
+                case .failure(let error):
+                    self.state = .failure(error)
+                }
             }
             state = .loading(token)
         } else {
@@ -107,8 +104,13 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
         }
     }
     
-    func playerSelected(_ player: Players) {
+    func playerSelected(_ player: PlayerSearch) {
         output.searchModule(self, didSelectPlayer: player)
+    }
+    
+    func cellEndDisplayingForIndexPath(_ indexPath: IndexPath) {
+        imageLoading[indexPath]?.token?.cancel()
+        imageLoading[indexPath] = nil
     }
 }
 
