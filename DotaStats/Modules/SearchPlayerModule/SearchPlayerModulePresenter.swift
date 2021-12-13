@@ -15,9 +15,12 @@ final class SearchPlayerModulePresenter {
         }
     }
     
-    private let networkService: PlayerSearchNetworkService
+    private let playerNetworkService: PlayerSearchNetworkService
+    private let imageNetworkService: ImageNetworkService
     
     private var players = [Players]()
+    private var imageTokens = [IndexPath: Cancellable]()
+    
     private var viewState: SearchPlayerModuleViewState {
         viewState(from: state)
     }
@@ -57,9 +60,10 @@ final class SearchPlayerModulePresenter {
         }
     }
     
-    init(output: SearchPlayerModuleOutput, networkService: PlayerSearchNetworkService) {
+    init(output: SearchPlayerModuleOutput, playerNetworkService: PlayerSearchNetworkService, imageNetworkService: ImageNetworkService) {
         self.output = output
-        self.networkService = networkService
+        self.playerNetworkService = playerNetworkService
+        self.imageNetworkService = imageNetworkService
         state = .none
     }
 }
@@ -72,12 +76,28 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
     }
     
     func getData(indexPath: IndexPath) -> Players {
-        players[indexPath.row]
+        let player = players[indexPath.row]
+        if let urlString = player.profile?.avatarfull, let url = URL(string: urlString)  {
+            imageTokens[indexPath]?.cancel()
+            let token = imageNetworkService.loadImageFromURL(url) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let image):
+                    self.view?.reloadCellForIndexPath(indexPath, withImage: image)
+                    self.imageTokens[indexPath] = nil
+                case .failure(_):
+                    break
+                }
+            }
+            imageTokens[indexPath] = token
+        }
+        
+        return player
     }
     
     func search(_ name: String) {
         if !name.isEmpty {
-            let token = networkService.playersByName(name) { [weak self] result in
+            let token = playerNetworkService.playersByName(name) { [weak self] result in
                 guard let self = self else { return }
                 self.state = .result(result)
             }
@@ -85,6 +105,10 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
         } else {
             state = .none
         }
+    }
+    
+    func playerSelected(_ player: Players) {
+        output.searchModule(self, didSelectPlayer: player)
     }
 }
 

@@ -2,12 +2,15 @@ import UIKit
 
 protocol SearchPlayerModuleViewInput: AnyObject {
     func updateState(_ state: SearchPlayerModuleViewState)
+    func reloadCellForIndexPath(_ indexPath: IndexPath, withImage image: UIImage)
 }
 
 protocol SearchPlayerModuleViewOutput: AnyObject {
     var count: Int { get }
     func getData(indexPath: IndexPath) -> Players
     func search(_ name: String)
+    func playerSelected(_ player: Players)
+    func cellEndDisplayingForIndexPath(_ indexPath: IndexPath)
 }
 
 class SearchPlayerModuleViewController: UIViewController {
@@ -30,7 +33,7 @@ class SearchPlayerModuleViewController: UIViewController {
 
 // MARK: - SearchModuleViewInput
 
-extension SearchPlayerModuleViewController: SearchPlayerModuleInput {
+extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
     func updateState(_ state: SearchPlayerModuleViewState) {
         // TODO: make update view
         switch state {
@@ -50,5 +53,9 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleInput {
             // TODO: show error image 
             print("error")
         }
+    }
+    
+    func reloadCellForIndexPath(_ indexPath: IndexPath, withImage image: UIImage) {
+        
     }
 }
