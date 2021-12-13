@@ -18,8 +18,12 @@ final class SearchPlayerModulePresenter {
     private let playerSearchService: PlayerSearchService
     private let imageNetworkService: ImageNetworkService
     
-    private var players = [PlayerSearch]()
     private var imageRequestTokens = [IndexPath: Cancellable]()
+    private var players = [PlayerSearch]() {
+        didSet {
+            cancelAllLoading()
+        }
+    }
     
     private var viewState: SearchPlayerModuleViewState {
         viewState(from: state)
@@ -59,10 +63,14 @@ final class SearchPlayerModulePresenter {
         state = .none
     }
     
-    deinit {
+    private func cancelAllLoading() {
         imageRequestTokens.forEach { _, request in
             request.cancel()
         }
+    }
+    
+    deinit {
+        cancelAllLoading()
     }
 }
 
@@ -77,14 +85,15 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
         if let urlString = players[indexPath.row].avatarFull,
             let url = URL(string: urlString) {
             let imageRequestToken = imageNetworkService.loadImageFromURL(url) { [weak self] result in
+                guard let self = self else { return }
                 switch result {
                 case .success(let image):
-                    self?.players[indexPath.row].avatar = image
-                    self?.imageRequestTokens[indexPath] = nil
-                    self?.view?.reload(at: indexPath)
+                    self.players[indexPath.row].avatar = image
+                    self.view?.reload(at: indexPath)
                 case .failure(_):
                     break
                 }
+                self.imageRequestTokens[indexPath] = nil
             }
             imageRequestTokens[indexPath] = imageRequestToken
         }
