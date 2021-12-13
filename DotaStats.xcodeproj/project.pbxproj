@@ -14,7 +14,7 @@
 		300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */; };
 		300FCA032762465E00A7A0EF /* NetworkCommunicationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */; };
 		300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */; };
-		300FCA132762618000A7A0EF /* NetworkServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */; };
+		300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA122762618000A7A0EF /* NetworkClientReceivingDataTest.swift */; };
 		303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */; };
 		303AC4D2276371A600A8C462 /* MockMatches.json in Resources */ = {isa = PBXBuildFile; fileRef = 303AC4D1276371A600A8C462 /* MockMatches.json */; };
 		3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */; };
@@ -30,6 +30,12 @@
 		EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* Matches.swift */; };
 		EA8522C781197B1ACBBE601B /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
 		EA8525C10313780ABFC01843 /* ProMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* ProMatches.swift */; };
+		EC1415E6276728E200715D00 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F32762237900A7A0EF /* NetworkClient.swift */; };
+		EC1415E7276728EA00715D00 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F527622FA500A7A0EF /* HTTPRequest.swift */; };
+		EC1415E8276728F200715D00 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F72762304300A7A0EF /* HTTPMethod.swift */; };
+		EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F92762334900A7A0EF /* HTTPError.swift */; };
+		EC1415EA2767290800715D00 /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */; };
+		EC1415EB2767290F00715D00 /* NetworkCommunicationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */; };
 		EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F8C2764C8250085B61D /* ColorPalette.swift */; };
 		EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F912764C8550085B61D /* MatchInfo.swift */; };
 		EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F942764C8550085B61D /* PlayersModulePresenter.swift */; };
@@ -39,6 +45,8 @@
 		EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F9C2764C8550085B61D /* PlayerInfo.swift */; };
 		EC4E6FA62764C8550085B61D /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F9F2764C8550085B61D /* Match.swift */; };
 		EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FA82764C85E0085B61D /* NetworkService.swift */; };
+		EC4E6FAB2764CCE10085B61D /* NetworkClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */; };
+		EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */; };
 		F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */; };
 		F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */; };
 		F0F2EE4F2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4E2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift */; };
@@ -64,7 +72,7 @@
 		300FCA022762465E00A7A0EF /* NetworkCommunicationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCommunicationResult.swift; sourceTree = "<group>"; };
 		300FCA0827625B8500A7A0EF /* DotaStatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaStatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		300FCA0A27625B8500A7A0EF /* DotaStatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaStatsTests.swift; sourceTree = "<group>"; };
-		300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceReceivingDataTest.swift; sourceTree = "<group>"; };
+		300FCA122762618000A7A0EF /* NetworkClientReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientReceivingDataTest.swift; sourceTree = "<group>"; };
 		303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesDecodingTest.swift; sourceTree = "<group>"; };
 		303AC4D1276371A600A8C462 /* MockMatches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatches.json; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfoDecodingTest.swift; sourceTree = "<group>"; };
@@ -91,6 +99,7 @@
 		EC4E6F9C2764C8550085B61D /* PlayerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
 		EC4E6F9F2764C8550085B61D /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		EC4E6FA82764C85E0085B61D /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientImp.swift; sourceTree = "<group>"; };
 		F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModulePresenter.swift; sourceTree = "<group>"; };
 		F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleViewController.swift; sourceTree = "<group>"; };
 		F0F2EE4E2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleViewState.swift; sourceTree = "<group>"; };
@@ -126,6 +135,7 @@
 		300FC9EE27621E8800A7A0EF /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				EC4E6FAD2764CEA80085B61D /* Implementations */,
 				300FC9F22762236A00A7A0EF /* Interfaces */,
 				300FC9EF2762225600A7A0EF /* Service */,
 				EA852AD8CE2823342620362B /* NetworkingModels */,
@@ -166,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				303AC4CD276370CA00A8C462 /* Models */,
-				300FCA122762618000A7A0EF /* NetworkServiceReceivingDataTest.swift */,
+				300FCA122762618000A7A0EF /* NetworkClientReceivingDataTest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -349,6 +359,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		EC4E6FAD2764CEA80085B61D /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */,
+			);
+			path = Implementations;
+			sourceTree = "<group>";
+		};
 		F0F2EE4D2764D0D400EAB7E5 /* SearchPlayerModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,11 +489,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC1415EB2767290F00715D00 /* NetworkCommunicationResult.swift in Sources */,
 				3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */,
 				300FCA0B27625B8500A7A0EF /* DotaStatsTests.swift in Sources */,
 				3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */,
 				303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */,
-				300FCA132762618000A7A0EF /* NetworkServiceReceivingDataTest.swift in Sources */,
+				EC1415E6276728E200715D00 /* NetworkClient.swift in Sources */,
+				EC1415E8276728F200715D00 /* HTTPMethod.swift in Sources */,
+				EC1415E7276728EA00715D00 /* HTTPRequest.swift in Sources */,
+				EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
+				EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */,
+				300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */,
+				EC1415EA2767290800715D00 /* HTTPNetworkResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +528,7 @@
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
 				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,
 				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
+				EC4E6FAB2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
 				F0F2EE4F2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift in Sources */,
 				EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */,
 				5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */,
