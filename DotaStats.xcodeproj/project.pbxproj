@@ -18,7 +18,7 @@
 		303AC4D2276371A600A8C462 /* MockMatches.json in Resources */ = {isa = PBXBuildFile; fileRef = 303AC4D1276371A600A8C462 /* MockMatches.json */; };
 		303AC4D82764EFBA00A8C462 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* Matches.swift */; };
 		303AC4D92764EFBC00A8C462 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
-		303AC4DB2767418A00A8C462 /* ProMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* ProMatches.swift */; };
+		303AC4DB2767418A00A8C462 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* Match.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatch.json */; };
@@ -38,6 +38,8 @@
 		EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F92762334900A7A0EF /* HTTPError.swift */; };
 		EC1415EA2767290800715D00 /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */; };
 		EC1415EB2767290F00715D00 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		EC1415FC2767797400715D00 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1415FB2767797400715D00 /* CachedImageView.swift */; };
+		EC14160027677E3600715D00 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1415FF27677E3600715D00 /* ImageService.swift */; };
 		EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F8C2764C8250085B61D /* ColorPalette.swift */; };
 		EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F912764C8550085B61D /* MatchInfo.swift */; };
 		EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F942764C8550085B61D /* PlayersModulePresenter.swift */; };
@@ -93,6 +95,8 @@
 		EA85264F7CF441C52C30E6D7 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		EA85276324310C6574CACFC6 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		EA852BF972642EE930F2680C /* Matches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
+		EC1415FB2767797400715D00 /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
+		EC1415FF27677E3600715D00 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		EC4E6F8C2764C8250085B61D /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		EC4E6F912764C8550085B61D /* MatchInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchInfo.swift; sourceTree = "<group>"; };
 		EC4E6F942764C8550085B61D /* PlayersModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersModulePresenter.swift; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 				B61F59482760A4FB00D08CEA /* AppDelegate.swift */,
 				EC4E6F8C2764C8250085B61D /* ColorPalette.swift */,
 				B61F594C2760A4FB00D08CEA /* CostilViewController.swift */,
+				EC1415F92767790F00715D00 /* Common */,
 				EC4E6FA72764C85E0085B61D /* Services */,
 				EC4E6F8E2764C8550085B61D /* Modules */,
 				B61F595C2760A5B800D08CEA /* Resources */,
@@ -257,6 +262,22 @@
 				EA85276324310C6574CACFC6 /* Match.swift */,
 			);
 			path = NetworkingModels;
+			sourceTree = "<group>";
+		};
+		EC1415F92767790F00715D00 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EC1415FA2767793F00715D00 /* CachedImageView */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EC1415FA2767793F00715D00 /* CachedImageView */ = {
+			isa = PBXGroup;
+			children = (
+				EC1415FB2767797400715D00 /* CachedImageView.swift */,
+			);
+			path = CachedImageView;
 			sourceTree = "<group>";
 		};
 		EC4E6F8E2764C8550085B61D /* Modules */ = {
@@ -359,6 +380,7 @@
 			children = (
 				EC4E6FA82764C85E0085B61D /* NetworkService.swift */,
 				ECAA0D042764ED8B00DF81ED /* MatchesService.swift */,
+				EC1415FF27677E3600715D00 /* ImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -513,14 +535,11 @@
 				EC1415E6276728E200715D00 /* NetworkClient.swift in Sources */,
 				EC1415E8276728F200715D00 /* HTTPMethod.swift in Sources */,
 				EC1415E7276728EA00715D00 /* HTTPRequest.swift in Sources */,
-				303AC4D32764EF5400A8C462 /* HTTPRequest.swift in Sources */,
-				303AC4DA2764EFBF00A8C462 /* Match.swift in Sources */,
-				303AC4D52764EFAF00A8C462 /* HTTPMethod.swift in Sources */,
 				EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
 				EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */,
 				300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */,
 				EC1415EA2767290800715D00 /* HTTPNetworkResponse.swift in Sources */,
-				303AC4DB2767418A00A8C462 /* ProMatches.swift in Sources */,
+				303AC4DB2767418A00A8C462 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +552,7 @@
 				EC4E6FA42764C8550085B61D /* PlayersModuleViewController.swift in Sources */,
 				F0F2EE522764E2C900EAB7E5 /* SearchPlayerModulePresenterState.swift in Sources */,
 				F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */,
+				EC14160027677E3600715D00 /* ImageService.swift in Sources */,
 				300FC9F627622FA500A7A0EF /* HTTPRequest.swift in Sources */,
 				F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */,
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
@@ -544,6 +564,7 @@
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
 				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
+				EC1415FC2767797400715D00 /* CachedImageView.swift in Sources */,
 				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,
 				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
 				EC4E6FAB2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
