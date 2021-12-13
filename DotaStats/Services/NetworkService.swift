@@ -1,5 +1,9 @@
 import Foundation
 
+protocol PlayerSearchNetworkService: AnyObject {
+    func playersByName(_ name: String, completion: @escaping (Result<[Players], HTTPError>) -> Void) -> Cancellable?
+}
+
 protocol NetworkService: AnyObject {
     func proPlayers() -> [Player]
     func playersByName(_ name: String) -> [Player]
@@ -27,7 +31,7 @@ final class NetworkServiceImp: NetworkService {
     
     func matchById(_ id: Int) -> Match {
         // TODO
-        Match()
+        Match(matchId: "", startTime: 0, leagueName: "", radiantTeam: "", radiant: true, radiantScore: 0, direScore: 0, direTeam: "", duration: "")
     }
     
     func playerInfoById(_ id: Int) -> PlayerInfo {
