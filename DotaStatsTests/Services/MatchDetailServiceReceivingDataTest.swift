@@ -2,10 +2,7 @@
 //  MatchDetailServiceReceivingDataTest.swift
 //  DotaStats
 //
-//  Created by Борисов Матвей Евгеньевич on 13.12.2021.
-//
 
-import Foundation
 import XCTest
 
 class MatchDetailServiceReceivingDataTest: XCTestCase {
