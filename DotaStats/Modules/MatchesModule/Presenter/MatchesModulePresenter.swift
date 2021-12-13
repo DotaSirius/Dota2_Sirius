@@ -9,7 +9,7 @@ protocol MatchesModuleOutput: AnyObject {
 final class MatchesModulePresenter {
     weak var view: MatchesModuleViewInput?
     private let matchesService: MatchesService
-    private var matches: [MatchCollectionPresenterData] = []
+    private var tournaments: [MatchCollectionPresenterData] = []
     let output: MatchesModuleOutput
     
     required init(matchesService: MatchesService,
@@ -53,38 +53,23 @@ final class MatchesModulePresenter {
     }
     
     private func convertMatches(matches: [Match]) {
-        var tournaments = [String: MatchCollectionPresenterData.RowSection]()
         for match in matches {
-            if tournaments[match.leagueName] != nil {
-                tournaments[match.leagueName]!.row += 1
-                let newCell = MatchCellType.matchViewState(TournamentViewState.MatchViewState(
-                    radiantTeam: match.radiantName ?? "Radiant team",
-                    radiant: match.radiantWin,
-                    score: "\(match.radiantScore):\(match.direScore)",
-                    direTeam: match.direName ?? "Dire team"
-                ))
-                
-                let newMatch = MatchCollectionPresenterData(
-                    rowSection: tournaments[match.leagueName]!,
-                    isOpen: false,
-                    matchCellType: newCell,
-                    id: match.matchId
-                )
-                self.matches.append(newMatch)
+            let newMatch = TournamentViewState.MatchViewState(
+                radiantTeam: match.radiantName ?? "Radiant team",
+                radiant: match.radiantWin,
+                score: "\(match.radiantScore):\(match.direScore)",
+                direTeam: match.direName ?? "Dire team"
+            )
+            
+            if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName } ) {
+                tournaments[index].matches.append(newMatch)
             } else {
-                tournaments[match.leagueName] = MatchCollectionPresenterData.RowSection(
-                    section: tournaments.count,
-                    row: 0)
-                let newCell = MatchCellType.tournamentViewState(TournamentViewState(
-                    leagueName: match.leagueName))
-                
-                let newMatch = MatchCollectionPresenterData(
-                    rowSection: tournaments[match.leagueName]!,
+                tournaments.append(MatchCollectionPresenterData(
                     isOpen: false,
-                    matchCellType: newCell,
-                    id: match.matchId
+                    tournamentNumber: tournaments.count,
+                    tournament: TournamentViewState(leagueName: match.leagueName),
+                    matches: [newMatch])
                 )
-                self.matches.append(newMatch)
             }
         }
     }
@@ -98,38 +83,44 @@ extension MatchesModulePresenter: MatchesModuleInput {}
 
 extension MatchesModulePresenter: MatchesModuleViewOutput {
     func getSectionCount() -> Int {
-        let sectionMax = matches.max { $0.rowSection.section < $1.rowSection.section }
-        return sectionMax?.rowSection.section ?? 0
+        return tournaments.count
     }
     
     func getRowsInSection(section: Int) -> Int {
-        var rowsInSection = 0
-        for match in matches {
-            if (match.rowSection.section == section && match.rowSection.row == 0) {
-                if !match.isOpen {
-                    return 0
-                }
+        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == section } ) {
+            if tournaments[index].isOpen {
+                return tournaments[index].matches.count
+            } else {
+                return 0
             }
-            if (match.rowSection.section == section) {
-                rowsInSection += 1
-            }
+        } else {
+            return 0
         }
-        
-        return rowsInSection
     }
     
-    func getData(indexPath: IndexPath) -> MatchCellType {
-        for match in matches {
-            if (match.rowSection.section == indexPath.section && match.rowSection.row == indexPath.row) {
-                return match.matchCellType
+    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState {
+        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == indexPath.section } ) {
+            if (tournaments[index].isOpen) {
+                return tournaments[index].matches[indexPath.row]
             }
         }
-        return MatchCellType.tournamentViewState(TournamentViewState(leagueName: ""))
+        return TournamentViewState.MatchViewState(
+            radiantTeam: "",
+            radiant: false,
+            score: "",
+            direTeam: "")
+    }
+    
+    func getDataTournament(section: Int) -> TournamentViewState {
+        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == section } ) {
+            return tournaments[index].tournament
+        }
+        return TournamentViewState(leagueName: "")
     }
     
     func cellTapped(indexPath: IndexPath) {
-        for (index, match) in matches.enumerated() {
-            if (match.rowSection.section == indexPath.section && match.rowSection.row == indexPath.row) {
+        /*for (index, tournament) in tournaments.enumerated() {
+            if (tournament.rowSection.section == indexPath.section && match.rowSection.row == indexPath.row) {
                 switch match.matchCellType {
                     case .tournamentViewState(_):
                         view?.updateSection(section: indexPath.section)
@@ -138,6 +129,6 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
                         output.matchesModule(self, didSelectPlayer: match.id)
                 }
             }
-        }
+        }*/
     }
 }

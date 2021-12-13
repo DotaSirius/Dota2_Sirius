@@ -1,8 +1,8 @@
 import Foundation
 
 enum MatchCellType {
-    case tournamentViewState (TournamentViewState)
-    case matchViewState (TournamentViewState.MatchViewState)
+    case tournamentViewState(TournamentViewState)
+    case matchViewState(TournamentViewState.MatchViewState)
 }
 
 extension MatchCellType {
