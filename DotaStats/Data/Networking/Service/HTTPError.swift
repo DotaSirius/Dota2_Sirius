@@ -23,4 +23,5 @@ public enum HTTPError: String, Error {
     case pageNotFound = "Error: Page/Route rquested not found"
     case failed = "Error: Network request failed"
     case serverSideError = "Error: Server error"
+    case missingURLComponents = "Error: The URL with components is nil"
 }
