@@ -32,8 +32,13 @@ struct NetworkClientImp: NetworkClient {
 				switch handledResult {
 				case .success:
 					let jsonDecoder = JSONDecoder()
+                    
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+                    
 					jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
 					jsonDecoder.dateDecodingStrategy = .secondsSince1970
+                    jsonDecoder.dateDecodingStrategy = .formatted(formatter)
 
 					guard let result = try? jsonDecoder.decode(T.self, from: unwrappedData) else {
 						completion(.failure(HTTPError.decodingFailed))
