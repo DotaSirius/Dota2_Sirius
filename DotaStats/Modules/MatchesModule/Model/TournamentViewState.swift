@@ -5,8 +5,12 @@ struct TournamentViewState {
     struct MatchViewState {
         var radiantTeam: String
         var radiant: Bool
-        var score: String // "radiantScore:direScore"
         var direTeam: String
         var id: Int
+        var radiantScore: Int
+        var direScore: Int
+        var score: String {
+            "\(radiantScore):\(direScore)"
+        }
     }
 }

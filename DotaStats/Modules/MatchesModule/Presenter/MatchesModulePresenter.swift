@@ -57,9 +57,10 @@ final class MatchesModulePresenter {
             let newMatch = TournamentViewState.MatchViewState(
                 radiantTeam: match.radiantName ?? "Radiant team",
                 radiant: match.radiantWin,
-                score: "\(match.radiantScore):\(match.direScore)",
                 direTeam: match.direName ?? "Dire team",
-                id: match.matchId
+                id: match.matchId,
+                radiantScore: match.radiantScore,
+                direScore: match.direScore
             )
             
             if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName } ) {
@@ -67,7 +68,6 @@ final class MatchesModulePresenter {
             } else {
                 tournaments.append(MatchCollectionPresenterData(
                     isOpen: false,
-                    tournamentNumber: tournaments.count,
                     tournament: TournamentViewState(leagueName: match.leagueName),
                     matches: [newMatch])
                 )
@@ -88,45 +88,26 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
     
     func getRowsInSection(section: Int) -> Int {
-        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == section } ) {
-            if tournaments[index].isOpen {
-                return tournaments[index].matches.count
-            } else {
-                return 0
-            }
+        if tournaments[section].isOpen {
+            return tournaments[section].matches.count
         } else {
             return 0
         }
     }
     
     func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState {
-        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == indexPath.section } ) {
-            return tournaments[index].matches[indexPath.row]
-        }
-        return TournamentViewState.MatchViewState(
-            radiantTeam: "",
-            radiant: false,
-            score: "",
-            direTeam: "",
-            id: 0)
+        return tournaments[indexPath.section].matches[indexPath.row]
     }
     
     func getDataTournament(section: Int) -> TournamentViewState {
-        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == section } ) {
-            return tournaments[index].tournament
-        }
-        return TournamentViewState(leagueName: "")
+        return tournaments[section].tournament
     }
     
     func matchTapped(indexPath: IndexPath) {
-        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == indexPath.section } ) {
-            output.matchesModule(self, didSelectPlayer: tournaments[index].matches[indexPath.row].id)
-        }
+        output.matchesModule(self, didSelectPlayer: tournaments[indexPath.section].matches[indexPath.row].id)
     }
     
     func tournamentTapped(section: Int) {
-        if let index = tournaments.firstIndex(where: { $0.tournamentNumber == section } ) {
-            tournaments[index].isOpen = !tournaments[index].isOpen
-        }
+        tournaments[section].isOpen = !tournaments[section].isOpen
     }
 }
