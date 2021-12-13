@@ -1,5 +1,5 @@
 //
-//  NetworkServiceSimpleText.swift
+//  NetworkClientReceivingDataTest.swift
 //  DotaStatsTests
 //
 //  Created by Igor Efimov on 09.12.2021.
@@ -17,19 +17,21 @@ class NetworkServiceReceivingDataTest: XCTestCase {
 
         let urlSession = URLSession(configuration: .default)
 
-        let networkClient = NetworkClient(urlSession: urlSession)
+        let networkClient = NetworkClientImp(urlSession: urlSession)
 
         let constantsRequest = HTTPRequest(route: "https://api.opendota.com/api/constants")
 
         networkClient.processRequest(
             request: constantsRequest
-        ) { (result: Result<[String], Error>) in
+        ) { (result: Result<[String], HTTPError>) in
             switch result {
             case .success(let constants):
                 expectations.fulfill()
 
                 receivedResult = constants
             case .failure:
+                XCTFail("Missing response")
+                
                 break
             }
         }
