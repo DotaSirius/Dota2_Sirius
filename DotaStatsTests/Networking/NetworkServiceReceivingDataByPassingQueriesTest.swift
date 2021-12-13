@@ -1,13 +1,6 @@
-//
-//  NetworkServiceReceivingDataByPassingQueriesTest.swift
-//  DotaStatsTests
-//
-//  Created by Igor Efimov on 13.12.2021.
-//
-
 import XCTest
 
-class NetworkServiceReceivingDataByPassingQueriesTest: XCTestCase {
+final class NetworkServiceReceivingDataByPassingQueriesTest: XCTestCase {
     private func receiveData() -> [Search]? {
         var receivedResult: [Search]?
 
@@ -17,13 +10,10 @@ class NetworkServiceReceivingDataByPassingQueriesTest: XCTestCase {
 
         let networkClient = NetworkClientImp(urlSession: urlSession)
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-
         let searchPlayersRequest = HTTPRequest(
             route: "https://api.opendota.com/api/search",
             queryItems: [HTTPRequestQueryItem("q", "username")],
-            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(formatter)
+            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(DateFormatter.ISO8601WithSecondsFormatter)
         )
 
         networkClient.processRequest(
@@ -45,20 +35,16 @@ class NetworkServiceReceivingDataByPassingQueriesTest: XCTestCase {
     }
 
     func testArrayContainsSomeData() throws {
-        let response = receiveData()
-
-        guard let response = response else {
+        guard let response = receiveData() else {
             XCTFail("Missing response")
             return
         }
 
         XCTAssertFalse(response.isEmpty)
     }
-    
-    func testEveryCellOfArrayContainsSomeData() throws {
-        let response = receiveData()
 
-        guard let response = response else {
+    func testEveryCellOfArrayContainsSomeData() throws {
+        guard let response = receiveData() else {
             XCTFail("Missing response")
             return
         }
