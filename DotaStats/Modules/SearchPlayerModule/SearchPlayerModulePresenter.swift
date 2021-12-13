@@ -75,7 +75,7 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
     
     func getData(indexPath: IndexPath) -> PlayerSearch {
         if let urlString = players[indexPath.row].avatarFull,
-            let url = URL(string: urlString)  {
+            let url = URL(string: urlString) {
             let imageRequestToken = imageNetworkService.loadImageFromURL(url) { [weak self] result in
                 switch result {
                 case .success(let image):
