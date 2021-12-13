@@ -1,8 +1,3 @@
-//
-//  MatchDetailService.swift
-//  DotaStats
-//
-
 import Foundation
 
 protocol MatchDetailService: AnyObject {

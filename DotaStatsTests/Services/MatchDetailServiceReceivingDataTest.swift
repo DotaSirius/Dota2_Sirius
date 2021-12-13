@@ -1,8 +1,3 @@
-//
-//  MatchDetailServiceReceivingDataTest.swift
-//  DotaStats
-//
-
 import XCTest
 
 class MatchDetailServiceReceivingDataTest: XCTestCase {
@@ -19,10 +14,10 @@ class MatchDetailServiceReceivingDataTest: XCTestCase {
 
         matchDetailService.requestMatchDetail(id: 1) { result in
             switch result {
-            case .success(let proMatches):
+            case .success(let matchDetail):
                 expectations.fulfill()
 
-                receivedResult = proMatches
+                receivedResult = matchDetail
             case .failure:
                 XCTFail("Missing response")
             }
