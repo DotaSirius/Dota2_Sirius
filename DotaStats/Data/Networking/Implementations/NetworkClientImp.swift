@@ -32,6 +32,8 @@ struct NetworkClientImp: NetworkClient {
 				switch handledResult {
 				case .success:
 					let jsonDecoder = JSONDecoder()
+					jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+					jsonDecoder.dateDecodingStrategy = .secondsSince1970
 
 					guard let result = try? jsonDecoder.decode(T.self, from: unwrappedData) else {
 						completion(.failure(HTTPError.decodingFailed))
