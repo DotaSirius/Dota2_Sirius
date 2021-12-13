@@ -1,6 +1,6 @@
 import Foundation
 
-enum MatchesModuleState {
+enum MatchesModuleViewState {
     case loading
     case error (String)
     case success

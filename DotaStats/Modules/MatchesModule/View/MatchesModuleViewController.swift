@@ -1,7 +1,7 @@
 import UIKit
 
 protocol MatchesModuleViewInput: AnyObject {
-    func updateState(matchesModuleState: MatchesModuleState)
+    func updateState(matchesModuleState: MatchesModuleViewState)
     func updateSection(section: Int)
 }
 
@@ -32,7 +32,7 @@ final class MatchesModuleViewController: UIViewController  {
 // MARK: - MatchesModuleViewInput
 
 extension MatchesModuleViewController: MatchesModuleViewInput {
-    func updateState(matchesModuleState: MatchesModuleState) {
+    func updateState(matchesModuleState: MatchesModuleViewState) {
         // TODO
     }
     

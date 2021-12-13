@@ -1,8 +1,12 @@
 import Foundation
 
 struct MatchCollectionPresenterData {
-    var section: Int
-    var row: Int
+    var rowSection: RowSection
     var isOpen: Bool
     var matchCellType: MatchCellType
+    
+    struct RowSection {
+        var section: Int
+        var row: Int
+    }
 }

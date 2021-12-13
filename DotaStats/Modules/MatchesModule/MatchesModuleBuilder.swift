@@ -10,8 +10,8 @@ final class MatchesModuleBuilder {
         presenter
     }
     
-    init(output: MatchesModuleOutput, networkService: NetworkService) {
-        presenter = MatchesModulePresenter(networkService: networkService, output: output)
+    init(output: MatchesModuleOutput, matchesService: MatchesService) {
+        presenter = MatchesModulePresenter(matchesService: matchesService, output: output)
         viewControler = MatchesModuleViewController(output: presenter)
         presenter.setViewInput(view: viewControler)
     }

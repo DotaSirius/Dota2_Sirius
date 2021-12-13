@@ -8,15 +8,35 @@ protocol MatchesModuleOutput: AnyObject {
 
 final class MatchesModulePresenter {
     weak var view: MatchesModuleViewInput?
-    private let networkService: NetworkService
+    private let matchesService: MatchesService
     private var matches: [MatchCollectionPresenterData] = []
     let output: MatchesModuleOutput
     
-    required init(networkService: NetworkService,
+    required init(matchesService: MatchesService,
                   output: MatchesModuleOutput)
     {
-        self.networkService = networkService
+        self.matchesService = matchesService
         self.output = output
+        self.state = .none
+    }
+    
+    private var state: MatchesModulePresenterState {
+        didSet {
+            oldValue.token?.cancel()
+            switch state {
+            case .result(let requestResult):
+                switch requestResult {
+                case .success(var matches):
+                    matches.sort { $0.startTime < $1.startTime }
+                    convertMatches(matches: matches)
+                    view?.updateState(matchesModuleState: MatchesModuleViewState.success)
+                case .failure(let error):
+                    view?.updateState(matchesModuleState: MatchesModuleViewState.error(error.rawValue))
+                }
+            case .none, .loading:
+                view?.updateState(matchesModuleState: MatchesModuleViewState.loading)
+            }
+        }
     }
     
     func setViewInput(view: MatchesModuleViewInput) {
@@ -25,44 +45,40 @@ final class MatchesModulePresenter {
     }
     
     private func updateView() {
-        view?.updateState(matchesModuleState: MatchesModuleState.loading)
-        var matches = networkService.proMatches()
-        matches.sort { $0.startTime < $1.startTime }
-        /* Add check after I have protocol from network
-         if (matches.count == 0) {
-             view?.updateState(matchesModuleState: MatchesModuleState.error("no data"))
-         }*/
-        convertMatches(matches: matches)
-        view?.updateState(matchesModuleState: MatchesModuleState.success)
+        let token = matchesService.requestProMatches() { [weak self] result in
+            guard let self = self else { return }
+            self.state = .result(result)
+        }
+        state = .loading(token)
     }
     
     private func convertMatches(matches: [Match]) {
-        var tournaments = [String: [Int]]()
+        var tournaments = [String: MatchCollectionPresenterData.RowSection]()
         for match in matches {
             if tournaments[match.leagueName] != nil {
-                tournaments[match.leagueName]![1] += 1
+                tournaments[match.leagueName]!.row += 1
                 let newCell = MatchCellType.matchViewState(TournamentViewState.MatchViewState(
-                    radiantTeam: match.radiantTeam,
-                    radiant: match.radiant,
+                    radiantTeam: match.radiantName ?? "Radiant team",
+                    radiant: match.radiantWin,
                     score: "\(match.radiantScore):\(match.direScore)",
-                    direTeam: match.direTeam
+                    direTeam: match.direName ?? "Dire team"
                 ))
                 
                 let newMatch = MatchCollectionPresenterData(
-                    section: tournaments[match.leagueName]![0],
-                    row: tournaments[match.leagueName]![1],
+                    rowSection: tournaments[match.leagueName]!,
                     isOpen: false,
                     matchCellType: newCell
                 )
                 self.matches.append(newMatch)
             } else {
-                tournaments[match.leagueName] = [tournaments.count, 0]
+                tournaments[match.leagueName] = MatchCollectionPresenterData.RowSection(
+                    section: tournaments.count,
+                    row: 0)
                 let newCell = MatchCellType.tournamentViewState(TournamentViewState(
                     leagueName: match.leagueName))
                 
                 let newMatch = MatchCollectionPresenterData(
-                    section: tournaments[match.leagueName]![0],
-                    row: tournaments[match.leagueName]![1],
+                    rowSection: tournaments[match.leagueName]!,
                     isOpen: false,
                     matchCellType: newCell
                 )
