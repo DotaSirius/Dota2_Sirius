@@ -1,13 +1,6 @@
-//
-//  NetworkServiceReceivingDataByPassingQueriesTest.swift
-//  DotaStatsTests
-//
-//  Created by Igor Efimov on 13.12.2021.
-//
-
 import XCTest
 
-class NetworkServiceReceivingDataByPassingQueriesTest: XCTestCase {
+final class NetworkServiceReceivingDataByPassingQueriesTest: XCTestCase {
     private func receiveData() -> [Search]? {
         var receivedResult: [Search]?
 
