@@ -11,7 +11,7 @@ struct MatchDetail : Decodable {
     let draftTimings: [DraftTiming]?
     let duration : Int?
     let engine : Int?
-    let firstBloodTime: Int?
+    let firstBloodTime: Date?
     let gameMode : Int?
     let humanPlayers : Int?
     let leagueid : Int?
@@ -21,7 +21,7 @@ struct MatchDetail : Decodable {
     let positiveVotes : Int?
     let radiantScore : Int?
     let radiantWin : Bool?
-    let startTime : Int?
+    let startTime : Date?
     let towerStatusDire : Int?
     let towerStatusRadiant : Int?
     let version : Int?
@@ -51,7 +51,7 @@ struct MatchDetail : Decodable {
 //    let my_word_counts
     
     struct Chat : Decodable, Equatable {
-        let time : Int?
+        let time : Date?
         let unit : String?
         let key : String?
         let slot : Int?
@@ -112,14 +112,14 @@ struct MatchDetail : Decodable {
         let runesLog : [RunesLog]?
         let senPlaced : Int?
         let stuns : Int?
-        let times : [Int]?
+        let times : [Date]?
         let towerDamage : Int?
         let xpPerMin : Int?
         let xpT : [Int]?
         let personaname : String?
         let name : String?
         let radiantWin : Bool?
-        let startTime : Int?
+        let startTime : Date?
         let duration : Int?
         let cluster : Int?
         let lobbyType : Int?
@@ -196,31 +196,31 @@ struct MatchDetail : Decodable {
     }
 
     struct BuybackLog : Decodable, Equatable {
-        let time : Int
+        let time : Date
         let slot : Int
         let playerSlot : Int
     }
 
     struct ConnectionLog : Decodable, Equatable {
-        let time : Int
+        let time : Date
         let event : String
         let playerSlot : Int
     }
 
 
     struct KillsLog : Decodable, Equatable {
-        let time : Int
+        let time : Date
         let key : String
     }
 
     struct PurchaseLog : Decodable, Equatable {
-        let time : Int
+        let time : Date
         let key : String
         let charges : Int
     }
 
     struct RunesLog : Decodable, Equatable {
-        let time : Int
+        let time : Date
         let key : Int
     }
 }
