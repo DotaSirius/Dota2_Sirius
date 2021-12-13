@@ -3,6 +3,7 @@ import Foundation
 final class MatchInfoModuleBuilder {
     let viewControler: MatchInfoViewController
     private let presenter:  MatchInfoModulePresenter
+    private let converter: MatchInfoConverter
     var output:  MatchInfoModuleOutput {
         presenter.output
     }
@@ -11,8 +12,9 @@ final class MatchInfoModuleBuilder {
     }
     
     init(output: MatchInfoModuleOutput, networkService: NetworkService) {
-        presenter = MatchInfoModulePresenter(networkService: networkService, output: output)
+        converter = MatchInfoConverterImp(networkService: networkService)
+        presenter = MatchInfoModulePresenter(converter: converter, output: output)
         viewControler = MatchInfoViewController(output: presenter)
-        //presenter.view = viewControler
+        presenter.view = viewControler
     }
 }

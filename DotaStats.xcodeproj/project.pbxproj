@@ -43,6 +43,7 @@
 		CEBCF5742767369F00B9D782 /* MainMatchInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBCF5652767369F00B9D782 /* MainMatchInfoTableViewCell.swift */; };
 		CEBCF5762767369F00B9D782 /* AdditionalMatchInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBCF5672767369F00B9D782 /* AdditionalMatchInfoTableViewCell.swift */; };
 		CEBCF5782767370400B9D782 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBCF5772767370400B9D782 /* Coordinator.swift */; };
+		CEBCF57A2767589B00B9D782 /* MatchInfoConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBCF5792767589B00B9D782 /* MatchInfoConverter.swift */; };
 		EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* Matches.swift */; };
 		EA8522C781197B1ACBBE601B /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
 		EA8525C10313780ABFC01843 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* Match.swift */; };
@@ -117,6 +118,7 @@
 		CEBCF5652767369F00B9D782 /* MainMatchInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMatchInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CEBCF5672767369F00B9D782 /* AdditionalMatchInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionalMatchInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CEBCF5772767370400B9D782 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		CEBCF5792767589B00B9D782 /* MatchInfoConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfoConverter.swift; sourceTree = "<group>"; };
 		EA85264F7CF441C52C30E6D7 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		EA85276324310C6574CACFC6 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		EA852BF972642EE930F2680C /* Matches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matches.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				CEBCF5572767369F00B9D782 /* MatchInfoModulePresenter.swift */,
+				CEBCF5792767589B00B9D782 /* MatchInfoConverter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
 				EA852117FB5669A545C9F8B4 /* Matches.swift in Sources */,
 				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
+				CEBCF57A2767589B00B9D782 /* MatchInfoConverter.swift in Sources */,
 				EC4E6FAB2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
 				ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */,
 				F0F2EE4F2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift in Sources */,

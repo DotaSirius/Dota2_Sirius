@@ -5,9 +5,7 @@ protocol PlayerSearchNetworkService: AnyObject {
 }
 
 protocol NetworkService: AnyObject {
-    
 }
 
 final class NetworkServiceImp: NetworkService {
-
 }
