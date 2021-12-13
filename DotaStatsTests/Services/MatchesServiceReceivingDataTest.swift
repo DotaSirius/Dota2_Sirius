@@ -1,10 +1,3 @@
-//
-//  MatchesServiceTest.swift
-//  DotaStats
-//
-//  Created by Борисов Матвей Евгеньевич on 11.12.2021.
-//
-
 import Foundation
 import XCTest
 
@@ -20,7 +13,7 @@ class MatchesServiceReceivingDataTest: XCTestCase {
         
         let matchesService = MatchesServiceImp(networkClient: networkClient)
         
-        matchesService.requestProMatches { (result: Result<[Match], HTTPError>) in
+        matchesService.requestProMatches { result in
             switch result {
             case .success(let proMatches):
                 expectations.fulfill()
