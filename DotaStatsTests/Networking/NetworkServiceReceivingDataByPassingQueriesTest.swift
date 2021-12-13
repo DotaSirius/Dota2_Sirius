@@ -45,20 +45,16 @@ class NetworkServiceReceivingDataByPassingQueriesTest: XCTestCase {
     }
 
     func testArrayContainsSomeData() throws {
-        let response = receiveData()
-
-        guard let response = response else {
+        guard let response = receiveData() else {
             XCTFail("Missing response")
             return
         }
 
         XCTAssertFalse(response.isEmpty)
     }
-    
-    func testEveryCellOfArrayContainsSomeData() throws {
-        let response = receiveData()
 
-        guard let response = response else {
+    func testEveryCellOfArrayContainsSomeData() throws {
+        guard let response = receiveData() else {
             XCTFail("Missing response")
             return
         }
