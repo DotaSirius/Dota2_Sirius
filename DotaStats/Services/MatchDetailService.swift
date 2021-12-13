@@ -6,27 +6,25 @@
 //
 
 import Foundation
-import UIKit
 
 protocol MatchDetailService: AnyObject {
-	func requestMatchDetail(id: Int, closure: @escaping (Result<MatchDetail, HTTPError>) -> Void) -> Cancellable?
+    func requestMatchDetail(id: Int, completion: @escaping (Result<MatchDetail, HTTPError>) -> Void) -> Cancellable?
 }
 
-class MatchDetailImp: MatchDetailService {
-	let networkClient: NetworkClient
+final class MatchDetailImp: MatchDetailService {
+    private let networkClient: NetworkClient
 
-	init(networkClient: NetworkClient) {
-		self.networkClient = networkClient
-	}
+    init(networkClient: NetworkClient) {
+        self.networkClient = networkClient
+    }
 
-	@discardableResult
-	func requestMatchDetail(id: Int, closure: @escaping (Result<MatchDetail, HTTPError>) -> Void) -> Cancellable? {
-		networkClient.processRequest(request: createRequest(id: id)) { result in
-			closure(result)
-		}
-	}
+    @discardableResult
+    func requestMatchDetail(id: Int, completion: @escaping (Result<MatchDetail, HTTPError>) -> Void) -> Cancellable? {
+        networkClient.processRequest(request: createRequest(id: id),
+                                     completion: completion)
+    }
 
-	private func createRequest(id: Int) -> HTTPRequest {
-		HTTPRequest(route: "https://api.opendota.com/api/matches/\(id)")
-	}
+    private func createRequest(id: Int) -> HTTPRequest {
+        HTTPRequest(route: "https://api.opendota.com/api/matches/\(id)")
+    }
 }

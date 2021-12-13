@@ -9,39 +9,36 @@ import Foundation
 import XCTest
 
 class MatchDetailServiceReceivingDataTest: XCTestCase {
-	private func receiveData() -> MatchDetail? {
-		var receivedResult: MatchDetail?
+    private func receiveData() -> MatchDetail? {
+        var receivedResult: MatchDetail?
 
-		let expectations = expectation(description: "\(#function)\(#line)")
+        let expectations = expectation(description: "\(#function)\(#line)")
 
-		let urlSession = URLSession(configuration: .default)
+        let urlSession = URLSession(configuration: .default)
 
-		let networkClient = NetworkClientImp(urlSession: urlSession)
+        let networkClient = NetworkClientImp(urlSession: urlSession)
 
-		let matchDetailService = MatchDetailImp(networkClient: networkClient)
+        let matchDetailService = MatchDetailImp(networkClient: networkClient)
 
-		matchDetailService.requestMatchDetail(id: 1) { result in
-			switch result {
-			case .success(let proMatches):
-				expectations.fulfill()
+        matchDetailService.requestMatchDetail(id: 1) { result in
+            switch result {
+            case .success(let proMatches):
+                expectations.fulfill()
 
-				receivedResult = proMatches
-			case .failure:
-				XCTFail("Missing response")
-			}
-		}
+                receivedResult = proMatches
+            case .failure:
+                XCTFail("Missing response")
+            }
+        }
 
-		waitForExpectations(timeout: 10, handler: .none)
+        waitForExpectations(timeout: 10, handler: .none)
 
-		return receivedResult
-	}
+        return receivedResult
+    }
 
-	func testResponseContainsSomeData() throws {
-		let response = receiveData()
+    func testResponseContainsSomeData() throws {
+        let response = receiveData()
 
-		guard response != nil else {
-			XCTFail("Missing response")
-			return
-		}
-	}
+        XCTAssertNotNil(response, "Missing response")
+    }
 }
