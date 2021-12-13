@@ -9,19 +9,43 @@ import Foundation
 import UIKit
 
 protocol ImageService: AnyObject {
-    func loadWithUrl(_ url: String, _ closure: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable?
+    func loadWithUrl(_ url: String, _ closure: @escaping (Result<UIImage, HTTPError>) -> Void)
 }
 
 class ImageServiceImp: ImageService {
-
     let queue = DispatchQueue(label: "image-loader", qos: .default, attributes: .concurrent, autoreleaseFrequency: .workItem)
 
     func loadWithUrl(_ url: String, _ closure: @escaping (Result<UIImage, HTTPError>) -> Void) {
         queue.async {
-            let requestUrl = URL(string: url)
-            let data = Data(contentsOf: requestUrl)
+            guard let requestUrl = URL(string: url) else {
+                self.mainThreadReturn {
+                    closure(.failure(HTTPError.missingURL))
+                }
+                return
+            }
+            do {
+                let data = try Data(contentsOf: requestUrl)
+                guard let image = UIImage(data: data) else {
+                    self.mainThreadReturn {
+                        closure(.failure(HTTPError.decodingFailed))
+                    }
+                    return
+                }
+                self.mainThreadReturn {
+                    closure(.success(image))
+                }
+
+            } catch {
+                self.mainThreadReturn {
+                    closure(.failure(HTTPError.failed))
+                }
+            }
         }
     }
 
-
+    func mainThreadReturn(_ closure: () -> Void) {
+        DispatchQueue.main.async {
+            closure()
+        }
+    }
 }
