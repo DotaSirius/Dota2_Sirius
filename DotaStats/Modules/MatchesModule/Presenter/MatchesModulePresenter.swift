@@ -105,6 +105,11 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     func getRowsInSection(section: Int) -> Int {
         var rowsInSection = 0
         for match in matches {
+            if (match.rowSection.section == section && match.rowSection.row == 0) {
+                if !match.isOpen {
+                    return 0
+                }
+            }
             if (match.rowSection.section == section) {
                 rowsInSection += 1
             }
@@ -123,12 +128,16 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
     
     func cellTapped(indexPath: IndexPath) {
-        var matchId = 0
-        for match in matches {
+        for (index, match) in matches.enumerated() {
             if (match.rowSection.section == indexPath.section && match.rowSection.row == indexPath.row) {
-                matchId = match.id
+                switch match.matchCellType {
+                    case .tournamentViewState(_):
+                        view?.updateSection(section: indexPath.section)
+                        matches[index].isOpen = !matches[index].isOpen
+                    case .matchViewState(_):
+                        output.matchesModule(self, didSelectPlayer: match.id)
+                }
             }
         }
-        output.matchesModule(self, didSelectPlayer: matchId)
     }
 }
