@@ -53,9 +53,17 @@ struct NetworkClientImp: NetworkClient {
 	}
 
 	private func configureRequest(request: HTTPRequest) throws -> URLRequest {
-		guard let url = URL(string: request.route) else { throw HTTPError.missingURL }
-
-		var generatedRequest = URLRequest(url: url)
+        guard var components = URLComponents(string: request.route) else { throw HTTPError.missingURL }
+        
+        request.queryItems.forEach{ query in
+            components.queryItems?.append(URLQueryItem(name: query.key, value: query.value))
+        }
+        
+        components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+        
+        guard let componentsURL = components.url else { throw HTTPError.missingURL }
+        
+        var generatedRequest = URLRequest(url: componentsURL)
 
 		generatedRequest.httpMethod = request.httpMethod.rawValue
 		generatedRequest.httpBody = request.body
