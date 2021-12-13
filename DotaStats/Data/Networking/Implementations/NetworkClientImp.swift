@@ -32,10 +32,10 @@ struct NetworkClientImp: NetworkClient {
 				switch handledResult {
 				case .success:
 					let jsonDecoder = JSONDecoder()
-					jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-					jsonDecoder.dateDecodingStrategy = .secondsSince1970
+                    jsonDecoder.keyDecodingStrategy = request.keyDecodingStrategy
+                    jsonDecoder.dateDecodingStrategy = request.dateDecodingStrategy
 
-					guard let result = try? jsonDecoder.decode(T.self, from: unwrappedData) else {
+                    guard let result = try? jsonDecoder.decode(T.self, from: unwrappedData) else {
 						completion(.failure(HTTPError.decodingFailed))
 						return
 					}
@@ -57,9 +57,13 @@ struct NetworkClientImp: NetworkClient {
 	private func configureRequest(request: HTTPRequest) throws -> URLRequest {
         guard var components = URLComponents(string: request.route) else { throw HTTPError.missingURL }
         
+        var queriesArray = [URLQueryItem]()
+        
         request.queryItems.forEach{ query in
-            components.queryItems?.append(URLQueryItem(name: query.key, value: query.value))
+            queriesArray.append(URLQueryItem(name: query.key, value: query.value))
         }
+        
+        components.queryItems = queriesArray
         
         components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
         
