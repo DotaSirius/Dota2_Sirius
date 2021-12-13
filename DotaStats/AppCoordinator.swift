@@ -45,18 +45,18 @@ extension AppCoordinator {
 
 extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
-        // todo
+        //let matchInfoBuilder = matchInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), matchId: matchId)
     }
 }
 
 extension AppCoordinator: PlayersModuleOutput {
     func playersModule(_ module: PlayersModuleInput, didSelectPlayer playerId: Int) {
-        // todo
+        //let playerInfoBuilder = playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
     }
 }
 
 extension AppCoordinator: SearchPlayerModuleOutput {
     func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: Players) {
-        // todo
+        //let playerInfoBuilder = playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
     }
 }
