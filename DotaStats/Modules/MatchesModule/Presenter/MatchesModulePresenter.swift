@@ -56,6 +56,22 @@ extension MatchesModulePresenter: MatchesModuleInput {
 // MARK: - MatchesModuleViewOutput
 
 extension MatchesModulePresenter: MatchesModuleViewOutput{
+    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState {
+        
+    }
+    
+    func getDataTournament(section: Int) -> TournamentViewState {
+        
+    }
+    
+    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState {
+        
+    }
+    
+    func getDataTournament(section: Int) -> TournamentViewState {
+        
+    }
+    
     func getSectionCount() -> Int {
         // TODO
         0

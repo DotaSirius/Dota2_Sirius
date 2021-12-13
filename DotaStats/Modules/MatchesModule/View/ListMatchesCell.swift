@@ -1,52 +1,18 @@
 import UIKit
 
+
 class ListMatchesCell: UITableViewCell {
+    
     static let reuseIdentifier = "ListMatchesCell"
     
     lazy var firstTeam: UILabel = {
         let control = UILabel()
         control.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         control.textAlignment = .center
-        control.textColor = .green
+        control.textColor = ColorPalette.win
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 3
-        control.textAlignment = .center
-        return control
-        
-    }()
-    
-    lazy var firstTeamScore: UILabel = {
-        let control = UILabel()
-        control.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        control.textAlignment = .center
-        control.textColor = .green
-        control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 3
-        control.textAlignment = .center
-        return control
-        
-    }()
-    
-    lazy var score: UILabel = {
-        let control = UILabel()
-        control.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        control.textAlignment = .center
-        control.textColor = .green
-        control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 3
-        control.textAlignment = .center
-        return control
-        
-    }()
-    
-    lazy var secondTeamScore: UILabel = {
-        let control = UILabel()
-        control.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        control.textAlignment = .center
-        control.textColor = .green
-        control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 3
-        control.textAlignment = .center
+        control.numberOfLines = 3;
+        control.textAlignment = .natural
         return control
         
     }()
@@ -55,17 +21,17 @@ class ListMatchesCell: UITableViewCell {
         let control = UILabel()
         control.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         control.textAlignment = .center
-        control.textColor = .red
+        control.textColor = ColorPalette.lose
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 3
-        control.textAlignment = .center
+        control.numberOfLines = 3;
+        control.textAlignment = .natural
         return control
         
     }()
     
-    lazy var duration: UILabel = {
+    lazy var score: UILabel = {
         let control = UILabel()
-        control.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        control.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         control.textAlignment = .center
         control.textColor = ColorPalette.mainText
         control.translatesAutoresizingMaskIntoConstraints = false
@@ -74,37 +40,23 @@ class ListMatchesCell: UITableViewCell {
         return control
         
     }()
-
+    
     func addView() {
-        contentView.addSubview(duration)
         contentView.addSubview(firstTeam)
-        contentView.addSubview(firstTeamScore)
-        contentView.addSubview(secondTeamScore)
         contentView.addSubview(secondTeam)
+        contentView.addSubview(score)
         
         NSLayoutConstraint.activate([
-            firstTeam.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            firstTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
-            firstTeam.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -305),
-            
-            score.leadingAnchor.constraint(equalTo: firstTeam.trailingAnchor, constant: 20),
-            score.centerYAnchor.constraint(equalTo: centerYAnchor),
-            score.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -200),
-//            firstTeamScore.leadingAnchor.constraint(equalTo: firstTeam.trailingAnchor, constant: 10),
-//            firstTeamScore.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            firstTeamScore.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -265),
-//
-//            secondTeamScore.leadingAnchor.constraint(equalTo: firstTeamScore.trailingAnchor, constant: 10),
-//            secondTeamScore.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            secondTeamScore.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -230),
-            
-            secondTeam.leadingAnchor.constraint(equalTo: secondTeamScore.trailingAnchor, constant: 10),
-            secondTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
-            secondTeam.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -110),
-            
-            duration.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 310),
-            duration.centerYAnchor.constraint(equalTo: centerYAnchor),
-            duration.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        firstTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
+        firstTeam.trailingAnchor.constraint(equalTo: score.leadingAnchor, constant: -50),
+        firstTeam.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+        
+        score.centerYAnchor.constraint(equalTo: centerYAnchor),
+        score.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+        secondTeam.leadingAnchor.constraint(equalTo: score.trailingAnchor, constant: 50),
+        secondTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
+        secondTeam.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
     }
 }
