@@ -68,7 +68,7 @@ struct NetworkClientImp: NetworkClient {
 
         components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
 
-        guard let componentsURL = components.url else { throw HTTPError.missingURL }
+        guard let componentsURL = components.url else { throw HTTPError.missingURLComponents }
 
         var generatedRequest = URLRequest(url: componentsURL)
 
