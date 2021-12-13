@@ -9,8 +9,8 @@ import Foundation
 import XCTest
 
 class MatchesServiceReceivingDataTest: XCTestCase {
-    private func receiveData() -> ProMatches? {
-        var receivedResult: ProMatches?
+    private func receiveData() -> [Match]? {
+        var receivedResult: [Match]?
         
         let expectations = expectation(description: "\(#function)\(#line)")
         
@@ -20,7 +20,7 @@ class MatchesServiceReceivingDataTest: XCTestCase {
         
         let matchesService = MatchesServiceImp(networkClient: networkClient)
         
-        matchesService.requestProMatches { (result: Result<ProMatches, HTTPError>) in
+        matchesService.requestProMatches { (result: Result<[Match], HTTPError>) in
             switch result {
             case .success(let proMatches):
                 expectations.fulfill()
@@ -45,7 +45,7 @@ class MatchesServiceReceivingDataTest: XCTestCase {
         }
     }
     
-    func testResponseContainsArrayyOfMatches() throws {
+    func testResponseContainsArrayOfMatches() throws {
         let response = receiveData()
         
         guard let response = response else {
@@ -53,7 +53,7 @@ class MatchesServiceReceivingDataTest: XCTestCase {
             return
         }
 
-        XCTAssertFalse(response.matches.isEmpty)
+        XCTAssertFalse(response.isEmpty)
     }
     
     func testAnyMatchContainsRequiredData() throws {
@@ -64,7 +64,7 @@ class MatchesServiceReceivingDataTest: XCTestCase {
             return
         }
         
-        response.matches.forEach { match in
+        response.forEach { match in
             XCTAssert(match.matchId > 0)
             XCTAssert(match.duration > 0)
         }
