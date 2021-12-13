@@ -4,7 +4,7 @@ protocol PlayersModuleInput: AnyObject {
 }
 
 protocol PlayersModuleOutput: AnyObject {
-    func playersModule(_ module: PlayersModuleInput, didSelectPlayer player: Player)
+    func playersModule(_ module: PlayersModuleInput, didSelectPlayer playerId: Int)
 }
 
 final class PlayersModulePresenter {
