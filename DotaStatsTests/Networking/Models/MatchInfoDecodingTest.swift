@@ -15,7 +15,7 @@ class MatchInfoDecodingTest: XCTestCase {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        let decodedData = try jsonDecoder.decode(Matches.self,
+        let decodedData = try jsonDecoder.decode(MatchDetail.self,
                                                    from: jsonData)
                 
         XCTAssertEqual(decodedData.matchId, 1)

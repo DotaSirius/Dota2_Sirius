@@ -20,7 +20,7 @@ class MatchesServiceReceivingDataTest: XCTestCase {
         
         let matchesService = MatchesServiceImp(networkClient: networkClient)
         
-        matchesService.requestProMatches { (result: Result<[Match], HTTPError>) in
+        matchesService.requestProMatches { result in
             switch result {
             case .success(let proMatches):
                 expectations.fulfill()
