@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol MatchesService {
-	func requestProMatches(_ closure: @escaping (Result<ProMatches, HTTPError>) -> Void) -> Cancellable?
+protocol MatchesService: AnyObject {
+	func requestProMatches(_ closure: @escaping (Result<[Match], HTTPError>) -> Void) -> Cancellable?
 }
 
-struct MatchesServiceImp: MatchesService {
+class MatchesServiceImp: MatchesService {
 
 	private let networkClient: NetworkClient
 
@@ -19,7 +19,8 @@ struct MatchesServiceImp: MatchesService {
 		self.networkClient = networkClient
 	}
 
-	func requestProMatches(_ closure: @escaping (Result<ProMatches, HTTPError>) -> Void) -> Cancellable? {
+	@discardableResult
+	func requestProMatches(_ closure: @escaping (Result<[Match], HTTPError>) -> Void) -> Cancellable? {
 		networkClient.processRequest(request: createRequest()) { result in
 			closure(result)
 		}
