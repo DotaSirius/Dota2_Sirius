@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 final class SearchPlayerTableViewCell: UITableViewCell {
@@ -11,23 +10,24 @@ final class SearchPlayerTableViewCell: UITableViewCell {
         static let trailingMargin: CGFloat = -50
     }
     
-    lazy var avatarImage = UIImageView()
-    lazy var nickname: UILabel = {
+    private lazy var avatarImage = UIImageView()
+    private lazy var nickname: UILabel = {
         let nickname = UILabel()
-        nickname.font = UIFont.systemFont(ofSize: 17)
-        nickname.textColor = .white
+        nickname.font = .systemFont(ofSize: 17)
+        nickname.textColor = ColorPalette.mainText
+        nickname.translatesAutoresizingMaskIntoConstraints = false
         return nickname
     }()
     
-    lazy var timeMatch: UILabel = {
+    private lazy var timeMatch: UILabel = {
         let raiting = UILabel()
-        raiting.font = UIFont.systemFont(ofSize: 17)
-        raiting.textColor = .white
+        raiting.font = .systemFont(ofSize: 17)
+        raiting.textColor = ColorPalette.mainText
+        raiting.translatesAutoresizingMaskIntoConstraints = false
         return raiting
     }()
     
     static let reuseIdentifier = "PlayerCell"
-    private let colorPalette = ColorPalette()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,9 +41,7 @@ final class SearchPlayerTableViewCell: UITableViewCell {
         contentView.addSubview(nickname)
         contentView.addSubview(timeMatch)
         
-        nickname.translatesAutoresizingMaskIntoConstraints = false
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
-        timeMatch.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: Margin.topMargin),
             avatarImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Margin.leadingMargin),

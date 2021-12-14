@@ -14,7 +14,7 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
     func playerTapped(at indexPath: IndexPath)
 }
 
-// MARK: Экран с поиском игроков!
+// MARK: Search Player Module View Controller
 
 final class SearchPlayerModuleViewController: UIViewController {
     private var output: SearchPlayerModuleViewOutput?
@@ -215,15 +215,15 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
         switch state {
         case .startScreen:
             tableView.isHidden = true
-        // TODO: картинка начал экрана
+        // TODO: start screen image
         case .empty:
             tableView.isHidden = true
-        // TODO: картинка ничего не нашёл
+        // TODO: imgae nothing have been founded
         case .loading:
             hideError()
             tableView.isHidden = true
             loadingCircle.startAnimating()
-        // TODO: добавить кастомную загрузку
+        // TODO: wait until Matvey make custom loading
         case .success:
             hideError()
             loadingCircle.stopAnimating()
@@ -231,7 +231,6 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
             tableView.isHidden = false
         case .failure:
             showError()
-            // TODO: картинка ошибки
             // TODO: show error image
             print("error")
         }
