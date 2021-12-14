@@ -7,6 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
+
         let appCoordinator = AppCoordinator()
         window!.rootViewController = appCoordinator.tabBarController
         window!.makeKeyAndVisible()
