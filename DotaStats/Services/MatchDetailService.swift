@@ -13,8 +13,10 @@ final class MatchDetailImp: MatchDetailService {
 
     @discardableResult
     func requestMatchDetail(id: Int, completion: @escaping (Result<MatchDetail, HTTPError>) -> Void) -> Cancellable? {
-        networkClient.processRequest(request: createRequest(id: id),
-                                     completion: completion)
+        networkClient.processRequest(
+            request: createRequest(id: id),
+            completion: completion
+        )
     }
 
     private func createRequest(id: Int) -> HTTPRequest {

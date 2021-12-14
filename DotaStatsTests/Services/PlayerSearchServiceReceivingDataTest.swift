@@ -1,9 +1,8 @@
-import Foundation
 import XCTest
 
-final class MatchesServiceReceivingDataTest: XCTestCase {
-    private func receiveData() -> [Match]? {
-        var receivedResult: [Match]?
+final class PlayerSearchServiceReceivingDataTest: XCTestCase {
+    private func receiveData() -> [Search]? {
+        var receivedResult: [Search]?
 
         let expectations = expectation(description: "\(#function)\(#line)")
 
@@ -11,14 +10,14 @@ final class MatchesServiceReceivingDataTest: XCTestCase {
 
         let networkClient = NetworkClientImp(urlSession: urlSession)
 
-        let matchesService = MatchesServiceImp(networkClient: networkClient)
+        let playerSearchService = PlayerSearchServiceImp(networkClient: networkClient)
 
-        matchesService.requestProMatches { result in
+        playerSearchService.playersByName("Test") { (result: Result<[Search], HTTPError>) in
             switch result {
-            case .success(let proMatches):
+            case .success(let searchResults):
                 expectations.fulfill()
 
-                receivedResult = proMatches
+                receivedResult = searchResults
             case .failure:
                 XCTFail("Missing response")
             }
@@ -49,7 +48,7 @@ final class MatchesServiceReceivingDataTest: XCTestCase {
         XCTAssertFalse(response.isEmpty)
     }
 
-    func testAnyMatchContainsRequiredData() throws {
+    func testAnyProfileContainsData() throws {
         let response = receiveData()
 
         guard let response = response else {
@@ -58,8 +57,7 @@ final class MatchesServiceReceivingDataTest: XCTestCase {
         }
 
         response.forEach { match in
-            XCTAssert(match.matchId > 0)
-            XCTAssert(match.duration > 0)
+            XCTAssert(match.accountId > 0)
         }
     }
 }

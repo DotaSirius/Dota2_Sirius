@@ -27,7 +27,7 @@ final class AdditionalMatchInfoTableViewCell: UITableViewCell {
         let matchIdCopyButton = CopyIdButton()
         matchIdCopyButton.setTitle("Copy match ID", for: .normal)
         matchIdCopyButton.layer.cornerRadius = 15
-        matchIdCopyButton.backgroundColor = ColorPalette.alternatеBackground
+        matchIdCopyButton.backgroundColor = ColorPalette.alternativeBackground
         matchIdCopyButton.setTitleColor(ColorPalette.text, for: .normal)
         matchIdCopyButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         matchIdCopyButton.addTarget(self, action: #selector (copyMatchIdButtonPressed), for: .touchUpInside)

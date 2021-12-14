@@ -80,7 +80,7 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
             // TODO: - Error handling
             return UITableViewCell()
         }
-        cell.backgroundColor = ((indexPath.row % 2 == 0)&&(indexPath.row>3)) ? ColorPalette.alternatеBackground : ColorPalette.mainBackground
+        cell.backgroundColor = ((indexPath.row % 2 == 0)&&(indexPath.row>3)) ? ColorPalette.alternativeBackground : ColorPalette.mainBackground
         cell.configure(with: data)
         return cell
     }

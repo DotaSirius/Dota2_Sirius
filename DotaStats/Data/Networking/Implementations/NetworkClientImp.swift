@@ -1,10 +1,3 @@
-//
-//  NetworkClientImp.swift
-//  DotaStats
-//
-//  Created by Борисов Матвей Евгеньевич on 11.12.2021.
-//
-
 import Foundation
 
 struct NetworkClientImp: NetworkClient {
@@ -24,7 +17,10 @@ struct NetworkClientImp: NetworkClient {
 
             let task = urlSession.dataTask(with: configuredURLRequest) { data, response, _ in
                 guard let response = response as? HTTPURLResponse, let unwrappedData = data else {
-                    completion(.failure(HTTPError.decodingFailed))
+                    NetworkClientImp.executeCompletionOnMainThread {
+                        completion(.failure(HTTPError.decodingFailed))
+                    }
+
                     return
                 }
                 let handledResult = HTTPNetworkResponse.handleNetworkResponse(for: response)
@@ -32,25 +28,35 @@ struct NetworkClientImp: NetworkClient {
                 switch handledResult {
                 case .success:
                     let jsonDecoder = JSONDecoder()
-                    
+
                     jsonDecoder.keyDecodingStrategy = request.keyDecodingStrategy
                     jsonDecoder.dateDecodingStrategy = request.dateDecodingStrategy
 
                     guard let result = try? jsonDecoder.decode(T.self, from: unwrappedData) else {
-                        completion(.failure(HTTPError.decodingFailed))
+                        NetworkClientImp.executeCompletionOnMainThread {
+                            completion(.failure(HTTPError.decodingFailed))
+                        }
+
                         return
                     }
 
-                    completion(.success(result))
+                    NetworkClientImp.executeCompletionOnMainThread {
+                        completion(.success(result))
+                    }
                 case .failure:
-                    completion(.failure(HTTPError.decodingFailed))
+                    NetworkClientImp.executeCompletionOnMainThread {
+                        completion(.failure(HTTPError.decodingFailed))
+                    }
                 }
             }
 
             task.resume()
             return task
         } catch {
-            completion(.failure(HTTPError.failed))
+            NetworkClientImp.executeCompletionOnMainThread {
+                completion(.failure(HTTPError.failed))
+            }
+
             return nil
         }
     }
@@ -78,6 +84,12 @@ struct NetworkClientImp: NetworkClient {
         }
 
         return generatedRequest
+    }
+
+    private static func executeCompletionOnMainThread(_ closure: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            closure()
+        }
     }
 }
 
