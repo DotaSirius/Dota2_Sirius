@@ -18,8 +18,7 @@ final class MatchesDecodingTest: XCTestCase {
 
         let decodedData = try jsonDecoder.decode([Match].self,
                                                  from: jsonData)
-        let match = decodedData[0]
-
+        
         let firstMatch = decodedData[0]
         XCTAssertEqual(firstMatch.duration, 1892)
         XCTAssertEqual(firstMatch.startTime, Date(timeIntervalSince1970: 1639054764))
