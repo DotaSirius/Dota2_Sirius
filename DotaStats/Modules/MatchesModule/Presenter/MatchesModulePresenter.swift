@@ -117,7 +117,18 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
     
     func tournamentTapped(section: Int) {
-        tournaments[section].isOpen = !tournaments[section].isOpen
-        view?.updateSection(section: section)
+        let isOpen = tournaments[section].isOpen
+        tournaments[section].isOpen = !isOpen
+        let matchesCount = tournaments[section].matches.count
+        var indexPathes = [IndexPath]()
+        for i in 0..<matchesCount {
+            indexPathes.append(.init(row: i, section: section))
+        }
+        if isOpen {
+            view?.deleteRows(indexPathes)
+        } else {
+            view?.insertRows(indexPathes)
+        }
+        
     }
 }

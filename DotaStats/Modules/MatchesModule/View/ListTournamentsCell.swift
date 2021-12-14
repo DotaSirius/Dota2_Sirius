@@ -45,7 +45,9 @@ final class ListTournamentsCell: UITableViewHeaderFooterView {
     }()
     
     lazy var arrowLabel: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "arrow"))
+        let view = UIImageView(image: UIImage(systemName: "chevron.right"))
+        view.tintColor = ColorPalette.accent
+        view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

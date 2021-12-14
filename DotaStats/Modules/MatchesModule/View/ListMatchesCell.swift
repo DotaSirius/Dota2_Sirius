@@ -9,7 +9,7 @@ final class ListMatchesCell: UITableViewCell {
         label.textAlignment = .right
         label.textColor = ColorPalette.win
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 5
+        label.numberOfLines = 3
         return label
     }()
     

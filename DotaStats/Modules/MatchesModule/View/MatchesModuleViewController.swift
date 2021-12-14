@@ -4,7 +4,9 @@ import UIKit
 
 protocol MatchesModuleViewInput: AnyObject {
     func update(state: MatchesModuleViewState)
-    func updateSection(section: Int)
+//    func updateSection(section: Int)
+    func insertRows(_ rows: [IndexPath])
+    func deleteRows(_ rows: [IndexPath])
 }
 
 protocol MatchesModuleViewOutput: AnyObject {
@@ -46,7 +48,6 @@ final class MatchesModuleViewController: UIViewController {
     }()
 
     // MARK: - Init
-
     init(output: MatchesModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
@@ -55,7 +56,7 @@ final class MatchesModuleViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     // MARK: - Set up UILabel "MATCHES"
 
     private func setUpLabel() {
@@ -63,7 +64,7 @@ final class MatchesModuleViewController: UIViewController {
         NSLayoutConstraint.activate([
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             label.bottomAnchor.constraint(equalTo: tableView.topAnchor),
         ])
     }
@@ -93,7 +94,6 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
             spiner.startAnimating()
         case .error:
             spiner.removeFromSuperview()
-            print("error")
         case .success:
             spiner.removeFromSuperview()
             setUpTableView()
@@ -101,8 +101,12 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
         }
     }
 
-    func updateSection(section: Int) {
-        tableView.reloadData()
+    func insertRows(_ rows: [IndexPath]) {
+        tableView.insertRows(at: rows, with: .automatic)
+    }
+
+    func deleteRows(_ rows: [IndexPath]) {
+        tableView.deleteRows(at: rows, with: .automatic)
     }
 }
 
@@ -118,15 +122,15 @@ extension MatchesModuleViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 55
+        return 52
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.5
+        return 0.2
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        55
+        50
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -161,7 +165,7 @@ extension MatchesModuleViewController: ListTournamentsCellDelegate {
         let count = output?.getRowsInSection(section: section) ?? 0
         let header = ListTournamentsCell()
         header.setup(withTitle: data?.leagueName ?? "ChampionShip", section: section, delegate: self)
-        if count != 0 {
+        if count != 0{
             header.setCollapsed(false)
         } else {
             header.setCollapsed(true)
@@ -171,5 +175,7 @@ extension MatchesModuleViewController: ListTournamentsCellDelegate {
 
     func toggleSection(header: ListTournamentsCell, section: Int) {
         output?.tournamentTapped(section: section)
+    
+        
     }
 }
