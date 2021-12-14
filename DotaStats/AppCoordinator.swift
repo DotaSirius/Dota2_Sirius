@@ -1,17 +1,5 @@
 import Foundation
 
-protocol MatchesModuleOutput {
-    
-}
-
-protocol MatchesModuleInput {
-    
-}
-
-protocol MatchInfoModuleOutput {
-    
-}
-
 final class AppCoordinator {
     let tabBarController: MainTabBarController = MainTabBarController()
 
@@ -31,21 +19,11 @@ extension AppCoordinator {
         )
     }
     
-    func matchesBuilder() -> PlayersModuleBuilder {
+    func matchesBuilder() -> PlayersModuleBuilder { //MatchesModuleBuilder
         PlayersModuleBuilder(
             output: self,
             networkService: NetworkServiceImp()
         )
-    }
-    
-    //func playerInfoModuleBuilder() -> PlayersInfoModule { }
-    //func matchInfoModuleBuilder() -> MatchInfoModule { }
-    //func searchPlayerModuleBuilder() -> SearchPlayerModuleModule { }
-}
-
-extension AppCoordinator: MatchesModuleOutput {
-    func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
-        //let matchInfoBuilder = matchInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), matchId: matchId)
     }
 }
 
