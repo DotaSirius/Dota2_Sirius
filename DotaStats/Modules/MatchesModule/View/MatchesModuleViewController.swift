@@ -25,7 +25,10 @@ final class MatchesModuleViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(ListMatchesCell.self, forCellReuseIdentifier: ListMatchesCell.reuseIdentifier)
-        table.register(ListTournamentsCell.self, forHeaderFooterViewReuseIdentifier: ListTournamentsCell.reuseIdentifier)
+        table.register(
+            ListTournamentsCell.self,
+            forHeaderFooterViewReuseIdentifier: ListTournamentsCell.reuseIdentifier
+        )
         table.translatesAutoresizingMaskIntoConstraints = false
         table.backgroundColor = ColorPalette.mainBackground
         table.separatorColor = ColorPalette.separator
@@ -65,7 +68,7 @@ final class MatchesModuleViewController: UIViewController {
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            label.bottomAnchor.constraint(equalTo: tableView.topAnchor),
+            label.bottomAnchor.constraint(equalTo: tableView.topAnchor)
         ])
     }
 
@@ -77,7 +80,7 @@ final class MatchesModuleViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
@@ -139,7 +142,10 @@ extension MatchesModuleViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = output?.getDataMatch(indexPath: indexPath)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListMatchesCell.reuseIdentifier, for: indexPath) as? ListMatchesCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: ListMatchesCell.reuseIdentifier, for: indexPath) as? ListMatchesCell else {
+                return UITableViewCell()
+            }
         cell.setup()
         cell.firstTeam.text = data?.radiantTeam.trimmingCharacters(in: .whitespaces)
         cell.score.text = data?.score

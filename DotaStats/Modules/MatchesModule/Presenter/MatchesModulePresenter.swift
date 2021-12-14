@@ -18,8 +18,7 @@ final class MatchesModulePresenter {
     let output: MatchesModuleOutput
 
     required init(matchesService: MatchesService,
-                  output: MatchesModuleOutput)
-    {
+                  output: MatchesModuleOutput) {
         self.matchesService = matchesService
         self.output = output
         self.state = .none

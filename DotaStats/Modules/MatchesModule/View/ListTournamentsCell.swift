@@ -72,7 +72,7 @@ final class ListTournamentsCell: UITableViewHeaderFooterView {
 
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -60),
-            title.centerYAnchor.constraint(equalTo: centerYAnchor),
+            title.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }
