@@ -1,0 +1,8 @@
+disabled_rules:
+  - colon
+  - comma
+  - control_statement
+  - function_body_length
+  - identifier_name
+  - todo
+  - type_name

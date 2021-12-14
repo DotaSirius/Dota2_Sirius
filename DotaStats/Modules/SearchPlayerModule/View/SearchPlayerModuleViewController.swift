@@ -2,12 +2,20 @@ import UIKit
 
 protocol SearchPlayerModuleViewInput: AnyObject {
     func updateState(_ state: SearchPlayerModuleViewState)
+    func reload(at indexPath: IndexPath)
 }
 
 protocol SearchPlayerModuleViewOutput: AnyObject {
+
     var count: Int { get }
     // TODO: func getData(indexPath: IndexPath) -> Players
+
+    var countOfRows: Int { get }
+    func getData(at indexPath: IndexPath) -> PlayerInfoFromSearch
+    func prefetchData(at indexPath: IndexPath)
+
     func search(_ name: String)
+    func playerTapped(at indexPath: IndexPath)
 }
 
 // MARK: Экран с поиском игроков!
@@ -221,5 +229,9 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
             // TODO: show error image
             print("error")
         }
+    }
+
+    func reload(at indexPath: IndexPath) {
+        //
     }
 }
