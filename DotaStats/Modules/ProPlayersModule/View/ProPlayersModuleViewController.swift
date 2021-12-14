@@ -1,8 +1,7 @@
 import UIKit
 
 protocol ProPlayersModuleViewInput: AnyObject {
-    func showLoading()
-    func showPlayers(_ players: [Player])
+    func updateState(_ state: ProPlayerModuleViewState)
 }
 
 protocol ProPlayersModuleViewOutput: AnyObject {
@@ -29,11 +28,7 @@ final class ProPlayersModuleViewController: UIViewController {
 // MARK: - PlayersModuleViewInput
 
 extension ProPlayersModuleViewController: ProPlayersModuleViewInput {
-    func showLoading() {
-        // TODO:
-    }
-
-    func showPlayers(_ players: [Player]) {
-        // TODO:
+    func updateState(_ state: ProPlayerModuleViewState) {
+        //
     }
 }
