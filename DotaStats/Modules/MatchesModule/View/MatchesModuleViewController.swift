@@ -4,7 +4,6 @@ import UIKit
 
 protocol MatchesModuleViewInput: AnyObject {
     func update(state: MatchesModuleViewState)
-//    func updateSection(section: Int)
     func insertRows(_ rows: [IndexPath])
     func deleteRows(_ rows: [IndexPath])
 }
@@ -48,6 +47,7 @@ final class MatchesModuleViewController: UIViewController {
     }()
 
     // MARK: - Init
+
     init(output: MatchesModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
@@ -56,7 +56,7 @@ final class MatchesModuleViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     // MARK: - Set up UILabel "MATCHES"
 
     private func setUpLabel() {
@@ -103,10 +103,14 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
 
     func insertRows(_ rows: [IndexPath]) {
         tableView.insertRows(at: rows, with: .automatic)
+        guard let head = tableView.headerView(forSection: rows[0].section) as? ListTournamentsCell else { return }
+        head.setCollapsed(false)
     }
 
     func deleteRows(_ rows: [IndexPath]) {
         tableView.deleteRows(at: rows, with: .automatic)
+        guard let head = tableView.headerView(forSection: rows[0].section) as? ListTournamentsCell else { return }
+        head.setCollapsed(true)
     }
 }
 
@@ -122,7 +126,7 @@ extension MatchesModuleViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 52
+        return 55
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -161,21 +165,13 @@ extension MatchesModuleViewController: UITableViewDelegate {
 
 extension MatchesModuleViewController: ListTournamentsCellDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let data = output?.getDataTournament(section: section)
-        let count = output?.getRowsInSection(section: section) ?? 0
+        guard let data = output?.getDataTournament(section: section) else { return nil }
         let header = ListTournamentsCell()
-        header.setup(withTitle: data?.leagueName ?? "ChampionShip", section: section, delegate: self)
-        if count != 0{
-            header.setCollapsed(false)
-        } else {
-            header.setCollapsed(true)
-        }
+        header.setup(withTitle: data.leagueName, section: section, delegate: self)
         return header
     }
 
     func toggleSection(header: ListTournamentsCell, section: Int) {
         output?.tournamentTapped(section: section)
-    
-        
     }
 }

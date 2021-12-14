@@ -43,7 +43,7 @@ final class MatchesModulePresenter {
     
     private func updateView() {
         state = .loading
-        let _ = matchesService.requestProMatches { [weak self] result in
+        _ = matchesService.requestProMatches { [weak self] result in
             switch result {
             case .success(let matches):
                 self?.state = .success(matches)
@@ -63,7 +63,8 @@ final class MatchesModulePresenter {
                 let matchData = MatchCollectionPresenterData(
                     tournament: TournamentViewState(
                         leagueName: match.leagueName,
-                        isOpen: false),
+                        isOpen: false
+                    ),
                     matches: [newMatch]
                 )
                 tournaments.append(matchData)
@@ -119,7 +120,7 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
         tournaments[section].tournament.isOpen = !isOpen
         let matchesCount = tournaments[section].matches.count
         var indexPathes = [IndexPath]()
-        for i in 0..<matchesCount {
+        for i in 0 ..< matchesCount {
             indexPathes.append(.init(row: i, section: section))
         }
         if isOpen {
