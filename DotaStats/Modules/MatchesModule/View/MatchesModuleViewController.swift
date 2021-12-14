@@ -3,7 +3,7 @@ import UIKit
 // MARK: - Protocols
 
 protocol MatchesModuleViewInput: AnyObject {
-    func updateState(matchesModuleState: MatchesModuleViewState)
+    func update(state: MatchesModuleViewState)
     func updateSection(section: Int)
 }
 
@@ -90,8 +90,8 @@ final class MatchesModuleViewController: UIViewController {
 // MARK: - MatchesModuleViewInput
 
 extension MatchesModuleViewController: MatchesModuleViewInput {
-    func updateState(matchesModuleState: MatchesModuleViewState) {
-        switch matchesModuleState {
+    func update(state: MatchesModuleViewState) {
+        switch state {
         case .loading:
             spiner.color = .systemOrange
             view.addSubview(spiner)

@@ -13,6 +13,6 @@ final class MatchesModuleBuilder {
     init(output: MatchesModuleOutput, matchesService: MatchesService) {
         presenter = MatchesModulePresenter(matchesService: matchesService, output: output)
         viewControler = MatchesModuleViewController(output: presenter)
-        presenter.setViewInput(view: viewControler)
+        presenter.view = viewControler
     }
 }

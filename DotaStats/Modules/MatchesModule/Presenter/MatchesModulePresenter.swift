@@ -7,7 +7,11 @@ protocol MatchesModuleOutput: AnyObject {
 }
 
 final class MatchesModulePresenter {
-    weak var view: MatchesModuleViewInput?
+    weak var view: MatchesModuleViewInput? {
+        didSet {
+            updateView()
+        }
+    }
     private let matchesService: MatchesService
     private var tournaments: [MatchCollectionPresenterData] = []
     let output: MatchesModuleOutput
@@ -28,36 +32,32 @@ final class MatchesModulePresenter {
                 switch requestResult {
                 case .success(var matches):
                     matches.sort { $0.startTime < $1.startTime }
-                    convertMatches(matches: matches)
-                    view?.updateState(matchesModuleState: MatchesModuleViewState.success)
+                    convert(matches)
+                    view?.update(state: .success)
                 case .failure(let error):
-                    view?.updateState(matchesModuleState: MatchesModuleViewState.error(error.rawValue))
+                    view?.update(state: .error(error.rawValue))
                 }
-            case .none, .loading:
-                view?.updateState(matchesModuleState: MatchesModuleViewState.loading)
+            case .loading:
+                view?.update(state: .loading)
+            case .none:
+                break
             }
         }
     }
     
-    func setViewInput(view: MatchesModuleViewInput) {
-        self.view = view
-        updateView()
-    }
-    
     private func updateView() {
-        let token = matchesService.requestProMatches() { [weak self] result in
-            guard let self = self else { return }
-            self.state = .result(result)
+        let token = matchesService.requestProMatches { [weak self] result in
+            self?.state = .result(result)
         }
         state = .loading(token)
     }
     
-    private func convertMatches(matches: [Match]) {
+    private func convert(_ matches: [Match]) {
         for match in matches {
             let newMatch = TournamentViewState.MatchViewState(
-                radiantTeam: match.radiantName ?? "Radiant team",
+                radiantTeam: match.radiantName ?? NSLocalizedString("Radiant team", comment: ""),
                 radiant: match.radiantWin,
-                direTeam: match.direName ?? "Dire team",
+                direTeam: match.direName ?? NSLocalizedString("Dire team", comment: ""),
                 id: match.matchId,
                 radiantScore: match.radiantScore,
                 direScore: match.direScore
