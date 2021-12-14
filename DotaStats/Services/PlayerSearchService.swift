@@ -1,10 +1,3 @@
-//
-//  PlayerSearchService.swift
-//  DotaStats
-//
-//  Created by Igor Efimov on 13.12.2021.
-//
-
 import Foundation
 
 protocol PlayerSearchService: AnyObject {
@@ -20,9 +13,10 @@ final class PlayerSearchServiceImp: PlayerSearchService {
 
     @discardableResult
     func playersByName(_ name: String, closure: @escaping (Result<[Search], HTTPError>) -> Void) -> Cancellable? {
-        networkClient.processRequest(request: createRequest(name)) { result in
-            closure(result)
-        }
+        networkClient.processRequest(
+            request: createRequest(name),
+            completion: closure
+        )
     }
 
     private func createRequest(_ name: String) -> HTTPRequest {
