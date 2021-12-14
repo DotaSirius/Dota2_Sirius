@@ -5,8 +5,12 @@ final class AppCoordinator {
 
     init() {
         let playersModule = playersBuilder()
-        tabBarController.setViewControllers([playersModule.viewController], animated: false)
-        tabBarController.setViewControllers(items: [NSLocalizedString("players", comment: "")])
+        let matchesModule = matchesBuilder()
+        let controllers = [playersModule.viewController, matchesModule.viewController]
+        tabBarController.setViewControllers(controllers, animated: false)
+        tabBarController.tabImageNames = [NSLocalizedString("players", comment: ""),
+                                          NSLocalizedString("matches", comment: "")]
+        tabBarController.configurateTabs()
     }
 }
 
@@ -17,11 +21,28 @@ extension AppCoordinator {
             networkService: NetworkServiceImp()
         )
     }
+
+    private func matchesBuilder() -> MatchesModuleBuilder {
+        MatchesModuleBuilder(
+            output: self,
+            matchesService: MatchesServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            )
+        )
+    }
 }
 
 extension AppCoordinator: PlayersModuleOutput {
     func playersModule(_ module: PlayersModuleInput, didSelectPlayer playerId: Int) {
         // let playerInfoBuilder =
         // playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
+    }
+}
+
+extension AppCoordinator: MatchesModuleOutput {
+    func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
+        // todo
     }
 }

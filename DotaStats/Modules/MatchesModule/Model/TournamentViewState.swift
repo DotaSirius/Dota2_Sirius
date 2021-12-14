@@ -1,13 +1,18 @@
 import Foundation
 
 struct TournamentViewState {
-    var leagueName: String
-    struct MatchViewState {
-        var radiantTeam: String
-        var radiant: Bool
-        var radiantScore: Int
-        var direScore: Int
-        var direTeam: String
-        var duration: String // "40:15"
+    let leagueName: String
+    var isOpen: Bool
+
+    struct Match {
+        let radiantTeam: String
+        let radiant: Bool
+        let direTeam: String
+        let id: Int
+        let radiantScore: Int
+        let direScore: Int
+        var score: String {
+            "\(radiantScore):\(direScore)"
+        }
     }
 }
