@@ -8,20 +8,20 @@ protocol SearchPlayerModuleOutput: AnyObject {
 
 final class SearchPlayerModulePresenter {
     let output: SearchPlayerModuleOutput
-    
+
     weak var view: SearchPlayerModuleViewInput? {
         didSet {
             view?.updateState(viewState)
         }
     }
-    
+
     private let networkService: PlayerSearchNetworkService
-    
+
     private var players = [Players]()
     private var viewState: SearchPlayerModuleViewState {
         viewState(from: state)
     }
-    
+
     private func viewState(from state: SearchPlayerModulePresenterState) -> SearchPlayerModuleViewState {
         switch state {
         case .none:
@@ -37,7 +37,7 @@ final class SearchPlayerModulePresenter {
             }
         }
     }
-    
+
     private var state: SearchPlayerModulePresenterState {
         didSet {
             oldValue.token?.cancel()
@@ -52,11 +52,11 @@ final class SearchPlayerModulePresenter {
             case .none, .loading:
                 break
             }
-            
+
             view?.updateState(viewState)
         }
     }
-    
+
     init(output: SearchPlayerModuleOutput, networkService: PlayerSearchNetworkService) {
         self.output = output
         self.networkService = networkService
@@ -70,11 +70,11 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
     var count: Int {
         players.count
     }
-    
+
     func getData(indexPath: IndexPath) -> Players {
         players[indexPath.row]
     }
-    
+
     func search(_ name: String) {
         if !name.isEmpty {
             let token = networkService.playersByName(name) { [weak self] result in
