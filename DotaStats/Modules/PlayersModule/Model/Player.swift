@@ -1,5 +1,3 @@
 import Foundation
 
-struct Player {
-    
-}
+struct Player {}

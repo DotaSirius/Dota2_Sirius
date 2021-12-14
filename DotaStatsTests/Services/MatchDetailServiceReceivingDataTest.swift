@@ -1,6 +1,6 @@
 import XCTest
 
-class MatchDetailServiceReceivingDataTest: XCTestCase {
+final class MatchDetailServiceReceivingDataTest: XCTestCase {
     private func receiveData() -> MatchDetail? {
         var receivedResult: MatchDetail?
 

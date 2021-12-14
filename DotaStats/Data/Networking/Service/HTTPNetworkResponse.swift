@@ -1,10 +1,3 @@
-//
-//  HTTPNetworkResponse.swift
-//  DotaStats
-//
-//  Created by Igor Efimov on 09.12.2021.
-//
-
 import Foundation
 
 struct HTTPNetworkResponse {

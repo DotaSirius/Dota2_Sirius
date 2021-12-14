@@ -1,7 +1,7 @@
 import Foundation
 import XCTest
 
-class MatchesServiceReceivingDataTest: XCTestCase {
+final class MatchesServiceReceivingDataTest: XCTestCase {
     private func receiveData() -> [Match]? {
         var receivedResult: [Match]?
         

@@ -1,10 +1,3 @@
-//
-//  HTTPError.swift
-//  DotaStats
-//
-//  Created by Igor Efimov on 09.12.2021.
-//
-
 import Foundation
 
 public enum HTTPError: String, Error {
@@ -20,7 +13,7 @@ public enum HTTPError: String, Error {
     case dataTaskFailed = "Error: The data task object failed"
     case authenticationError = "Error: You must be authenticated"
     case badRequest = "Error: Bad request"
-    case pageNotFound = "Error: Page/Route rquested not found"
+    case pageNotFound = "Error: Page/Route requested not found"
     case failed = "Error: Network request failed"
     case serverSideError = "Error: Server error"
     case missingURLComponents = "Error: The URL with components is nil"

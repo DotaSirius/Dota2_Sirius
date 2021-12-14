@@ -1,9 +1,5 @@
 import Foundation
 
-protocol NetworkService: AnyObject {
-    
-}
+protocol NetworkService: AnyObject {}
 
-final class NetworkServiceImp: NetworkService {
-
-}
+final class NetworkServiceImp: NetworkService {}
