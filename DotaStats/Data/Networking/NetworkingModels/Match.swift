@@ -1,6 +1,6 @@
 import Foundation
 
-struct Match: Decodable {
+struct Match: Decodable, Comparable {
     let matchId: Int
     let duration: Int
     let startTime: Date
@@ -16,4 +16,8 @@ struct Match: Decodable {
     let direScore: Int
     let radiantWin: Bool
     let radiant: Bool?
+
+    static func < (lhs: Match, rhs: Match) -> Bool {
+        return lhs.startTime < rhs.startTime
+    }
 }

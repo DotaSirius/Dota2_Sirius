@@ -1,7 +1,10 @@
 import Foundation
 
 protocol PlayerSearchService: AnyObject {
-    func playersByName(_ name: String, closure: @escaping (Result<[SearchPlayerResult], HTTPError>) -> Void) -> Cancellable?
+    func playersByName(
+        _ name: String,
+        closure: @escaping (Result<[SearchPlayerResult], HTTPError>) -> Void
+    ) -> Cancellable?
 }
 
 final class PlayerSearchServiceImp: PlayerSearchService {
@@ -12,7 +15,10 @@ final class PlayerSearchServiceImp: PlayerSearchService {
     }
 
     @discardableResult
-    func playersByName(_ name: String, closure: @escaping (Result<[SearchPlayerResult], HTTPError>) -> Void) -> Cancellable? {
+    func playersByName(
+        _ name: String,
+        closure: @escaping (Result<[SearchPlayerResult], HTTPError>) -> Void
+    ) -> Cancellable? {
         networkClient.processRequest(
             request: createRequest(name),
             completion: closure
