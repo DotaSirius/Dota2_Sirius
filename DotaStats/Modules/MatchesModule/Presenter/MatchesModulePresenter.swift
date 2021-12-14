@@ -26,16 +26,15 @@ final class MatchesModulePresenter {
     
     private var state: MatchesModulePresenterState {
         didSet {
-            oldValue.token?.cancel()
             switch state {
             case .result(let requestResult):
                 switch requestResult {
                 case .success(var matches):
-                    matches.sort { $0.startTime < $1.startTime }
+                    matches.sort { $0 < $1 }
                     convert(matches)
                     view?.update(state: .success)
                 case .failure(let error):
-                    view?.update(state: .error(error.rawValue))
+                    view?.update(state: .error(error.localizedDescription))
                 }
             case .loading:
                 view?.update(state: .loading)

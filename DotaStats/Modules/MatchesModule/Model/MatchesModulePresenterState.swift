@@ -7,7 +7,7 @@ enum MatchesModulePresenterState {
 }
 
 extension MatchesModulePresenterState {
-    var token: Cancellable? {
+    var mathesRequestToken: Cancellable? {
         switch self {
         case .loading(let token):
             return token
