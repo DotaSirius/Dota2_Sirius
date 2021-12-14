@@ -1,13 +1,6 @@
-//
-//  TeamMatchInfoCell.swift
-//  DotaStats
-//
-//  Created by Костина Вероника  on 12.12.2021.
-//
-
 import UIKit
 
-class TeamMatchInfoTableViewCell: UITableViewCell {
+final class TeamMatchInfoTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "TeamMatchInfoTableViewCell"
     
@@ -25,7 +18,6 @@ class TeamMatchInfoTableViewCell: UITableViewCell {
     }
     
     func setup() {
-        contentView.backgroundColor = ColorPalette.mainBackground
         [teamNameWinStack].forEach{contentView.addSubview($0)}
         
         teamNameLabel.textColor = ColorPalette.mainText

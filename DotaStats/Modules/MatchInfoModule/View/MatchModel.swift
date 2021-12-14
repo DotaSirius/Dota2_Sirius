@@ -1,10 +1,3 @@
-//
-//  MatchModel.swift
-//  DotaStats
-//
-//  Created by Костина Вероника  on 10.12.2021.
-//
-
 import Foundation
 import UIKit
 

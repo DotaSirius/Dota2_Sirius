@@ -43,6 +43,7 @@ extension MatchViewController: UITableViewDelegate, UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let data = getCellData(indexpath: indexPath.row)
         let reuseIdentifier = data.type.reuseIdentificator
         guard let cell = tableView.dequeueReusableCell(
@@ -51,21 +52,9 @@ extension MatchViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             return UITableViewCell()
         }
+        cell.backgroundColor = ((indexPath.row % 2 == 0)&&(indexPath.row>3)) ? ColorPalette.alternatеBackground : ColorPalette.mainBackground
         cell.configure(with: data)
         return cell
     }
-    
 }
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let reuseIdentifier = "MatchPlayerCell"
-//        guard
-//            let cell = tableView.dequeueReusableCell(
-//                withIdentifier: reuseIdentifier,
-//                for: indexPath) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
-//        else {
-//            return UITableViewCell()
-//        }
-//        let data = ""
-//        cell.configure(with: data)
-//        return cell
-//    }
+

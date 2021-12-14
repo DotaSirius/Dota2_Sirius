@@ -37,26 +37,25 @@ class MatchPlayerCell: UITableViewCell {
     }
 
     func setup() {
-        contentView.backgroundColor = ColorPalette.mainBackground
         [playerMainInfoStack].forEach { contentView.addSubview($0) }
 
         playerNameLabel.textColor = ColorPalette.mainText
         playerNameLabel.font = UIFont.systemFont(ofSize: 20) // изменить шрифт
         
         playerRankLabel.textColor = ColorPalette.subtitle
-        playerRankLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
+        playerRankLabel.font = UIFont.systemFont(ofSize: 17) // изменить шрифт
         
         playerKillsLabel.textColor = ColorPalette.win
-        playerKillsLabel.font = UIFont.systemFont(ofSize: 15)
+        playerKillsLabel.font = UIFont.systemFont(ofSize: 17)
         
         playerDeathsLabel.textColor = ColorPalette.lose
-        playerDeathsLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
+        playerDeathsLabel.font = UIFont.systemFont(ofSize: 17) // изменить шрифт
         
         playerAssitsLabel.textColor = ColorPalette.subtitle
-        playerAssitsLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
+        playerAssitsLabel.font = UIFont.systemFont(ofSize: 17) // изменить шрифт
         
         playerGoldLabel.textColor = ColorPalette.accent
-        playerGoldLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
+        playerGoldLabel.font = UIFont.systemFont(ofSize: 17) // изменить шрифт
         
         createStackView(stackView: playerRankNameStack, axis: .vertical, spacing: 8)
         [playerNameLabel, playerRankLabel].forEach{playerRankNameStack.addArrangedSubview($0)}

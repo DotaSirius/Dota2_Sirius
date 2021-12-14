@@ -1,6 +1,6 @@
 import UIKit
 
-class PlayersTableHeaderCell: UITableViewCell {
+final class PlayersTableHeaderCell: UITableViewCell {
 
     static let reuseIdentifier = "PlayersTableHeaderCell"
 
@@ -25,7 +25,6 @@ class PlayersTableHeaderCell: UITableViewCell {
     }
 
     func setup() {
-        contentView.backgroundColor = ColorPalette.mainBackground
         [playerInfoHeaderStack].forEach { contentView.addSubview($0) }
 
         playerNameHeaderLabel.textColor = ColorPalette.mainText
@@ -60,7 +59,7 @@ class PlayersTableHeaderCell: UITableViewCell {
 
     func createStackView(stackView:UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
         stackView.axis = axis
-        stackView.distribution = UIStackView.Distribution.equalSpacing
+        stackView.distribution = UIStackView.Distribution.fillProportionally
         stackView.alignment = UIStackView.Alignment.trailing
         stackView.spacing = spacing
     }

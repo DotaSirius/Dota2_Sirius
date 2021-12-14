@@ -1,6 +1,6 @@
 import UIKit
 
-class AdditionalMatchInfoTableViewCell: UITableViewCell {
+final class AdditionalMatchInfoTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "AdditionalMatchInfoTableViewCell"
     var matchID = String()
@@ -8,7 +8,7 @@ class AdditionalMatchInfoTableViewCell: UITableViewCell {
     private let regionStackView = UIStackView()
     private let skillStackView = UIStackView()
 
-    private let matchIdCopyButton = CopyButton()
+    private let matchIdCopyButton = CopyIdButton()
     private let regionNameLabel = UILabel()
     private let regionLabel = UILabel()
     private let skillNameLabel = UILabel()
@@ -26,7 +26,6 @@ class AdditionalMatchInfoTableViewCell: UITableViewCell {
     }
     
     func setup() {
-        contentView.backgroundColor = ColorPalette.mainBackground
         [matchIdCopyButton, regionStackView, skillStackView].forEach { contentView.addSubview($0) }
         
         matchIdCopyButton.setTitle("Copy match ID", for: .normal)
@@ -35,7 +34,7 @@ class AdditionalMatchInfoTableViewCell: UITableViewCell {
         matchIdCopyButton.setTitleColor(ColorPalette.text, for: .normal)
         matchIdCopyButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         matchIdCopyButton.addTarget(self, action: #selector (copyMatchIdButtonPressed), for: .touchUpInside)
-
+    
         regionNameLabel.text = "REGION"
         regionNameLabel.textColor = ColorPalette.subtitle
         regionNameLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт

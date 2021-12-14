@@ -1,6 +1,6 @@
 import UIKit
 
-class MainMatchInfoTableViewCell: UITableViewCell {
+final class MainMatchInfoTableViewCell: UITableViewCell {
     static let reuseIdentifier = "MainMatchInfoTableViewCell"
     
     private let winnersLabel = UILabel()
@@ -19,7 +19,6 @@ class MainMatchInfoTableViewCell: UITableViewCell {
     }
     
     func setup() {
-        contentView.backgroundColor = ColorPalette.mainBackground
         [winnersLabel,gameTimeLabel,matchEndTimeLabel,firstTeamScoreLabel,secondTeamScoreLabel].forEach{contentView.addSubview($0)}
         
         winnersLabel.textColor = ColorPalette.win
