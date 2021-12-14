@@ -1,10 +1,3 @@
-//
-//  PlayerSearchService.swift
-//  DotaStats
-//
-//  Created by Igor Efimov on 13.12.2021.
-//
-
 import Foundation
 
 protocol PlayerSearchService: AnyObject {
@@ -20,19 +13,17 @@ final class PlayerSearchServiceImp: PlayerSearchService {
 
     @discardableResult
     func playersByName(_ name: String, closure: @escaping (Result<[Search], HTTPError>) -> Void) -> Cancellable? {
-        networkClient.processRequest(request: createRequest(name)) { result in
-            closure(result)
-        }
+        networkClient.processRequest(
+            request: createRequest(name),
+            completion: closure
+        )
     }
 
     private func createRequest(_ name: String) -> HTTPRequest {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-
-        return HTTPRequest(
+        HTTPRequest(
             route: "https://api.opendota.com/api/search",
             queryItems: [HTTPRequestQueryItem("q", name)],
-            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(formatter)
+            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(DateFormatter.ISO8601WithSecondsFormatter)
         )
     }
 }

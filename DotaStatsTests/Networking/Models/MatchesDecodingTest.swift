@@ -1,10 +1,3 @@
-//
-//  MatchesDecodingTest.swift
-//  DotaStatsTests
-//
-//  Created by Igor Efimov on 10.12.2021.
-//
-
 import XCTest
 @testable import DotaStats
 
