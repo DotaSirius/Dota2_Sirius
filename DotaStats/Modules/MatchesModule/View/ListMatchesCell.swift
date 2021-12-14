@@ -2,7 +2,7 @@ import UIKit
 
 final class ListMatchesCell: UITableViewCell {
     static let reuseIdentifier = "ListMatchesCell"
-    
+
     lazy var firstTeam: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
@@ -12,7 +12,7 @@ final class ListMatchesCell: UITableViewCell {
         label.numberOfLines = 3
         return label
     }()
-    
+
     lazy var secondTeam: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
@@ -22,7 +22,7 @@ final class ListMatchesCell: UITableViewCell {
         label.numberOfLines = 3
         return label
     }()
-    
+
     lazy var score: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
@@ -32,14 +32,14 @@ final class ListMatchesCell: UITableViewCell {
         label.numberOfLines = 1
         return label
     }()
-    
+
     func setup() {
         backgroundColor = ColorPalette.alternativeBackground
 
         contentView.addSubview(firstTeam)
         contentView.addSubview(secondTeam)
         contentView.addSubview(score)
-        
+    
         NSLayoutConstraint.activate([
             score.centerYAnchor.constraint(equalTo: centerYAnchor),
             score.centerXAnchor.constraint(equalTo: centerXAnchor),
