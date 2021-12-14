@@ -77,15 +77,15 @@ final class SearchPlayerModulePresenter {
     
     private func loadAvatar(player: PlayerInfoFromSearch, completion: (() -> Void)? = nil) {
         guard let urlString = player.avatarFull, let url = URL(string: urlString) else { return }
-        let imageRequestToken = imageNetworkService.loadImageFromURL(url) { result in
+        let imageRequestToken = imageNetworkService.loadImageFromURL(url) { [weak self] result in
             switch result {
             case .success(let avatar):
                 player.avatar = avatar
-                guard let completion = completion else { return }
-                completion()
+                completion?()
             case .failure:
                 break
             }
+            self?.imageRequestTokens[urlString] = nil
         }
         
         imageRequestTokens[urlString] = imageRequestToken
