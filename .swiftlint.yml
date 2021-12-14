@@ -4,3 +4,5 @@ disabled_rules:
   - control_statement
   - function_body_length
   - identifier_name
+  - todo
+  - type_name
