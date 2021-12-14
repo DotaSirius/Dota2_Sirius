@@ -1,10 +1,10 @@
-import XCTest
 @testable import DotaStats
+import XCTest
 
 final class PlayerDecodingTest: XCTestCase {
     func testJSONDecoding() throws {
         let bundle = Bundle(for: type(of: self))
-        
+
         guard let path = bundle.url(forResource: "MockPlayer", withExtension: "json") else {
             XCTFail("Missing file: MockPlayer.json")
             return
@@ -14,10 +14,10 @@ final class PlayerDecodingTest: XCTestCase {
 
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        
+
         let decodedData = try jsonDecoder.decode(Players.self,
-                                                   from: jsonData)
-                
+                                                 from: jsonData)
+
         XCTAssertEqual(decodedData.trackedUntil, nil)
         XCTAssertEqual(decodedData.leaderboardRank, nil)
         XCTAssertEqual(decodedData.mmrEstimate.estimate, nil)

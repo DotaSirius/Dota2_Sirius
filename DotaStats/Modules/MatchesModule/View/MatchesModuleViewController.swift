@@ -12,7 +12,7 @@ protocol MatchesModuleViewInput: AnyObject {
 protocol MatchesModuleViewOutput: AnyObject {
     func getSectionCount() -> Int
     func getRowsInSection(section: Int) -> Int
-    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState
+    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.Match
     func getDataTournament(section: Int) -> TournamentViewState
     func matchTapped(indexPath: IndexPath)
     func tournamentTapped(section: Int)
@@ -39,7 +39,7 @@ final class MatchesModuleViewController: UIViewController {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = ColorPalette.alternatеBackground
+        label.backgroundColor = ColorPalette.alternativeBackground
         label.text = "MATCHES"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)

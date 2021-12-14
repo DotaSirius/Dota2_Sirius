@@ -28,8 +28,7 @@ final class MatchesModulePresenter {
     private var state: MatchesModulePresenterState {
         didSet {
             switch state {
-            case .success(var matches):
-                matches.sort()
+            case .success(let matches):
                 convert(matches)
                 view?.update(state: .success)
             case .error(let error):
@@ -43,7 +42,8 @@ final class MatchesModulePresenter {
     }
     
     private func updateView() {
-        let token = matchesService.requestProMatches { [weak self] result in
+        state = .loading
+        let _ = matchesService.requestProMatches { [weak self] result in
             switch result {
             case .success(let matches):
                 self?.state = .success(matches)
@@ -51,30 +51,28 @@ final class MatchesModulePresenter {
                 self?.state = .error(error)
             }
         }
-        state = .loading(token)
     }
     
     private func convert(_ matches: [Match]) {
-        var sortedMathes = matches
-        sortedMathes.sort()
-        for match in sortedMathes {
+        for match in matches.sorted() {
             let newMatch = convertTo(match)
             
             if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName }) {
                 tournaments[index].matches.append(newMatch)
             } else {
-                tournaments.append(MatchCollectionPresenterData(
-                    isOpen: false,
-                    tournament: TournamentViewState(leagueName: match.leagueName),
+                let matchData = MatchCollectionPresenterData(
+                    tournament: TournamentViewState(
+                        leagueName: match.leagueName,
+                        isOpen: false),
                     matches: [newMatch]
                 )
-                )
+                tournaments.append(matchData)
             }
         }
     }
     
-    private func convertTo(_ match: Match) -> TournamentViewState.MatchViewState {
-        TournamentViewState.MatchViewState(
+    private func convertTo(_ match: Match) -> TournamentViewState.Match {
+        TournamentViewState.Match(
             radiantTeam: match.radiantName ?? NSLocalizedString("Radiant team", comment: ""),
             radiant: match.radiantWin,
             direTeam: match.direName ?? NSLocalizedString("Dire team", comment: ""),
@@ -97,14 +95,14 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
     
     func getRowsInSection(section: Int) -> Int {
-        if tournaments[section].isOpen {
+        if tournaments[section].tournament.isOpen {
             return tournaments[section].matches.count
         } else {
             return 0
         }
     }
     
-    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState {
+    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.Match {
         return tournaments[indexPath.section].matches[indexPath.row]
     }
     
@@ -117,8 +115,8 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
     
     func tournamentTapped(section: Int) {
-        let isOpen = tournaments[section].isOpen
-        tournaments[section].isOpen = !isOpen
+        let isOpen = tournaments[section].tournament.isOpen
+        tournaments[section].tournament.isOpen = !isOpen
         let matchesCount = tournaments[section].matches.count
         var indexPathes = [IndexPath]()
         for i in 0..<matchesCount {
@@ -129,6 +127,5 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
         } else {
             view?.insertRows(indexPathes)
         }
-        
     }
 }
