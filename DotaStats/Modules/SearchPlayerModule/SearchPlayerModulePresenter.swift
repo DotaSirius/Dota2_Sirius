@@ -8,27 +8,27 @@ protocol SearchPlayerModuleOutput: AnyObject {
 
 final class SearchPlayerModulePresenter {
     let output: SearchPlayerModuleOutput
-    
+
     weak var view: SearchPlayerModuleViewInput? {
         didSet {
             view?.updateState(viewState)
         }
     }
-    
+
     private let playerSearchService: PlayerSearchService
     private let imageNetworkService: ImageNetworkService
-    
+
     private var imageRequestTokens = [String: Cancellable]()
     private var players = [PlayerInfoFromSearch]() {
         didSet {
             cancelAllImageRequestTokens()
         }
     }
-    
+
     private var viewState: SearchPlayerModuleViewState {
         viewState(from: state)
     }
-    
+
     private func viewState(from state: SearchPlayerModulePresenterState) -> SearchPlayerModuleViewState {
         switch state {
         case .none:
@@ -41,7 +41,7 @@ final class SearchPlayerModulePresenter {
             return .failure
         }
     }
-    
+
     private var state: SearchPlayerModulePresenterState {
         didSet {
             oldValue.token?.cancel()
@@ -51,11 +51,11 @@ final class SearchPlayerModulePresenter {
             case .none, .loading, .failure:
                 break
             }
-            
+
             view?.updateState(viewState)
         }
     }
-    
+
     init(
         output: SearchPlayerModuleOutput,
         playerSearchService: PlayerSearchService,
@@ -66,15 +66,15 @@ final class SearchPlayerModulePresenter {
         self.imageNetworkService = imageNetworkService
         state = .none
     }
-    
+
     private func cancelAllImageRequestTokens() {
         imageRequestTokens.forEach { _, request in
             request.cancel()
         }
-        
+
         imageRequestTokens.removeAll()
     }
-    
+
     private func loadAvatar(player: PlayerInfoFromSearch, completion: (() -> Void)? = nil) {
         guard let urlString = player.avatarFull, let url = URL(string: urlString) else { return }
         let imageRequestToken = imageNetworkService.loadImageFromURL(url) { [weak self] result in
@@ -87,10 +87,10 @@ final class SearchPlayerModulePresenter {
             }
             self?.imageRequestTokens[urlString] = nil
         }
-        
+
         imageRequestTokens[urlString] = imageRequestToken
     }
-    
+
     deinit {
         cancelAllImageRequestTokens()
     }
@@ -102,7 +102,7 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
     var countOfRows: Int {
         players.count
     }
-    
+
     func getData(at indexPath: IndexPath) -> PlayerInfoFromSearch {
         let player = players[indexPath.row]
         if player.avatar == nil {
@@ -110,16 +110,16 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
                 self?.view?.reload(at: indexPath)
             }
         }
-        
+
         return player
     }
-    
+
     func prefetchData(at indexPath: IndexPath) {
         let player = players[indexPath.row]
         guard player.avatar == nil else { return }
         loadAvatar(player: player)
     }
-    
+
     func search(_ name: String) {
         if !name.isEmpty {
             let searchRequestToken = playerSearchService.playersByName(name) { [weak self] result in
@@ -137,7 +137,7 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
             state = .none
         }
     }
-    
+
     func playerTapped(at indexPath: IndexPath) {
         output.searchModule(self, didSelectPlayer: players[indexPath.row])
     }
