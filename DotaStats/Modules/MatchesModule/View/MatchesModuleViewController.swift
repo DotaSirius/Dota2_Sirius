@@ -10,7 +10,7 @@ protocol MatchesModuleViewInput: AnyObject {
 protocol MatchesModuleViewOutput: AnyObject {
     func getSectionCount() -> Int
     func getRowsInSection(section: Int) -> Int
-    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState
+    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.Match
     func getDataTournament(section: Int) -> TournamentViewState
     func matchTapped(indexPath: IndexPath)
     func tournamentTapped(section: Int)

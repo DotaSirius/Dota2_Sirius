@@ -61,8 +61,9 @@ final class MatchesModulePresenter {
                 tournaments[index].matches.append(newMatch)
             } else {
                 let matchData = MatchCollectionPresenterData(
-                    isOpen: false,
-                    tournament: TournamentViewState(leagueName: match.leagueName),
+                    tournament: TournamentViewState(
+                        leagueName: match.leagueName,
+                        isOpen: false),
                     matches: [newMatch]
                 )
                 tournaments.append(matchData)
@@ -70,8 +71,8 @@ final class MatchesModulePresenter {
         }
     }
     
-    private func convertTo(_ match: Match) -> TournamentViewState.MatchViewState {
-        TournamentViewState.MatchViewState(
+    private func convertTo(_ match: Match) -> TournamentViewState.Match {
+        TournamentViewState.Match(
             radiantTeam: match.radiantName ?? NSLocalizedString("Radiant team", comment: ""),
             radiant: match.radiantWin,
             direTeam: match.direName ?? NSLocalizedString("Dire team", comment: ""),
@@ -94,14 +95,14 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
     
     func getRowsInSection(section: Int) -> Int {
-        if tournaments[section].isOpen {
+        if tournaments[section].tournament.isOpen {
             return tournaments[section].matches.count
         } else {
             return 0
         }
     }
     
-    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.MatchViewState {
+    func getDataMatch(indexPath: IndexPath) -> TournamentViewState.Match {
         return tournaments[indexPath.section].matches[indexPath.row]
     }
     
@@ -114,7 +115,7 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
     
     func tournamentTapped(section: Int) {
-        tournaments[section].isOpen = !tournaments[section].isOpen
+        tournaments[section].tournament.isOpen = !tournaments[section].tournament.isOpen
         view?.updateSection(section: section)
     }
 }

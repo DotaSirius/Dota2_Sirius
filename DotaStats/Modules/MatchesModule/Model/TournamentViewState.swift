@@ -2,7 +2,9 @@ import Foundation
 
 struct TournamentViewState {
     let leagueName: String
-    struct MatchViewState {
+    var isOpen: Bool
+
+    struct Match {
         let radiantTeam: String
         let radiant: Bool
         let direTeam: String
