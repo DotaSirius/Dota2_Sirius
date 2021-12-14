@@ -1,7 +1,7 @@
 import Foundation
 
 final class MatchesModuleBuilder {
-    let viewControler: MatchesModuleViewController
+    let viewController: MatchesModuleViewController
     private let presenter: MatchesModulePresenter
     var output: MatchesModuleOutput {
         presenter.output
@@ -12,7 +12,7 @@ final class MatchesModuleBuilder {
     
     init(output: MatchesModuleOutput, matchesService: MatchesService) {
         presenter = MatchesModulePresenter(matchesService: matchesService, output: output)
-        viewControler = MatchesModuleViewController(output: presenter)
-        presenter.view = viewControler
+        viewController = MatchesModuleViewController(output: presenter)
+        presenter.view = viewController
     }
 }

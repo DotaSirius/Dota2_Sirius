@@ -2,6 +2,6 @@ import Foundation
 
 struct MatchCollectionPresenterData {
     var isOpen: Bool
-    var tournament: TournamentViewState
+    let tournament: TournamentViewState
     var matches: [TournamentViewState.MatchViewState]
 }

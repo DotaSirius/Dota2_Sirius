@@ -54,20 +54,18 @@ final class MatchesModulePresenter {
     }
     
     private func convert(_ matches: [Match]) {
-        var sortedMathes = matches
-        sortedMathes.sort()
-        for match in sortedMathes {
+        for match in matches.sorted() {
             let newMatch = convertTo(match)
             
             if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName }) {
                 tournaments[index].matches.append(newMatch)
             } else {
-                tournaments.append(MatchCollectionPresenterData(
+                let matchData = MatchCollectionPresenterData(
                     isOpen: false,
                     tournament: TournamentViewState(leagueName: match.leagueName),
                     matches: [newMatch]
                 )
-                )
+                tournaments.append(matchData)
             }
         }
     }
