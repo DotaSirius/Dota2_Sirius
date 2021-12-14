@@ -6,7 +6,7 @@ final class ErrorView: UIView {
         let label = UILabel()
         label.textColor = ColorPalette.mainText
         label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        label.text = "200" // TODO: она должна равняться errorMessage
+        label.text = "200"
         return label
     }()
 
