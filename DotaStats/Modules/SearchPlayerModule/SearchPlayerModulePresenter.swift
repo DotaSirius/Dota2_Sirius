@@ -119,8 +119,8 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
         }
     }
     
-    func playerSelected(_ player: PlayerSearch) {
-        output.searchModule(self, didSelectPlayer: player)
+    func playerTapped(at indexPath: IndexPath) {
+        output.searchModule(self, didSelectPlayer: players[indexPath.row])
     }
 }
 
