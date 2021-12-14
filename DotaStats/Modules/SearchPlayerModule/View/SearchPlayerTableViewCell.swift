@@ -58,7 +58,7 @@ final class SearchPlayerTableViewCell: UITableViewCell {
         ])
     }
     
-    func configurePlayer(_ newAvatarImage: UIImage, _ newNickname: String, _ newTimeMatch: String) {
+    func configurePlayer(newAvatarImage: UIImage, newNickname: String, newTimeMatch: String) {
         avatarImage.image = newAvatarImage
         nickname.text = newNickname
         timeMatch.text = newTimeMatch

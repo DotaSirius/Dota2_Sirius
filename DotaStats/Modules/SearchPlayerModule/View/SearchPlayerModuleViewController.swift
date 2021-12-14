@@ -6,10 +6,6 @@ protocol SearchPlayerModuleViewInput: AnyObject {
 }
 
 protocol SearchPlayerModuleViewOutput: AnyObject {
-
-    var count: Int { get }
-    // TODO: func getData(indexPath: IndexPath) -> Players
-
     var countOfRows: Int { get }
     func getData(at indexPath: IndexPath) -> PlayerInfoFromSearch
     func prefetchData(at indexPath: IndexPath)
@@ -21,8 +17,6 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
 // MARK: Экран с поиском игроков!
 
 final class SearchPlayerModuleViewController: UIViewController {
-    init() {
-class SearchPlayerModuleViewController: UIViewController {
     private var output: SearchPlayerModuleViewOutput?
 
     init(output: SearchPlayerModuleViewOutput) {
@@ -50,7 +44,7 @@ class SearchPlayerModuleViewController: UIViewController {
         setUpSearchBarConstraints()
         setUpLoadingCircleConstraints()
         setUpTableViewConstraints()
-        updateState(.failure)
+        updateState(.startScreen)
     }
 
     // MARK: Spinner
@@ -87,6 +81,7 @@ class SearchPlayerModuleViewController: UIViewController {
 
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.barTintColor = ColorPalette.mainBackground
         searchBar.searchTextField.textColor = ColorPalette.mainText
@@ -176,16 +171,23 @@ class SearchPlayerModuleViewController: UIViewController {
 
 extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return output?.countOfRows ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchPlayerTableViewCell.reuseIdentifier, for: indexPath) as? SearchPlayerTableViewCell else {
             return .init()
         }
-
-        cell.configurePlayer(UIImage(named: "players")!, "Alex", "В сети")
-        cell.backgroundColor = indexPath.row % 2 == 0 ? ColorPalette.mainBackground : ColorPalette.alternatеBackground
+        guard let player = output?.getData(at: indexPath) else {
+            return cell
+        }
+        
+        cell.configurePlayer(
+            newAvatarImage: UIImage(named: "players")!,
+            newNickname: player.personaname ?? "unknown",
+            newTimeMatch: player.lastMatchTime?.debugDescription ?? "Offline"
+        )
+        cell.backgroundColor = indexPath.row % 2 == 0 ? ColorPalette.mainBackground : ColorPalette.alternativeBackground
         return cell
     }
 
@@ -199,6 +201,10 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
 extension SearchPlayerModuleViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        updateState(.loading)
+        output?.search(searchBar.text ?? "")
     }
 }
 
