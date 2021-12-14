@@ -24,7 +24,6 @@ profile
 
 # Bundler
 /vendor/bundle
- 
 # Cocoapods
 Pods/*
 Examples/**/Pods

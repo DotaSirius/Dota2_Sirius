@@ -37,7 +37,7 @@ final class MatchesModuleViewController: UIViewController {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = ColorPalette.alternatеBackground
+        label.backgroundColor = ColorPalette.alternativeBackground
         label.text = "MATCHES"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)

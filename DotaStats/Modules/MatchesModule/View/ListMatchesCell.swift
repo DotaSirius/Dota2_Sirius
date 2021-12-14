@@ -34,7 +34,7 @@ final class ListMatchesCell: UITableViewCell {
     }()
     
     func setup() {
-        backgroundColor = ColorPalette.alternatеBackground
+        backgroundColor = ColorPalette.alternativeBackground
 
         contentView.addSubview(firstTeam)
         contentView.addSubview(secondTeam)

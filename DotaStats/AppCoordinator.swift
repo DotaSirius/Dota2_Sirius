@@ -1,12 +1,12 @@
 import Foundation
 
 final class AppCoordinator {
-    let tabBarController: MainTabBarController = MainTabBarController()
+    let tabBarController: MainTabBarController = .init()
 
     init() {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
-        tabBarController.setViewControllers([playersModule.viewControler, matchesModule.viewControler], animated: false)
+        tabBarController.setViewControllers([playersModule.viewController, matchesModule.viewControler], animated: false)
         tabBarController.setViewControllers(items: [NSLocalizedString("players", comment: ""),
                                                     NSLocalizedString("matches", comment: "")])
     }
@@ -34,7 +34,7 @@ extension AppCoordinator {
 
 extension AppCoordinator: PlayersModuleOutput {
     func playersModule(_ module: PlayersModuleInput, didSelectPlayer playerId: Int) {
-        //let playerInfoBuilder = playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
+        // let playerInfoBuilder = playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
     }
 }
 

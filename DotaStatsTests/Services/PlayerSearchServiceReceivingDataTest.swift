@@ -1,10 +1,3 @@
-//
-//  NetworkServiceReceivingDataTest.swift
-//  DotaStatsTests
-//
-//  Created by Igor Efimov on 13.12.2021.
-//
-
 import XCTest
 
 final class PlayerSearchServiceReceivingDataTest: XCTestCase {
@@ -55,7 +48,7 @@ final class PlayerSearchServiceReceivingDataTest: XCTestCase {
         XCTAssertFalse(response.isEmpty)
     }
     
-    func testAnyЗlayerProfileContainsRequiredData() throws {
+    func testAnyProfileContainsData() throws {
         let response = receiveData()
         
         guard let response = response else {
