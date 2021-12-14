@@ -26,13 +26,10 @@ final class PlayerSearchServiceImp: PlayerSearchService {
     }
 
     private func createRequest(_ name: String) -> HTTPRequest {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-
-        return HTTPRequest(
+        HTTPRequest(
             route: "https://api.opendota.com/api/search",
             queryItems: [HTTPRequestQueryItem("q", name)],
-            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(formatter)
+            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(DateFormatter.ISO8601WithSecondsFormatter)
         )
     }
 }
