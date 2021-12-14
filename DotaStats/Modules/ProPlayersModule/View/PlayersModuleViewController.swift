@@ -1,18 +1,18 @@
 import UIKit
 
-protocol PlayersModuleViewInput: AnyObject {
+protocol ProPlayersModuleViewInput: AnyObject {
     func showLoading()
     func showPlayers(_ players: [Player])
 }
 
-protocol PlayersModuleViewOutput: AnyObject {
+protocol ProPlayersModuleViewOutput: AnyObject {
     func playerSelected(_ player: Player)
 }
 
-final class PlayersModuleViewController: UIViewController {
-    private var output: PlayersModuleViewOutput?
+final class ProPlayersModuleViewController: UIViewController {
+    private var output: ProPlayersModuleViewOutput?
 
-    init(output: PlayersModuleViewOutput) {
+    init(output: ProPlayersModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
     }
@@ -28,7 +28,7 @@ final class PlayersModuleViewController: UIViewController {
 
 // MARK: - PlayersModuleViewInput
 
-extension PlayersModuleViewController: PlayersModuleViewInput {
+extension ProPlayersModuleViewController: ProPlayersModuleViewInput {
     func showLoading() {
         // TODO:
     }
