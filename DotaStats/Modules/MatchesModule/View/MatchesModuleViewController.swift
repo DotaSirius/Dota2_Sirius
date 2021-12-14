@@ -93,20 +93,36 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
     func update(state: MatchesModuleViewState) {
         switch state {
         case .loading:
-            spiner.color = .systemOrange
+            spiner.color = ColorPalette.accent
             view.addSubview(spiner)
             spiner.center = view.center
             spiner.startAnimating()
         case .error(_):
-            spiner.removeFromSuperview()
+            DispatchQueue.main.async {
+                self.spiner.removeFromSuperview()
+                print("error")
+            }
         case .success:
-            spiner.removeFromSuperview()
-            setUpTableView()
+            DispatchQueue.main.async {
+                self.spiner.removeFromSuperview()
+                
+                self.setUpTableView()
+                self.setUpLabel()
+            }
         }
     }
 
     func updateSection(section: Int) {
-        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
+        let count = output?.getRowsInSection(section: section) ?? 0
+        tableView.reloadData()
+//        tableView.beginUpdates()
+//
+//        for row in 0..<count {
+//            //tableView.reloadRows(at: [IndexPath(row: row, section: section)], with: .automatic)
+//           tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
+//        }
+//        tableView.endUpdates()
+       // tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
     }
 }
 
@@ -130,16 +146,16 @@ extension MatchesModuleViewController: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        UITableView.automaticDimension
+        55
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = output?.getDataMatch(indexPath: indexPath)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListMatchesCell.reuseIdentifier, for: indexPath) as? ListMatchesCell else { return UITableViewCell() }
-        cell.firstTeam.text = data?.radiantTeam
+        cell.addView()
+        cell.firstTeam.text = data?.radiantTeam.trimmingCharacters(in: .whitespaces)
         cell.score.text = data?.score
-        cell.secondTeam.text = data?.direTeam
-        cell.backgroundColor = ColorPalette.mainBackground
+        cell.secondTeam.text = data?.direTeam.trimmingCharacters(in: .whitespaces)
         return cell
     }
 }
@@ -168,13 +184,15 @@ extension MatchesModuleViewController: ListTournamentsCellDelegate {
 
     func toggleSection(header: ListTournamentsCell, section: Int) {
         print("toggleSection")
-//        output?.cellTapped(indexPath: section)
+        output?.tournamentTapped(section: section);
+        
+      //  output?.cellTapped(indexPath: section)
 //
 //        let collapsed = !sections[section].expanded
 //
 //                // Toggle collapse
-//        sections[section].expanded = collapsed
-        // header.setCollapsed(collapsed)
+//      sections[section].expanded = collapsed
+//         header.setCollapsed(collapsed)
 //
 //        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
     }

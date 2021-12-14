@@ -8,11 +8,10 @@ class ListMatchesCell: UITableViewCell {
     lazy var firstTeam: UILabel = {
         let control = UILabel()
         control.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        control.textAlignment = .center
+        control.textAlignment = .right
         control.textColor = ColorPalette.win
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 3;
-        control.textAlignment = .natural
+        control.numberOfLines = 5;
         return control
         
     }()
@@ -20,11 +19,10 @@ class ListMatchesCell: UITableViewCell {
     lazy var secondTeam: UILabel = {
         let control = UILabel()
         control.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        control.textAlignment = .center
+        control.textAlignment = .left
         control.textColor = ColorPalette.lose
         control.translatesAutoresizingMaskIntoConstraints = false
         control.numberOfLines = 3;
-        control.textAlignment = .natural
         return control
         
     }()
@@ -35,27 +33,29 @@ class ListMatchesCell: UITableViewCell {
         control.textAlignment = .center
         control.textColor = ColorPalette.mainText
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 3
-        control.textAlignment = .center
+        control.numberOfLines = 1
         return control
         
     }()
     
     func addView() {
+        backgroundColor = ColorPalette.alternatеBackground
+
         contentView.addSubview(firstTeam)
         contentView.addSubview(secondTeam)
         contentView.addSubview(score)
         
         NSLayoutConstraint.activate([
-        firstTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
-        firstTeam.trailingAnchor.constraint(equalTo: score.leadingAnchor, constant: -50),
-        firstTeam.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-        
         score.centerYAnchor.constraint(equalTo: centerYAnchor),
         score.centerXAnchor.constraint(equalTo: centerXAnchor),
-
-        secondTeam.leadingAnchor.constraint(equalTo: score.trailingAnchor, constant: 50),
+        score.widthAnchor.constraint(equalToConstant: 50),
+        
+        firstTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
+        firstTeam.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -50),
+        firstTeam.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+        
         secondTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
+        secondTeam.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 50),
         secondTeam.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
         ])
     }
