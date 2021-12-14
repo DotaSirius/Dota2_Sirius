@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-class NetworkServiceReceivingDataTest: XCTestCase {
+final class NetworkServiceReceivingDataTest: XCTestCase {
     private func receiveData() -> [String]? {
         var receivedResult: [String]? = nil
 
