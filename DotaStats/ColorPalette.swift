@@ -36,4 +36,8 @@ class ColorPalette {
     static var lose: UIColor {
         UIColor(red: 255/255, green: 77/255, blue: 79/255, alpha: 1)
     }
+    
+    static var error: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
 }

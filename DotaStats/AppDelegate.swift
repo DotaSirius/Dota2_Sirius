@@ -8,6 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let root = MainTabBarController()
         window!.rootViewController = root
         window!.makeKeyAndVisible()
+        application.statusBarStyle = .lightContent
         return true
     }
 }

@@ -8,7 +8,7 @@ final class MainTabBarController: UITabBarController {
         tabBar.tintColor = ColorPalette.accent
         let viewControllers = [
             CostilViewController(), // TODO: replace with Matches and Players viewControllers.
-            CostilViewController()
+            SearchPlayerModuleViewController()
         ]
         setViewControllers(viewControllers, animated: false)
         let items = ["matches", "players"]
