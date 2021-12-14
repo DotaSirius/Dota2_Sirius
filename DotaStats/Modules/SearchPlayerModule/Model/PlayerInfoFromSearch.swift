@@ -1,6 +1,6 @@
 import UIKit
 
-struct PlayerInfoFromSearch {
+final class PlayerInfoFromSearch {
     var avatar: UIImage?
     let accountId: Int
     let avatarFull: String?

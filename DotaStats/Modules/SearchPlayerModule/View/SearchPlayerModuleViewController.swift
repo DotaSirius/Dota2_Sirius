@@ -7,7 +7,8 @@ protocol SearchPlayerModuleViewInput: AnyObject {
 
 protocol SearchPlayerModuleViewOutput: AnyObject {
     var countOfRows: Int { get }
-    func getData(indexPath: IndexPath) -> PlayerInfoFromSearch
+    func getData(at indexPath: IndexPath) -> PlayerInfoFromSearch
+    func prefetchData(at indexPath: IndexPath)
     func search(_ name: String)
     func playerTapped(at indexPath: IndexPath)
 }

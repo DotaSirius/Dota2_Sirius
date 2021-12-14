@@ -18,10 +18,10 @@ final class SearchPlayerModulePresenter {
     private let playerSearchService: PlayerSearchService
     private let imageNetworkService: ImageNetworkService
     
-    private var imageRequestTokens = [IndexPath: Cancellable]()
+    private var imageRequestTokens = [String: Cancellable]()
     private var players = [PlayerInfoFromSearch]() {
         didSet {
-            cancelAllLoading()
+            cancelAllImageRequestTokens()
         }
     }
     
@@ -56,21 +56,41 @@ final class SearchPlayerModulePresenter {
         }
     }
     
-    init(output: SearchPlayerModuleOutput, playerSearchService: PlayerSearchService, imageNetworkService: ImageNetworkService) {
+    init(
+        output: SearchPlayerModuleOutput,
+        playerSearchService: PlayerSearchService,
+        imageNetworkService: ImageNetworkService
+    ) {
         self.output = output
         self.playerSearchService = playerSearchService
         self.imageNetworkService = imageNetworkService
         state = .none
     }
     
-    private func cancelAllLoading() {
+    private func cancelAllImageRequestTokens() {
         imageRequestTokens.forEach { _, request in
             request.cancel()
         }
+        
+        imageRequestTokens.removeAll()
+    }
+    
+    private func loadAvatar(player: PlayerInfoFromSearch, completion: (() -> Void)? = nil) {
+        guard let urlString = player.avatarFull, let url = URL(string: urlString) else { return }
+        let imageRequestToken = imageNetworkService.loadImageFromURL(url) { result in
+            switch result {
+            case .success(let avatar):
+                player.avatar = avatar
+            case .failure:
+                break
+            }
+        }
+        
+        imageRequestTokens[urlString] = imageRequestToken
     }
     
     deinit {
-        cancelAllLoading()
+        cancelAllImageRequestTokens()
     }
 }
 
@@ -81,24 +101,21 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
         players.count
     }
     
-    func getData(indexPath: IndexPath) -> PlayerInfoFromSearch {
-        if let urlString = players[indexPath.row].avatarFull,
-            let url = URL(string: urlString) {
-            let imageRequestToken = imageNetworkService.loadImageFromURL(url) { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let image):
-                    self.players[indexPath.row].avatar = image
-                    self.view?.reload(at: indexPath)
-                case .failure(_):
-                    break
-                }
-                self.imageRequestTokens[indexPath] = nil
+    func getData(at indexPath: IndexPath) -> PlayerInfoFromSearch {
+        let player = players[indexPath.row]
+        if player.avatar == nil {
+            loadAvatar(player: player) { [weak self] in
+                self?.view?.reload(at: indexPath)
             }
-            imageRequestTokens[indexPath] = imageRequestToken
         }
         
-        return players[indexPath.row]
+        return player
+    }
+    
+    func prefetchData(at indexPath: IndexPath) {
+        let player = players[indexPath.row]
+        guard player.avatar == nil else { return }
+        loadAvatar(player: player)
     }
     
     func search(_ name: String) {
