@@ -13,8 +13,7 @@ final class SearchPlayerModuleBuilder {
 
     init(output: SearchPlayerModuleOutput,
          playerSearchService: PlayerSearchService,
-         imageNetworkService: ImageNetworkService)
-    {
+         imageNetworkService: ImageNetworkService) {
         presenter = SearchPlayerModulePresenter(output: output,
                                                 playerSearchService: playerSearchService,
                                                 imageNetworkService: imageNetworkService)

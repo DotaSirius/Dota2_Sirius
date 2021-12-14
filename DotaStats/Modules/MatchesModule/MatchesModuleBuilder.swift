@@ -9,7 +9,7 @@ final class MatchesModuleBuilder {
     var input: MatchesModuleInput {
         presenter
     }
-    
+
     init(output: MatchesModuleOutput, matchesService: MatchesService) {
         presenter = MatchesModulePresenter(matchesService: matchesService, output: output)
         viewController = MatchesModuleViewController(output: presenter)

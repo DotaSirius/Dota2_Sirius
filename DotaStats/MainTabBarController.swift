@@ -2,7 +2,7 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     var tabImageNames: [String] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.backgroundColor = ColorPalette.alternativeBackground
