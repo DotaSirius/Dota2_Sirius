@@ -39,16 +39,16 @@ final class ListMatchesCell: UITableViewCell {
         contentView.addSubview(firstTeam)
         contentView.addSubview(secondTeam)
         contentView.addSubview(score)
-    
+
         NSLayoutConstraint.activate([
             score.centerYAnchor.constraint(equalTo: centerYAnchor),
             score.centerXAnchor.constraint(equalTo: centerXAnchor),
             score.widthAnchor.constraint(equalToConstant: 50),
-            
+
             firstTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
             firstTeam.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -50),
             firstTeam.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            
+
             secondTeam.centerYAnchor.constraint(equalTo: centerYAnchor),
             secondTeam.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 50),
             secondTeam.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
