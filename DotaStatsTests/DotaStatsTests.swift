@@ -1,14 +1,6 @@
-//
-//  DotaStatsTests.swift
-//  DotaStatsTests
-//
-//  Created by Igor Efimov on 09.12.2021.
-//
-
 import XCTest
 
-class DotaStatsTests: XCTestCase {
-
+final class DotaStatsTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -27,5 +19,4 @@ class DotaStatsTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

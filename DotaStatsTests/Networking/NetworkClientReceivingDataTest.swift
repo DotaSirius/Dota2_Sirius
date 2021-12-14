@@ -1,36 +1,29 @@
-//
-//  NetworkServiceSimpleText.swift
-//  DotaStatsTests
-//
-//  Created by Igor Efimov on 09.12.2021.
-//
-
 @testable import DotaStats
 import Foundation
 import XCTest
 
-class NetworkServiceReceivingDataTest: XCTestCase {
+final class NetworkServiceReceivingDataTest: XCTestCase {
     private func receiveData() -> [String]? {
-        var receivedResult: [String]? = nil
+        var receivedResult: [String]?
 
         let expectations = expectation(description: "\(#function)\(#line)")
 
         let urlSession = URLSession(configuration: .default)
 
-        let networkClient = NetworkClient(urlSession: urlSession)
+        let networkClient = NetworkClientImp(urlSession: urlSession)
 
         let constantsRequest = HTTPRequest(route: "https://api.opendota.com/api/constants")
 
         networkClient.processRequest(
             request: constantsRequest
-        ) { (result: Result<[String], Error>) in
+        ) { (result: Result<[String], HTTPError>) in
             switch result {
             case .success(let constants):
                 expectations.fulfill()
 
                 receivedResult = constants
             case .failure:
-                break
+                XCTFail("Missing response")
             }
         }
 
@@ -62,7 +55,7 @@ class NetworkServiceReceivingDataTest: XCTestCase {
             XCTAssertFalse(string.isEmpty)
         }
     }
-    
+
     func testArrayContainsSomeConstants() throws {
         let response = receiveData()
 

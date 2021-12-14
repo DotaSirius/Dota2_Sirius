@@ -14,6 +14,11 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
 
 final class SearchPlayerModuleViewController: UIViewController {
     init() {
+class SearchPlayerModuleViewController: UIViewController {
+    private var output: SearchPlayerModuleViewOutput?
+
+    init(output: SearchPlayerModuleViewOutput) {
+        self.output = output
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -23,6 +28,7 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.addSubview(searchBar)
         view.addSubview(tableView)
         view.addSubview(loadingCircle)
@@ -212,6 +218,8 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
         case .failure:
             showError()
             // TODO: картинка ошибки
+            // TODO: show error image
+            print("error")
         }
     }
 }

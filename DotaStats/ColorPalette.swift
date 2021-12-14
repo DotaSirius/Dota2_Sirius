@@ -21,7 +21,7 @@ class ColorPalette {
         UIColor(red: 133/255, green: 139/255, blue: 146/255, alpha: 1)
     }
     
-    static var alternatеBackground: UIColor {
+    static var alternativeBackground: UIColor {
         UIColor(red: 43/255, green: 55/255, blue: 71/255, alpha: 1)
     }
     

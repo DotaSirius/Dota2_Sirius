@@ -7,7 +7,6 @@ enum SearchPlayerModulePresenterState {
 }
 
 extension SearchPlayerModulePresenterState {
-
     var token: Cancellable? {
         switch self {
         case .loading(let token):

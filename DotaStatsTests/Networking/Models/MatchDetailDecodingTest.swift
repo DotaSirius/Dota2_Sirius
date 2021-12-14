@@ -1,12 +1,12 @@
-import XCTest
 @testable import DotaStats
+import XCTest
 
-class MatchInfoDecodingTest: XCTestCase {
+final class MatchInfoDecodingTest: XCTestCase {
     func testJSONDecoding() throws {
         let bundle = Bundle(for: type(of: self))
-        
-        guard let path = bundle.url(forResource: "MockMatch", withExtension: "json") else {
-            XCTFail("Missing file: MockMatch.json")
+
+        guard let path = bundle.url(forResource: "MockMatchDetail", withExtension: "json") else {
+            XCTFail("Missing file: MockMatchDetail.json")
             return
         }
 
@@ -14,10 +14,10 @@ class MatchInfoDecodingTest: XCTestCase {
 
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        let decodedData = try jsonDecoder.decode(Matches.self,
-                                                   from: jsonData)
-                
+
+        let decodedData = try jsonDecoder.decode(MatchDetail.self,
+                                                 from: jsonData)
+
         XCTAssertEqual(decodedData.matchId, 1)
         XCTAssertEqual(decodedData.barracksStatusDire, nil)
         XCTAssertEqual(decodedData.barracksStatusRadiant, nil)
