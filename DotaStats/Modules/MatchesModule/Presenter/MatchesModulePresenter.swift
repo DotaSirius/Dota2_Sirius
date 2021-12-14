@@ -28,8 +28,7 @@ final class MatchesModulePresenter {
     private var state: MatchesModulePresenterState {
         didSet {
             switch state {
-            case .success(var matches):
-                matches.sort()
+            case .success(let matches):
                 convert(matches)
                 view?.update(state: .success)
             case .error(let error):

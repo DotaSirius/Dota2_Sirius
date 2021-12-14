@@ -7,8 +7,8 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         tabBarController.setViewControllers([playersModule.viewController, matchesModule.viewControler], animated: false)
-        tabBarController.setViewControllers(items: [NSLocalizedString("players", comment: ""),
-                                                    NSLocalizedString("matches", comment: "")])
+        tabBarController.setViewControllerImages([NSLocalizedString("players", comment: ""),
+                                                  NSLocalizedString("matches", comment: "")])
     }
 }
 

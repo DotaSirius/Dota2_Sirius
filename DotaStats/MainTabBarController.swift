@@ -8,11 +8,11 @@ final class MainTabBarController: UITabBarController {
         tabBar.tintColor = ColorPalette.accent
     }
 
-    func setViewControllers(items: [String]) {
+    func setViewControllerImages(_ images: [String]) {
         guard let viewControllers = viewControllers else { return }
         for i in 0 ..< viewControllers.count {
             viewControllers[i].view.backgroundColor = ColorPalette.mainBackground
-            tabBar.items![i].image = UIImage(named: items[i])
+            tabBar.items![i].image = UIImage(named: images[i])
         }
     }
 }
