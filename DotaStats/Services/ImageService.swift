@@ -5,7 +5,7 @@ protocol ImageService: AnyObject {
     func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable?
 }
 
-class ImageServiceImp: ImageService {
+final class ImageServiceImp: ImageService {
     private let urlSession: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
