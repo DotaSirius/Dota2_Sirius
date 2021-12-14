@@ -108,5 +108,6 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     
     func tournamentTapped(section: Int) {
         tournaments[section].isOpen = !tournaments[section].isOpen
+        view?.updateSection(section: section)
     }
 }
