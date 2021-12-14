@@ -3,11 +3,11 @@ import UIKit
 final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.backgroundColor = ColorPalette.alternatеBackground
+        tabBar.backgroundColor = ColorPalette.alternativeBackground
         tabBar.unselectedItemTintColor = ColorPalette.text
         tabBar.tintColor = ColorPalette.accent
     }
-    
+
     func setViewControllers(items: [String]) {
         guard let viewControllers = viewControllers else { return }
         for i in 0 ..< viewControllers.count {
