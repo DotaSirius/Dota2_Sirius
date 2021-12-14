@@ -42,7 +42,8 @@ final class MatchesModulePresenter {
     }
     
     private func updateView() {
-        let token = matchesService.requestProMatches { [weak self] result in
+        state = .loading
+        let _ = matchesService.requestProMatches { [weak self] result in
             switch result {
             case .success(let matches):
                 self?.state = .success(matches)
@@ -50,7 +51,6 @@ final class MatchesModulePresenter {
                 self?.state = .error(error)
             }
         }
-        state = .loading(token)
     }
     
     private func convert(_ matches: [Match]) {
