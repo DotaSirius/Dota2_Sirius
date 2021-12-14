@@ -26,6 +26,7 @@ final class MatchInfoModulePresenter {
             MatchTableViewCellType.mainMatchInfo(converter.getMainMatchInfo()),
             MatchTableViewCellType.additionalMatchInfo(converter.getAdditionalMatchInfo()),
             MatchTableViewCellType.teamMatchInfo(converter.getRadiantMatchInfo()),
+            MatchTableViewCellType.matchPlayerHeaderInfo,
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 0)),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 1)),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 2)),

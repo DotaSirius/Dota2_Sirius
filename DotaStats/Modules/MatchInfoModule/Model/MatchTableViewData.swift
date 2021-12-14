@@ -1,3 +1,3 @@
 struct MatchTableViewData {
-    let TableContent: [MatchTableViewCellData]
+    let tableContent: [MatchTableViewCellData]
 }
