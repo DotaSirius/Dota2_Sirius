@@ -3,7 +3,7 @@ import Foundation
 enum SearchPlayerModulePresenterState {
     case none
     case loading(Cancellable?)
-    case success([PlayerSearch])
+    case success([PlayerInfoFromSearch])
     case failure(HTTPError)
 }
 
