@@ -9,21 +9,24 @@ import Foundation
 import UIKit
 
 protocol ImageService: AnyObject {
-    func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void)
+    func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable?
 }
 
 class ImageServiceImp: ImageService {
-
     private let urlSession: URLSession = {
         let config = URLSessionConfiguration.default
-
         return URLSession(configuration: config)
     }()
 
-    func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) {
+    static var shared: ImageServiceImp = .init()
+
+    private init() {}
+
+    @discardableResult
+    func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable? {
         guard let requestUrl = URL(string: url) else {
-                completion(.failure(HTTPError.missingURL))
-            return
+            completion(.failure(HTTPError.missingURL))
+            return nil
         }
 
         let task = urlSession.dataTask(with: requestUrl) { data, _, _ in
@@ -38,5 +41,6 @@ class ImageServiceImp: ImageService {
             }
         }
         task.resume()
+        return task
     }
 }
