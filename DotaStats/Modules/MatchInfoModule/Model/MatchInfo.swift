@@ -1,5 +1,3 @@
 import Foundation
 
-struct MatchInfo {
-    
-}
+struct MatchInfo {}
