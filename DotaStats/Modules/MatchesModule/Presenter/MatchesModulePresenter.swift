@@ -55,15 +55,10 @@ final class MatchesModulePresenter {
     }
     
     private func convert(_ matches: [Match]) {
-        for match in matches {
-            let newMatch = TournamentViewState.MatchViewState(
-                radiantTeam: match.radiantName ?? NSLocalizedString("Radiant team", comment: ""),
-                radiant: match.radiantWin,
-                direTeam: match.direName ?? NSLocalizedString("Dire team", comment: ""),
-                id: match.matchId,
-                radiantScore: match.radiantScore,
-                direScore: match.direScore
-            )
+        var sortedMathes = matches
+        sortedMathes.sort()
+        for match in sortedMathes {
+            let newMatch = convertTo(match)
             
             if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName }) {
                 tournaments[index].matches.append(newMatch)
@@ -76,6 +71,17 @@ final class MatchesModulePresenter {
                 )
             }
         }
+    }
+    
+    private func convertTo(_ match: Match) -> TournamentViewState.MatchViewState {
+        TournamentViewState.MatchViewState(
+            radiantTeam: match.radiantName ?? NSLocalizedString("Radiant team", comment: ""),
+            radiant: match.radiantWin,
+            direTeam: match.direName ?? NSLocalizedString("Dire team", comment: ""),
+            id: match.matchId,
+            radiantScore: match.radiantScore,
+            direScore: match.direScore
+        )
     }
 }
 
