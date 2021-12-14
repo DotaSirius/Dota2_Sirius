@@ -11,7 +11,7 @@ final class AppCoordinator {
 }
 
 extension AppCoordinator {
-    func playersBuilder() -> PlayersModuleBuilder {
+    private func playersBuilder() -> PlayersModuleBuilder {
         PlayersModuleBuilder(
             output: self,
             networkService: NetworkServiceImp()

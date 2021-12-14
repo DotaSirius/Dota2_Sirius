@@ -9,11 +9,10 @@ final class MainTabBarController: UITabBarController {
     }
     
     func setViewControllers(items: [String]) {
-        if (viewControllers != nil) {
-            for i in 0 ..< viewControllers!.count {
-                viewControllers![i].view.backgroundColor = ColorPalette.mainBackground
-                tabBar.items![i].image = UIImage(named: items[i])
-            }
+        guard let viewControllers = viewControllers else { return }
+        for i in 0 ..< viewControllers.count {
+            viewControllers[i].view.backgroundColor = ColorPalette.mainBackground
+            tabBar.items![i].image = UIImage(named: items[i])
         }
     }
 }
