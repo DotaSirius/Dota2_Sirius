@@ -7,7 +7,7 @@
 
 import XCTest
 
-class PlayerSearchServiceReceivingDataTest: XCTestCase {
+final class PlayerSearchServiceReceivingDataTest: XCTestCase {
     private func receiveData() -> [Search]? {
         var receivedResult: [Search]?
         
