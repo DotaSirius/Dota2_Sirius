@@ -46,7 +46,7 @@ final class SearchPlayerModulePresenter {
                 switch requestResult {
                 case .success(let players):
                     self.players = players
-                case .failure(_):
+                case .failure:
                     break
                 }
             case .none, .loading:
