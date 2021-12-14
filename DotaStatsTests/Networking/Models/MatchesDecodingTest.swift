@@ -1,7 +1,7 @@
 import XCTest
 @testable import DotaStats
 
-class MatchesDecodingTest: XCTestCase {
+final class MatchesDecodingTest: XCTestCase {
     func testJSONDecoding() throws {
         let bundle = Bundle(for: type(of: self))
         
