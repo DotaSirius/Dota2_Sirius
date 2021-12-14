@@ -5,7 +5,6 @@ protocol MatchesService: AnyObject {
 }
 
 class MatchesServiceImp: MatchesService {
-
     private let networkClient: NetworkClient
 
     init(networkClient: NetworkClient) {
@@ -14,13 +13,13 @@ class MatchesServiceImp: MatchesService {
 
     @discardableResult
     func requestProMatches(_ closure: @escaping (Result<[Match], HTTPError>) -> Void) -> Cancellable? {
-        networkClient.processRequest(request: createRequest()) { result in
-            closure(result)
-        }
+        networkClient.processRequest(
+            request: createRequest(),
+            completion: closure
+        )
     }
 
     private func createRequest() -> HTTPRequest {
         HTTPRequest(route: "https://api.opendota.com/api/proMatches")
     }
-
 }
