@@ -3,8 +3,8 @@ import UIKit
 protocol ListTournamentsCellDelegate: AnyObject {
     func toggleSection(header: ListTournamentsCell, section: Int)
 }
-class ListTournamentsCell: UITableViewHeaderFooterView {
-    
+
+final class ListTournamentsCell: UITableViewHeaderFooterView {
     static let reuseIdentifier = "ListTournamentsCell"
     weak var delegate: ListTournamentsCellDelegate?
     var section: Int?
@@ -17,44 +17,60 @@ class ListTournamentsCell: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        addView()
     }
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        addView()
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectHeaderAction)))
     }
     
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     @objc func selectHeaderAction(gesterRecognizer: UITapGestureRecognizer) {
-        let cell = gesterRecognizer.view as! ListTournamentsCell
-        delegate?.toggleSection(header: self, section: cell.section!)
+        delegate?.toggleSection(header: self, section: (self.section)!)
     }
     
     lazy var title: UILabel = {
-        let control = UILabel()
-        control.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        control.textAlignment = .center
-        control.textColor = ColorPalette.mainText
-        control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 2
-        control.textAlignment = .left
-        return control
-        
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        label.textColor = ColorPalette.mainText
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.textAlignment = .left
+        return label
+    }()
+    
+    lazy var arrowLabel: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "arrow"))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
  
+    func setCollapsed(_ collapsed: Bool) {
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.toValue = collapsed ? 0.0 : .pi / 2
+        animation.duration = 0.2
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        arrowLabel.layer.add(animation, forKey: nil)
+    }
+    
     func addView() {
         contentView.addSubview(title)
+        contentView.addSubview(arrowLabel)
         contentView.backgroundColor = ColorPalette.separator
 
         NSLayoutConstraint.activate([
+            arrowLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            arrowLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -60),
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
-        
         ])
     }
 }

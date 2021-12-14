@@ -56,32 +56,26 @@ final class MatchesModuleViewController: UIViewController {
         super.init(coder: coder)
     }
 
-    // MARK: - Life cycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     // MARK: - Set up UILabel "MATCHES"
 
-    func setUpLabel() {
+    private func setUpLabel() {
         view.addSubview(label)
         NSLayoutConstraint.activate([
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             label.bottomAnchor.constraint(equalTo: tableView.topAnchor),
         ])
     }
 
     // MARK: - Set up UITableView
 
-    func setUpTableView() {
+    private func setUpTableView() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
@@ -97,32 +91,18 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
             view.addSubview(spiner)
             spiner.center = view.center
             spiner.startAnimating()
-        case .error(_):
-            DispatchQueue.main.async {
-                self.spiner.removeFromSuperview()
-                print("error")
-            }
+        case .error:
+            spiner.removeFromSuperview()
+            print("error")
         case .success:
-            DispatchQueue.main.async {
-                self.spiner.removeFromSuperview()
-                
-                self.setUpTableView()
-                self.setUpLabel()
-            }
+            spiner.removeFromSuperview()
+            setUpTableView()
+            setUpLabel()
         }
     }
 
     func updateSection(section: Int) {
-        let count = output?.getRowsInSection(section: section) ?? 0
         tableView.reloadData()
-//        tableView.beginUpdates()
-//
-//        for row in 0..<count {
-//            //tableView.reloadRows(at: [IndexPath(row: row, section: section)], with: .automatic)
-//           tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .automatic)
-//        }
-//        tableView.endUpdates()
-       // tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
     }
 }
 
@@ -152,7 +132,7 @@ extension MatchesModuleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = output?.getDataMatch(indexPath: indexPath)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListMatchesCell.reuseIdentifier, for: indexPath) as? ListMatchesCell else { return UITableViewCell() }
-        cell.addView()
+        cell.setup()
         cell.firstTeam.text = data?.radiantTeam.trimmingCharacters(in: .whitespaces)
         cell.score.text = data?.score
         cell.secondTeam.text = data?.direTeam.trimmingCharacters(in: .whitespaces)
@@ -164,7 +144,6 @@ extension MatchesModuleViewController: UITableViewDataSource {
 
 extension MatchesModuleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("eeeeeeeeeeeeeeeeeeeeeeeee")
         tableView.deselectRow(at: indexPath, animated: true)
         output?.matchTapped(indexPath: indexPath)
     }
@@ -174,26 +153,23 @@ extension MatchesModuleViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - ListTournamentsCellDelegate
+
 extension MatchesModuleViewController: ListTournamentsCellDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let data = output?.getDataTournament(section: section)
+        let count = output?.getRowsInSection(section: section) ?? 0
         let header = ListTournamentsCell()
         header.setup(withTitle: data?.leagueName ?? "ChampionShip", section: section, delegate: self)
+        if count != 0 {
+            header.setCollapsed(false)
+        } else {
+            header.setCollapsed(true)
+        }
         return header
     }
 
     func toggleSection(header: ListTournamentsCell, section: Int) {
-        print("toggleSection")
-        output?.tournamentTapped(section: section);
-        
-      //  output?.cellTapped(indexPath: section)
-//
-//        let collapsed = !sections[section].expanded
-//
-//                // Toggle collapse
-//      sections[section].expanded = collapsed
-//         header.setCollapsed(collapsed)
-//
-//        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
+        output?.tournamentTapped(section: section)
     }
 }
