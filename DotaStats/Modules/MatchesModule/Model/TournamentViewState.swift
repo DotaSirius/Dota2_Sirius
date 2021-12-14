@@ -1,14 +1,14 @@
 import Foundation
 
 struct TournamentViewState {
-    var leagueName: String
+    let leagueName: String
     struct MatchViewState {
-        var radiantTeam: String
-        var radiant: Bool
-        var direTeam: String
-        var id: Int
-        var radiantScore: Int
-        var direScore: Int
+        let radiantTeam: String
+        let radiant: Bool
+        let direTeam: String
+        let id: Int
+        let radiantScore: Int
+        let direScore: Int
         var score: String {
             "\(radiantScore):\(direScore)"
         }

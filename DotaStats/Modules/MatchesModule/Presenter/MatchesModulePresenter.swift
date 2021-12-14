@@ -3,7 +3,7 @@ import Foundation
 protocol MatchesModuleInput: AnyObject {}
 
 protocol MatchesModuleOutput: AnyObject {
-    func matchesModule(_ module: MatchesModuleInput, didSelectPlayer matchId: Int)
+    func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int)
 }
 
 final class MatchesModulePresenter {
@@ -12,6 +12,7 @@ final class MatchesModulePresenter {
             updateView()
         }
     }
+
     private let matchesService: MatchesService
     private var tournaments: [MatchCollectionPresenterData] = []
     let output: MatchesModuleOutput
@@ -27,15 +28,12 @@ final class MatchesModulePresenter {
     private var state: MatchesModulePresenterState {
         didSet {
             switch state {
-            case .result(let requestResult):
-                switch requestResult {
-                case .success(var matches):
-                    matches.sort { $0 < $1 }
-                    convert(matches)
-                    view?.update(state: .success)
-                case .failure(let error):
-                    view?.update(state: .error(error.localizedDescription))
-                }
+            case .success(var matches):
+                matches.sort()
+                convert(matches)
+                view?.update(state: .success)
+            case .error(let error):
+                view?.update(state: .error(error.localizedDescription))
             case .loading:
                 view?.update(state: .loading)
             case .none:
@@ -46,7 +44,12 @@ final class MatchesModulePresenter {
     
     private func updateView() {
         let token = matchesService.requestProMatches { [weak self] result in
-            self?.state = .result(result)
+            switch result {
+            case .success(let matches):
+                self?.state = .success(matches)
+            case .failure(let error):
+                self?.state = .error(error)
+            }
         }
         state = .loading(token)
     }
@@ -62,13 +65,14 @@ final class MatchesModulePresenter {
                 direScore: match.direScore
             )
             
-            if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName } ) {
+            if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName }) {
                 tournaments[index].matches.append(newMatch)
             } else {
                 tournaments.append(MatchCollectionPresenterData(
                     isOpen: false,
                     tournament: TournamentViewState(leagueName: match.leagueName),
-                    matches: [newMatch])
+                    matches: [newMatch]
+                )
                 )
             }
         }
@@ -103,7 +107,7 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
     
     func matchTapped(indexPath: IndexPath) {
-        output.matchesModule(self, didSelectPlayer: tournaments[indexPath.section].matches[indexPath.row].id)
+        output.matchesModule(self, didSelectMatch: tournaments[indexPath.section].matches[indexPath.row].id)
     }
     
     func tournamentTapped(section: Int) {

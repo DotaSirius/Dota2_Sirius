@@ -3,7 +3,8 @@ import Foundation
 enum MatchesModulePresenterState {
     case none
     case loading(Cancellable?)
-    case result(Result<[Match], HTTPError>)
+    case success([Match])
+    case error(HTTPError)
 }
 
 extension MatchesModulePresenterState {
@@ -11,7 +12,7 @@ extension MatchesModulePresenterState {
         switch self {
         case .loading(let token):
             return token
-        case .result, .none:
+        case .success, .error, .none:
             return nil
         }
     }
