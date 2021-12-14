@@ -3,7 +3,7 @@ import Foundation
 protocol SearchPlayerModuleInput: AnyObject {}
 
 protocol SearchPlayerModuleOutput: AnyObject {
-    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerSearch)
+    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch)
 }
 
 final class SearchPlayerModulePresenter {
@@ -19,7 +19,7 @@ final class SearchPlayerModulePresenter {
     private let imageNetworkService: ImageNetworkService
     
     private var imageRequestTokens = [IndexPath: Cancellable]()
-    private var players = [PlayerSearch]() {
+    private var players = [PlayerInfoFromSearch]() {
         didSet {
             cancelAllLoading()
         }
@@ -77,11 +77,11 @@ final class SearchPlayerModulePresenter {
 // MARK: - SearchModuleViewOutput
 
 extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
-    var count: Int {
+    var countOfRows: Int {
         players.count
     }
     
-    func getData(indexPath: IndexPath) -> PlayerSearch {
+    func getData(indexPath: IndexPath) -> PlayerInfoFromSearch {
         if let urlString = players[indexPath.row].avatarFull,
             let url = URL(string: urlString) {
             let imageRequestToken = imageNetworkService.loadImageFromURL(url) { [weak self] result in
@@ -107,7 +107,7 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
                 guard let self = self else { return }
                 switch result {
                 case .success(let search):
-                    let searchPlayers = search.map { PlayerSearch(from: $0) }
+                    let searchPlayers = search.map { PlayerInfoFromSearch(from: $0) }
                     self.state = .success(searchPlayers)
                 case .failure(let error):
                     self.state = .failure(error)

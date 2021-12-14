@@ -20,8 +20,8 @@
 		303AC4D92764EFBC00A8C462 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
 		303AC4DB2767418A00A8C462 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* Match.swift */; };
 		303AC4DD27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4DC27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift */; };
-		303AC4DF27674FC800A8C462 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4DE27674FC800A8C462 /* Search.swift */; };
-		303AC4E027674FC800A8C462 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4DE27674FC800A8C462 /* Search.swift */; };
+		303AC4DF27674FC800A8C462 /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4DE27674FC800A8C462 /* SearchPlayerResult.swift */; };
+		303AC4E027674FC800A8C462 /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4DE27674FC800A8C462 /* SearchPlayerResult.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchInfoDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatch.json */; };
@@ -56,7 +56,7 @@
 		ECAA0D0A2764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA0D082764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift */; };
 		F0DF329C27674C2E004670C0 /* SearchPlayerModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF329B27674C2E004670C0 /* SearchPlayerModuleBuilder.swift */; };
 		F0DF32A127676931004670C0 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A027676931004670C0 /* ImageService.swift */; };
-		F0DF32A32767850C004670C0 /* PlayerSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A22767850C004670C0 /* PlayerSearch.swift */; };
+		F0DF32A32767850C004670C0 /* PlayerInfoFromSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */; };
 		F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */; };
 		F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */; };
 		F0F2EE4F2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4E2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift */; };
@@ -85,7 +85,7 @@
 		303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesDecodingTest.swift; sourceTree = "<group>"; };
 		303AC4D1276371A600A8C462 /* MockMatches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatches.json; sourceTree = "<group>"; };
 		303AC4DC27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceReceivingDataByPassingQueriesTest.swift; sourceTree = "<group>"; };
-		303AC4DE27674FC800A8C462 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		303AC4DE27674FC800A8C462 /* SearchPlayerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerResult.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchInfoDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfoDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatch.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		ECAA0D082764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesServiceReceivingDataTest.swift; sourceTree = "<group>"; };
 		F0DF329B27674C2E004670C0 /* SearchPlayerModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleBuilder.swift; sourceTree = "<group>"; };
 		F0DF32A027676931004670C0 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
-		F0DF32A22767850C004670C0 /* PlayerSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearch.swift; sourceTree = "<group>"; };
+		F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoFromSearch.swift; sourceTree = "<group>"; };
 		F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModulePresenter.swift; sourceTree = "<group>"; };
 		F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleViewController.swift; sourceTree = "<group>"; };
 		F0F2EE4E2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleViewState.swift; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 				EA852BF972642EE930F2680C /* Matches.swift */,
 				EA85264F7CF441C52C30E6D7 /* Players.swift */,
 				EA85276324310C6574CACFC6 /* Match.swift */,
-				303AC4DE27674FC800A8C462 /* Search.swift */,
+				303AC4DE27674FC800A8C462 /* SearchPlayerResult.swift */,
 			);
 			path = NetworkingModels;
 			sourceTree = "<group>";
@@ -398,7 +398,7 @@
 			children = (
 				F0F2EE4E2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift */,
 				F0F2EE512764E2C900EAB7E5 /* SearchPlayerModulePresenterState.swift */,
-				F0DF32A22767850C004670C0 /* PlayerSearch.swift */,
+				F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -537,7 +537,7 @@
 				EC1415E6276728E200715D00 /* NetworkClient.swift in Sources */,
 				EC1415E8276728F200715D00 /* HTTPMethod.swift in Sources */,
 				EC1415E7276728EA00715D00 /* HTTPRequest.swift in Sources */,
-				303AC4E027674FC800A8C462 /* Search.swift in Sources */,
+				303AC4E027674FC800A8C462 /* SearchPlayerResult.swift in Sources */,
 				EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
 				EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */,
 				300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */,
@@ -560,7 +560,7 @@
 				F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */,
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
 				EC4E6FA32764C8550085B61D /* Player.swift in Sources */,
-				303AC4DF27674FC800A8C462 /* Search.swift in Sources */,
+				303AC4DF27674FC800A8C462 /* SearchPlayerResult.swift in Sources */,
 				300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */,
 				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
 				EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */,
@@ -577,7 +577,7 @@
 				F0F2EE4F2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift in Sources */,
 				EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */,
 				5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */,
-				F0DF32A32767850C004670C0 /* PlayerSearch.swift in Sources */,
+				F0DF32A32767850C004670C0 /* PlayerInfoFromSearch.swift in Sources */,
 				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				EA8525C10313780ABFC01843 /* Match.swift in Sources */,
 				EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */,
