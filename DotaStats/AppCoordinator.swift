@@ -34,7 +34,8 @@ extension AppCoordinator {
 
 extension AppCoordinator: PlayersModuleOutput {
     func playersModule(_ module: PlayersModuleInput, didSelectPlayer playerId: Int) {
-        // let playerInfoBuilder = playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
+        // let playerInfoBuilder =
+        // playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
     }
 }
 

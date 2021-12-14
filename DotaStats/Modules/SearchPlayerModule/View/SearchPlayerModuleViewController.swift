@@ -2,12 +2,15 @@ import UIKit
 
 protocol SearchPlayerModuleViewInput: AnyObject {
     func updateState(_ state: SearchPlayerModuleViewState)
+    func reload(at indexPath: IndexPath)
 }
 
 protocol SearchPlayerModuleViewOutput: AnyObject {
-    var count: Int { get }
-    func getData(indexPath: IndexPath) -> Players
+    var countOfRows: Int { get }
+    func getData(at indexPath: IndexPath) -> PlayerInfoFromSearch
+    func prefetchData(at indexPath: IndexPath)
     func search(_ name: String)
+    func playerTapped(at indexPath: IndexPath)
 }
 
 class SearchPlayerModuleViewController: UIViewController {
@@ -29,7 +32,7 @@ class SearchPlayerModuleViewController: UIViewController {
 
 // MARK: - SearchModuleViewInput
 
-extension SearchPlayerModuleViewController: SearchPlayerModuleInput {
+extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
     func updateState(_ state: SearchPlayerModuleViewState) {
         // TODO: make update view
         switch state {
@@ -49,5 +52,9 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleInput {
             // TODO: show error image
             print("error")
         }
+    }
+
+    func reload(at indexPath: IndexPath) {
+        //
     }
 }
