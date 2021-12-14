@@ -31,23 +31,10 @@ struct MatchDetail: Decodable {
     let players: [Player]
     let patch: Int?
     let region: Int?
-    let `throw`: Int?
     let comeback: Int?
     let loss: Int?
     let win: Int?
     let replayUrl: String?
-
-//    let cosmetics
-//    let objectives
-//    let picks_bans
-//    let radiant_gold_adv
-//    let radiant_xp_adv
-//    let teamfights
-//    let radiant_team
-//    let dire_team
-//    let league
-//    let all_word_counts
-//    let my_word_counts
 
     struct Chat: Decodable, Equatable {
         let time: Date?
@@ -130,7 +117,7 @@ struct MatchDetail: Decodable {
         let lose: Int?
         let totalGold: Int?
         let totalXp: Int?
-        let killsPerMin: Int?
+        let killsPerMin: Double?
         let kda: Int?
         let abandons: Int?
         let neutralKills: Int?
@@ -155,43 +142,6 @@ struct MatchDetail: Decodable {
         let lifeStateDead: Int?
         let rankTier: Int?
         let cosmetics: [Int]?
-
-        //    let ability_uses
-        //    let ability_targets
-        //    let damage_targets
-        //    let actions
-        //    let additional_units
-        //    let damage
-        //    let damage_inflictor
-        //    let damage_inflictor_received
-        //    let damage_taken
-        //    let gold_reasons
-        //    let hero_hits
-        //    let item_uses
-        //    let kill_streaks
-        //    let killed
-        //    let killed_by
-        //    let lane_pos
-        //    let life_state
-        //    let max_hero_hit
-        //    let multi_kills
-        //    let obs
-        //    let obs_left_log
-        //    let obs_log
-        //    let permanent_buffs
-        //    let purchase
-        //    let runes
-        //    let sen
-        //    let sen_left_log
-        //    let sen_log
-        //    let xp_reasons
-        //    let last_login : Date
-        //    let purchase_time
-        //    let first_purchase_time
-        //    let item_win
-        //    let item_usage
-        //    let purchase_tpscroll
-        //    let benchmarks
     }
 
     struct BuybackLog: Decodable, Equatable {
