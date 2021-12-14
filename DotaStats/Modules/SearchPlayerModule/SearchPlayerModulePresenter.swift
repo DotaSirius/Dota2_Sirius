@@ -81,6 +81,8 @@ final class SearchPlayerModulePresenter {
             switch result {
             case .success(let avatar):
                 player.avatar = avatar
+                guard let completion = completion else { return }
+                completion()
             case .failure:
                 break
             }
