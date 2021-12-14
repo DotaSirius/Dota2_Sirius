@@ -9,43 +9,34 @@ import Foundation
 import UIKit
 
 protocol ImageService: AnyObject {
-    func loadWithUrl(_ url: String, _ closure: @escaping (Result<UIImage, HTTPError>) -> Void)
+    func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void)
 }
 
 class ImageServiceImp: ImageService {
-    let queue = DispatchQueue(label: "image-loader", qos: .default, attributes: .concurrent, autoreleaseFrequency: .workItem)
 
-    func loadWithUrl(_ url: String, _ closure: @escaping (Result<UIImage, HTTPError>) -> Void) {
-        queue.async {
-            guard let requestUrl = URL(string: url) else {
-                self.mainThreadReturn {
-                    closure(.failure(HTTPError.missingURL))
+    private let urlSession: URLSession = {
+        let config = URLSessionConfiguration.default
+
+        return URLSession(configuration: config)
+    }()
+
+    func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) {
+        guard let requestUrl = URL(string: url) else {
+                completion(.failure(HTTPError.missingURL))
+            return
+        }
+
+        let task = urlSession.dataTask(with: requestUrl) { data, _, _ in
+            guard let responseData = data, let image = UIImage(data: responseData) else {
+                DispatchQueue.main.async {
+                    completion(.failure(HTTPError.noData))
                 }
                 return
             }
-            do {
-                let data = try Data(contentsOf: requestUrl)
-                guard let image = UIImage(data: data) else {
-                    self.mainThreadReturn {
-                        closure(.failure(HTTPError.decodingFailed))
-                    }
-                    return
-                }
-                self.mainThreadReturn {
-                    closure(.success(image))
-                }
-
-            } catch {
-                self.mainThreadReturn {
-                    closure(.failure(HTTPError.failed))
-                }
+            DispatchQueue.main.async {
+                completion(.success(image))
             }
         }
-    }
-
-    func mainThreadReturn(_ closure: () -> Void) {
-        DispatchQueue.main.async {
-            closure()
-        }
+        task.resume()
     }
 }
