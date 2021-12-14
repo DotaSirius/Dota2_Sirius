@@ -40,8 +40,8 @@ class ListTournamentsCell: UITableViewHeaderFooterView {
         control.textAlignment = .center
         control.textColor = ColorPalette.mainText
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.numberOfLines = 3
-        control.textAlignment = .center
+        control.numberOfLines = 2
+        control.textAlignment = .left
         return control
         
     }()
@@ -52,6 +52,7 @@ class ListTournamentsCell: UITableViewHeaderFooterView {
 
         NSLayoutConstraint.activate([
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
         
         ])
