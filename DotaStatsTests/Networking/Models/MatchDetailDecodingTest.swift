@@ -47,6 +47,7 @@ final class MatchInfoDecodingTest: XCTestCase {
         XCTAssertEqual(decodedData.skill, nil)
         XCTAssertEqual(decodedData.patch, nil)
         XCTAssertEqual(decodedData.region, nil)
+        XCTAssertEqual(decodedData.throw, nil)
         XCTAssertEqual(decodedData.comeback, nil)
         XCTAssertEqual(decodedData.loss, nil)
         XCTAssertEqual(decodedData.win, nil)
