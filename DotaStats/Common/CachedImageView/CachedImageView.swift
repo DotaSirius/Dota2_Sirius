@@ -41,7 +41,6 @@ final class CachedImageView: UIImageView {
                     return
                 }
                 self?.image = errorImage
-                break
             }
             self?.stopAnimation()
         }
