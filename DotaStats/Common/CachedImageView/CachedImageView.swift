@@ -46,10 +46,11 @@ final class CachedImageView: UIImageView {
             case .success(let newImage):
                 self?.image = newImage
             case .failure:
-                guard let errorImage = UIImage(named: "error_load_image") else {
-                    return
+                if let errorPlaceholder = self?.errorPlaceholder {
+                    self?.image = errorPlaceholder
+                } else if let errorImage = UIImage(named: "error_load_image") {
+                    self?.image = errorImage
                 }
-                self?.image = errorImage
             }
             self?.stopAnimation()
         }
