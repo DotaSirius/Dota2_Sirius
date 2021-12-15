@@ -2,21 +2,18 @@ import Foundation
 import UIKit
 
 protocol ImageService: AnyObject {
-    func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable?
+    func fetchImage(with url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable?
 }
 
 final class ImageServiceImp: ImageService {
-    private let urlSession: URLSession = {
-        let config = URLSessionConfiguration.default
-        return URLSession(configuration: config)
-    }()
+    private let urlSession = URLSession(configuration: URLSessionConfiguration.default)
 
     static var shared: ImageServiceImp = .init()
 
     private init() {}
 
     @discardableResult
-    func loadWithUrl(_ url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable? {
+    func fetchImage(with url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable? {
         guard let requestUrl = URL(string: url) else {
             completion(.failure(HTTPError.missingURL))
             return nil
