@@ -18,21 +18,20 @@ final class MatchesDecodingTest: XCTestCase {
 
         let decodedData = try jsonDecoder.decode([Match].self,
                                                  from: jsonData)
-        let match = decodedData[0]
-
-        XCTAssertEqual(match.matchId, 6312319970)
-        XCTAssertEqual(match.duration, 1892)
-        XCTAssertEqual(match.startTime, Date(timeIntervalSince1970: 1639054764))
-        XCTAssertEqual(match.radiantTeamId, 8449479)
-        XCTAssertEqual(match.radiantName, "Team GL")
-        XCTAssertEqual(match.direTeamId, 8497676)
-        XCTAssertEqual(match.direName, "SKY")
-        XCTAssertEqual(match.leagueName, "Ultras Dota Pro League 2")
-        XCTAssertEqual(match.leagueid, 13690)
-        XCTAssertEqual(match.seriesId, 624012)
-        XCTAssertEqual(match.seriesType, 1)
-        XCTAssertEqual(match.radiantScore, 49)
-        XCTAssertEqual(match.direScore, 19)
-        XCTAssertEqual(match.radiantWin, true)
+        
+        let firstMatch = decodedData[0]
+        XCTAssertEqual(firstMatch.duration, 1892)
+        XCTAssertEqual(firstMatch.startTime, Date(timeIntervalSince1970: 1639054764))
+        XCTAssertEqual(firstMatch.radiantTeamId, 8449479)
+        XCTAssertEqual(firstMatch.radiantName, "Team GL")
+        XCTAssertEqual(firstMatch.direTeamId, 8497676)
+        XCTAssertEqual(firstMatch.direName, "SKY")
+        XCTAssertEqual(firstMatch.leagueName, "Ultras Dota Pro League 2")
+        XCTAssertEqual(firstMatch.leagueid, 13690)
+        XCTAssertEqual(firstMatch.seriesId, 624012)
+        XCTAssertEqual(firstMatch.seriesType, 1)
+        XCTAssertEqual(firstMatch.radiantScore, 49)
+        XCTAssertEqual(firstMatch.direScore, 19)
+        XCTAssertEqual(firstMatch.radiantWin, true)
     }
 }

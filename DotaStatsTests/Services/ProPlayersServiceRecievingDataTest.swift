@@ -1,43 +1,41 @@
+@testable import DotaStats
 import XCTest
 
-final class PlayerSearchServiceReceivingDataTest: XCTestCase {
-    private func receiveData() -> [SearchPlayerResult]? {
-        var receivedResult: [SearchPlayerResult]?
-
+class ProPlayersServiceReceivingDataTest: XCTestCase {
+    private func receiveData() -> [ProPlayer]? {
+        var receivedResult: [ProPlayer]?
+        
         let expectations = expectation(description: "\(#function)\(#line)")
-
+        
         let urlSession = URLSession(configuration: .default)
-
+        
         let networkClient = NetworkClientImp(urlSession: urlSession)
-
-        let playerSearchService = PlayerSearchServiceImp(networkClient: networkClient)
-
-        playerSearchService.playersByName("Test") { (result: Result<[SearchPlayerResult], HTTPError>) in
+        
+        let playersService = ProPlayerServiceImp(networkClient: networkClient)
+        
+        playersService.requestProPlayers { result in
             switch result {
-            case .success(let searchResults):
+            case .success(let proPlayers):
                 expectations.fulfill()
-
-                receivedResult = searchResults
+                
+                receivedResult = proPlayers
             case .failure:
                 XCTFail("Missing response")
             }
         }
-
+        
         waitForExpectations(timeout: 10, handler: .none)
 
         return receivedResult
     }
-
+    
     func testResponseContainsSomeData() throws {
         let response = receiveData()
 
-        guard response != nil else {
-            XCTFail("Missing response")
-            return
-        }
+        XCTAssertNotNil(response, "Missing response")
     }
-
-    func testResponseContainsArrayOfMatches() throws {
+    
+    func testResponseContainsArrayOfPlayers() throws {
         let response = receiveData()
 
         guard let response = response else {
@@ -48,7 +46,7 @@ final class PlayerSearchServiceReceivingDataTest: XCTestCase {
         XCTAssertFalse(response.isEmpty)
     }
 
-    func testAnyProfileContainsData() throws {
+    func testAnyPlayerContainsRequiredData() throws {
         let response = receiveData()
 
         guard let response = response else {
@@ -56,8 +54,9 @@ final class PlayerSearchServiceReceivingDataTest: XCTestCase {
             return
         }
 
-        response.forEach { match in
-            XCTAssert(match.accountId > 0)
+        response.forEach { player in
+            XCTAssert(player.accountId > 0)
+            XCTAssert(player.isPro)
         }
     }
 }
