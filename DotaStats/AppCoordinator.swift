@@ -58,7 +58,7 @@ extension AppCoordinator {
             imageNetworkService: StubImageNetworkService()
         )
     }
-    
+
     private func matchInfoModuleBuilder() -> MatchInfoModuleBuilder {
         MatchInfoModuleBuilder(
             output: self,
@@ -66,7 +66,8 @@ extension AppCoordinator {
                 networkClient: NetworkClientImp(
                     urlSession: URLSession(configuration: .default)
                 )
-            ), converter: MatchInfoConverterImp())
+            ), converter: MatchInfoConverterImp()
+        )
     }
 }
 
