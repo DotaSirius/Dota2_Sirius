@@ -28,19 +28,35 @@ final class MatchInfoModulePresenter {
             switch state {
             case .success:
                 self.convertedData = [
-                    MatchTableViewCellType.mainMatchInfo(converter.mainMatchInfo(rawMatchInfo: self.rawMatchInfo)),
-                    MatchTableViewCellType.additionalMatchInfo(converter.additionalMatchInfo(rawMatchInfo: self.rawMatchInfo)),
-                    MatchTableViewCellType.teamMatchInfo(converter.radiantMatchInfo(rawMatchInfo: self.rawMatchInfo)),
-                    MatchTableViewCellType.matchPlayerHeaderInfo,
+                    MatchTableViewCellType.mainMatchInfo(
+                        converter.mainMatchInfo(rawMatchInfo: self.rawMatchInfo)
+                    ),
+                    MatchTableViewCellType.additionalMatchInfo(
+                        converter.additionalMatchInfo(rawMatchInfo: self.rawMatchInfo)
+                    ),
+                    MatchTableViewCellType.teamMatchInfo(
+                        converter.radiantMatchInfo(rawMatchInfo: self.rawMatchInfo)
+                    ),
+                    MatchTableViewCellType.matchPlayerHeaderInfo
                 ]
                 for index in 0..<5 {
-                    self.convertedData.append(MatchTableViewCellType.matchPlayerInfo(converter.playerInfo(rawMatchInfo: self.rawMatchInfo, playerNumber: index)))
+                    self.convertedData.append(
+                        MatchTableViewCellType.matchPlayerInfo(
+                            converter.playerInfo(rawMatchInfo: self.rawMatchInfo, playerNumber: index)
+                        )
+                    )
                 }
-                self.convertedData.append(contentsOf: [
-                    MatchTableViewCellType.teamMatchInfo(converter.direMatchInfo(rawMatchInfo: self.rawMatchInfo)),
-                ])
+                self.convertedData.append(
+                    MatchTableViewCellType.teamMatchInfo(
+                        converter.direMatchInfo(rawMatchInfo: self.rawMatchInfo)
+                    )
+                )
                 for index in 5..<10 {
-                    self.convertedData.append(MatchTableViewCellType.matchPlayerInfo(converter.playerInfo(rawMatchInfo: self.rawMatchInfo, playerNumber: index)))
+                    self.convertedData.append(
+                        MatchTableViewCellType.matchPlayerInfo(
+                            converter.playerInfo(rawMatchInfo: self.rawMatchInfo, playerNumber: index)
+                        )
+                    )
                 }
                 view?.update(state: .success)
             case .error:

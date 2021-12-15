@@ -1,7 +1,6 @@
 import UIKit
 
 final class PlayersTableHeaderCell: UITableViewCell {
-
     static let reuseIdentifier = "PlayersTableHeaderCell"
 
     private lazy var playerNameHeaderLabel: UILabel = {
@@ -11,7 +10,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerNameHeaderLabel.textAlignment = .center
         return playerNameHeaderLabel
     }()
-    
+
     private lazy var playerKillsHeaderLabel: UILabel = {
         let playerKillsHeaderLabel = UILabel()
         playerKillsHeaderLabel.textColor = ColorPalette.win
@@ -19,7 +18,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerKillsHeaderLabel.textAlignment = .center
         return playerKillsHeaderLabel
     }()
-    
+
     private lazy var playerDeathsHeaderLabel: UILabel = {
         let playerDeathsHeaderLabel = UILabel()
         playerDeathsHeaderLabel.textColor = ColorPalette.lose
@@ -27,7 +26,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerDeathsHeaderLabel.textAlignment = .center
         return playerDeathsHeaderLabel
     }()
-    
+
     private lazy var playerAssitsHeaderLabel: UILabel = {
         let playerAssitsHeaderLabel = UILabel()
         playerAssitsHeaderLabel.textColor = ColorPalette.subtitle
@@ -35,7 +34,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerAssitsHeaderLabel.textAlignment = .center
         return playerAssitsHeaderLabel
     }()
-    
+
     private lazy var playerGoldHeaderLabel: UILabel = {
         let playerGoldHeaderLabel = UILabel()
         playerGoldHeaderLabel.textColor = ColorPalette.accent
@@ -43,7 +42,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerGoldHeaderLabel.textAlignment = .center
         return playerGoldHeaderLabel
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -62,7 +61,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
             playerGoldHeaderLabel,
             playerAssitsHeaderLabel,
             playerDeathsHeaderLabel,
-            playerKillsHeaderLabel,
+            playerKillsHeaderLabel
         ].forEach {
             contentView.addSubview($0)
         }
@@ -74,7 +73,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
             playerGoldHeaderLabel,
             playerAssitsHeaderLabel,
             playerDeathsHeaderLabel,
-            playerKillsHeaderLabel,
+            playerKillsHeaderLabel
         ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -83,30 +82,36 @@ final class PlayersTableHeaderCell: UITableViewCell {
             playerNameHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             playerNameHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             playerNameHeaderLabel.trailingAnchor.constraint(equalTo: playerKillsHeaderLabel.leadingAnchor),
-                
+
             playerGoldHeaderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             playerGoldHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             playerGoldHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             playerGoldHeaderLabel.widthAnchor.constraint(equalToConstant: 30),
-            
-            playerAssitsHeaderLabel.trailingAnchor.constraint(equalTo: playerGoldHeaderLabel.leadingAnchor, constant: -8),
+
+            playerAssitsHeaderLabel.trailingAnchor.constraint(
+                equalTo: playerGoldHeaderLabel.leadingAnchor, constant: -8
+            ),
             playerAssitsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
             playerAssitsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             playerAssitsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            playerDeathsHeaderLabel.trailingAnchor.constraint(equalTo: playerAssitsHeaderLabel.leadingAnchor, constant: -8),
+
+            playerDeathsHeaderLabel.trailingAnchor.constraint(
+                equalTo: playerAssitsHeaderLabel.leadingAnchor, constant: -8
+            ),
             playerDeathsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
             playerDeathsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             playerDeathsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
-            playerKillsHeaderLabel.trailingAnchor.constraint(equalTo: playerDeathsHeaderLabel.leadingAnchor, constant: -8),
+
+            playerKillsHeaderLabel.trailingAnchor.constraint(
+                equalTo: playerDeathsHeaderLabel.leadingAnchor, constant: -8
+            ),
             playerKillsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
             playerKillsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            playerKillsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            playerKillsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 
-    func createStackView(stackView:UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
+    func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
         stackView.axis = axis
         stackView.distribution = UIStackView.Distribution.equalSpacing
         stackView.alignment = UIStackView.Alignment.center
@@ -117,7 +122,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
 extension PlayersTableHeaderCell: DetailedMatchInfoCellConfigurable {
     func configure(with data: MatchTableViewCellData) {
         playerNameHeaderLabel.text = "Player"
-        playerKillsHeaderLabel.text  = "K"
+        playerKillsHeaderLabel.text = "K"
         playerDeathsHeaderLabel.text = "D"
         playerAssitsHeaderLabel.text = "A"
         playerGoldHeaderLabel.text = "NET"

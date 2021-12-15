@@ -24,7 +24,7 @@ class MatchInfoConverterImp: MatchInfoConverter {
             matchEndTimeLabelText: matchEndTimeLabelText
         )
     }
-    
+
     func additionalMatchInfo(rawMatchInfo: MatchDetail) -> AdditionalMatchInfo {
         let matchIdLabelText = "\(rawMatchInfo.matchId)"
         let regionLabelText = convert(region: rawMatchInfo.region)
@@ -35,7 +35,7 @@ class MatchInfoConverterImp: MatchInfoConverter {
             skillLabelText: skillLabelText
         )
     }
-    
+
     func playerInfo(rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList {
         var safeNumber: Int
         if playerNumber < rawMatchInfo.players.count {
@@ -50,7 +50,6 @@ class MatchInfoConverterImp: MatchInfoConverter {
         let playerDeathsText = convert(stat: player.deaths)
         let playerAssitsText = convert(stat: player.assists)
         let playerGoldText = convert(networth: player.totalGold)
-        
         return PlayerList(
             playerNameLabelText: playerNameLabelText,
             playerRankText: playerRankText,
@@ -61,7 +60,7 @@ class MatchInfoConverterImp: MatchInfoConverter {
             playerImage: UIImage(named: "morphling") ?? UIImage()
         )
     }
-    
+
     func radiantMatchInfo(rawMatchInfo: MatchDetail) -> TeamMatchInfo {
         let teamNameLabelText = "Radiant"
         guard
@@ -75,7 +74,7 @@ class MatchInfoConverterImp: MatchInfoConverter {
             teamWinLabel: teamWinLabel
         )
     }
-    
+
     func direMatchInfo(rawMatchInfo: MatchDetail) -> TeamMatchInfo {
         let teamNameLabelText = "Dire"
         guard
@@ -106,9 +105,10 @@ private extension MatchInfoConverterImp {
             return playerName
         }
     }
-    
-    // TODO: - Приходит в виде Int. Ранги в доте называются "Legend", "Immortal" и тд. Сделать правильную конвертацию из цифр в ранги
-    
+
+// TODO: - Приходит в виде Int. Ранги в доте называются "Legend", "Immortal" и тд.
+// Сделать правильную конвертацию из цифр в ранги
+
     func convert(playerRankTier: Int?) -> String {
         guard
             let playerRankTier = playerRankTier
@@ -117,7 +117,7 @@ private extension MatchInfoConverterImp {
         }
         return "\(playerRankTier)"
     }
-    
+
     func convert(networth: Int?) -> String {
         guard
             let networth = networth
@@ -126,7 +126,7 @@ private extension MatchInfoConverterImp {
         }
         return "\(networth / 1000)k"
     }
-    
+
     func convert(stat: Int?) -> String {
         guard
             let stat = stat
@@ -135,9 +135,9 @@ private extension MatchInfoConverterImp {
         }
         return "\(stat)"
     }
-    
+
     // MARK: - MainMatchInfo converters
-    
+
     func convert(isRadiantWin: Bool?) -> String {
         guard
             let isRadiantWin = isRadiantWin
@@ -146,7 +146,7 @@ private extension MatchInfoConverterImp {
         }
         return isRadiantWin ? "Radiant Victory" : "Dire Victory"
     }
-    
+
     func convert(duration: Int?) -> String {
         guard
             let duration = duration
@@ -161,7 +161,7 @@ private extension MatchInfoConverterImp {
         let secStr = sec < 10 ? "0\(sec)" : "\(sec)"
         return "\(hrStr)\(minStr)\(secStr)"
     }
-    
+
     func convert(score: Int?) -> String {
         guard
             let score = score
@@ -170,17 +170,19 @@ private extension MatchInfoConverterImp {
         }
         return "\(score)"
     }
-    
-    // How long ago match was ended. Not implemented yet, because in future startTime will be converted from Int to Date in Networking
+
+// How long ago match was ended. Not implemented yet,
+// because in future startTime will be converted from Int to Date in Networking
     func convert(startTime: Date?, duration: Int?) -> String {
         return "0 HOURS AGO."
     }
-    
+
     // MARK: - AdditionalMatchInfo converters
-    
+
     // TODO: - Check correctness of cases. I got them from
     // https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/game/dota/pak01_dir/scripts/regions.txt
-    
+
+    // swiftlint:disable cyclomatic_complexity
     func convert(region: Int?) -> String {
         guard
             let region = region
@@ -226,7 +228,8 @@ private extension MatchInfoConverterImp {
         }
         return regionString
     }
-    
+    // swiftlint:enable cyclomatic_complexity
+
     func convert(skillBracket: Int?) -> String {
         guard
             let skillBracket = skillBracket
