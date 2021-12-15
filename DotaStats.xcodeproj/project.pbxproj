@@ -26,6 +26,7 @@
 		303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E62767933700A8C462 /* DateFormatterExtension.swift */; };
 		303AC4E82767933700A8C462 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E62767933700A8C462 /* DateFormatterExtension.swift */; };
 		30B40F1B2769E39100B22DCC /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49062768C37200103100 /* SearchPlayerResult.swift */; };
+		30B40F22276A2B2A00B22DCC /* MatchEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B40F21276A2B2A00B22DCC /* MatchEventType.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchDetailDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatchDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */; };
@@ -106,10 +107,10 @@
 		303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesDecodingTest.swift; sourceTree = "<group>"; };
 		303AC4D1276371A600A8C462 /* MockMatches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatches.json; sourceTree = "<group>"; };
 		303AC4DC27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceReceivingDataByPassingQueriesTest.swift; sourceTree = "<group>"; };
-		303AC4DE27674FC800A8C462 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		303AC4E12767873E00A8C462 /* PlayerSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchService.swift; sourceTree = "<group>"; };
 		303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchServiceReceivingDataTest.swift; sourceTree = "<group>"; };
 		303AC4E62767933700A8C462 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		30B40F21276A2B2A00B22DCC /* MatchEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEventType.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatchDetail.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		300FC9EC27621E4200A7A0EF /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				30B40F20276A2B0100B22DCC /* MatchInfoProcessing */,
 				300FC9EE27621E8800A7A0EF /* Networking */,
 			);
 			path = Data;
@@ -256,6 +258,14 @@
 				3CF8F5232763C72600AC0DD4 /* MockPlayer.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		30B40F20276A2B0100B22DCC /* MatchInfoProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				30B40F21276A2B2A00B22DCC /* MatchEventType.swift */,
+			);
+			path = MatchInfoProcessing;
 			sourceTree = "<group>";
 		};
 		5D4C51622764DB8800BC6B30 /* View */ = {
@@ -704,6 +714,7 @@
 				6035383F2767459500CC32AD /* ErrorView.swift in Sources */,
 				5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */,
 				F0DF32A32767850C004670C0 /* PlayerInfoFromSearch.swift in Sources */,
+				30B40F22276A2B2A00B22DCC /* MatchEventType.swift in Sources */,
 				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				837AED9E27690ADB0009589E /* SearchPlayerModulePresenterState.swift in Sources */,
 				F01B49072768C37200103100 /* SearchPlayerResult.swift in Sources */,
