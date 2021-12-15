@@ -8,6 +8,7 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
+        let _ = playerInfoModuleBuilder()
         
         let viewControllers = [
             playersModule.viewController,
@@ -58,6 +59,18 @@ extension AppCoordinator {
             imageNetworkService: StubImageNetworkService()
         )
     }
+    
+    private func playerInfoModuleBuilder() -> PlayerInfoModuleBuilder {
+        PlayerInfoModuleBuilder(
+            output: self,
+            playerInfoService: PlayerInfoServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            playerId: 153125655
+        )
+    }
 }
 
 extension AppCoordinator: PlayersModuleOutput {
@@ -77,6 +90,10 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch) {
         // TODO: show player profile info
     }
+}
+            
+extension AppCoordinator: PlayerInfoModuleOutput {
+    
 }
 
 final class StubImageNetworkService: ImageNetworkService {

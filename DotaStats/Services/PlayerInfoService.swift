@@ -1,12 +1,12 @@
 import Foundation
 
 protocol PlayerInfoService: AnyObject {
-    func requestPlayerMainInfo(id: Int, completion: @escaping (Result<Players, HTTPError>) -> Void) -> Cancellable?
+    func requestPlayerMainInfo(id: Int, completion: @escaping (Result<PlayerMainInfo, HTTPError>) -> Void) -> Cancellable?
     func requestPlayerWLInfo(id: Int, completion: @escaping (Result<PlayerWL, HTTPError>) -> Void) -> Cancellable?
     func requestPlayerMatchesInfo(id: Int, completion: @escaping (Result<[PlayerMatch], HTTPError>) -> Void) -> Cancellable?
 }
 
-final class PlayerInfoImp: PlayerInfoService {
+final class PlayerInfoServiceImp: PlayerInfoService {
     private let networkClient: NetworkClient
 
     init(networkClient: NetworkClient) {
@@ -14,7 +14,7 @@ final class PlayerInfoImp: PlayerInfoService {
     }
 
     @discardableResult
-    func requestPlayerMainInfo(id: Int, completion: @escaping (Result<Players, HTTPError>) -> Void) -> Cancellable? {
+    func requestPlayerMainInfo(id: Int, completion: @escaping (Result<PlayerMainInfo, HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
             request: createPlayerRequest(id: id),
             completion: completion
