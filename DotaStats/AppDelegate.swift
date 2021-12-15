@@ -8,10 +8,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let appCoordinator = AppCoordinator()
-        window!.rootViewController = appCoordinator.tabBarController
-        window!.makeKeyAndVisible()
-        application.statusBarStyle = .lightContent
+//        let appCoordinator = AppCoordinator()
+//        window!.rootViewController = appCoordinator.tabBarController
+//        window!.makeKeyAndVisible()
+//        application.statusBarStyle = .lightContent
+//        return true
+        guard let window = window else { return false }
+
+        let view = ProPlayersModuleViewController()
+        window.rootViewController = view
+        window.makeKeyAndVisible()
         return true
     }
 }

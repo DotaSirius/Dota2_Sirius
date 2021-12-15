@@ -13,7 +13,8 @@ final class ProPlayersModuleBuilder {
 
     init(output: ProPlayersModuleOutput, networkService: NetworkService) {
         presenter = ProPlayersModulePresenter(networkService: networkService, output: output)
-        viewController = ProPlayersModuleViewController(output: presenter)
+//        viewController = ProPlayersModuleViewController(output: presenter)
+        viewController = ProPlayersModuleViewController()
         presenter.view = viewController
     }
 }
