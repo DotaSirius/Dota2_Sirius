@@ -1,14 +1,14 @@
 import UIKit
 
-protocol ProPlayersModuleViewInput: AnyObject {
-    func updateState(_ state: ProPlayerModuleViewState)
+protocol TeamsModuleViewInput: AnyObject {
+    func updateState(_ state: TeamModuleViewState)
 }
 
-protocol ProPlayersModuleViewOutput: AnyObject {
+protocol TeamsModuleViewOutput: AnyObject {
     func playerSelected(_ player: Player)
 }
 
-final class ProPlayersModuleViewController: UIViewController {
+final class TeamsModuleViewController: UIViewController {
 //    private var output: ProPlayersModuleViewOutput?
 //
 //    init(output: ProPlayersModuleViewOutput) {
@@ -17,10 +17,10 @@ final class ProPlayersModuleViewController: UIViewController {
 //
 //    }
     private lazy var tableView = UITableView()
-    
+
     init() {
         super.init(nibName: nil, bundle: nil)
-        tableView.register(ProPlayerCell.self, forCellReuseIdentifier: ProPlayerCell.identifier)
+        tableView.register(TeamsCell.self, forCellReuseIdentifier: TeamsCell.identifier)
         tableView.dataSource = self
         view.addSubview(tableView)
     }
@@ -35,33 +35,32 @@ final class ProPlayersModuleViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
         tableView.frame = view.bounds
     }
 }
 
 // MARK: - PlayersModuleViewInput
 
-extension ProPlayersModuleViewController: ProPlayersModuleViewInput {
-    func updateState(_ state: ProPlayerModuleViewState) {
+extension TeamsModuleViewController: TeamsModuleViewInput {
+    func updateState(_ state: TeamModuleViewState) {
         //
     }
 }
 
-extension ProPlayersModuleViewController: UITableViewDataSource {
+extension TeamsModuleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        30
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProPlayerCell.identifier) as? ProPlayerCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TeamsCell.identifier) as? TeamsCell else {
             return .init()
         }
-        let isEven = indexPath.row % 2 == 0
-        cell.configure(isEven: isEven)
-        return cell 
+        cell.configure(with: "https://steamusercontent-a.akamaihd.net/ugc/1773822957617535601/F40F2155B92321415E972B787C5B1B0FFF06155A/", numOfTeam: indexPath.row)
+        return cell
     }
-    
-//    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz <- 32
+
 }
+
 

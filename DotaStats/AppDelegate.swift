@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
         guard let window = window else { return false }
 
-        let view = ProPlayersModuleViewController()
+        let view = TeamsModuleViewController()
         window.rootViewController = view
         window.makeKeyAndVisible()
         return true

@@ -67,7 +67,8 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(SearchPlayerTableViewCell.self, forCellReuseIdentifier: SearchPlayerTableViewCell.reuseIdentifier)
+        tableView.register(SearchPlayerTableViewCell.self,
+                           forCellReuseIdentifier: SearchPlayerTableViewCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -142,9 +143,7 @@ final class SearchPlayerModuleViewController: UIViewController {
     // MARK: Show/hide errors function
 
     func showError() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.0,
-                       options: [.curveEaseInOut]) {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut]) {
             self.errorConstraint?.constant = 35
             self.errorView.alpha = 1
             self.view.layoutIfNeeded()
@@ -152,9 +151,7 @@ final class SearchPlayerModuleViewController: UIViewController {
     }
 
     func hideError() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0.0,
-                       options: [.curveEaseOut]) {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut]) {
             self.errorConstraint?.constant = 0
             self.errorView.alpha = 0
             self.view.layoutIfNeeded()
@@ -175,13 +172,16 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchPlayerTableViewCell.reuseIdentifier, for: indexPath) as? SearchPlayerTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: SearchPlayerTableViewCell.reuseIdentifier,
+            for: indexPath
+        ) as? SearchPlayerTableViewCell else {
             return .init()
         }
         guard let player = output?.getData(at: indexPath) else {
             return cell
         }
-        
+
         cell.configurePlayer(
             newAvatarImage: UIImage(named: "players")!,
             newNickname: player.personaname ?? "unknown",
@@ -202,6 +202,7 @@ extension SearchPlayerModuleViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         updateState(.loading)
         output?.search(searchBar.text ?? "")

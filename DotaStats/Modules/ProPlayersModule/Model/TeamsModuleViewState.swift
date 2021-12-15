@@ -1,6 +1,6 @@
 import Foundation
 
-enum ProPlayerModuleViewState {
+enum TeamsModuleViewState {
     case loading
     case success
     case failure
