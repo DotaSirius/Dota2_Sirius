@@ -1,29 +1,28 @@
-import XCTest
 @testable import DotaStats
+import XCTest
 
-class ProPlayersDecodingTest: XCTestCase {
+final class ProPlayersDecodingTest: XCTestCase {
     func testJSONDecoding() throws {
         let bundle = Bundle(for: type(of: self))
-        
+
         guard let path = bundle.url(forResource: "MockProPlayers", withExtension: "json") else {
             XCTFail("Missing file: MockProPlayers.json")
             return
         }
 
         let jsonData = try Data(contentsOf: path)
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-        
+
+        let formatter = DateFormatter.ISO8601WithSecondsFormatter
+
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         jsonDecoder.dateDecodingStrategy = .formatted(formatter)
 
         let decodedData = try jsonDecoder.decode([ProPlayer].self,
-                                                         from: jsonData)
+                                                 from: jsonData)
 
         let firstPlayer = decodedData[0]
-        
+
         XCTAssertEqual(firstPlayer.accountId, 88470)
         XCTAssertEqual(firstPlayer.steamid, "76561197960354198")
         XCTAssertEqual(firstPlayer.avatar, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b9/b92793127bfa6ceb1edbd2b7b25011b1dc6db89e.jpg")

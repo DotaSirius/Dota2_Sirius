@@ -1,25 +1,29 @@
 import Foundation
 
-protocol PlayerSearchService: AnyObject {
-    
+protocol ProPlayerService: AnyObject {
     func requestProPlayers(_ closure: @escaping (Result<[ProPlayer], HTTPError>) -> Void) -> Cancellable?
 }
 
-final class PlayerSearchServiceImp: PlayerSearchService {
-    
+final class ProPlayerServiceImp: ProPlayerService {
     private let networkClient: NetworkClient
 
     init(networkClient: NetworkClient) {
         self.networkClient = networkClient
     }
     
+    @discardableResult
     func requestProPlayers(_ closure: @escaping (Result<[ProPlayer], HTTPError>) -> Void) -> Cancellable? {
-        networkClient.processRequest(request: createRequest()) { result in
-            closure(result)
-        }
+        networkClient.processRequest(
+            request: createRequest(),
+            completion: closure
+        )
     }
     
     private func createRequest() -> HTTPRequest {
-         HTTPRequest(route: "https://api.opendota.com/api/proPlayers")
+        HTTPRequest(
+            route: "https://api.opendota.com/api/proPlayers",
+            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy.formatted(DateFormatter.ISO8601WithSecondsFormatter)
+        )
     }
 }
+

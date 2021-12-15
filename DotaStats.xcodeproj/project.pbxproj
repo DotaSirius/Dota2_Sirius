@@ -28,15 +28,14 @@
 		3CCB10512768FEB000846BED /* PlayerInfoFromSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */; };
 		3CCB10532768FFBB00846BED /* ProPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB10522768FFBA00846BED /* ProPlayers.swift */; };
 		3CCB10542768FFBB00846BED /* ProPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB10522768FFBA00846BED /* ProPlayers.swift */; };
-		3CCB10562768FFE200846BED /* ProPlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB10552768FFE200846BED /* ProPlayersService.swift */; };
-		3CCB10572768FFE200846BED /* ProPlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB10552768FFE200846BED /* ProPlayersService.swift */; };
-		3CCB105A2768FFF000846BED /* ProPlayersServiceRecievingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB10582768FFF000846BED /* ProPlayersServiceRecievingDataTest.swift */; };
-		3CCB105C2769001700846BED /* MockProPlayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CCB105B2769001700846BED /* MockProPlayers.json */; };
-		3CCB105D2769001700846BED /* MockProPlayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CCB105B2769001700846BED /* MockProPlayers.json */; };
-		3CCB10602769002E00846BED /* ProPlayersDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB105E2769002E00846BED /* ProPlayersDecodingTest.swift */; };
 		3CCB10612769025800846BED /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49062768C37200103100 /* SearchPlayerResult.swift */; };
 		3CCB106227690C9C00846BED /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D25187C2769029E0005374B /* AppCoordinator.swift */; };
 		3CCB106327690CB200846BED /* MatchesModuleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D25186C2768BEA70005374B /* MatchesModuleViewState.swift */; };
+		3CCB10662769150500846BED /* ProPlayersDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB10642769150500846BED /* ProPlayersDecodingTest.swift */; };
+		3CCB10692769AFEF00846BED /* MockProPlayers.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CCB10682769AFEF00846BED /* MockProPlayers.json */; };
+		3CCB106B2769B18D00846BED /* ProPlayersServiceRecievingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB106A2769B18D00846BED /* ProPlayersServiceRecievingDataTest.swift */; };
+		3CCB106D2769B24700846BED /* ProPlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB106C2769B24700846BED /* ProPlayersService.swift */; };
+		3CCB106E2769B2D400846BED /* ProPlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB106C2769B24700846BED /* ProPlayersService.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchDetailDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatchDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */; };
@@ -114,10 +113,10 @@
 		303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchServiceReceivingDataTest.swift; sourceTree = "<group>"; };
 		303AC4E62767933700A8C462 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 		3CCB10522768FFBA00846BED /* ProPlayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPlayers.swift; path = ../../../../../TmpDota/ProPlayers.swift; sourceTree = "<group>"; };
-		3CCB10552768FFE200846BED /* ProPlayersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPlayersService.swift; path = ../../../TmpDota/ProPlayersService.swift; sourceTree = "<group>"; };
-		3CCB10582768FFF000846BED /* ProPlayersServiceRecievingDataTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPlayersServiceRecievingDataTest.swift; path = ../../../TmpDota/ProPlayersServiceRecievingDataTest.swift; sourceTree = "<group>"; };
-		3CCB105B2769001700846BED /* MockProPlayers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MockProPlayers.json; path = ../../../../../TmpDota/MockProPlayers.json; sourceTree = "<group>"; };
-		3CCB105E2769002E00846BED /* ProPlayersDecodingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProPlayersDecodingTest.swift; path = ../../../../TmpDota/ProPlayersDecodingTest.swift; sourceTree = "<group>"; };
+		3CCB10642769150500846BED /* ProPlayersDecodingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProPlayersDecodingTest.swift; sourceTree = "<group>"; };
+		3CCB10682769AFEF00846BED /* MockProPlayers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockProPlayers.json; sourceTree = "<group>"; };
+		3CCB106A2769B18D00846BED /* ProPlayersServiceRecievingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPlayersServiceRecievingDataTest.swift; sourceTree = "<group>"; };
+		3CCB106C2769B24700846BED /* ProPlayersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPlayersService.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatchDetail.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
@@ -247,8 +246,8 @@
 				303AC4CE276370D400A8C462 /* Data */,
 				303AC4CF276370F400A8C462 /* MatchesDecodingTest.swift */,
 				3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */,
+				3CCB10642769150500846BED /* ProPlayersDecodingTest.swift */,
 				3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */,
-				3CCB105E2769002E00846BED /* ProPlayersDecodingTest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -259,7 +258,7 @@
 				303AC4D1276371A600A8C462 /* MockMatches.json */,
 				3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */,
 				3CF8F5232763C72600AC0DD4 /* MockPlayer.json */,
-				3CCB105B2769001700846BED /* MockProPlayers.json */,
+				3CCB10682769AFEF00846BED /* MockProPlayers.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -446,7 +445,7 @@
 				ECAA0D042764ED8B00DF81ED /* MatchesService.swift */,
 				303AC4E12767873E00A8C462 /* PlayerSearchService.swift */,
 				EC1415F3276749A200715D00 /* MatchDetailService.swift */,
-				3CCB10552768FFE200846BED /* ProPlayersService.swift */,
+				3CCB106C2769B24700846BED /* ProPlayersService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -465,7 +464,7 @@
 				ECAA0D082764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift */,
 				303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */,
 				EC1415F627674C2000715D00 /* MatchDetailServiceReceivingDataTest.swift */,
-				3CCB10582768FFF000846BED /* ProPlayersServiceRecievingDataTest.swift */,
+				3CCB106A2769B18D00846BED /* ProPlayersServiceRecievingDataTest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -582,7 +581,7 @@
 			files = (
 				303AC4D2276371A600A8C462 /* MockMatches.json in Resources */,
 				3CF8F5262763C87C00AC0DD4 /* MockMatchDetail.json in Resources */,
-				3CCB105D2769001700846BED /* MockProPlayers.json in Resources */,
+				3CCB10692769AFEF00846BED /* MockProPlayers.json in Resources */,
 				3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,7 +592,6 @@
 			files = (
 				B61F59552760A4FD00D08CEA /* LaunchScreen.storyboard in Resources */,
 				B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */,
-				3CCB105C2769001700846BED /* MockProPlayers.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,10 +603,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CCB10512768FEB000846BED /* PlayerInfoFromSearch.swift in Sources */,
-				3CCB10602769002E00846BED /* ProPlayersDecodingTest.swift in Sources */,
 				EC1415F827674C2000715D00 /* MatchDetailServiceReceivingDataTest.swift in Sources */,
 				EC1415EB2767290F00715D00 /* (null) in Sources */,
-				3CCB105A2768FFF000846BED /* ProPlayersServiceRecievingDataTest.swift in Sources */,
 				3CF8F5212763C55900AC0DD4 /* MatchDetailDecodingTest.swift in Sources */,
 				ECAA0D0A2764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift in Sources */,
 				303AC4D82764EFBA00A8C462 /* MatchDetail.swift in Sources */,
@@ -623,13 +619,15 @@
 				303AC4E32767873E00A8C462 /* PlayerSearchService.swift in Sources */,
 				303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */,
 				303AC4E52767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift in Sources */,
-				3CCB10572768FFE200846BED /* ProPlayersService.swift in Sources */,
+				3CCB10662769150500846BED /* ProPlayersDecodingTest.swift in Sources */,
 				EC1415E6276728E200715D00 /* NetworkClient.swift in Sources */,
 				EC1415E8276728F200715D00 /* HTTPMethod.swift in Sources */,
+				3CCB106B2769B18D00846BED /* ProPlayersServiceRecievingDataTest.swift in Sources */,
 				EC1415E7276728EA00715D00 /* HTTPRequest.swift in Sources */,
 				EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
 				EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */,
 				300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */,
+				3CCB106E2769B2D400846BED /* ProPlayersService.swift in Sources */,
 				303AC4DD27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift in Sources */,
 				EC1415EA2767290800715D00 /* HTTPNetworkResponse.swift in Sources */,
 				303AC4DB2767418A00A8C462 /* Match.swift in Sources */,
@@ -664,7 +662,6 @@
 				5D2518662768BE8F0005374B /* ListTournamentsCell.swift in Sources */,
 				5D25186D2768BEA70005374B /* MatchesModulePresenterState.swift in Sources */,
 				EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */,
-				3CCB10562768FFE200846BED /* ProPlayersService.swift in Sources */,
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
 				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
@@ -673,6 +670,7 @@
 				EC4E6FAB2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
 				303AC4E22767873E00A8C462 /* PlayerSearchService.swift in Sources */,
 				5D25186E2768BEA70005374B /* MatchCollectionPresenterData.swift in Sources */,
+				3CCB106D2769B24700846BED /* ProPlayersService.swift in Sources */,
 				ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */,
 				F0F2EE4F2764D14400EAB7E5 /* SearchPlayerModuleViewState.swift in Sources */,
 				EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */,
