@@ -1,5 +1,4 @@
 @testable import DotaStats
-import Foundation
 import XCTest
 
 class ProPlayersServiceReceivingDataTest: XCTestCase {

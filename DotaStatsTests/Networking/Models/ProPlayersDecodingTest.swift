@@ -25,9 +25,11 @@ final class ProPlayersDecodingTest: XCTestCase {
 
         XCTAssertEqual(firstPlayer.accountId, 88470)
         XCTAssertEqual(firstPlayer.steamid, "76561197960354198")
+        // swiftlint:disable line_length
         XCTAssertEqual(firstPlayer.avatar, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b9/b92793127bfa6ceb1edbd2b7b25011b1dc6db89e.jpg")
         XCTAssertEqual(firstPlayer.avatarmedium, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b9/b92793127bfa6ceb1edbd2b7b25011b1dc6db89e_medium.jpg")
         XCTAssertEqual(firstPlayer.avatarfull, "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/b9/b92793127bfa6ceb1edbd2b7b25011b1dc6db89e_full.jpg")
+        // swiftlint:enable line_length
         XCTAssertEqual(firstPlayer.profileurl, "https://steamcommunity.com/id/misterdurst69/")
         XCTAssertEqual(firstPlayer.personaname, "Tzy丶")
         XCTAssertEqual(firstPlayer.lastLogin, nil)
