@@ -1,9 +1,8 @@
+@testable import DotaStats
 import Foundation
 import XCTest
-@testable import DotaStats
 
 class ProPlayersServiceReceivingDataTest: XCTestCase {
-    
     private func receiveData() -> [ProPlayer]? {
         var receivedResult: [ProPlayer]?
         
