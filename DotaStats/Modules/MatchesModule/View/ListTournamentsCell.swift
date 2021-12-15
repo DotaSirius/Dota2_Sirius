@@ -9,7 +9,7 @@ final class ListTournamentsCell: UITableViewHeaderFooterView {
 
     static let reuseIdentifier = "ListTournamentsCell"
     weak var delegate: ListTournamentsCellDelegate?
-    var section: Int?
+    private var section: Int?
     private lazy var title: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)

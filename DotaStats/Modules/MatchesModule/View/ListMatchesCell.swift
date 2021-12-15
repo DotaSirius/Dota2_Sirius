@@ -2,6 +2,7 @@ import UIKit
 
 final class ListMatchesCell: UITableViewCell {
     // MARK: - Properties
+    
     static let reuseIdentifier = "ListMatchesCell"
 
     private lazy var firstTeam: UILabel = {
@@ -33,27 +34,29 @@ final class ListMatchesCell: UITableViewCell {
         label.numberOfLines = 1
         return label
     }()
-    
+
     // MARK: - Init
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         setup()
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Cell configuration
+    
     func configure(with data: TournamentViewState.Match) {
         firstTeam.text = data.radiantTeam
         secondTeam.text = data.direTeam
         score.text = data.score
     }
-    
+
     // MARK: - Setup constrains
+    
     private func setup() {
         backgroundColor = ColorPalette.alternativeBackground
 

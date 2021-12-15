@@ -21,7 +21,7 @@ final class MatchesModuleViewController: UIViewController {
     // MARK: - Properties
 
     private var output: MatchesModuleViewOutput?
-    var spiner = UIActivityIndicatorView(style: .large)
+    private lazy var spiner = UIActivityIndicatorView(style: .large)
     private var errorConstraint: NSLayoutConstraint?
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -97,8 +97,7 @@ final class MatchesModuleViewController: UIViewController {
     func showError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
-                       options: [.curveEaseInOut])
-        {
+                       options: [.curveEaseInOut]) {
             self.errorConstraint?.constant = 35
             self.errorView.alpha = 1
             self.view.layoutIfNeeded()
@@ -108,8 +107,7 @@ final class MatchesModuleViewController: UIViewController {
     func hideError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
-                       options: [.curveEaseOut])
-        {
+                       options: [.curveEaseOut]) {
             self.errorConstraint?.constant = 0
             self.errorView.alpha = 0
             self.view.layoutIfNeeded()
@@ -118,7 +116,6 @@ final class MatchesModuleViewController: UIViewController {
 
     @objc func handleTap(_: UITapGestureRecognizer) {
         hideError()
-        print("tapped")
     }
 
     // MARK: - Setup UILabel "MATCHES"
@@ -176,13 +173,15 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
 
     func insertRows(_ rows: [IndexPath]) {
         tableView.insertRows(at: rows, with: .none)
-        guard let head = tableView.headerView(forSection: rows[0].section) as? ListTournamentsCell else { return }
+        guard let head = tableView.headerView(forSection: rows[0].section)
+                as? ListTournamentsCell else { return }
         head.setCollapsed(false)
     }
 
     func deleteRows(_ rows: [IndexPath]) {
         tableView.deleteRows(at: rows, with: .none)
-        guard let head = tableView.headerView(forSection: rows[0].section) as? ListTournamentsCell else { return }
+        guard let head = tableView.headerView(forSection: rows[0].section)
+                as? ListTournamentsCell else { return }
         head.setCollapsed(true)
     }
 }
@@ -236,7 +235,9 @@ extension MatchesModuleViewController: UITableViewDelegate {
 extension MatchesModuleViewController: ListTournamentsCellDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let data = output?.getDataTournament(section: section) else { return nil }
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTournamentsCell.reuseIdentifier) as? ListTournamentsCell else { return nil }
+        guard let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: ListTournamentsCell.reuseIdentifier)
+                as? ListTournamentsCell else { return nil }
         header.configure(with: data, section: section, delegate: self)
         return header
     }
