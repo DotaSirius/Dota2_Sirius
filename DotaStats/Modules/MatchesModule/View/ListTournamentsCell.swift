@@ -5,19 +5,30 @@ protocol ListTournamentsCellDelegate: AnyObject {
 }
 
 final class ListTournamentsCell: UITableViewHeaderFooterView {
+    // MARK: - Properties
+
     static let reuseIdentifier = "ListTournamentsCell"
     weak var delegate: ListTournamentsCellDelegate?
     var section: Int?
+    private lazy var title: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        label.textColor = ColorPalette.mainText
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.textAlignment = .left
+        return label
+    }()
 
-    func setup(withTitle title: String, section: Int, delegate: ListTournamentsCellDelegate) {
-        self.delegate = delegate
-        self.section = section
-        self.title.text = title
-    }
+    private lazy var arrowLabel: UIImageView = {
+        let view = UIImageView(image: UIImage(systemName: "chevron.right"))
+        view.tintColor = ColorPalette.accent
+        view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
+    // MARK: - Init
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -30,27 +41,25 @@ final class ListTournamentsCell: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc func selectHeaderAction(gesterRecognizer: UITapGestureRecognizer) {
-        delegate?.toggleSection(header: self, section: (self.section)!)
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
 
-    lazy var title: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        label.textColor = ColorPalette.mainText
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
-        label.textAlignment = .left
-        return label
-    }()
+    @objc func selectHeaderAction(gesterRecognizer: UITapGestureRecognizer) {
+        delegate?.toggleSection(header: self, section: section!)
+    }
 
-    lazy var arrowLabel: UIImageView = {
-        let view = UIImageView(image: UIImage(systemName: "chevron.right"))
-        view.tintColor = ColorPalette.accent
-        view.contentMode = .scaleAspectFit
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    // MARK: - Cell configuration
+
+    func configure(with data: TournamentViewState, section: Int, delegate: ListTournamentsCellDelegate) {
+        self.delegate = delegate
+        self.section = section
+        title.text = data.leagueName
+        let degree = data.isOpen ? .pi / 2 : 0.0
+        arrowLabel.transform = CGAffineTransform(rotationAngle: CGFloat(degree))
+    }
+
+    // MARK: - Arrow animation
 
     func setCollapsed(_ collapsed: Bool) {
         let animation = CABasicAnimation(keyPath: "transform.rotation")
@@ -61,7 +70,9 @@ final class ListTournamentsCell: UITableViewHeaderFooterView {
         arrowLabel.layer.add(animation, forKey: nil)
     }
 
-    func addView() {
+    // MARK: - Setup constrains
+
+    private func addView() {
         contentView.addSubview(title)
         contentView.addSubview(arrowLabel)
         contentView.backgroundColor = ColorPalette.separator

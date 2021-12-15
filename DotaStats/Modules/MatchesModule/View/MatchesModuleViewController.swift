@@ -22,6 +22,7 @@ final class MatchesModuleViewController: UIViewController {
 
     private var output: MatchesModuleViewOutput?
     var spiner = UIActivityIndicatorView(style: .large)
+    private var errorConstraint: NSLayoutConstraint?
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(ListMatchesCell.self, forCellReuseIdentifier: ListMatchesCell.reuseIdentifier)
@@ -49,6 +50,16 @@ final class MatchesModuleViewController: UIViewController {
         return label
     }()
 
+    private lazy var errorView: ErrorView = {
+        let view = ErrorView()
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        let tapActionHideError = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        view.addGestureRecognizer(tapActionHideError)
+        return view
+    }()
+
     // MARK: - Init
 
     init(output: MatchesModuleViewOutput) {
@@ -60,19 +71,69 @@ final class MatchesModuleViewController: UIViewController {
         super.init(coder: coder)
     }
 
-    // MARK: - Set up UILabel "MATCHES"
+    // MARK: - Life cycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpErrorViewConstraints()
+    }
+
+    // MARK: ErrorView Constraints
+
+    private func setUpErrorViewConstraints() {
+        view.addSubview(errorView)
+        let errorConstraint = errorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        NSLayoutConstraint.activate([
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorConstraint,
+            errorView.heightAnchor.constraint(equalToConstant: 90)
+        ])
+        self.errorConstraint = errorConstraint
+    }
+
+    // MARK: Show/hide errors function
+
+    func showError() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseInOut])
+        {
+            self.errorConstraint?.constant = 35
+            self.errorView.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    func hideError() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseOut])
+        {
+            self.errorConstraint?.constant = 0
+            self.errorView.alpha = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func handleTap(_: UITapGestureRecognizer) {
+        hideError()
+        print("tapped")
+    }
+
+    // MARK: - Setup UILabel "MATCHES"
 
     private func setUpLabel() {
         view.addSubview(label)
         NSLayoutConstraint.activate([
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            label.topAnchor.constraint(equalTo: errorView.bottomAnchor),
             label.bottomAnchor.constraint(equalTo: tableView.topAnchor)
         ])
     }
 
-    // MARK: - Set up UITableView
+    // MARK: - Setup UITableView
 
     private func setUpTableView() {
         view.addSubview(tableView)
@@ -80,8 +141,16 @@ final class MatchesModuleViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+
+    // MARK: - Setup Loading
+
+    private func setupLoading() {
+        spiner.color = ColorPalette.accent
+        view.addSubview(spiner)
+        spiner.center = view.center
     }
 }
 
@@ -91,13 +160,14 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
     func update(state: MatchesModuleViewState) {
         switch state {
         case .loading:
-            spiner.color = ColorPalette.accent
-            view.addSubview(spiner)
-            spiner.center = view.center
+            hideError()
+            setupLoading()
             spiner.startAnimating()
         case .error:
             spiner.removeFromSuperview()
+            showError()
         case .success:
+            hideError()
             spiner.removeFromSuperview()
             setUpTableView()
             setUpLabel()
@@ -105,13 +175,13 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
     }
 
     func insertRows(_ rows: [IndexPath]) {
-        tableView.insertRows(at: rows, with: .automatic)
+        tableView.insertRows(at: rows, with: .none)
         guard let head = tableView.headerView(forSection: rows[0].section) as? ListTournamentsCell else { return }
         head.setCollapsed(false)
     }
 
     func deleteRows(_ rows: [IndexPath]) {
-        tableView.deleteRows(at: rows, with: .automatic)
+        tableView.deleteRows(at: rows, with: .none)
         guard let head = tableView.headerView(forSection: rows[0].section) as? ListTournamentsCell else { return }
         head.setCollapsed(true)
     }
@@ -129,7 +199,7 @@ extension MatchesModuleViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 55
+        return 60
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -143,13 +213,11 @@ extension MatchesModuleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = output?.getDataMatch(indexPath: indexPath)
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: ListMatchesCell.reuseIdentifier, for: indexPath) as? ListMatchesCell else {
-                return UITableViewCell()
-            }
-        cell.setup()
-        cell.firstTeam.text = data?.radiantTeam.trimmingCharacters(in: .whitespaces)
-        cell.score.text = data?.score
-        cell.secondTeam.text = data?.direTeam.trimmingCharacters(in: .whitespaces)
+            withIdentifier: ListMatchesCell.reuseIdentifier, for: indexPath
+        ) as? ListMatchesCell else {
+            return UITableViewCell()
+        }
+        cell.configure(with: data!)
         return cell
     }
 }
@@ -172,8 +240,8 @@ extension MatchesModuleViewController: UITableViewDelegate {
 extension MatchesModuleViewController: ListTournamentsCellDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let data = output?.getDataTournament(section: section) else { return nil }
-        let header = ListTournamentsCell()
-        header.setup(withTitle: data.leagueName, section: section, delegate: self)
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListTournamentsCell.reuseIdentifier) as? ListTournamentsCell else { return nil }
+        header.configure(with: data, section: section, delegate: self)
         return header
     }
 
