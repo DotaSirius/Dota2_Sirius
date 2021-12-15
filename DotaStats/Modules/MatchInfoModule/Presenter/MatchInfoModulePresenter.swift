@@ -29,38 +29,38 @@ final class MatchInfoModulePresenter {
             case .success:
                 self.convertedData = [
                     MatchTableViewCellType.mainMatchInfo(
-                        converter.mainMatchInfo(rawMatchInfo: self.rawMatchInfo)
+                        converter.mainMatchInfo(from: self.rawMatchInfo)
                     ),
                     MatchTableViewCellType.additionalMatchInfo(
-                        converter.additionalMatchInfo(rawMatchInfo: self.rawMatchInfo)
+                        converter.additionalMatchInfo(from: self.rawMatchInfo)
                     ),
                     MatchTableViewCellType.teamMatchInfo(
-                        converter.radiantMatchInfo(rawMatchInfo: self.rawMatchInfo)
+                        converter.radiantMatchInfo(from: self.rawMatchInfo)
                     ),
                     MatchTableViewCellType.matchPlayerHeaderInfo
                 ]
                 for index in 0..<5 {
                     self.convertedData.append(
                         MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(rawMatchInfo: self.rawMatchInfo, playerNumber: index)
+                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index)
                         )
                     )
                 }
                 self.convertedData.append(
                     MatchTableViewCellType.teamMatchInfo(
-                        converter.direMatchInfo(rawMatchInfo: self.rawMatchInfo)
+                        converter.direMatchInfo(from: self.rawMatchInfo)
                     )
                 )
                 for index in 5..<10 {
                     self.convertedData.append(
                         MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(rawMatchInfo: self.rawMatchInfo, playerNumber: index)
+                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index)
                         )
                     )
                 }
                 view?.update(state: .success)
-            case .error:
-                view?.update(state: .error)
+            case .error(let error):
+                view?.update(state: .error(error))
             case .loading:
                 view?.update(state: .loading)
             }
@@ -75,7 +75,7 @@ final class MatchInfoModulePresenter {
         self.matchId = 1
     }
 
-    private func updateView() {
+    private func requestData() {
         state = .loading
         _ = networkService.requestMatchDetail(id: matchId) { [weak self] result in
             guard
@@ -89,8 +89,7 @@ final class MatchInfoModulePresenter {
                 self.state = .success
 
             case .failure(let error):
-                self.state = .error
-                print(error)
+                self.state = .error(error)
             }
         }
     }
@@ -101,7 +100,7 @@ final class MatchInfoModulePresenter {
 extension MatchInfoModulePresenter: MatchInfoModuleInput {
     func setMatchId(_ id: Int) {
         matchId = id
-        updateView()
+        requestData()
     }
 }
 

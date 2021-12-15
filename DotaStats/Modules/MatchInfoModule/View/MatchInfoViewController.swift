@@ -44,7 +44,7 @@ final class MatchInfoViewController: UIViewController {
         view.backgroundColor = ColorPalette.mainBackground
     }
 
-    func setUpConstraints() {
+    func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -97,10 +97,10 @@ extension MatchInfoViewController: MatchInfoModuleViewInput {
             spiner.startAnimating()
         case .error:
             spiner.removeFromSuperview()
-        // TO DO: Errors
+        // TODO: Errors
         case .success:
             view.addSubview(tableView)
-            setUpConstraints()
+            setupConstraints()
         }
     }
 }

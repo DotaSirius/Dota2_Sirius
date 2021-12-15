@@ -59,7 +59,7 @@ extension AppCoordinator {
         )
     }
 
-    private func matchInfoModuleBuilder() -> MatchInfoModuleBuilder {
+    private func makeMatchInfoModuleBuilder() -> MatchInfoModuleBuilder {
         MatchInfoModuleBuilder(
             output: self,
             networkService: MatchDetailImp(
@@ -80,7 +80,7 @@ extension AppCoordinator: PlayersModuleOutput {
 
 extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
-        let matchInfoModule = matchInfoModuleBuilder()
+        let matchInfoModule = makeMatchInfoModuleBuilder()
         matchInfoModule.input.setMatchId(matchId)
         tabBarController.present(matchInfoModule.viewControler, animated: true)
     }

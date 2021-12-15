@@ -1,5 +1,5 @@
 enum MatchesInfoModuleViewState {
     case success
     case loading
-    case error
+    case error(HTTPError)
 }

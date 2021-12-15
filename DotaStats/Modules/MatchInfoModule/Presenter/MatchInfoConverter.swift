@@ -2,98 +2,17 @@ import Foundation
 import UIKit
 
 protocol MatchInfoConverter: AnyObject {
-    func mainMatchInfo(rawMatchInfo: MatchDetail) -> MainMatchInfo
-    func additionalMatchInfo(rawMatchInfo: MatchDetail) -> AdditionalMatchInfo
-    func playerInfo(rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList
-    func direMatchInfo(rawMatchInfo: MatchDetail) -> TeamMatchInfo
-    func radiantMatchInfo(rawMatchInfo: MatchDetail) -> TeamMatchInfo
+    func mainMatchInfo(from rawMatchInfo: MatchDetail) -> MainMatchInfo
+    func additionalMatchInfo(from rawMatchInfo: MatchDetail) -> AdditionalMatchInfo
+    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList
+    func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
+    func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
 }
 
-class MatchInfoConverterImp: MatchInfoConverter {
-    func mainMatchInfo(rawMatchInfo: MatchDetail) -> MainMatchInfo {
-        let winnersLabelText = convert(isRadiantWin: rawMatchInfo.radiantWin)
-        let gameTimeLabelText = convert(duration: rawMatchInfo.duration)
-        let firstTeamScoreLabelText = convert(score: rawMatchInfo.radiantScore)
-        let secondTeamScoreLabelText = convert(score: rawMatchInfo.direScore)
-        let matchEndTimeLabelText = convert(startTime: rawMatchInfo.startTime, duration: rawMatchInfo.duration)
-        return MainMatchInfo(
-            winnersLabelText: winnersLabelText,
-            gameTimeLabelText: gameTimeLabelText,
-            firstTeamScoreLabelText: firstTeamScoreLabelText,
-            secondTeamScoreLabelText: secondTeamScoreLabelText,
-            matchEndTimeLabelText: matchEndTimeLabelText
-        )
-    }
-
-    func additionalMatchInfo(rawMatchInfo: MatchDetail) -> AdditionalMatchInfo {
-        let matchIdLabelText = "\(rawMatchInfo.matchId)"
-        let regionLabelText = convert(region: rawMatchInfo.region)
-        let skillLabelText = convert(skillBracket: rawMatchInfo.skill)
-        return AdditionalMatchInfo(
-            matchIdLabelText: matchIdLabelText,
-            regionLabelText: regionLabelText,
-            skillLabelText: skillLabelText
-        )
-    }
-
-    func playerInfo(rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList {
-        var safeNumber: Int
-        if playerNumber < rawMatchInfo.players.count {
-            safeNumber = playerNumber
-        } else {
-            safeNumber = rawMatchInfo.players.count - 1
-        }
-        let player = rawMatchInfo.players[safeNumber]
-        let playerNameLabelText = convert(playerName: player.personaname, playerProName: player.name)
-        let playerRankText = convert(playerRankTier: player.rankTier)
-        let playerKillsText = convert(stat: player.kills)
-        let playerDeathsText = convert(stat: player.deaths)
-        let playerAssitsText = convert(stat: player.assists)
-        let playerGoldText = convert(networth: player.totalGold)
-        return PlayerList(
-            playerNameLabelText: playerNameLabelText,
-            playerRankText: playerRankText,
-            playerKillsText: playerKillsText,
-            playerDeathsText: playerDeathsText,
-            playerAssitsText: playerAssitsText,
-            playerGoldText: playerGoldText,
-            playerImage: UIImage(named: "morphling") ?? UIImage()
-        )
-    }
-
-    func radiantMatchInfo(rawMatchInfo: MatchDetail) -> TeamMatchInfo {
-        let teamNameLabelText = "Radiant"
-        guard
-            let isRadiantWin = rawMatchInfo.radiantWin
-        else {
-            return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: "")
-        }
-        let teamWinLabel = isRadiantWin ? "Winner" : ""
-        return TeamMatchInfo(
-            teamNameLabelText: teamNameLabelText,
-            teamWinLabel: teamWinLabel
-        )
-    }
-
-    func direMatchInfo(rawMatchInfo: MatchDetail) -> TeamMatchInfo {
-        let teamNameLabelText = "Dire"
-        guard
-            let isRadiantWin = rawMatchInfo.radiantWin
-        else {
-            return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: "")
-        }
-        let teamWinLabel = isRadiantWin ? "" : "Winner"
-        return TeamMatchInfo(
-            teamNameLabelText: teamNameLabelText,
-            teamWinLabel: teamWinLabel
-        )
-    }
-}
-
-private extension MatchInfoConverterImp {
+class MatchInfoConverterImp {
     // MARK: - PlayerList converters
 
-    func convert(playerName: String?, playerProName: String?) -> String {
+    private func convert(playerName: String?, playerProName: String?) -> String {
         guard
             let playerName = playerName
         else {
@@ -106,10 +25,10 @@ private extension MatchInfoConverterImp {
         }
     }
 
-// TODO: - Приходит в виде Int. Ранги в доте называются "Legend", "Immortal" и тд.
-// Сделать правильную конвертацию из цифр в ранги
+    // TODO: - Приходит в виде Int. Ранги в доте называются "Legend", "Immortal" и тд.
+    // Сделать правильную конвертацию из цифр в ранги
 
-    func convert(playerRankTier: Int?) -> String {
+    private func convert(playerRankTier: Int?) -> String {
         guard
             let playerRankTier = playerRankTier
         else {
@@ -118,7 +37,7 @@ private extension MatchInfoConverterImp {
         return "\(playerRankTier)"
     }
 
-    func convert(networth: Int?) -> String {
+    private func convert(networth: Int?) -> String {
         guard
             let networth = networth
         else {
@@ -127,7 +46,7 @@ private extension MatchInfoConverterImp {
         return "\(networth / 1000)k"
     }
 
-    func convert(stat: Int?) -> String {
+    private func convert(stat: Int?) -> String {
         guard
             let stat = stat
         else {
@@ -138,7 +57,7 @@ private extension MatchInfoConverterImp {
 
     // MARK: - MainMatchInfo converters
 
-    func convert(isRadiantWin: Bool?) -> String {
+    private func convert(isRadiantWin: Bool?) -> String {
         guard
             let isRadiantWin = isRadiantWin
         else {
@@ -147,7 +66,7 @@ private extension MatchInfoConverterImp {
         return isRadiantWin ? "Radiant Victory" : "Dire Victory"
     }
 
-    func convert(duration: Int?) -> String {
+    private func convert(duration: Int?) -> String {
         guard
             let duration = duration
         else {
@@ -162,7 +81,7 @@ private extension MatchInfoConverterImp {
         return "\(hrStr)\(minStr)\(secStr)"
     }
 
-    func convert(score: Int?) -> String {
+    private func convert(score: Int?) -> String {
         guard
             let score = score
         else {
@@ -171,9 +90,9 @@ private extension MatchInfoConverterImp {
         return "\(score)"
     }
 
-// How long ago match was ended. Not implemented yet,
-// because in future startTime will be converted from Int to Date in Networking
-    func convert(startTime: Date?, duration: Int?) -> String {
+    // How long ago match was ended. Not implemented yet,
+    // because in future startTime will be converted from Int to Date in Networking
+    private func convert(startTime: Date?, duration: Int?) -> String {
         return "0 HOURS AGO."
     }
 
@@ -183,7 +102,7 @@ private extension MatchInfoConverterImp {
     // https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/game/dota/pak01_dir/scripts/regions.txt
 
     // swiftlint:disable cyclomatic_complexity
-    func convert(region: Int?) -> String {
+    private func convert(region: Int?) -> String {
         guard
             let region = region
         else {
@@ -228,14 +147,96 @@ private extension MatchInfoConverterImp {
         }
         return regionString
     }
+
     // swiftlint:enable cyclomatic_complexity
 
-    func convert(skillBracket: Int?) -> String {
+    private func convert(skillBracket: Int?) -> String {
         guard
             let skillBracket = skillBracket
         else {
             return "-"
         }
         return "\(skillBracket)"
+    }
+}
+
+extension MatchInfoConverterImp: MatchInfoConverter {
+    func mainMatchInfo(from rawMatchInfo: MatchDetail) -> MainMatchInfo {
+        let winnersLabelText = convert(isRadiantWin: rawMatchInfo.radiantWin)
+        let gameTimeLabelText = convert(duration: rawMatchInfo.duration)
+        let firstTeamScoreLabelText = convert(score: rawMatchInfo.radiantScore)
+        let secondTeamScoreLabelText = convert(score: rawMatchInfo.direScore)
+        let matchEndTimeLabelText = convert(startTime: rawMatchInfo.startTime, duration: rawMatchInfo.duration)
+        return MainMatchInfo(
+            winnersLabelText: winnersLabelText,
+            gameTimeLabelText: gameTimeLabelText,
+            firstTeamScoreLabelText: firstTeamScoreLabelText,
+            secondTeamScoreLabelText: secondTeamScoreLabelText,
+            matchEndTimeLabelText: matchEndTimeLabelText
+        )
+    }
+
+    func additionalMatchInfo(from rawMatchInfo: MatchDetail) -> AdditionalMatchInfo {
+        let matchIdLabelText = "\(rawMatchInfo.matchId)"
+        let regionLabelText = convert(region: rawMatchInfo.region)
+        let skillLabelText = convert(skillBracket: rawMatchInfo.skill)
+        return AdditionalMatchInfo(
+            matchIdLabelText: matchIdLabelText,
+            regionLabelText: regionLabelText,
+            skillLabelText: skillLabelText
+        )
+    }
+
+    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList {
+        var safeNumber: Int
+        if playerNumber < rawMatchInfo.players.count {
+            safeNumber = playerNumber
+        } else {
+            safeNumber = rawMatchInfo.players.count - 1
+        }
+        let player = rawMatchInfo.players[safeNumber]
+        let playerNameLabelText = convert(playerName: player.personaname, playerProName: player.name)
+        let playerRankText = convert(playerRankTier: player.rankTier)
+        let playerKillsText = convert(stat: player.kills)
+        let playerDeathsText = convert(stat: player.deaths)
+        let playerAssitsText = convert(stat: player.assists)
+        let playerGoldText = convert(networth: player.totalGold)
+        return PlayerList(
+            playerNameLabelText: playerNameLabelText,
+            playerRankText: playerRankText,
+            playerKillsText: playerKillsText,
+            playerDeathsText: playerDeathsText,
+            playerAssitsText: playerAssitsText,
+            playerGoldText: playerGoldText,
+            playerImage: UIImage(named: "morphling") ?? UIImage()
+        )
+    }
+
+    func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo {
+        let teamNameLabelText = "Radiant"
+        guard
+            let isRadiantWin = rawMatchInfo.radiantWin
+        else {
+            return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: "")
+        }
+        let teamWinLabel = isRadiantWin ? "Winner" : ""
+        return TeamMatchInfo(
+            teamNameLabelText: teamNameLabelText,
+            teamWinLabel: teamWinLabel
+        )
+    }
+
+    func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo {
+        let teamNameLabelText = "Dire"
+        guard
+            let isRadiantWin = rawMatchInfo.radiantWin
+        else {
+            return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: "")
+        }
+        let teamWinLabel = isRadiantWin ? "" : "Winner"
+        return TeamMatchInfo(
+            teamNameLabelText: teamNameLabelText,
+            teamWinLabel: teamWinLabel
+        )
     }
 }
