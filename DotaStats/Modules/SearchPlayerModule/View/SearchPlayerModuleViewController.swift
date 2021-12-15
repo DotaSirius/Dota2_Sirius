@@ -67,7 +67,9 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(SearchPlayerTableViewCell.self, forCellReuseIdentifier: SearchPlayerTableViewCell.reuseIdentifier)
+        tableView.register(
+                SearchPlayerTableViewCell.self, forCellReuseIdentifier: SearchPlayerTableViewCell.reuseIdentifier
+        )
         tableView.delegate = self
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -175,13 +177,15 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchPlayerTableViewCell.reuseIdentifier, for: indexPath) as? SearchPlayerTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SearchPlayerTableViewCell.reuseIdentifier, for: indexPath
+        ) as? SearchPlayerTableViewCell else {
             return .init()
         }
         guard let player = output?.getData(at: indexPath) else {
             return cell
         }
-        
+
         cell.configurePlayer(
             newAvatarImage: UIImage(named: "players")!,
             newNickname: player.personaname ?? "unknown",
