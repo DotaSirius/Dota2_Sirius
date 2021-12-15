@@ -62,14 +62,14 @@ struct MatchDetail: Decodable {
         let pick: Bool
         let activeTeam: Int
         let heroId: Int
-        let playerSlot: Int
+        let playerSlot: Int?
         let extraTime: Int
         let totalTimeTaken: Int
     }
 
     struct Player: Decodable {
         let matchId: Int
-        let playerSlot: Int
+        let playerSlot: Int?
         let abilityUpgradesArr: [Int]?
         let accountId: Int?
         let assists: Int?
@@ -110,7 +110,7 @@ struct MatchDetail: Decodable {
         let runePickups: Int?
         let runesLog: [RunesLog]?
         let senPlaced: Int?
-        let stuns: Int?
+        let stuns: Double?
         let times: [Date]?
         let towerDamage: Int?
         let xpPerMin: Int?
@@ -146,7 +146,7 @@ struct MatchDetail: Decodable {
         let buybackCount: Int?
         let observerUses: Int?
         let sentryUses: Int?
-        let laneEfficiency: Int?
+        let laneEfficiency: Double?
         let laneEfficiencyPct: Int?
         let lane: Int?
         let laneRole: Int?
@@ -154,7 +154,7 @@ struct MatchDetail: Decodable {
         let actionsPerMin: Int?
         let lifeStateDead: Int?
         let rankTier: Int?
-        let cosmetics: [Int]?
+//        let cosmetics: [Int]?
 
         //    let ability_uses
         //    let ability_targets
@@ -197,13 +197,13 @@ struct MatchDetail: Decodable {
     struct BuybackLog: Decodable, Equatable {
         let time: Date
         let slot: Int
-        let playerSlot: Int
+        let playerSlot: Int?
     }
 
     struct ConnectionLog: Decodable, Equatable {
         let time: Date
         let event: String
-        let playerSlot: Int
+        let playerSlot: Int?
     }
 
     struct KillsLog: Decodable, Equatable {
@@ -214,7 +214,7 @@ struct MatchDetail: Decodable {
     struct PurchaseLog: Decodable, Equatable {
         let time: Date
         let key: String
-        let charges: Int
+        let charges: Int?
     }
 
     struct RunesLog: Decodable, Equatable {
