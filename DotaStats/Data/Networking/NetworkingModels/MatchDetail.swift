@@ -154,44 +154,6 @@ struct MatchDetail: Decodable {
         let actionsPerMin: Int?
         let lifeStateDead: Int?
         let rankTier: Int?
-//        let cosmetics: [Int]?
-
-        //    let ability_uses
-        //    let ability_targets
-        //    let damage_targets
-        //    let actions
-        //    let additional_units
-        //    let damage
-        //    let damage_inflictor
-        //    let damage_inflictor_received
-        //    let damage_taken
-        //    let gold_reasons
-        //    let hero_hits
-        //    let item_uses
-        //    let kill_streaks
-        //    let killed
-        //    let killed_by
-        //    let lane_pos
-        //    let life_state
-        //    let max_hero_hit
-        //    let multi_kills
-        //    let obs
-        //    let obs_left_log
-        //    let obs_log
-        //    let permanent_buffs
-        //    let purchase
-        //    let runes
-        //    let sen
-        //    let sen_left_log
-        //    let sen_log
-        //    let xp_reasons
-        //    let last_login : Date
-        //    let purchase_time
-        //    let first_purchase_time
-        //    let item_win
-        //    let item_usage
-        //    let purchase_tpscroll
-        //    let benchmarks
     }
 
     struct BuybackLog: Decodable, Equatable {
