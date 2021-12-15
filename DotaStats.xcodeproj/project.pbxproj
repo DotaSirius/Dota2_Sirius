@@ -31,12 +31,13 @@
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatchDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */; };
 		3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5232763C72600AC0DD4 /* MockPlayer.json */; };
+		5D11417A2769D23700618FBB /* PlayerMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1141792769D23700618FBB /* PlayerMatch.swift */; };
 		5D25184F2768A3040005374B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D25184E2768A3040005374B /* AppCoordinator.swift */; };
 		5D2518732768CB170005374B /* PlayerInfoModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2518722768CB170005374B /* PlayerInfoModuleBuilder.swift */; };
 		5D2518752768CB480005374B /* PlayerInfoModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2518742768CB480005374B /* PlayerInfoModuleViewController.swift */; };
 		5D2518772768CB640005374B /* PlayerInfoModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2518762768CB640005374B /* PlayerInfoModulePresenter.swift */; };
 		5D2518792768CBDE0005374B /* PlayerInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2518782768CBDE0005374B /* PlayerInfoService.swift */; };
-		5D25187B2768CBF80005374B /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D25187A2768CBF80005374B /* PlayerInfo.swift */; };
+		5D25187B2768CBF80005374B /* PlayerWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D25187A2768CBF80005374B /* PlayerWL.swift */; };
 		5E33F69A2764D89600749EC7 /* TournamentViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E33F6992764D89600749EC7 /* TournamentViewState.swift */; };
 		5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED64A912764D57500E4CF5B /* MainTabBarController.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
@@ -103,12 +104,13 @@
 		3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatchDetail.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
 		3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDecodingTest.swift; sourceTree = "<group>"; };
+		5D1141792769D23700618FBB /* PlayerMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMatch.swift; sourceTree = "<group>"; };
 		5D25184E2768A3040005374B /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		5D2518722768CB170005374B /* PlayerInfoModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoModuleBuilder.swift; sourceTree = "<group>"; };
 		5D2518742768CB480005374B /* PlayerInfoModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoModuleViewController.swift; sourceTree = "<group>"; };
 		5D2518762768CB640005374B /* PlayerInfoModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoModulePresenter.swift; sourceTree = "<group>"; };
 		5D2518782768CBDE0005374B /* PlayerInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoService.swift; sourceTree = "<group>"; };
-		5D25187A2768CBF80005374B /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
+		5D25187A2768CBF80005374B /* PlayerWL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWL.swift; sourceTree = "<group>"; };
 		5E33F6992764D89600749EC7 /* TournamentViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TournamentViewState.swift; sourceTree = "<group>"; };
 		5ED64A912764D57500E4CF5B /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,7 +305,8 @@
 				EA85264F7CF441C52C30E6D7 /* Players.swift */,
 				EA85276324310C6574CACFC6 /* Match.swift */,
 				303AC4DE27674FC800A8C462 /* Search.swift */,
-				5D25187A2768CBF80005374B /* PlayerInfo.swift */,
+				5D25187A2768CBF80005374B /* PlayerWL.swift */,
+				5D1141792769D23700618FBB /* PlayerMatch.swift */,
 			);
 			path = NetworkingModels;
 			sourceTree = "<group>";
@@ -619,9 +622,10 @@
 				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */,
 				EA8525C10313780ABFC01843 /* Match.swift in Sources */,
-				5D25187B2768CBF80005374B /* PlayerInfo.swift in Sources */,
+				5D25187B2768CBF80005374B /* PlayerWL.swift in Sources */,
 				5D2518732768CB170005374B /* PlayerInfoModuleBuilder.swift in Sources */,
 				EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */,
+				5D11417A2769D23700618FBB /* PlayerMatch.swift in Sources */,
 				5D2518752768CB480005374B /* PlayerInfoModuleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
