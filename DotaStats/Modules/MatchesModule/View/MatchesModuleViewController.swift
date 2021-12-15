@@ -75,12 +75,12 @@ final class MatchesModuleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpErrorViewConstraints()
+        setupErrorViewConstraints()
     }
 
     // MARK: ErrorView Constraints
 
-    private func setUpErrorViewConstraints() {
+    private func setupErrorViewConstraints() {
         view.addSubview(errorView)
         let errorConstraint = errorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         NSLayoutConstraint.activate([
@@ -123,7 +123,7 @@ final class MatchesModuleViewController: UIViewController {
 
     // MARK: - Setup UILabel "MATCHES"
 
-    private func setUpLabel() {
+    private func setupLabel() {
         view.addSubview(label)
         NSLayoutConstraint.activate([
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -135,7 +135,7 @@ final class MatchesModuleViewController: UIViewController {
 
     // MARK: - Setup UITableView
 
-    private func setUpTableView() {
+    private func setupTableView() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -169,8 +169,8 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
         case .success:
             hideError()
             spiner.removeFromSuperview()
-            setUpTableView()
-            setUpLabel()
+            setupTableView()
+            setupLabel()
         }
     }
 
@@ -200,10 +200,6 @@ extension MatchesModuleViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.2
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
