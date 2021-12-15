@@ -1,7 +1,7 @@
 import UIKit
 
- class CopyIdButton: UIButton {
-    override open var isHighlighted: Bool {
+final class CopyIdButton: UIButton {
+    override public var isHighlighted: Bool {
         didSet {
             backgroundColor = isHighlighted ? ColorPalette.mainBackground : ColorPalette.alternativeBackground
         }

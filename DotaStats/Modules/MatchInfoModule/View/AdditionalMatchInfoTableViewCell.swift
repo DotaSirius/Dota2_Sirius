@@ -8,18 +8,12 @@ final class AdditionalMatchInfoTableViewCell: UITableViewCell {
     private lazy var regionStackView: UIStackView = {
         let regionStackView = UIStackView()
         createStackView(stackView: regionStackView, axis: .vertical, spacing: 8)
-        [regionNameLabel, regionLabel].forEach {
-            regionStackView.addArrangedSubview($0)
-        }
         return regionStackView
     }()
     
     private lazy var skillStackView: UIStackView = {
         let skillStackView = UIStackView()
         createStackView(stackView: skillStackView, axis: .vertical, spacing: 8)
-        [skillNameLabel, skillLabel].forEach {
-            skillStackView.addArrangedSubview($0)
-        }
         return skillStackView
     }()
     
@@ -46,7 +40,7 @@ final class AdditionalMatchInfoTableViewCell: UITableViewCell {
         let regionLabel = UILabel()
         regionLabel.textColor = ColorPalette.mainText
         regionLabel.font = UIFont.systemFont(ofSize: 15)
-        regionLabel.numberOfLines = 0
+        regionLabel.numberOfLines = 3
         regionLabel.textAlignment = .center
         return regionLabel
     }()
@@ -63,7 +57,7 @@ final class AdditionalMatchInfoTableViewCell: UITableViewCell {
         let skillLabel = UILabel()
         skillLabel.textColor = ColorPalette.mainText
         skillLabel.font = UIFont.systemFont(ofSize: 15)
-        skillLabel.numberOfLines = 0
+        skillLabel.numberOfLines = 3
         skillLabel.textAlignment = .center
         return skillLabel
     }()
@@ -80,16 +74,28 @@ final class AdditionalMatchInfoTableViewCell: UITableViewCell {
     }
     
     func setup() {
-        self.selectionStyle = .none
-        [matchIdCopyButton, regionStackView, skillStackView].forEach {
+        selectionStyle = .none
+        [matchIdCopyButton,
+         regionStackView,
+         skillStackView
+        ].forEach {
             contentView.addSubview($0)
+        }
+        [regionNameLabel,
+         regionLabel
+        ].forEach {
+            regionStackView.addArrangedSubview($0)
+        }
+        [skillNameLabel,
+         skillLabel
+        ].forEach {
+            skillStackView.addArrangedSubview($0)
         }
     }
                                     
     @objc
     private func copyMatchIdButtonPressed() {
-        print("Button tapped")
-            UIPasteboard.general.string = matchID
+        UIPasteboard.general.string = matchID
     }
     
     func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
@@ -100,25 +106,28 @@ final class AdditionalMatchInfoTableViewCell: UITableViewCell {
     }
     
     func setUpConstraints() {
-        [matchIdCopyButton, regionStackView, skillStackView].forEach {
+        [matchIdCopyButton,
+         regionStackView,
+         skillStackView
+        ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
-        matchIdCopyButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-        matchIdCopyButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-        matchIdCopyButton.widthAnchor.constraint(equalToConstant: 200),
-        matchIdCopyButton.heightAnchor.constraint(equalToConstant: 32),
-        
-        regionStackView.topAnchor.constraint(equalTo: matchIdCopyButton.bottomAnchor, constant: 16),
-        regionStackView.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -16),
-        regionStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-        regionStackView.bottomAnchor.constraint(lessThanOrEqualTo:contentView.bottomAnchor),
-        
-        skillStackView.topAnchor.constraint(equalTo: matchIdCopyButton.bottomAnchor, constant: 16),
-        skillStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-        skillStackView.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 16),
-        skillStackView.bottomAnchor.constraint(lessThanOrEqualTo:contentView.bottomAnchor)
+            matchIdCopyButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            matchIdCopyButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            matchIdCopyButton.widthAnchor.constraint(equalToConstant: 200),
+            matchIdCopyButton.heightAnchor.constraint(equalToConstant: 32),
+            
+            regionStackView.topAnchor.constraint(equalTo: matchIdCopyButton.bottomAnchor, constant: 16),
+            regionStackView.trailingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -16),
+            regionStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            regionStackView.bottomAnchor.constraint(lessThanOrEqualTo:contentView.bottomAnchor),
+            
+            skillStackView.topAnchor.constraint(equalTo: matchIdCopyButton.bottomAnchor, constant: 16),
+            skillStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            skillStackView.leadingAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 16),
+            skillStackView.bottomAnchor.constraint(lessThanOrEqualTo:contentView.bottomAnchor)
         ])
     }
 }

@@ -56,7 +56,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
     }
 
     func setup() {
-        self.selectionStyle = .none
+        selectionStyle = .none
         [
             playerNameHeaderLabel,
             playerGoldHeaderLabel,
@@ -79,30 +79,30 @@ final class PlayersTableHeaderCell: UITableViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         NSLayoutConstraint.activate([
-        playerNameHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-        playerNameHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-        playerNameHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        playerNameHeaderLabel.trailingAnchor.constraint(equalTo: playerKillsHeaderLabel.leadingAnchor),
+            playerNameHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            playerNameHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerNameHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            playerNameHeaderLabel.trailingAnchor.constraint(equalTo: playerKillsHeaderLabel.leadingAnchor),
+                
+            playerGoldHeaderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            playerGoldHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerGoldHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            playerGoldHeaderLabel.widthAnchor.constraint(equalToConstant: 40),
             
-        playerGoldHeaderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-        playerGoldHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-        playerGoldHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        playerGoldHeaderLabel.widthAnchor.constraint(equalToConstant: 40),
-        
-        playerAssitsHeaderLabel.trailingAnchor.constraint(equalTo: playerGoldHeaderLabel.leadingAnchor, constant: -8),
-        playerAssitsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
-        playerAssitsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-        playerAssitsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        
-        playerDeathsHeaderLabel.trailingAnchor.constraint(equalTo: playerAssitsHeaderLabel.leadingAnchor, constant: -8),
-        playerDeathsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
-        playerDeathsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-        playerDeathsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        
-        playerKillsHeaderLabel.trailingAnchor.constraint(equalTo: playerDeathsHeaderLabel.leadingAnchor, constant: -8),
-        playerKillsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
-        playerKillsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-        playerKillsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            playerAssitsHeaderLabel.trailingAnchor.constraint(equalTo: playerGoldHeaderLabel.leadingAnchor, constant: -8),
+            playerAssitsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
+            playerAssitsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerAssitsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            playerDeathsHeaderLabel.trailingAnchor.constraint(equalTo: playerAssitsHeaderLabel.leadingAnchor, constant: -8),
+            playerDeathsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
+            playerDeathsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerDeathsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            playerKillsHeaderLabel.trailingAnchor.constraint(equalTo: playerDeathsHeaderLabel.leadingAnchor, constant: -8),
+            playerKillsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
+            playerKillsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerKillsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
 
@@ -121,5 +121,5 @@ extension PlayersTableHeaderCell: DetailedMatchInfoCellConfigurable {
         playerDeathsHeaderLabel.text = "D"
         playerAssitsHeaderLabel.text = "A"
         playerGoldHeaderLabel.text = "NET"
-        }
+    }
 }

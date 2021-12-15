@@ -7,7 +7,7 @@ final class MainMatchInfoTableViewCell: UITableViewCell {
         let winnersLabel = UILabel()
         winnersLabel.textColor = ColorPalette.win
         winnersLabel.font = UIFont.systemFont(ofSize: 30)
-        winnersLabel.numberOfLines = 0
+        winnersLabel.numberOfLines = 3
         winnersLabel.textAlignment = .center
         return winnersLabel
     }()
@@ -37,7 +37,7 @@ final class MainMatchInfoTableViewCell: UITableViewCell {
         let matchEndTimeLabel = UILabel()
         matchEndTimeLabel.textColor = ColorPalette.subtitle
         matchEndTimeLabel.font = UIFont.systemFont(ofSize: 15)
-        matchEndTimeLabel.numberOfLines = 0
+        matchEndTimeLabel.numberOfLines = 3
         matchEndTimeLabel.textAlignment = .center
         return matchEndTimeLabel
     }()
@@ -52,35 +52,45 @@ final class MainMatchInfoTableViewCell: UITableViewCell {
     }
     
     func setup() {
-        self.selectionStyle = .none
-        [winnersLabel,gameTimeLabel,matchEndTimeLabel,firstTeamScoreLabel,secondTeamScoreLabel].forEach{
+        selectionStyle = .none
+        [winnersLabel,
+         gameTimeLabel,
+         matchEndTimeLabel,
+         firstTeamScoreLabel,
+         secondTeamScoreLabel
+        ].forEach{
             contentView.addSubview($0)
         }
     }
     
     func setUpConstraints() {
-        [winnersLabel,gameTimeLabel,matchEndTimeLabel,firstTeamScoreLabel,secondTeamScoreLabel].forEach{
+        [winnersLabel,
+         gameTimeLabel,
+         matchEndTimeLabel,
+         firstTeamScoreLabel,
+         secondTeamScoreLabel
+        ].forEach{
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         NSLayoutConstraint.activate([
-        winnersLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-        winnersLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-        winnersLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-        
-        firstTeamScoreLabel.topAnchor.constraint(equalTo: winnersLabel.bottomAnchor, constant: 8),
-        firstTeamScoreLabel.trailingAnchor.constraint(equalTo: gameTimeLabel.leadingAnchor, constant: -16),
-        
-        secondTeamScoreLabel.topAnchor.constraint(equalTo: winnersLabel.bottomAnchor, constant: 8),
-        secondTeamScoreLabel.leadingAnchor.constraint(equalTo: gameTimeLabel.trailingAnchor, constant: 16),
+            winnersLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            winnersLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            winnersLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            firstTeamScoreLabel.topAnchor.constraint(equalTo: winnersLabel.bottomAnchor, constant: 8),
+            firstTeamScoreLabel.trailingAnchor.constraint(equalTo: gameTimeLabel.leadingAnchor, constant: -16),
+            
+            secondTeamScoreLabel.topAnchor.constraint(equalTo: winnersLabel.bottomAnchor, constant: 8),
+            secondTeamScoreLabel.leadingAnchor.constraint(equalTo: gameTimeLabel.trailingAnchor, constant: 16),
 
-        gameTimeLabel.centerYAnchor.constraint(equalTo: firstTeamScoreLabel.centerYAnchor),
-        gameTimeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-        
-        matchEndTimeLabel.topAnchor.constraint(equalTo: firstTeamScoreLabel.bottomAnchor, constant: 8),
-        matchEndTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-        matchEndTimeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-        matchEndTimeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            gameTimeLabel.centerYAnchor.constraint(equalTo: firstTeamScoreLabel.centerYAnchor),
+            gameTimeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            matchEndTimeLabel.topAnchor.constraint(equalTo: firstTeamScoreLabel.bottomAnchor, constant: 8),
+            matchEndTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            matchEndTimeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            matchEndTimeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

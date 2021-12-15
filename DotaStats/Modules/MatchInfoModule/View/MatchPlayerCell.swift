@@ -17,9 +17,6 @@ final class MatchPlayerCell: UITableViewCell {
     private lazy var playerRankNameStack: UIStackView = {
         let playerRankNameStack = UIStackView()
         createStackView(stackView: playerRankNameStack, axis: .vertical, spacing: 8)
-        [playerNameLabel, playerRankLabel].forEach{
-            playerRankNameStack.addArrangedSubview($0)
-        }
         return playerRankNameStack
     }()
     
@@ -28,7 +25,7 @@ final class MatchPlayerCell: UITableViewCell {
         playerNameLabel.textColor = ColorPalette.mainText
         playerNameLabel.font = UIFont.systemFont(ofSize: 20)// изменить шрифт
         playerNameLabel.textAlignment = .center
-        playerNameLabel.numberOfLines = 0
+        playerNameLabel.numberOfLines = 3
         return playerNameLabel
     }()
     
@@ -37,7 +34,7 @@ final class MatchPlayerCell: UITableViewCell {
         playerRankLabel.textColor = ColorPalette.subtitle
         playerRankLabel.font = UIFont.systemFont(ofSize: 17) // изменить шрифт
         playerRankLabel.textAlignment = .center
-        playerRankLabel.numberOfLines = 0
+        playerRankLabel.numberOfLines = 3
         return playerRankLabel
     }()
     
@@ -94,6 +91,12 @@ final class MatchPlayerCell: UITableViewCell {
             playerKillsLabel
         ].forEach {
             contentView.addSubview($0)
+        }
+        
+        [playerNameLabel,
+         playerRankLabel
+        ].forEach{
+            playerRankNameStack.addArrangedSubview($0)
         }
     }
 
@@ -159,5 +162,5 @@ extension MatchPlayerCell: DetailedMatchInfoCellConfigurable {
            // playerImageView.image = data.playerImage
         default : break
         }
-}
+    }
 }

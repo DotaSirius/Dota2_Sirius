@@ -2,7 +2,6 @@ import UIKit
 
 protocol MatchInfoModuleViewInput: AnyObject {
     func updateState(to state: MatchesInfoModuleState)
-    // TODO: update staqte обновляет у vc стейт (.loading/ .error)
 }
 
 final class MatchInfoViewController: UIViewController {
@@ -45,19 +44,17 @@ final class MatchInfoViewController: UIViewController {
         updateState(to: .success)
     }
     
-    
     func setUpConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        }
+    }
 }
-
 
 extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,7 +77,9 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
             // TODO: - Error handling
             return UITableViewCell()
         }
-        cell.backgroundColor = ((indexPath.row % 2 == 0)&&(indexPath.row>3)) ? ColorPalette.alternativeBackground : ColorPalette.mainBackground
+        let isEven = indexPath.row % 2 == 0
+        let matchPlayersCellIndexes = indexPath.row > 3
+        cell.backgroundColor = (isEven && matchPlayersCellIndexes) ? ColorPalette.alternativeBackground : ColorPalette.mainBackground
         cell.configure(with: data)
         return cell
     }
@@ -96,7 +95,7 @@ extension MatchInfoViewController: MatchInfoModuleViewInput {
                 spiner.startAnimating()
             case .error:
                 spiner.removeFromSuperview()
-                print("error")
+                //TO DO: Errors
             case .success:
                 view.addSubview(tableView)
                 setUpConstraints()
