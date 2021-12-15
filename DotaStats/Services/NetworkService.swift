@@ -1,13 +1,5 @@
 import Foundation
 
-protocol PlayerSearchNetworkService: AnyObject {
-    func playersByName(_ name: String, completion: @escaping (Result<[Players], HTTPError>) -> Void) -> Cancellable?
-}
+protocol NetworkService: AnyObject {}
 
-protocol NetworkService: AnyObject {
-    
-}
-
-final class NetworkServiceImp: NetworkService {
-
-}
+final class NetworkServiceImp: NetworkService {}

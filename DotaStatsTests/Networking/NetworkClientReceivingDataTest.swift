@@ -1,16 +1,10 @@
-//
-//  NetworkClientReceivingDataTest.swift
-//  DotaStatsTests
-//
-//  Created by Igor Efimov on 09.12.2021.
-//
 @testable import DotaStats
 import Foundation
 import XCTest
 
 final class NetworkServiceReceivingDataTest: XCTestCase {
     private func receiveData() -> [String]? {
-        var receivedResult: [String]? = nil
+        var receivedResult: [String]?
 
         let expectations = expectation(description: "\(#function)\(#line)")
 
@@ -30,8 +24,6 @@ final class NetworkServiceReceivingDataTest: XCTestCase {
                 receivedResult = constants
             case .failure:
                 XCTFail("Missing response")
-                
-                break
             }
         }
 
@@ -63,7 +55,7 @@ final class NetworkServiceReceivingDataTest: XCTestCase {
             XCTAssertFalse(string.isEmpty)
         }
     }
-    
+
     func testArrayContainsSomeConstants() throws {
         let response = receiveData()
 
