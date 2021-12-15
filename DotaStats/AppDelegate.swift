@@ -11,6 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let appCoordinator = AppCoordinator()
         window!.rootViewController = appCoordinator.tabBarController
         window!.makeKeyAndVisible()
+        application.statusBarStyle = .lightContent
         return true
     }
 }

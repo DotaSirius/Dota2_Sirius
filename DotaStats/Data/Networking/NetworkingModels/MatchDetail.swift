@@ -130,7 +130,7 @@ struct MatchDetail: Decodable {
         let lose: Int?
         let totalGold: Int?
         let totalXp: Int?
-        let killsPerMin: Int?
+        let killsPerMin: Double?
         let kda: Int?
         let abandons: Int?
         let neutralKills: Int?

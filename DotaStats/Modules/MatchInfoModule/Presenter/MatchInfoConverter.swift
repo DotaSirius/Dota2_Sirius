@@ -16,9 +16,11 @@ class MatchInfoConverterImp: MatchInfoConverter {
     init(networkService: NetworkService) {
         // TODO: - We get data from network, but this part of networkService is not implemented yet, so I did this..
         self.networkService = networkService
+        // swiftlint:disable line_length
         matchInfoRaw = MatchDetail(matchId: 12345678, barracksStatusDire: nil, barracksStatusRadiant: nil, chat: nil, cluster: nil, direScore: 44, draftTimings: nil, duration: 1371, engine: nil, firstBloodTime: nil, gameMode: nil, humanPlayers: nil, leagueid: nil, lobbyType: nil, matchSeqNum: nil, negativeVotes: nil, positiveVotes: nil, radiantScore: 34, radiantWin: true, startTime: nil, towerStatusDire: nil, towerStatusRadiant: nil, version: nil, replaySalt: nil, seriesId: nil, seriesType: nil, skill: nil, players: [MatchDetail.Player(matchId: 1, playerSlot: 2, abilityUpgradesArr: nil, accountId: nil, assists: nil, backpack0: nil, backpack1: nil, backpack2: nil, buybackLog: nil, campsStacked: nil, connectionLog: nil, creepsStacked: nil, deaths: nil, denies: nil, dnT: nil, gold: nil, goldPerMin: nil, goldSpent: nil, goldT: nil, heroDamage: nil, heroHealing: nil, heroId: nil, item0: nil, item1: nil, item2: nil, item3: nil, item4: nil, item5: nil, kills: nil, killsLog: nil, lastHits: nil, leaverStatus: nil, level: nil, lhT: nil, obsPlaced: nil, partyId: nil, partySize: nil, pings: nil, purchaseLog: nil, runePickups: nil, runesLog: nil, senPlaced: nil, stuns: nil, times: nil, towerDamage: nil, xpPerMin: nil, xpT: nil, personaname: nil, name: nil, radiantWin: nil, startTime: nil, duration: nil, cluster: nil, lobbyType: nil, gameMode: nil, patch: nil, region: nil, isRadiant: nil, win: nil, lose: nil, totalGold: nil, totalXp: nil, killsPerMin: nil, kda: nil, abandons: nil, neutralKills: nil, towerKills: nil, courierKills: nil, laneKills: nil, heroKills: nil, observerKills: nil, sentryKills: nil, roshanKills: nil, necronomiconKills: nil, ancientKills: nil, buybackCount: nil, observerUses: nil, sentryUses: nil, laneEfficiency: nil, laneEfficiencyPct: nil, lane: nil, laneRole: nil, isRoaming: nil, actionsPerMin: nil, lifeStateDead: nil, rankTier: nil, cosmetics: nil)], patch: nil, region: nil, throw: nil, comeback: nil, loss: nil, win: nil, replayUrl: nil)
         // matchInfoRaw = networkService.get()
     }
+    // swiftlint:enable line_length
         
     func getMainMatchInfo() -> MainMatchInfo {
         let winnersLabelText = convert(isRadiantWin: matchInfoRaw.radiantWin)
@@ -26,7 +28,12 @@ class MatchInfoConverterImp: MatchInfoConverter {
         let firstTeamScoreLabelText = convert(score: matchInfoRaw.radiantScore)
         let secondTeamScoreLabelText = convert(score: matchInfoRaw.direScore)
         let matchEndTimeLabelText = convert(startTime: matchInfoRaw.startTime, duration: matchInfoRaw.duration)
-        return MainMatchInfo(winnersLabelText: winnersLabelText, gameTimeLabelText: gameTimeLabelText, firstTeamScoreLabelText: firstTeamScoreLabelText, secondTeamScoreLabelText: secondTeamScoreLabelText, matchEndTimeLabelText: matchEndTimeLabelText)
+        return MainMatchInfo(
+            winnersLabelText: winnersLabelText,
+            gameTimeLabelText: gameTimeLabelText,
+            firstTeamScoreLabelText: firstTeamScoreLabelText,
+            secondTeamScoreLabelText: secondTeamScoreLabelText,
+            matchEndTimeLabelText: matchEndTimeLabelText)
     }
     
     func getAdditionalMatchInfo() -> AdditionalMatchInfo {
@@ -50,7 +57,14 @@ class MatchInfoConverterImp: MatchInfoConverter {
         let playerDeathsText = convert(stat: player.deaths)
         let playerAssitsText = convert(stat: player.assists)
         let playerGoldText = convert(stat: player.totalGold)
-        return PlayerList(playerNameLabelText: playerNameLabelText, playerRankText: playerRankText, playerKillsText: playerKillsText, playerDeathsText: playerDeathsText, playerAssitsText: playerAssitsText, playerGoldText: playerGoldText)
+        return PlayerList(
+            playerNameLabelText: playerNameLabelText,
+            playerRankText: playerRankText,
+            playerKillsText: playerKillsText,
+            playerDeathsText: playerDeathsText,
+            playerAssitsText: playerAssitsText,
+            playerGoldText: playerGoldText
+        )
     }
     
     func getRadiantMatchInfo() -> TeamMatchInfo {
@@ -74,6 +88,7 @@ class MatchInfoConverterImp: MatchInfoConverter {
         let teamWinLabel = isRadiantWin ? "" : "Winner"
         return TeamMatchInfo(teamNameLabelText: teamNameLabelText, teamWinLabel: teamWinLabel)
     }
+
     // MARK: - PlayerList converters
 
     func convert(playerName: String?) -> String {

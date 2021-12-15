@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 final class AppCoordinator {
     let tabBarController: MainTabBarController = .init()
@@ -7,20 +8,26 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let matchInfoModule = matchInfoBuilder()
+        let playerSearchModule = searchPlayerModuleBuilder()
 
         let viewControllers = [
             playersModule.viewController,
             matchesModule.viewController,
-            matchInfoModule.viewControler
+            matchInfoModule.viewControler,
+            playerSearchModule.viewControler
         ]
+
         let tabImageNames = [
             NSLocalizedString("players", comment: ""),
             NSLocalizedString("matches", comment: ""),
-            NSLocalizedString("matches", comment: "")
+            NSLocalizedString("matches", comment: ""),
+            NSLocalizedString("search", comment: "")
+
         ]
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
+
         tabBarController.configurateTabs()
     }
 }
@@ -44,6 +51,19 @@ extension AppCoordinator {
         )
     }
 
+    private func searchPlayerModuleBuilder() -> SearchPlayerModuleBuilder {
+        SearchPlayerModuleBuilder(
+            output: self,
+            playerSearchService: PlayerSearchServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            // TODO: replace with correct image service
+            imageNetworkService: StubImageNetworkService()
+        )
+    }
+
     private func matchInfoBuilder() -> MatchInfoModuleBuilder {
         MatchInfoModuleBuilder(
             output: self,
@@ -62,6 +82,21 @@ extension AppCoordinator: PlayersModuleOutput {
 extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
         // todo
+    }
+}
+
+extension AppCoordinator: SearchPlayerModuleOutput {
+    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch) {
+        // TODO: show player profile info
+    }
+}
+
+final class StubImageNetworkService: ImageNetworkService {
+    func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            completion(.failure(HTTPError.dataTaskFailed))
+        }
+        return nil
     }
 }
 
