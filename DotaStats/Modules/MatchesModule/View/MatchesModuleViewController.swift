@@ -150,9 +150,9 @@ final class MatchesModuleViewController: UIViewController {
     // MARK: - Setup Loading
 
     private func setupLoading() {
-        spiner.color = ColorPalette.accent
-        view.addSubview(spiner)
-        spiner.center = view.center
+        spinnerView.color = ColorPalette.accent
+        view.addSubview(spinnerView)
+        spinnerView.center = view.center
     }
 }
 
@@ -164,13 +164,13 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
         case .loading:
             hideError()
             setupLoading()
-            spiner.startAnimating()
+            spinnerView.startAnimating()
         case .error:
-            spiner.removeFromSuperview()
+            spinnerView.removeFromSuperview()
             showError()
         case .success:
             hideError()
-            spiner.removeFromSuperview()
+            spinnerView.removeFromSuperview()
             setupTableView()
             setupLabel()
         }
