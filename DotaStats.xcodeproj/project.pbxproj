@@ -355,8 +355,8 @@
 			children = (
 				CEFEF6342769E83F00CAE93B /* Presenter */,
 				CEFEF6372769E83F00CAE93B /* Model */,
-				CEFEF6402769E83F00CAE93B /* MatchInfoModuleBuilder.swift */,
 				CEFEF6412769E83F00CAE93B /* View */,
+				CEFEF6402769E83F00CAE93B /* MatchInfoModuleBuilder.swift */,
 			);
 			name = MatchInfoModule;
 			path = ../../../../Desktop/MatchInfoModule;

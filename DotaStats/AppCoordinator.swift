@@ -8,10 +8,8 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
-        let matchInfoModule = matchInfoModuleBuilder()
         let viewControllers = [
-            //playersModule.viewController,
-            matchInfoModule.viewControler,
+            playersModule.viewController,
             matchesModule.viewController,
             playerSearchModule.viewControler
         ]
@@ -81,7 +79,9 @@ extension AppCoordinator: PlayersModuleOutput {
 
 extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
-        // todo
+        let matchInfoModule = matchInfoModuleBuilder()
+        matchInfoModule.input.setMatchId(matchId)
+        tabBarController.present(matchInfoModule.viewControler, animated: true)
     }
 }
 
