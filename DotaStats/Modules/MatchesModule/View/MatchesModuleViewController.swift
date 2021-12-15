@@ -18,10 +18,14 @@ protocol MatchesModuleViewOutput: AnyObject {
 }
 
 final class MatchesModuleViewController: UIViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
     // MARK: - Properties
 
     private var output: MatchesModuleViewOutput?
-    var spiner = UIActivityIndicatorView(style: .large)
+    private lazy var spinnerView: UIActivityIndicatorView = .init(style: .large)
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(ListMatchesCell.self, forCellReuseIdentifier: ListMatchesCell.reuseIdentifier)
@@ -91,14 +95,14 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
     func update(state: MatchesModuleViewState) {
         switch state {
         case .loading:
-            spiner.color = ColorPalette.accent
-            view.addSubview(spiner)
-            spiner.center = view.center
-            spiner.startAnimating()
+            spinnerView.color = ColorPalette.accent
+            view.addSubview(spinnerView)
+            spinnerView.center = view.center
+            spinnerView.startAnimating()
         case .error:
-            spiner.removeFromSuperview()
+            spinnerView.removeFromSuperview()
         case .success:
-            spiner.removeFromSuperview()
+            spinnerView.removeFromSuperview()
             setUpTableView()
             setUpLabel()
         }
@@ -121,19 +125,15 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
 
 extension MatchesModuleViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return output?.getSectionCount() ?? 0
+        output?.getSectionCount() ?? 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return output?.getRowsInSection(section: section) ?? 0
+        output?.getRowsInSection(section: section) ?? 0
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 55
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.2
+        55
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

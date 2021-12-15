@@ -30,8 +30,8 @@ final class ListTournamentsCell: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    @objc func selectHeaderAction(gesterRecognizer: UITapGestureRecognizer) {
-        delegate?.toggleSection(header: self, section: (self.section)!)
+    @objc func selectHeaderAction(gestureRecognizer: UITapGestureRecognizer) {
+        delegate?.toggleSection(header: self, section: (section)!)
     }
 
     lazy var title: UILabel = {
