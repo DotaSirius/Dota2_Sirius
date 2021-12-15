@@ -8,7 +8,6 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
-        
         let viewControllers = [
             playersModule.viewController,
             matchesModule.viewController,
@@ -23,6 +22,7 @@ final class AppCoordinator {
         
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
+        
         tabBarController.configurateTabs()
     }
 }
