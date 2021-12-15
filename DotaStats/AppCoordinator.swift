@@ -8,8 +8,10 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
+        let matchInfoModule = matchInfoModuleBuilder()
         let viewControllers = [
-            playersModule.viewController,
+            //playersModule.viewController,
+            matchInfoModule.viewControler,
             matchesModule.viewController,
             playerSearchModule.viewControler
         ]
@@ -58,6 +60,16 @@ extension AppCoordinator {
             imageNetworkService: StubImageNetworkService()
         )
     }
+    
+    private func matchInfoModuleBuilder() -> MatchInfoModuleBuilder {
+        MatchInfoModuleBuilder(
+            output: self,
+            networkService: MatchDetailImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ), converter: MatchInfoConverterImp())
+    }
 }
 
 extension AppCoordinator: PlayersModuleOutput {
@@ -78,6 +90,8 @@ extension AppCoordinator: SearchPlayerModuleOutput {
         // TODO: show player profile info
     }
 }
+
+extension AppCoordinator: MatchInfoModuleOutput {}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
