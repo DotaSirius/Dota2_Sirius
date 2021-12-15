@@ -19,6 +19,10 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
 final class SearchPlayerModuleViewController: UIViewController {
     private var output: SearchPlayerModuleViewOutput?
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
     init(output: SearchPlayerModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
@@ -173,7 +177,7 @@ final class SearchPlayerModuleViewController: UIViewController {
 
 extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return output?.countOfRows ?? 0
+        output?.countOfRows ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

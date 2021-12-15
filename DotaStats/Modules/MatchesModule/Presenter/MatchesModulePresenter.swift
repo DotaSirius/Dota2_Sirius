@@ -21,7 +21,7 @@ final class MatchesModulePresenter {
                   output: MatchesModuleOutput) {
         self.matchesService = matchesService
         self.output = output
-        self.state = .none
+        state = .none
     }
 
     private var state: MatchesModulePresenterState {
@@ -91,7 +91,7 @@ extension MatchesModulePresenter: MatchesModuleInput {}
 
 extension MatchesModulePresenter: MatchesModuleViewOutput {
     func getSectionCount() -> Int {
-        return tournaments.count
+        tournaments.count
     }
 
     func getRowsInSection(section: Int) -> Int {
@@ -103,11 +103,11 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
     }
 
     func getDataMatch(indexPath: IndexPath) -> TournamentViewState.Match {
-        return tournaments[indexPath.section].matches[indexPath.row]
+        tournaments[indexPath.section].matches[indexPath.row]
     }
 
     func getDataTournament(section: Int) -> TournamentViewState {
-        return tournaments[section].tournament
+        tournaments[section].tournament
     }
 
     func matchTapped(indexPath: IndexPath) {
@@ -118,14 +118,14 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
         let isOpen = tournaments[section].tournament.isOpen
         tournaments[section].tournament.isOpen = !isOpen
         let matchesCount = tournaments[section].matches.count
-        var indexPathes = [IndexPath]()
+        var indexPaths = [IndexPath]()
         for i in 0 ..< matchesCount {
-            indexPathes.append(.init(row: i, section: section))
+            indexPaths.append(.init(row: i, section: section))
         }
         if isOpen {
-            view?.deleteRows(indexPathes)
+            view?.deleteRows(indexPaths)
         } else {
-            view?.insertRows(indexPathes)
+            view?.insertRows(indexPaths)
         }
     }
 }
