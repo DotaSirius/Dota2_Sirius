@@ -2,7 +2,7 @@ import UIKit
 
 final class ListMatchesCell: UITableViewCell {
     // MARK: - Properties
-    
+
     static let reuseIdentifier = "ListMatchesCell"
 
     private lazy var firstTeam: UILabel = {
@@ -48,7 +48,7 @@ final class ListMatchesCell: UITableViewCell {
     }
 
     // MARK: - Cell configuration
-    
+
     func configure(with data: TournamentViewState.Match) {
         firstTeam.text = data.radiantTeam
         secondTeam.text = data.direTeam
@@ -56,7 +56,7 @@ final class ListMatchesCell: UITableViewCell {
     }
 
     // MARK: - Setup constrains
-    
+
     private func setup() {
         backgroundColor = ColorPalette.alternativeBackground
 
