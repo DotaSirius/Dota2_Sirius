@@ -25,7 +25,7 @@ final class MatchesModuleViewController: UIViewController {
     // MARK: - Properties
 
     private var output: MatchesModuleViewOutput?
-    var spinner = UIActivityIndicatorView(style: .large)
+    private lazy var spinnerView: UIActivityIndicatorView = .init(style: .large)
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(ListMatchesCell.self, forCellReuseIdentifier: ListMatchesCell.reuseIdentifier)
@@ -95,14 +95,14 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
     func update(state: MatchesModuleViewState) {
         switch state {
         case .loading:
-            spinner.color = ColorPalette.accent
-            view.addSubview(spinner)
-            spinner.center = view.center
-            spinner.startAnimating()
+            spinnerView.color = ColorPalette.accent
+            view.addSubview(spinnerView)
+            spinnerView.center = view.center
+            spinnerView.startAnimating()
         case .error:
-            spinner.removeFromSuperview()
+            spinnerView.removeFromSuperview()
         case .success:
-            spinner.removeFromSuperview()
+            spinnerView.removeFromSuperview()
             setUpTableView()
             setUpLabel()
         }
@@ -134,10 +134,6 @@ extension MatchesModuleViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         55
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        0.2
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
