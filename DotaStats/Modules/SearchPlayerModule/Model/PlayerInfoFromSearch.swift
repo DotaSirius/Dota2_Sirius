@@ -8,9 +8,9 @@ final class PlayerInfoFromSearch {
     let lastMatchTime: Date?
 
     init(from search: SearchPlayerResult) {
-        self.avatarFull = search.avatarfull
-        self.accountId = search.accountId
-        self.personaname = search.personaname
-        self.lastMatchTime = search.lastMatchTime
+        avatarFull = search.avatarfull
+        accountId = search.accountId
+        personaname = search.personaname
+        lastMatchTime = search.lastMatchTime
     }
 }

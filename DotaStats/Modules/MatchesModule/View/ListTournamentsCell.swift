@@ -41,10 +41,6 @@ final class ListTournamentsCell: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
     @objc func selectHeaderAction(gesterRecognizer: UITapGestureRecognizer) {
         delegate?.toggleSection(header: self, section: section!)
     }
