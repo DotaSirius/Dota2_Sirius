@@ -1,7 +1,7 @@
 import Foundation
 
 final class SearchPlayerModuleBuilder {
-    let viewControler: SearchPlayerModuleViewController
+    let viewController: SearchPlayerModuleViewController
     private let presenter: SearchPlayerModulePresenter
     var output: SearchPlayerModuleOutput {
         presenter.output
@@ -19,7 +19,7 @@ final class SearchPlayerModuleBuilder {
         presenter = SearchPlayerModulePresenter(output: output,
                                                 playerSearchService: playerSearchService,
                                                 imageNetworkService: imageNetworkService)
-        viewControler = SearchPlayerModuleViewController(output: presenter)
-        presenter.view = viewControler
+        viewController = SearchPlayerModuleViewController(output: presenter)
+        presenter.view = viewController
     }
 }

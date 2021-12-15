@@ -8,22 +8,22 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
-        
         let viewControllers = [
             playersModule.viewController,
             matchesModule.viewController,
-            playerSearchModule.viewControler
+            playerSearchModule.viewController
         ]
-        
+
         let tabImageNames = [
             NSLocalizedString("players", comment: ""),
             NSLocalizedString("matches", comment: ""),
-            NSLocalizedString("players", comment: "")
+            NSLocalizedString("search", comment: "")
         ]
-        
+
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
-        tabBarController.configurateTabs()
+
+        tabBarController.configureTabs()
     }
 }
 
@@ -45,7 +45,7 @@ extension AppCoordinator {
             )
         )
     }
-    
+
     private func searchPlayerModuleBuilder() -> SearchPlayerModuleBuilder {
         SearchPlayerModuleBuilder(
             output: self,
