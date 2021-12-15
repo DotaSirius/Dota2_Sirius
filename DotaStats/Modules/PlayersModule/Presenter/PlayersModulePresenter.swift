@@ -12,8 +12,7 @@ final class PlayersModulePresenter {
     let output: PlayersModuleOutput
 
     required init(networkService: NetworkService,
-                  output: PlayersModuleOutput)
-    {
+                  output: PlayersModuleOutput) {
         self.networkService = networkService
         self.output = output
     }

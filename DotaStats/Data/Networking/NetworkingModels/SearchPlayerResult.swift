@@ -1,6 +1,6 @@
 import Foundation
 
-struct Search: Decodable {
+struct SearchPlayerResult: Decodable {
     let accountId: Int
     let avatarfull: String?
     let personaname: String?
