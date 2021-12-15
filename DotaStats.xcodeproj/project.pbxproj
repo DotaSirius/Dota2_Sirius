@@ -65,7 +65,7 @@
 		CEFEF667276A0DE900CAE93B /* DetailedMatchInfoCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF65F276A0DE900CAE93B /* DetailedMatchInfoCellConfigurable.swift */; };
 		CEFEF668276A0DE900CAE93B /* TeamMatchInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF660276A0DE900CAE93B /* TeamMatchInfoTableViewCell.swift */; };
 		CEFEF669276A0DE900CAE93B /* MatchPlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF661276A0DE900CAE93B /* MatchPlayerCell.swift */; };
-		CEFEF66A276A0DE900CAE93B /* PlaeyrsTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF662276A0DE900CAE93B /* PlaeyrsTableHeaderCell.swift */; };
+		CEFEF66A276A0DE900CAE93B /* PlayersTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF662276A0DE900CAE93B /* PlayersTableHeaderCell.swift */; };
 		CEFEF66B276A0DE900CAE93B /* CopyIdButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF663276A0DE900CAE93B /* CopyIdButton.swift */; };
 		CEFEF66C276A0DE900CAE93B /* MainMatchInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF664276A0DE900CAE93B /* MainMatchInfoTableViewCell.swift */; };
 		CEFEF66D276A0DE900CAE93B /* AdditionalMatchInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF665276A0DE900CAE93B /* AdditionalMatchInfoTableViewCell.swift */; };
@@ -166,7 +166,7 @@
 		CEFEF65F276A0DE900CAE93B /* DetailedMatchInfoCellConfigurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedMatchInfoCellConfigurable.swift; sourceTree = "<group>"; };
 		CEFEF660276A0DE900CAE93B /* TeamMatchInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMatchInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CEFEF661276A0DE900CAE93B /* MatchPlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchPlayerCell.swift; sourceTree = "<group>"; };
-		CEFEF662276A0DE900CAE93B /* PlaeyrsTableHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaeyrsTableHeaderCell.swift; sourceTree = "<group>"; };
+		CEFEF662276A0DE900CAE93B /* PlayersTableHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersTableHeaderCell.swift; sourceTree = "<group>"; };
 		CEFEF663276A0DE900CAE93B /* CopyIdButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyIdButton.swift; sourceTree = "<group>"; };
 		CEFEF664276A0DE900CAE93B /* MainMatchInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMatchInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CEFEF665276A0DE900CAE93B /* AdditionalMatchInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionalMatchInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 				CEFEF65F276A0DE900CAE93B /* DetailedMatchInfoCellConfigurable.swift */,
 				CEFEF660276A0DE900CAE93B /* TeamMatchInfoTableViewCell.swift */,
 				CEFEF661276A0DE900CAE93B /* MatchPlayerCell.swift */,
-				CEFEF662276A0DE900CAE93B /* PlaeyrsTableHeaderCell.swift */,
+				CEFEF662276A0DE900CAE93B /* PlayersTableHeaderCell.swift */,
 				CEFEF663276A0DE900CAE93B /* CopyIdButton.swift */,
 				CEFEF664276A0DE900CAE93B /* MainMatchInfoTableViewCell.swift */,
 				CEFEF665276A0DE900CAE93B /* AdditionalMatchInfoTableViewCell.swift */,
@@ -771,7 +771,7 @@
 				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
 				CEFEF64D2769E83F00CAE93B /* AdditionalMatchInfo.swift in Sources */,
 				CEFEF6502769E83F00CAE93B /* MatchTableViewCellData.swift in Sources */,
-				CEFEF66A276A0DE900CAE93B /* PlaeyrsTableHeaderCell.swift in Sources */,
+				CEFEF66A276A0DE900CAE93B /* PlayersTableHeaderCell.swift in Sources */,
 				837AED9D27690ADB0009589E /* SearchPlayerModuleViewState.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
 				EC1415FC2767797400715D00 /* CachedImageView.swift in Sources */,
