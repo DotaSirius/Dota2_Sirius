@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 protocol ImageService: AnyObject {
-    func fetchImage(with url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable?
+    func fetchImage(with url: String, completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable?
 }
 
 final class ImageServiceImp: ImageService {
@@ -13,7 +13,7 @@ final class ImageServiceImp: ImageService {
     private init() {}
 
     @discardableResult
-    func fetchImage(with url: String, _ completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable? {
+    func fetchImage(with url: String, completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable? {
         guard let requestUrl = URL(string: url) else {
             completion(.failure(HTTPError.missingURL))
             return nil
