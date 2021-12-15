@@ -20,6 +20,10 @@ final class PlayersModuleViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+          return .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

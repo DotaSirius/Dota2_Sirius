@@ -17,4 +17,8 @@ final class MainTabBarController: UITabBarController {
             tabBar.items![i].image = UIImage(named: tabImageNames[i])
         }
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+          return .lightContent
+    }
 }

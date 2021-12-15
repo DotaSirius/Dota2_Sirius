@@ -23,6 +23,10 @@ final class SearchPlayerModuleViewController: UIViewController {
         self.output = output
         super.init(nibName: nil, bundle: nil)
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+          return .lightContent
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
