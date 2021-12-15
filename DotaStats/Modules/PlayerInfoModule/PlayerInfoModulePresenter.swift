@@ -14,7 +14,7 @@ final class PlayerInfoModulePresenter {
     private let playerInfoService: PlayerInfoService
     let output: PlayerInfoModuleOutput
     let playerId: Int
-    var mainInfo: PlayerMainInfo?
+    var mainInfo: PlayerMainInfoView?
     
     required init(playerInfoService: PlayerInfoService,
                   output: PlayerInfoModuleOutput,
@@ -23,22 +23,13 @@ final class PlayerInfoModulePresenter {
         self.output = output
         self.state = .none
         self.playerId = playerId
-        
-        _ = playerInfoService.requestPlayerMainInfo(id: playerId) { [weak self] result in
-            switch result {
-            case .success(let player):
-                self?.state = .success(player)
-            case .failure(let error):
-                self?.state = .error(error)
-            }
-        }
     }
     
     private var state: PlayerInfoModulePresenterState {
         didSet {
             switch state {
             case .success(let player):
-                mainInfo = player
+                mainInfo = convert(playerMainInfo: player)
                 view?.update(state: .success)
             case .error(let error):
                 view?.update(state: .error(error.localizedDescription))
@@ -50,7 +41,25 @@ final class PlayerInfoModulePresenter {
         }
     }
     
-    private func updateView() { }
+    private func updateView() {
+        state = .loading
+        _ = playerInfoService.requestPlayerMainInfo(id: playerId) { [weak self] result in
+            switch result {
+            case .success(let player):
+                self?.state = .success(player)
+            case .failure(let error):
+                self?.state = .error(error)
+            }
+        }
+    }
+    
+    private func convert(playerMainInfo: PlayerMainInfo) -> PlayerMainInfoView {
+        PlayerMainInfoView(
+            name: playerMainInfo.profile.name ?? NSLocalizedString("Player", comment: ""),
+            avatar: playerMainInfo.profile.avatar,
+            leaderboardRank: playerMainInfo.leaderboardRank ?? 0
+        )
+    }
 }
 
 extension  PlayerInfoModulePresenter: PlayerInfoModuleInput {

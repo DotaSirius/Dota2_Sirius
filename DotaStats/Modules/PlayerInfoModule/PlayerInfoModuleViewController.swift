@@ -5,6 +5,7 @@ protocol PlayerInfoModuleViewInput: AnyObject {
 }
 
 protocol PlayerInfoModuleViewOutput: AnyObject {
+    func getMainData()
 }
 
 final class PlayerInfoModuleViewController: UIViewController {

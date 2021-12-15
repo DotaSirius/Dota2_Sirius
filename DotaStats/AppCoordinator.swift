@@ -8,7 +8,8 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
-        let _ = playerInfoModuleBuilder()
+        // don't forget to replace
+        let _ = playerInfoModuleBuilder(playerId: 153125655)
         
         let viewControllers = [
             playersModule.viewController,
@@ -60,7 +61,7 @@ extension AppCoordinator {
         )
     }
     
-    private func playerInfoModuleBuilder() -> PlayerInfoModuleBuilder {
+    private func playerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
         PlayerInfoModuleBuilder(
             output: self,
             playerInfoService: PlayerInfoServiceImp(
@@ -68,7 +69,7 @@ extension AppCoordinator {
                     urlSession: URLSession(configuration: .default)
                 )
             ),
-            playerId: 153125655
+            playerId: playerId
         )
     }
 }

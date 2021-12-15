@@ -59,10 +59,6 @@ final class MatchesModuleViewController: UIViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-          return .lightContent
-    }
 
     // MARK: - Set up UILabel "MATCHES"
 

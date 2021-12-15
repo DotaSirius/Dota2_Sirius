@@ -1,9 +1,18 @@
 import Foundation
 
 protocol PlayerInfoService: AnyObject {
-    func requestPlayerMainInfo(id: Int, completion: @escaping (Result<PlayerMainInfo, HTTPError>) -> Void) -> Cancellable?
-    func requestPlayerWLInfo(id: Int, completion: @escaping (Result<PlayerWL, HTTPError>) -> Void) -> Cancellable?
-    func requestPlayerMatchesInfo(id: Int, completion: @escaping (Result<[PlayerMatch], HTTPError>) -> Void) -> Cancellable?
+    func requestPlayerMainInfo(
+        id: Int,
+        completion: @escaping (Result<PlayerMainInfo, HTTPError>) -> Void
+    ) -> Cancellable?
+    func requestPlayerWLInfo(
+        id: Int,
+        completion: @escaping (Result<PlayerWL, HTTPError>) -> Void
+    ) -> Cancellable?
+    func requestPlayerMatchesInfo(
+        id: Int,
+        completion: @escaping (Result<[PlayerMatch], HTTPError>) -> Void
+    ) -> Cancellable?
 }
 
 final class PlayerInfoServiceImp: PlayerInfoService {
@@ -14,7 +23,10 @@ final class PlayerInfoServiceImp: PlayerInfoService {
     }
 
     @discardableResult
-    func requestPlayerMainInfo(id: Int, completion: @escaping (Result<PlayerMainInfo, HTTPError>) -> Void) -> Cancellable? {
+    func requestPlayerMainInfo(
+        id: Int,
+        completion: @escaping (Result<PlayerMainInfo, HTTPError>) -> Void
+    ) -> Cancellable? {
         networkClient.processRequest(
             request: createPlayerRequest(id: id),
             completion: completion
@@ -22,7 +34,10 @@ final class PlayerInfoServiceImp: PlayerInfoService {
     }
     
     @discardableResult
-    func requestPlayerWLInfo(id: Int, completion: @escaping (Result<PlayerWL, HTTPError>) -> Void) -> Cancellable? {
+    func requestPlayerWLInfo(
+        id: Int,
+        completion: @escaping (Result<PlayerWL, HTTPError>) -> Void
+    ) -> Cancellable? {
         networkClient.processRequest(
             request: createWLRequest(id: id),
             completion: completion
@@ -30,7 +45,10 @@ final class PlayerInfoServiceImp: PlayerInfoService {
     }
     
     @discardableResult
-    func requestPlayerMatchesInfo(id: Int, completion: @escaping (Result<[PlayerMatch], HTTPError>) -> Void) -> Cancellable? {
+    func requestPlayerMatchesInfo(
+        id: Int,
+        completion: @escaping (Result<[PlayerMatch], HTTPError>) -> Void
+    ) -> Cancellable? {
         networkClient.processRequest(
             request: createPlayerMatchesRequest(id: id),
             completion: completion
