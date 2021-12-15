@@ -80,6 +80,7 @@
 		F01B49072768C37200103100 /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49062768C37200103100 /* SearchPlayerResult.swift */; };
 		F01B49092768C3A700103100 /* ImageNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49082768C3A700103100 /* ImageNetworkService.swift */; };
 		F01B49102769390800103100 /* TeamsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B490F2769390800103100 /* TeamsCell.swift */; };
+		F09C5B41276A2ED100413011 /* TeamsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09C5B40276A2ED000413011 /* TeamsHeaderView.swift */; };
 		F0DF32A32767850C004670C0 /* PlayerInfoFromSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */; };
 		F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */; };
 		F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */; };
@@ -155,6 +156,7 @@
 		F01B49062768C37200103100 /* SearchPlayerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlayerResult.swift; sourceTree = "<group>"; };
 		F01B49082768C3A700103100 /* ImageNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageNetworkService.swift; sourceTree = "<group>"; };
 		F01B490F2769390800103100 /* TeamsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCell.swift; sourceTree = "<group>"; };
+		F09C5B40276A2ED000413011 /* TeamsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsHeaderView.swift; sourceTree = "<group>"; };
 		F0DF329B27674C2E004670C0 /* SearchPlayerModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleBuilder.swift; sourceTree = "<group>"; };
 		F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoFromSearch.swift; sourceTree = "<group>"; };
 		F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModulePresenter.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			children = (
 				EC4E6F992764C8550085B61D /* TeamsModuleViewController.swift */,
 				F01B490F2769390800103100 /* TeamsCell.swift */,
+				F09C5B40276A2ED000413011 /* TeamsHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				837AED9E27690ADB0009589E /* SearchPlayerModulePresenterState.swift in Sources */,
 				F01B49072768C37200103100 /* SearchPlayerResult.swift in Sources */,
 				303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */,
+				F09C5B41276A2ED100413011 /* TeamsHeaderView.swift in Sources */,
 				EA8525C10313780ABFC01843 /* Match.swift in Sources */,
 				837AED9F27690C530009589E /* SearchPlayerModuleBuilder.swift in Sources */,
 				EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */,

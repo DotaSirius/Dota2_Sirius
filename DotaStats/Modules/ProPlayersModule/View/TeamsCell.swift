@@ -10,7 +10,7 @@ final class TeamsCell: UITableViewCell {
         static let additionalInfoFontSize: CGFloat = 13
         static let numWidth: CGFloat = 20
         static let avatarSide: CGFloat = 40
-        static let winRateWidth: CGFloat = 90
+        static let winRateWidth: CGFloat = 60
         static let ratingWidth: CGFloat = 60
     }
 
@@ -57,7 +57,7 @@ final class TeamsCell: UITableViewCell {
         return label
     }()
 
-    private lazy var winRateLabel: UILabel = {
+    private lazy var winrateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: Constant.additionalInfoFontSize, weight: .bold)
         label.textAlignment = .center
@@ -81,7 +81,7 @@ final class TeamsCell: UITableViewCell {
                    numOfTeam: Int,
                    teamName: String = "Team Spirit",
                    recentActivity: String = "a day ago",
-                   rating: Int = 1200,
+                   rating: Int = 1000000,
                    ratingColor: UIColor = .green,
                    winPercent: Double = 56.7,
                    winPercentColor: UIColor = .yellow) {
@@ -92,8 +92,8 @@ final class TeamsCell: UITableViewCell {
         recentActivityLabel.text = recentActivity
         ratingLabel.text = String(rating)
         ratingLabel.textColor = ratingColor
-        winRateLabel.text = String(winPercent) + "%"
-        winRateLabel.textColor = winPercentColor
+        winrateLabel.text = String(winPercent) + "%"
+        winrateLabel.textColor = winPercentColor
     }
 
     private func setup() {
@@ -103,7 +103,7 @@ final class TeamsCell: UITableViewCell {
         contentView.addSubview(recentActivityLabel)
         contentView.addSubview(teamNameLabel)
         contentView.addSubview(ratingLabel)
-        contentView.addSubview(winRateLabel)
+        contentView.addSubview(winrateLabel)
 
         let bottomConstraint = teamLogoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
                                                               constant: -Constant.spacing)
@@ -113,7 +113,7 @@ final class TeamsCell: UITableViewCell {
             numTeamLabel.widthAnchor.constraint(equalToConstant: Constant.numWidth),
             numTeamLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.spacing),
             numTeamLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            
+
             teamLogoView.widthAnchor.constraint(equalToConstant: Constant.avatarSide),
             teamLogoView.heightAnchor.constraint(equalToConstant: Constant.avatarSide),
             teamLogoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constant.verticalPadding),
@@ -128,12 +128,12 @@ final class TeamsCell: UITableViewCell {
             recentActivityLabel.leadingAnchor.constraint(equalTo: teamNameLabel.leadingAnchor),
             
             ratingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            ratingLabel.trailingAnchor.constraint(equalTo: winRateLabel.leadingAnchor, constant: Constant.spacing),
+            ratingLabel.trailingAnchor.constraint(equalTo: winrateLabel.leadingAnchor, constant: -Constant.spacing),
             ratingLabel.widthAnchor.constraint(equalToConstant: Constant.ratingWidth),
  
-            winRateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            winRateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constant.spacing),
-            winRateLabel.widthAnchor.constraint(equalToConstant: Constant.winRateWidth)
+            winrateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            winrateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constant.spacing),
+            winrateLabel.widthAnchor.constraint(equalToConstant: Constant.winRateWidth)
         ])
     }
 }
