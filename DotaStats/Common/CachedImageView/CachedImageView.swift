@@ -2,6 +2,7 @@ import UIKit
 
 final class CachedImageView: UIImageView {
     private let imageLoader = ImageServiceImp.shared
+
     private let gradientLayer: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
         gradientLayer.startPoint = CGPoint(x: 0, y: 1)
@@ -12,27 +13,35 @@ final class CachedImageView: UIImageView {
 
         return gradientLayer
     }()
-    private var isAnimateRunning = false
+    private var isAnimationRunning = false
 
-    private let lastRequest: Cancellable? = nil
+    private var lastRequest: Cancellable?
+
+    var errorPlaceholder: UIImage?
 
     init() {
-        super.init(frame: CGRect(x: 50, y: 50, width: 100, height: 100))
+        super.init(frame: .zero)
+        layer.addSublayer(gradientLayer)
+        gradientLayer.isHidden = true
+        setupImageView()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func loadWithUrl(_ url: String) {
+    override func layoutSubviews() {
+        gradientLayer.frame = frame
+    }
+
+    func setImage(with url: String) {
         startAnimation()
 
         if let lastRequest = lastRequest {
             lastRequest.cancel()
         }
 
-        imageLoader.loadWithUrl(url) { [weak self] result in
+        imageLoader.fetchImage(with: url) { [weak self] result in
             switch result {
             case .success(let newImage):
                 self?.image = newImage
@@ -52,13 +61,11 @@ final class CachedImageView: UIImageView {
     }
 
     private func startAnimation() {
-        guard !isAnimateRunning else {
+        guard !isAnimationRunning else {
             return
         }
-        isAnimateRunning = true
-
-        gradientLayer.frame = bounds
-        layer.addSublayer(gradientLayer)
+        isAnimationRunning = true
+        gradientLayer.isHidden = false
 
         let startLocations: [NSNumber] = [-1, -0.5, 0]
         let endLocations: [NSNumber] = [1, 1.5, 2]
@@ -78,8 +85,8 @@ final class CachedImageView: UIImageView {
     }
 
     private func stopAnimation() {
-        isAnimateRunning = false
-        gradientLayer.removeFromSuperlayer()
+        isAnimationRunning = false
+        gradientLayer.isHidden = true
         gradientLayer.removeAllAnimations()
     }
 }
