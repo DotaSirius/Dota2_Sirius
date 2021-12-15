@@ -6,10 +6,10 @@ protocol MatchInfoModuleViewInput: AnyObject {
 
 final class MatchInfoViewController: UIViewController {
     var spiner = UIActivityIndicatorView(style: .large)
-    
+
     var output: MatchInfoModuleViewOutput?
     var data: MatchTableViewCellData?
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(AdditionalMatchInfoTableViewCell.self,
@@ -28,7 +28,7 @@ final class MatchInfoViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
-    
+
     init(output: MatchInfoModuleViewOutput) {
         super.init(nibName: nil, bundle: nil)
         self.output = output
@@ -43,10 +43,10 @@ final class MatchInfoViewController: UIViewController {
         super.viewDidLoad()
         updateState(to: .success)
     }
-    
+
     func setUpConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -66,7 +66,7 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return output.getRowsCountInSection()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let data = output?.getCellData(for: indexPath.row),
@@ -95,7 +95,7 @@ extension MatchInfoViewController: MatchInfoModuleViewInput {
                 spiner.startAnimating()
             case .error:
                 spiner.removeFromSuperview()
-                //TO DO: Errors
+                // TO DO: Errors
             case .success:
                 view.addSubview(tableView)
                 setUpConstraints()

@@ -37,7 +37,7 @@ final class MatchInfoModulePresenter {
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 6)),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 7)),
             MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 8)),
-            MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 9)),
+            MatchTableViewCellType.matchPlayerInfo(converter.getPlayerInfo(number: 9))
         ]
     }
 }

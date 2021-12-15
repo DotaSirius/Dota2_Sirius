@@ -10,7 +10,7 @@ final class MatchInfoModuleBuilder {
     var input:  MatchInfoModuleInput {
         presenter
     }
-    
+
     init(output: MatchInfoModuleOutput, networkService: NetworkService) {
         converter = MatchInfoConverterImp(networkService: networkService)
         presenter = MatchInfoModulePresenter(converter: converter, output: output)
