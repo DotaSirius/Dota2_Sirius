@@ -1,7 +1,7 @@
 import Foundation
 
 class MatchDetailToEventsConverter {
-    typealias ConvertedEventsDictionary = [Int: MatchEvent]
+    typealias ConvertedEventsDictionary = [Int: [MatchEvent]]
 
     static func convert(_ details: MatchDetail) -> ConvertedEventsDictionary {
         var dictionaryToReturn: ConvertedEventsDictionary = [:]
@@ -40,10 +40,16 @@ class MatchDetailToEventsConverter {
                 $0
             }
 
-            dictionaryToReturn[objectTime] = MatchEvent(
+            let createdEvent = MatchEvent(
                     eventType: MatchEventType(rawValue: objectType),
                     involvedPlayers: involvedPlayers,
                     coordinates: nil)
+
+            if dictionaryToReturn[objectTime] != nil {
+                dictionaryToReturn[objectTime]?.append(createdEvent)
+            } else {
+                dictionaryToReturn[objectTime] = [createdEvent]
+            }
         }
 
         return dictionaryToReturn
@@ -65,7 +71,11 @@ class MatchDetailToEventsConverter {
                     coordinates: nil)
 
             for timeStamp in startTime...endTime {
-                dictionaryToReturn[timeStamp] = createdEvent
+                if dictionaryToReturn[timeStamp] != nil {
+                    dictionaryToReturn[timeStamp]?.append(createdEvent)
+                } else {
+                    dictionaryToReturn[timeStamp] = [createdEvent]
+                }
             }
         }
 
@@ -99,7 +109,11 @@ class MatchDetailToEventsConverter {
                         coordinates: (x: obsXCoordinate, y: obsYCoordinate))
 
                 for timeStamp in obsStartTime...obsEndTime {
-                    dictionaryToReturn[timeStamp] = createdEvent
+                    if dictionaryToReturn[timeStamp] != nil {
+                        dictionaryToReturn[timeStamp]?.append(createdEvent)
+                    } else {
+                        dictionaryToReturn[timeStamp] = [createdEvent]
+                    }
                 }
             }
 
@@ -118,11 +132,15 @@ class MatchDetailToEventsConverter {
                         coordinates: (x: senXCoordinate, y: senYCoordinate))
 
                 for timeStamp in senStartTime...senEndTime {
-                    dictionaryToReturn[timeStamp] = createdEvent
+                    if dictionaryToReturn[timeStamp] != nil {
+                        dictionaryToReturn[timeStamp]?.append(createdEvent)
+                    } else {
+                        dictionaryToReturn[timeStamp] = [createdEvent]
+                    }
                 }
             }
         }
-        
+
         return dictionaryToReturn
     }
 }
