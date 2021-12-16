@@ -74,23 +74,24 @@ final class TeamShortInfo {
         }
     }
 
-    private func dateToString(_ date: Date?) -> String {
-        guard let date = date else { return "" }
+    private func dateToString(_ date: Date) -> String {
         let now = Date().timeIntervalSince1970
         let diff = now - date.timeIntervalSince1970
         switch diff {
-        case 0..<Constant.tenMinutesSeconds:
-            return "меньше 10 минут"
-        case Constant.tenMinutesSeconds..<Constant.hourSeconds:
-            return "меньше часа"
+        case 0..<Constant.hourSeconds:
+            let minutes = Int(diff / Constant.minutes)
+            return minutes == 1 ? "a minute ago" : "\(minutes) minutes ago"
         case Constant.hourSeconds..<Constant.oneDaySeconds:
-            return "меньше дня"
-        case Constant.oneDaySeconds..<Constant.weekSeconds:
-            return "меньше недели"
-        case Constant.weekSeconds..<Constant.monthSeconds:
-            return "меньше месяца"
+            let hours = Int(diff / Constant.hourSeconds)
+            return hours == 1 ? "an hour ago" : "\(hours) hours ago"
+        case Constant.oneDaySeconds..<Constant.monthSeconds:
+            let days = Int(diff / Constant.oneDaySeconds)
+            return days == 1 ? "a day ago" : "\(days) days ago"
+        case Constant.monthSeconds..<Constant.yearSeconds:
+            let months = Int(diff / Constant.monthSeconds)
+            return months == 1 ? "a month ago" : "\(months) months ago"
         default:
-            return "меньше года"
+            return ""
         }
     }
 }

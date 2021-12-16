@@ -12,7 +12,7 @@ protocol TeamsModuleViewOutput: AnyObject {
 
 final class TeamsModuleViewController: UIViewController {
     private var output: TeamsModuleViewOutput?
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }

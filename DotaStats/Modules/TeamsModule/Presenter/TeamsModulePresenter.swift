@@ -17,6 +17,7 @@ final class TeamsModulePresenter {
         static let firstEmoji: String = NSLocalizedString("🥇", comment: "Эмодзи для первого места в списке команд")
         static let secondEmoji: String = NSLocalizedString("🥈", comment: "Эмодзи для второго места в списке команд")
         static let thirdEmoji: String = NSLocalizedString("🥉", comment: "Эмодзи для третьего места в списке команд")
+        static let yearsSeconds: TimeInterval = 31622400
     }
 
     private let teamsService: TeamsService
@@ -37,7 +38,12 @@ final class TeamsModulePresenter {
             guard let self = self else { return }
             switch result {
             case .success(let teamResult):
-                self.teams = teamResult.map { TeamShortInfo(from: $0) }
+                let filteredTeams = teamResult.filter { team in
+                    return team.lastMatchTime.distance(to: Date()) < Constant.yearsSeconds
+                    && team.logoUrl != nil
+                    && !team.tag.isEmpty
+                }
+                self.teams = filteredTeams.map { TeamShortInfo(from: $0) }
                 self.view?.updateState(.success)
             case .failure:
                 self.view?.updateState(.failure)

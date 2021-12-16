@@ -7,6 +7,6 @@ struct TeamResult: Decodable {
     let losses: Int
     let lastMatchTime: Date
     let name: String
-    let tag: String?
+    let tag: String
     let logoUrl: String?
 }
