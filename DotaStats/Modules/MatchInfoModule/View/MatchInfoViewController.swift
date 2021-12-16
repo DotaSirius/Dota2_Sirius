@@ -10,6 +10,8 @@ final class MatchInfoViewController: UIViewController {
     var output: MatchInfoModuleViewOutput?
     var data: MatchTableViewCellData?
 
+    private var errorConstraint: NSLayoutConstraint?
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(AdditionalMatchInfoTableViewCell.self,
@@ -30,6 +32,16 @@ final class MatchInfoViewController: UIViewController {
         return tableView
     }()
 
+    private lazy var errorView: ErrorView = {
+        let view = ErrorView()
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        let tapActionHideError = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        view.addGestureRecognizer(tapActionHideError)
+        return view
+    }()
+
     init(output: MatchInfoModuleViewOutput) {
         super.init(nibName: nil, bundle: nil)
         self.output = output
@@ -43,6 +55,7 @@ final class MatchInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorPalette.mainBackground
+        setupErrorViewConstraints()
     }
 
     func setupConstraints() {
@@ -53,6 +66,47 @@ final class MatchInfoViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+
+    // MARK: ErrorView Constraints
+
+    private func setupErrorViewConstraints() {
+        view.addSubview(errorView)
+        let errorConstraint = errorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        NSLayoutConstraint.activate([
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorConstraint,
+            errorView.heightAnchor.constraint(equalToConstant: 90)
+        ])
+        self.errorConstraint = errorConstraint
+    }
+
+    // MARK: Show/hide errors function
+
+    func showError() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseInOut]) {
+            self.errorConstraint?.constant = 35
+            self.errorView.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    func hideError() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseOut]) {
+            self.errorConstraint?.constant = 0
+            self.errorView.alpha = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func handleTap(_: UITapGestureRecognizer) {
+        hideError()
+    }
+
 }
 
 extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -96,7 +150,7 @@ extension MatchInfoViewController: MatchInfoModuleViewInput {
             spiner.startAnimating()
         case .error:
             spiner.removeFromSuperview()
-        // TODO: Errors
+            showError()
         case .success:
             view.addSubview(tableView)
             setupConstraints()
