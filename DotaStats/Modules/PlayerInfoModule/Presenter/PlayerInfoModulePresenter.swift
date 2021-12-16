@@ -14,7 +14,8 @@ final class PlayerInfoModulePresenter {
     private let playerInfoService: PlayerInfoService
     let output: PlayerInfoModuleOutput
     let playerId: Int
-    var mainInfo = PlayerMainInfoView()
+    var playerMainInfo = PlayerMainInfoView()
+    var playerWL = PlayerWLView()
 
     required init(playerInfoService: PlayerInfoService,
                   output: PlayerInfoModuleOutput,
@@ -28,9 +29,12 @@ final class PlayerInfoModulePresenter {
     private var state: PlayerInfoModulePresenterState {
         didSet {
             switch state {
-            case .success(let player):
-                mainInfo = convert(playerMainInfo: player)
-                view?.update(state: .success)
+            case .successMain(let player):
+                playerMainInfo = convert(playerMainInfo: player)
+                view?.update(state: .successMain)
+            case .successWL(let player):
+                playerWL = convert(playerWL: player)
+                view?.update(state: .successWL)
             case .error(let error):
                 view?.update(state: .error(error.localizedDescription))
             case .loading:
@@ -46,7 +50,16 @@ final class PlayerInfoModulePresenter {
         _ = playerInfoService.requestPlayerMainInfo(id: playerId) { [weak self] result in
             switch result {
             case .success(let player):
-                self?.state = .success(player)
+                self?.state = .successMain(player)
+            case .failure(let error):
+                self?.state = .error(error)
+            }
+        }
+
+        _ = playerInfoService.requestPlayerWLInfo(id: playerId) { [weak self] result in
+            switch result {
+            case .success(let player):
+                self?.state = .successWL(player)
             case .failure(let error):
                 self?.state = .error(error)
             }
@@ -55,9 +68,16 @@ final class PlayerInfoModulePresenter {
 
     private func convert(playerMainInfo: PlayerMainInfo) -> PlayerMainInfoView {
         PlayerMainInfoView(
-            name: playerMainInfo.profile.name ?? NSLocalizedString("Player", comment: ""),
+            name: playerMainInfo.profile.name ?? NSLocalizedString("", comment: ""),
             avatar: playerMainInfo.profile.avatarfull,
             leaderboardRank: playerMainInfo.leaderboardRank ?? 0
+        )
+    }
+
+    private func convert(playerWL: PlayerWL) -> PlayerWLView {
+        PlayerWLView(
+            win: playerWL.win,
+            lose: playerWL.lose
         )
     }
 }
@@ -70,24 +90,20 @@ extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
     func getCellData(forSection: Int) -> PlayerTableViewCellData {
         switch forSection {
         case 0:
-            return PlayerTableViewCellData.playerMainInfo(mainInfo)
+            return PlayerTableViewCellData.playerMainInfo(playerMainInfo)
         case 1:
-            return PlayerTableViewCellData.playerWL
+            return PlayerTableViewCellData.playerWL(playerWL)
         case 2:
             return PlayerTableViewCellData.playerMatch
         default:
-            return PlayerTableViewCellData.playerMainInfo(mainInfo)
+            return PlayerTableViewCellData.playerMainInfo(playerMainInfo)
         }
     }
 
     func getRowsInSection(section: Int) -> Int {
         switch section {
         case 0:
-            return 1
-        case 1:
-            return 1
-        case 2:
-            return 0
+            return 2
         default:
             return 0
         }

@@ -5,7 +5,6 @@ protocol PlayerInfoModuleViewInput: AnyObject {
 }
 
 protocol PlayerInfoModuleViewOutput: AnyObject {
-    // func getMainData() -> PlayerMainInfoView
     func getCellData(forSection: Int) -> PlayerTableViewCellData
     func getRowsInSection(section: Int) -> Int
 }
@@ -24,7 +23,7 @@ final class PlayerInfoModuleViewController: UIViewController {
         tableView.register(PlayerWLCell.self,
                            forCellReuseIdentifier: PlayerWLCell.reuseIdentifier)
         tableView.register(PlayerMatchCell.self,
-                           forCellReuseIdentifier: PlayerWLCell.reuseIdentifier)
+                           forCellReuseIdentifier: PlayerMatchCell.reuseIdentifier)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -70,16 +69,17 @@ extension PlayerInfoModuleViewController: PlayerInfoModuleViewInput {
             spiner.startAnimating()
         case .error:
             spiner.removeFromSuperview()
-        case .success:
-            setupTableView()
+        case .successWL, .successMain:
             spiner.removeFromSuperview()
+            setupTableView()
+            tableView.reloadData()
         }
     }
 }
 
 extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        3
+        1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,7 +88,7 @@ extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let data = output?.getCellData(forSection: indexPath.section),
+            let data = output?.getCellData(forSection: indexPath.row),
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: data.reuseIdentificator,
                 for: indexPath) as? (UITableViewCell & PlayerInfoCellConfigurable)

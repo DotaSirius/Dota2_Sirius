@@ -9,7 +9,7 @@ final class AppCoordinator {
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
         // don't forget to replace
-        let playerInfoModule = playerInfoModuleBuilder(playerId: 864072881)
+        let playerInfoModule = playerInfoModuleBuilder(playerId: 153125655)
 
         let viewControllers = [
             playersModule.viewController,
