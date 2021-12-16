@@ -267,7 +267,6 @@
 		30B40F20276A2B0100B22DCC /* MatchInfoProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				30B40F28276B2D8A00B22DCC /* Constants */,
 				30B40F25276A2FAA00B22DCC /* Model */,
 				30B40F26276A2FC700B22DCC /* MatchDetailToEventsConverter.swift */,
 			);
@@ -281,13 +280,6 @@
 				30B40F23276A2C8C00B22DCC /* MatchEvent.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		30B40F28276B2D8A00B22DCC /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		5D4C51622764DB8800BC6B30 /* View */ = {
