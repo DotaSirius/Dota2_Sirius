@@ -100,12 +100,13 @@ final class PlayerInfoModulePresenter {
         return PlayerMatchView(
             matchId: playerMatch.matchId,
             win: isRadiant ? radiantWin : !radiantWin,
-            duration: playerMatch.duration ?? 0,
-            heroId: playerMatch.matchId,
+            duration: (playerMatch.duration ?? 0) / 60,
+            heroId: playerMatch.heroId ?? 0,
             kills: playerMatch.kills ?? 0,
             deaths: playerMatch.deaths ?? 0,
             assists: playerMatch.assists ?? 0,
-            skill: String(playerMatch.skill ?? 0)
+            skill: String(playerMatch.skill ?? 0),
+            gameMode: playerMatch.gameMode ?? 0
         )
     }
 }
@@ -120,15 +121,19 @@ extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
             return PlayerTableViewCellData.playerMainInfo(playerMainInfo)
         } else if (forSection == 1) {
             return PlayerTableViewCellData.playerWL(playerWL)
+        } else if (forSection == 2) {
+            return PlayerTableViewCellData.recentMatchesTitle
+        } else if (forSection == 3) {
+            return PlayerTableViewCellData.recentMatchesHeader
         } else {
-            return PlayerTableViewCellData.playerMatch(playerMatch[forSection - 2])
+            return PlayerTableViewCellData.playerMatch(playerMatch[forSection - 4])
         }
     }
 
     func getRowsInSection(section: Int) -> Int {
         switch section {
         case 0:
-            return 2 + playerMatch.count
+            return 3 + playerMatch.count
         default:
             return 0
         }

@@ -4,6 +4,8 @@ enum PlayerTableViewCellData {
     case playerMainInfo(PlayerMainInfoView)
     case playerWL(PlayerWLView)
     case playerMatch(PlayerMatchView)
+    case recentMatchesTitle
+    case recentMatchesHeader
 }
 
 extension PlayerTableViewCellData {
@@ -15,6 +17,10 @@ extension PlayerTableViewCellData {
             return PlayerWLCell.reuseIdentifier
         case .playerMatch:
             return PlayerMatchCell.reuseIdentifier
+        case .recentMatchesHeader:
+            return RecentMatchesHeader.reuseIdentifier
+        case .recentMatchesTitle:
+            return RecentMatchesTitle.reuseIdentifier
         }
     }
 }

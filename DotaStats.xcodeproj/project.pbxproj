@@ -56,6 +56,8 @@
 		5D3BA9E9276BCB6D005954E4 /* PlayerWL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BA9E6276BCB6D005954E4 /* PlayerWL.swift */; };
 		5D3BA9EA276BCB6D005954E4 /* PlayerMainInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BA9E7276BCB6D005954E4 /* PlayerMainInfo.swift */; };
 		5D3BA9EC276BCBA6005954E4 /* PlayerInfoModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BA9EB276BCBA6005954E4 /* PlayerInfoModuleBuilder.swift */; };
+		5D3BA9F2276BE974005954E4 /* RecentMatchesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BA9F1276BE974005954E4 /* RecentMatchesHeader.swift */; };
+		5D3BA9F4276BE986005954E4 /* RecentMatchesTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BA9F3276BE986005954E4 /* RecentMatchesTitle.swift */; };
 		5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED64A912764D57500E4CF5B /* MainTabBarController.swift */; };
 		5EE31DC327678EE200A3667B /* TournamentViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE31DC227678EE200A3667B /* TournamentViewState.swift */; };
 		6035383B2766619800CC32AD /* SearchPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603538392766619800CC32AD /* SearchPlayerTableViewCell.swift */; };
@@ -172,6 +174,8 @@
 		5D3BA9E6276BCB6D005954E4 /* PlayerWL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerWL.swift; sourceTree = "<group>"; };
 		5D3BA9E7276BCB6D005954E4 /* PlayerMainInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMainInfo.swift; sourceTree = "<group>"; };
 		5D3BA9EB276BCBA6005954E4 /* PlayerInfoModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoModuleBuilder.swift; sourceTree = "<group>"; };
+		5D3BA9F1276BE974005954E4 /* RecentMatchesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMatchesHeader.swift; sourceTree = "<group>"; };
+		5D3BA9F3276BE986005954E4 /* RecentMatchesTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMatchesTitle.swift; sourceTree = "<group>"; };
 		5ED64A912764D57500E4CF5B /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		5EE31DC227678EE200A3667B /* TournamentViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewState.swift; sourceTree = "<group>"; };
 		603538392766619800CC32AD /* SearchPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlayerTableViewCell.swift; sourceTree = "<group>"; };
@@ -370,6 +374,8 @@
 				5D3BA9D8276BCAF8005954E4 /* PlayerMatchCell.swift */,
 				5D3BA9D6276BCAF8005954E4 /* PlayerTableViewCellData.swift */,
 				5D3BA9D5276BCAF8005954E4 /* PlayerWLCell.swift */,
+				5D3BA9F1276BE974005954E4 /* RecentMatchesHeader.swift */,
+				5D3BA9F3276BE986005954E4 /* RecentMatchesTitle.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -810,10 +816,12 @@
 				5D2518612768BE7F0005374B /* MatchesModuleBuilder.swift in Sources */,
 				5D3BA9DB276BCAF8005954E4 /* PlayerWLCell.swift in Sources */,
 				5EE31DC327678EE200A3667B /* TournamentViewState.swift in Sources */,
+				5D3BA9F4276BE986005954E4 /* RecentMatchesTitle.swift in Sources */,
 				F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */,
 				CEFEF6AE276A2B7B00CAE93B /* PlayersTableHeaderCell.swift in Sources */,
 				CEFEF699276A28E800CAE93B /* PlayerList.swift in Sources */,
 				5D3BA9EA276BCB6D005954E4 /* PlayerMainInfo.swift in Sources */,
+				5D3BA9F2276BE974005954E4 /* RecentMatchesHeader.swift in Sources */,
 				F01B49092768C3A700103100 /* ImageNetworkService.swift in Sources */,
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
 				5D25187D2769029E0005374B /* AppCoordinator.swift in Sources */,

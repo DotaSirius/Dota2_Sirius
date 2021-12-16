@@ -22,6 +22,10 @@ final class PlayerInfoModuleViewController: UIViewController {
                            forCellReuseIdentifier: PlayerMainInfoCell.reuseIdentifier)
         tableView.register(PlayerWLCell.self,
                            forCellReuseIdentifier: PlayerWLCell.reuseIdentifier)
+        tableView.register(RecentMatchesTitle.self,
+                           forCellReuseIdentifier: RecentMatchesTitle.reuseIdentifier)
+        tableView.register(RecentMatchesHeader.self,
+                           forCellReuseIdentifier: RecentMatchesHeader.reuseIdentifier)
         tableView.register(PlayerMatchCell.self,
                            forCellReuseIdentifier: PlayerMatchCell.reuseIdentifier)
 

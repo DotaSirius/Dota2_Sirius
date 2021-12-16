@@ -9,4 +9,5 @@ struct PlayerMatchView {
     let deaths: Int
     let assists: Int
     let skill: String
+    let gameMode: Int
 }
