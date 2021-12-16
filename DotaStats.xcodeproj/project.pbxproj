@@ -25,6 +25,11 @@
 		303AC4E52767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */; };
 		303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E62767933700A8C462 /* DateFormatterExtension.swift */; };
 		303AC4E82767933700A8C462 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E62767933700A8C462 /* DateFormatterExtension.swift */; };
+		3C1B5AD0276A0CE9002DDF31 /* PlotGmpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B5ACF276A0CE9002DDF31 /* PlotGmpViewController.swift */; };
+		3C1B5AD2276A0DBC002DDF31 /* PlotGmpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B5AD1276A0DBC002DDF31 /* PlotGmpView.swift */; };
+		3C1B5AD4276A1108002DDF31 /* PlotGmpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B5AD3276A1108002DDF31 /* PlotGmpBuilder.swift */; };
+		3C1B5AD6276A11F0002DDF31 /* PlotGmpViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B5AD5276A11F0002DDF31 /* PlotGmpViewState.swift */; };
+		3C1B5AD8276A1694002DDF31 /* PlotGmpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B5AD7276A1694002DDF31 /* PlotGmpPresenter.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchDetailDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatchDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */; };
@@ -106,6 +111,11 @@
 		303AC4E12767873E00A8C462 /* PlayerSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchService.swift; sourceTree = "<group>"; };
 		303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchServiceReceivingDataTest.swift; sourceTree = "<group>"; };
 		303AC4E62767933700A8C462 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		3C1B5ACF276A0CE9002DDF31 /* PlotGmpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpViewController.swift; sourceTree = "<group>"; };
+		3C1B5AD1276A0DBC002DDF31 /* PlotGmpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpView.swift; sourceTree = "<group>"; };
+		3C1B5AD3276A1108002DDF31 /* PlotGmpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpBuilder.swift; sourceTree = "<group>"; };
+		3C1B5AD5276A11F0002DDF31 /* PlotGmpViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpViewState.swift; sourceTree = "<group>"; };
+		3C1B5AD7276A1694002DDF31 /* PlotGmpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpPresenter.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatchDetail.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
@@ -252,6 +262,42 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		3C1B5ACC276A0C47002DDF31 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C1B5ACF276A0CE9002DDF31 /* PlotGmpViewController.swift */,
+				3C1B5AD1276A0DBC002DDF31 /* PlotGmpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C1B5ACD276A0C4D002DDF31 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3C1B5AD7276A1694002DDF31 /* PlotGmpPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3C1B5ACE276A0C55002DDF31 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C1B5AD5276A11F0002DDF31 /* PlotGmpViewState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3C46F979276A0357009985F6 /* PlotGmpModule */ = {
+			isa = PBXGroup;
+			children = (
+				3C1B5AD3276A1108002DDF31 /* PlotGmpBuilder.swift */,
+				3C1B5ACE276A0C55002DDF31 /* Model */,
+				3C1B5ACD276A0C4D002DDF31 /* Presenter */,
+				3C1B5ACC276A0C47002DDF31 /* View */,
+			);
+			path = PlotGmpModule;
+			sourceTree = "<group>";
+		};
 		5D4C51622764DB8800BC6B30 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +373,7 @@
 		EC4E6F8E2764C8550085B61D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				3C46F979276A0357009985F6 /* PlotGmpModule */,
 				EC4E6F8F2764C8550085B61D /* MatchInfoModule */,
 				F0F2EE4D2764D0D400EAB7E5 /* SearchPlayerModule */,
 				EC4E6F922764C8550085B61D /* PlayersModule */,
@@ -635,8 +682,10 @@
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
 				5D25187D2769029E0005374B /* AppCoordinator.swift in Sources */,
 				5D25186F2768BEA70005374B /* MatchesModuleViewState.swift in Sources */,
+				3C1B5AD2276A0DBC002DDF31 /* PlotGmpView.swift in Sources */,
 				EC4E6FA32764C8550085B61D /* Player.swift in Sources */,
 				300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */,
+				3C1B5AD4276A1108002DDF31 /* PlotGmpBuilder.swift in Sources */,
 				6035383B2766619800CC32AD /* SearchPlayerTableViewCell.swift in Sources */,
 				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
 				5D2518662768BE8F0005374B /* ListTournamentsCell.swift in Sources */,
@@ -646,9 +695,11 @@
 				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
 				837AED9D27690ADB0009589E /* SearchPlayerModuleViewState.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
+				3C1B5AD8276A1694002DDF31 /* PlotGmpPresenter.swift in Sources */,
 				EA852117FB5669A545C9F8B4 /* MatchDetail.swift in Sources */,
 				EA8522C781197B1ACBBE601B /* Players.swift in Sources */,
 				EC4E6FAB2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
+				3C1B5AD6276A11F0002DDF31 /* PlotGmpViewState.swift in Sources */,
 				303AC4E22767873E00A8C462 /* PlayerSearchService.swift in Sources */,
 				5D25186E2768BEA70005374B /* MatchCollectionPresenterData.swift in Sources */,
 				ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */,
@@ -663,6 +714,7 @@
 				EA8525C10313780ABFC01843 /* Match.swift in Sources */,
 				837AED9F27690C530009589E /* SearchPlayerModuleBuilder.swift in Sources */,
 				EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */,
+				3C1B5AD0276A0CE9002DDF31 /* PlotGmpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

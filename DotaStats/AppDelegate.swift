@@ -8,8 +8,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let appCoordinator = AppCoordinator()
-        window!.rootViewController = appCoordinator.tabBarController
+//        let appCoordinator = AppCoordinator()
+//        window!.rootViewController = appCoordinator.tabBarController
+//        window!.makeKeyAndVisible()
+//        application.statusBarStyle = .lightContent
+//        return true
+        
+        let plotGmpViewController = PlotGmpViewController()
+        window!.rootViewController = plotGmpViewController
         window!.makeKeyAndVisible()
         application.statusBarStyle = .lightContent
         return true
