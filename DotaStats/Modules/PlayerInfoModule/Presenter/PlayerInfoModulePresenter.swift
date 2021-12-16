@@ -15,7 +15,7 @@ final class PlayerInfoModulePresenter {
     let output: PlayerInfoModuleOutput
     let playerId: Int
     var mainInfo = PlayerMainInfoView()
-    
+
     required init(playerInfoService: PlayerInfoService,
                   output: PlayerInfoModuleOutput,
                   playerId: Int) {
@@ -24,7 +24,7 @@ final class PlayerInfoModulePresenter {
         self.state = .none
         self.playerId = playerId
     }
-    
+
     private var state: PlayerInfoModulePresenterState {
         didSet {
             switch state {
@@ -40,7 +40,7 @@ final class PlayerInfoModulePresenter {
             }
         }
     }
-    
+
     private func updateView() {
         state = .loading
         _ = playerInfoService.requestPlayerMainInfo(id: playerId) { [weak self] result in
@@ -52,22 +52,44 @@ final class PlayerInfoModulePresenter {
             }
         }
     }
-    
+
     private func convert(playerMainInfo: PlayerMainInfo) -> PlayerMainInfoView {
         PlayerMainInfoView(
             name: playerMainInfo.profile.name ?? NSLocalizedString("Player", comment: ""),
-            avatar: playerMainInfo.profile.avatar,
+            avatar: playerMainInfo.profile.avatarfull,
             leaderboardRank: playerMainInfo.leaderboardRank ?? 0
         )
     }
 }
 
 extension PlayerInfoModulePresenter: PlayerInfoModuleInput {
-    
+
 }
 
 extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
-    func getMainData() -> PlayerMainInfoView {
-        mainInfo
+    func getCellData(forSection: Int) -> PlayerTableViewCellData {
+        switch forSection {
+        case 0:
+            return PlayerTableViewCellData.playerMainInfo(mainInfo)
+        case 1:
+            return PlayerTableViewCellData.playerWL
+        case 2:
+            return PlayerTableViewCellData.playerMatch
+        default:
+            return PlayerTableViewCellData.playerMainInfo(mainInfo)
+        }
+    }
+
+    func getRowsInSection(section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 1
+        case 2:
+            return 0
+        default:
+            return 0
+        }
     }
 }

@@ -32,7 +32,7 @@ final class PlayerInfoServiceImp: PlayerInfoService {
             completion: completion
         )
     }
-    
+
     @discardableResult
     func requestPlayerWLInfo(
         id: Int,
@@ -43,7 +43,7 @@ final class PlayerInfoServiceImp: PlayerInfoService {
             completion: completion
         )
     }
-    
+
     @discardableResult
     func requestPlayerMatchesInfo(
         id: Int,
@@ -58,11 +58,11 @@ final class PlayerInfoServiceImp: PlayerInfoService {
     private func createPlayerRequest(id: Int) -> HTTPRequest {
         HTTPRequest(route: "https://api.opendota.com/api/players/\(id)")
     }
-    
+
     private func createWLRequest(id: Int) -> HTTPRequest {
         HTTPRequest(route: "https://api.opendota.com/api/players/\(id)/wl")
     }
-    
+
     private func createPlayerMatchesRequest(id: Int) -> HTTPRequest {
         HTTPRequest(route: "https://api.opendota.com/api/players/\(id)/recentMatches")
     }
