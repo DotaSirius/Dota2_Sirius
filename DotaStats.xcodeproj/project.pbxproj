@@ -84,7 +84,6 @@
 		EC14160027677E3600715D00 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1415FF27677E3600715D00 /* ImageService.swift */; };
 		EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F8C2764C8250085B61D /* ColorPalette.swift */; };
 		EC4E6FA12764C8550085B61D /* TeamsModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F942764C8550085B61D /* TeamsModulePresenter.swift */; };
-		EC4E6FA22764C8550085B61D /* TeamsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F952764C8550085B61D /* TeamsModuleBuilder.swift */; };
 		EC4E6FA42764C8550085B61D /* TeamsModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F992764C8550085B61D /* TeamsModuleViewController.swift */; };
 		EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F9C2764C8550085B61D /* PlayerInfo.swift */; };
 		EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FA82764C85E0085B61D /* NetworkService.swift */; };
@@ -101,6 +100,7 @@
 		F09C5B4B276B3DC100413011 /* TeamsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09C5B4A276B3DC100413011 /* TeamsService.swift */; };
 		F09C5B4D276B3E5500413011 /* TeamResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09C5B4C276B3E5500413011 /* TeamResult.swift */; };
 		F09C5B4E276BB85B00413011 /* TeamsModuleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F972764C8550085B61D /* TeamsModuleViewState.swift */; };
+		F09C5B4F276BBD5600413011 /* TeamsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F952764C8550085B61D /* TeamsModuleBuilder.swift */; };
 		F0DF32A32767850C004670C0 /* PlayerInfoFromSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */; };
 		F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */; };
 		F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */; };
@@ -746,6 +746,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F09C5B4F276BBD5600413011 /* TeamsModuleBuilder.swift in Sources */,
 				F09C5B4E276BB85B00413011 /* TeamsModuleViewState.swift in Sources */,
 				5D2518652768BE8F0005374B /* MatchesModuleViewController.swift in Sources */,
 				CEFEF6A1276A28E800CAE93B /* MatchInfoModuleBuilder.swift in Sources */,
@@ -781,9 +782,7 @@
 				EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */,
 				F01B49102769390800103100 /* TeamsCell.swift in Sources */,
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
-				EC4E6FA22764C8550085B61D /* TeamsModuleBuilder.swift in Sources */,
 				CEFEF69B276A28E800CAE93B /* MatchTableViewData.swift in Sources */,
-				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
 				CEFEF698276A28E800CAE93B /* MatchInfoModulePresenter.swift in Sources */,
 				837AED9D27690ADB0009589E /* SearchPlayerModuleViewState.swift in Sources */,
 				CEFEF6AC276A2B7B00CAE93B /* DetailedMatchInfoCellConfigurable.swift in Sources */,
