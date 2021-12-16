@@ -4,10 +4,10 @@ final class SearchPlayerTableViewCell: UITableViewCell {
     // MARK: Margins for items in TableViewCell
 
     private enum Margin {
-        static let topMargin: CGFloat = 11
-        static let bottomMargin: CGFloat = -11
+        static let topMargin: CGFloat = 10
+        static let bottomMargin: CGFloat = -10
         static let leadingMargin: CGFloat = 20
-        static let trailingMargin: CGFloat = -25
+        static let trailingMargin: CGFloat = -20
     }
 
     private lazy var avatarImageView: CachedImageView = {
@@ -19,7 +19,7 @@ final class SearchPlayerTableViewCell: UITableViewCell {
 
     private lazy var nicknameLabel: UILabel = {
         let nickname = UILabel()
-        nickname.layer.frame.size.width = contentView.layer.frame.size.width/2
+        nickname.layer.frame.size.width = contentView.layer.frame.size.width / 2
         nickname.lineBreakMode = .byTruncatingTail
         nickname.numberOfLines = 1
         nickname.font = .systemFont(ofSize: 17)
@@ -30,10 +30,8 @@ final class SearchPlayerTableViewCell: UITableViewCell {
 
     private lazy var timeMatchLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 17)
-        view.numberOfLines = 2
-        view.textAlignment = .center
-        view.textColor = ColorPalette.mainText
+        view.font = .systemFont(ofSize: 12)
+        view.textColor = ColorPalette.subtitle
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -51,10 +49,8 @@ final class SearchPlayerTableViewCell: UITableViewCell {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(timeMatchLabel)
         contentView.addSubview(nicknameLabel)
-        
+
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        let constrainNicknameToTimeMatch = nicknameLabel.trailingAnchor.constraint(equalTo: timeMatchLabel.leadingAnchor, constant: Margin.trailingMargin)
-//        constrainNicknameToTimeMatch.priority = .defaultLow
         nicknameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: Margin.topMargin),
@@ -62,16 +58,16 @@ final class SearchPlayerTableViewCell: UITableViewCell {
             avatarImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Margin.bottomMargin),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
 
-            nicknameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            nicknameLabel.bottomAnchor.constraint(equalTo: centerYAnchor),
             nicknameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Margin.leadingMargin),
-            constrainNicknameToTimeMatch,
-            
-            timeMatchLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            timeMatchLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Margin.trailingMargin),
-            timeMatchLabel.widthAnchor.constraint(equalToConstant: 110)
+            nicknameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Margin.trailingMargin),
+
+            timeMatchLabel.topAnchor.constraint(equalTo: nicknameLabel.bottomAnchor, constant: 5),
+            timeMatchLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Margin.leadingMargin),
+
         ])
     }
-    
+
     func configurePlayer(newAvatarImage: String, newNickname: String, newTimeMatch: String?) {
         avatarImageView.setImage(with: newAvatarImage)
         nicknameLabel.text = newNickname
@@ -83,11 +79,8 @@ final class SearchPlayerTableViewCell: UITableViewCell {
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
             let date = formatter.date(from: unwrappedTime)
-            formatter.dateFormat = "EEEE, MMM d, yyyy"
-            var labelText = formatter.string(from: date!)
-            labelText.insert("\n", at: labelText.firstIndex(of: ",")!)
-            labelText.remove(at: labelText.firstIndex(of: ",")!)
-            timeMatchLabel.text = labelText
+            formatter.dateFormat = "EEEE, MMM d, yyyy HH:mm:ss"
+            timeMatchLabel.text = formatter.string(from: date!)
         } else {
             timeMatchLabel.text = " - "
         }

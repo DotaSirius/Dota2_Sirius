@@ -95,7 +95,7 @@ final class SearchPlayerModuleViewController: UIViewController {
         searchBar.searchTextField.leftView?.tintColor = ColorPalette.mainText
         return searchBar
     }()
-    
+
     // MARK: SearchBar Constraints
 
     private func setUpSearchBarConstraints() {
@@ -205,8 +205,8 @@ extension SearchPlayerModuleViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         var searchBarTimer = Timer.scheduledTimer(
             timeInterval: 1.0,
             target: self,
@@ -214,12 +214,12 @@ extension SearchPlayerModuleViewController: UISearchBarDelegate {
             userInfo: nil,
             repeats: false
         )
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             searchBarTimer.fire()
         }
     }
-    
+
     @objc func fireTimer() {
         if searchBar.text != "" {
             updateState(.loading)
@@ -227,9 +227,7 @@ extension SearchPlayerModuleViewController: UISearchBarDelegate {
         } else {
             updateState(.startScreen)
         }
-        
     }
-    
 }
 
 // MARK: - SearchModuleViewInput
