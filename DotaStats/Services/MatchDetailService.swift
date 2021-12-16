@@ -1,6 +1,7 @@
 import Foundation
 
 protocol MatchDetailService: AnyObject {
+    @discardableResult
     func requestMatchDetail(id: Int, completion: @escaping (Result<MatchDetail, HTTPError>) -> Void) -> Cancellable?
 }
 
@@ -11,7 +12,6 @@ final class MatchDetailImp: MatchDetailService {
         self.networkClient = networkClient
     }
 
-    @discardableResult
     func requestMatchDetail(id: Int, completion: @escaping (Result<MatchDetail, HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
             request: createRequest(id: id),
