@@ -3,7 +3,7 @@ import Foundation
 enum PlayerTableViewCellData {
     case playerMainInfo(PlayerMainInfoView)
     case playerWL(PlayerWLView)
-    case playerMatch // (PlayerMatchView)
+    case playerMatch(PlayerMatchView)
 }
 
 extension PlayerTableViewCellData {

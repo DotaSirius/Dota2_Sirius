@@ -52,7 +52,7 @@
 		5D4D665E276B262300883D3F /* PlayerMainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D6659276B262300883D3F /* PlayerMainInfoView.swift */; };
 		5D4D6663276B3D6C00883D3F /* PlayerMainInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D6662276B3D6B00883D3F /* PlayerMainInfoCell.swift */; };
 		5D4D6665276B3D8B00883D3F /* PlayerWLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D6664276B3D8B00883D3F /* PlayerWLCell.swift */; };
-		5D4D6667276B3DA200883D3F /* PlayerMathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D6666276B3DA200883D3F /* PlayerMathCell.swift */; };
+		5D4D6667276B3DA200883D3F /* PlayerMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D6666276B3DA200883D3F /* PlayerMatchCell.swift */; };
 		5D4D6669276B43E300883D3F /* PlayerInfoCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D6668276B43E300883D3F /* PlayerInfoCellConfigurable.swift */; };
 		5D4D666B276B445F00883D3F /* PlayerTableViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D666A276B445F00883D3F /* PlayerTableViewCellData.swift */; };
 		5D5FE7DD276A156400D50A5A /* PlayerMainInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5FE7DC276A156400D50A5A /* PlayerMainInfo.swift */; };
@@ -151,7 +151,7 @@
 		5D4D6659276B262300883D3F /* PlayerMainInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMainInfoView.swift; sourceTree = "<group>"; };
 		5D4D6662276B3D6B00883D3F /* PlayerMainInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMainInfoCell.swift; sourceTree = "<group>"; };
 		5D4D6664276B3D8B00883D3F /* PlayerWLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerWLCell.swift; sourceTree = "<group>"; };
-		5D4D6666276B3DA200883D3F /* PlayerMathCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMathCell.swift; sourceTree = "<group>"; };
+		5D4D6666276B3DA200883D3F /* PlayerMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMatchCell.swift; sourceTree = "<group>"; };
 		5D4D6668276B43E300883D3F /* PlayerInfoCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoCellConfigurable.swift; sourceTree = "<group>"; };
 		5D4D666A276B445F00883D3F /* PlayerTableViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCellData.swift; sourceTree = "<group>"; };
 		5D5FE7DC276A156400D50A5A /* PlayerMainInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMainInfo.swift; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 				5D4D6650276B261300883D3F /* PlayerInfoModuleViewController.swift */,
 				5D4D6662276B3D6B00883D3F /* PlayerMainInfoCell.swift */,
 				5D4D6664276B3D8B00883D3F /* PlayerWLCell.swift */,
-				5D4D6666276B3DA200883D3F /* PlayerMathCell.swift */,
+				5D4D6666276B3DA200883D3F /* PlayerMatchCell.swift */,
 				5D4D6668276B43E300883D3F /* PlayerInfoCellConfigurable.swift */,
 				5D4D666A276B445F00883D3F /* PlayerTableViewCellData.swift */,
 			);
@@ -784,7 +784,7 @@
 				5D4D665A276B262300883D3F /* PlayerInfoModulePresenterState.swift in Sources */,
 				5D4D6665276B3D8B00883D3F /* PlayerWLCell.swift in Sources */,
 				303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */,
-				5D4D6667276B3DA200883D3F /* PlayerMathCell.swift in Sources */,
+				5D4D6667276B3DA200883D3F /* PlayerMatchCell.swift in Sources */,
 				EA8525C10313780ABFC01843 /* Match.swift in Sources */,
 				5D4D6653276B261300883D3F /* PlayerInfoModuleViewController.swift in Sources */,
 				5D4D6652276B261300883D3F /* PlayerInfoModulePresenter.swift in Sources */,

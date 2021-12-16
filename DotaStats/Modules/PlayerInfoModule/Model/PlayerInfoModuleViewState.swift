@@ -5,4 +5,5 @@ enum PlayerInfoModuleViewState {
     case error(String)
     case successMain
     case successWL
+    case successMatch
 }

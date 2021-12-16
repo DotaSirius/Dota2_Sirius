@@ -5,6 +5,6 @@ enum PlayerInfoModulePresenterState {
     case loading
     case successMain(PlayerMainInfo)
     case successWL(PlayerWL)
-    // case successMatches([PlayerMatch])
+    case successMatch([PlayerMatch])
     case error(HTTPError)
 }

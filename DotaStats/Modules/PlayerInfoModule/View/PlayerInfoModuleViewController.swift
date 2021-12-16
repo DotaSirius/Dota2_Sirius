@@ -69,7 +69,7 @@ extension PlayerInfoModuleViewController: PlayerInfoModuleViewInput {
             spiner.startAnimating()
         case .error:
             spiner.removeFromSuperview()
-        case .successWL, .successMain:
+        case .successWL, .successMain, .successMatch:
             spiner.removeFromSuperview()
             setupTableView()
             tableView.reloadData()
