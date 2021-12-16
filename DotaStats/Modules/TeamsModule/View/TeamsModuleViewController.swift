@@ -16,17 +16,16 @@ final class TeamsModuleViewController: UIViewController {
     init(output: TeamsModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
-        
+
         view.backgroundColor = ColorPalette.mainBackground
         view.addSubview(tableView)
         setupConstraints()
-        
     }
-    
+
     private enum Constant {
         static let headerHeight: CGFloat = 40
     }
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -37,22 +36,21 @@ final class TeamsModuleViewController: UIViewController {
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = .zero
         }
-        
+
         return tableView
     }()
-    
+
     private lazy var spiner: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .large)
         activity.color = ColorPalette.accent
-        view.addSubview(activity)
         activity.center = view.center
         return activity
     }()
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     func setupConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -69,6 +67,7 @@ extension TeamsModuleViewController: TeamsModuleViewInput {
     func updateState(_ state: TeamsModuleViewState) {
         switch state {
         case .loading:
+            view.addSubview(spiner)
             spiner.startAnimating()
         case .success:
             spiner.removeFromSuperview()
@@ -77,7 +76,6 @@ extension TeamsModuleViewController: TeamsModuleViewInput {
             }
         case .failure:
             spiner.removeFromSuperview()
-            break
         }
     }
 }
@@ -89,7 +87,7 @@ extension TeamsModuleViewController: UITableViewDataSource {
         guard let countOfRows = output?.countOfRows else { return 0 }
         return min(countOfRows, 100)
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: TeamsCell.identifier) as? TeamsCell,
@@ -97,7 +95,7 @@ extension TeamsModuleViewController: UITableViewDataSource {
         else {
             return .init()
         }
-        
+
         cell.configure(with: data, forIndexPathRow: indexPath.row)
         return cell
     }
@@ -110,13 +108,13 @@ extension TeamsModuleViewController: UITableViewDelegate {
         guard let view = view as? TeamsHeaderView else { return }
         view.contentView.backgroundColor = ColorPalette.mainBackground
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = TeamsHeaderView()
         header.setup(delegate: self)
         return header
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         Constant.headerHeight
     }
@@ -128,11 +126,11 @@ extension TeamsModuleViewController: TeamsHeaderViewDelegate {
     func nameTapped() {
         //
     }
-    
+
     func ratingTapped() {
         //
     }
-    
+
     func winrateTapped() {
         //
     }

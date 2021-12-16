@@ -8,10 +8,9 @@ final class AppCoordinator {
         let teamsModule = teamsModuleBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
-        
+
         let viewControllers = [
-//            createNavigationController(for: teamsModule.viewController, with: "Команды"),
-            teamsModule.viewController,
+            createNavigationController(for: teamsModule.viewController, with: "Команды"),
             matchesModule.viewController,
             playerSearchModule.viewControler
         ]
@@ -24,19 +23,18 @@ final class AppCoordinator {
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
-
+        
         tabBarController.configurateTabs()
         setupNavigationBarAppereance()
     }
 
-//    private func createNavigationController(for viewController: UIViewController,
-//                                            with title: String) -> UINavigationController {
-//        return viewController
-//        //        viewController.title = title
-////        let navigationController = UINavigationController(rootViewController: viewController)
-////        return navigationController
-//    }
-
+    private func createNavigationController(for viewController: UIViewController,
+                                            with title: String) -> UINavigationController {
+        viewController.title = title
+        let navigationController = UINavigationController(rootViewController: viewController)
+        return navigationController
+    }
+    
     private func setupNavigationBarAppereance() {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]
         if #available(iOS 15, *) {
@@ -60,7 +58,7 @@ extension AppCoordinator {
         let teamsService = TeamsServiceImp(networkClient: networkClient)
         return TeamsModuleBuilder(output: self, teamsService: teamsService)
     }
-
+    
     private func matchesBuilder() -> MatchesModuleBuilder {
         MatchesModuleBuilder(
             output: self,
@@ -71,7 +69,7 @@ extension AppCoordinator {
             )
         )
     }
-
+    
     private func searchPlayerModuleBuilder() -> SearchPlayerModuleBuilder {
         SearchPlayerModuleBuilder(
             output: self,
