@@ -96,9 +96,10 @@ class MatchDetailToEventsConverter {
 
             for observer in obsLog.enumerated() {
                 guard let obsXCoordinate = observer.element.x,
-                      let obsYCoordinate = observer.element.x,
+                      let obsYCoordinate = observer.element.y,
                       let obsStartTime = observer.element.time,
-                      let obsEndTime = obsLeftLog[observer.offset].time
+                      let obsEndTime = observer.offset < obsLeftLog.count ?
+                              obsLeftLog[observer.offset].time : details.duration
                         else {
                     return
                 }
