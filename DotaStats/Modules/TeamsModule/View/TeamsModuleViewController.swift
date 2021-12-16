@@ -97,6 +97,7 @@ extension TeamsModuleViewController: UITableViewDataSource {
         }
 
         cell.configure(with: data, forIndexPathRow: indexPath.row)
+        cell.selectionStyle = .none
         return cell
     }
 }
@@ -117,6 +118,10 @@ extension TeamsModuleViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         Constant.headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output?.selected(at: indexPath)
     }
 }
 

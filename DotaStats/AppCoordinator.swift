@@ -12,7 +12,7 @@ final class AppCoordinator {
         let viewControllers = [
             createNavigationController(for: teamsModule.viewController, with: "Команды"),
             matchesModule.viewController,
-            playerSearchModule.viewControler
+            playerSearchModule.viewController
         ]
 
         let tabImageNames = [
@@ -24,7 +24,7 @@ final class AppCoordinator {
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
         
-        tabBarController.configurateTabs()
+        tabBarController.configureTabs()
         setupNavigationBarAppereance()
     }
 

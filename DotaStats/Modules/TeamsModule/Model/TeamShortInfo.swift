@@ -18,7 +18,7 @@ struct TeamShortInfo {
     init(from teamResult: TeamResult) {
         teamId = teamResult.teamId
         logoUrl = teamResult.logoUrl
-        name = teamResult.name
+        name = teamResult.name.isEmpty ? "Anonymous Team" : teamResult.name
         rating = teamResult.rating
         winrate = Float(teamResult.wins) / Float(teamResult.losses + teamResult.wins) * 100
     }

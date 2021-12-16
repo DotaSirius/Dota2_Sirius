@@ -20,11 +20,11 @@ final class SearchPlayerTableViewCell: UITableViewCell {
     }()
 
     private lazy var timeMatch: UILabel = {
-        let raiting = UILabel()
-        raiting.font = .systemFont(ofSize: 17)
-        raiting.textColor = ColorPalette.mainText
-        raiting.translatesAutoresizingMaskIntoConstraints = false
-        return raiting
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 17)
+        view.textColor = ColorPalette.mainText
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     static let reuseIdentifier = "PlayerCell"

@@ -8,9 +8,10 @@ final class MainTabBarController: UITabBarController {
         tabBar.backgroundColor = ColorPalette.alternativeBackground
         tabBar.unselectedItemTintColor = ColorPalette.text
         tabBar.tintColor = ColorPalette.accent
+        tabBar.barTintColor = ColorPalette.alternativeBackground
     }
 
-    func configurateTabs() {
+    func configureTabs() {
         guard let viewControllers = viewControllers else { return }
         for i in 0 ..< viewControllers.count {
             viewControllers[i].view.backgroundColor = ColorPalette.mainBackground
