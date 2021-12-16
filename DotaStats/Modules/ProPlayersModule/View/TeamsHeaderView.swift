@@ -19,6 +19,7 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
         static let ratingTitle: String = NSLocalizedString("РЕЙТИНГ", comment: "Рейтинг команды")
         static let winrateTitle: String = NSLocalizedString("% ПОБЕД", comment: "Процент побед")
         static let titleFontSize: CGFloat = 12
+        static let headerHeight: CGFloat = 40
     }
     
     private lazy var numButton = makeButton(with: Constant.numTitle)
@@ -46,25 +47,24 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
         
         addView()
     }
-    
+
     func setup(delegate: TeamsHeaderViewDelegate) {
         self.delegate = delegate
-        
         NSLayoutConstraint.activate([
             numButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             numButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             numButton.widthAnchor.constraint(equalToConstant: Constant.numWidth),
             numButton.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            
+
             nameButton.leadingAnchor.constraint(equalTo: numButton.trailingAnchor),
             nameButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             nameButton.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            
+
             ratingButton.leadingAnchor.constraint(equalTo: nameButton.trailingAnchor),
             ratingButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             ratingButton.widthAnchor.constraint(equalToConstant: Constant.ratingWidth),
             ratingButton.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            
+
             winrateButton.leadingAnchor.constraint(equalTo: ratingButton.trailingAnchor),
             winrateButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             winrateButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -72,7 +72,7 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
             winrateButton.heightAnchor.constraint(equalTo: contentView.heightAnchor)
         ])
     }
-    
+
     private func addView() {
         contentView.addSubview(numButton)
         contentView.addSubview(nameButton)

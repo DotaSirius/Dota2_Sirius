@@ -62,9 +62,8 @@ extension AppCoordinator {
 }
 
 extension AppCoordinator: TeamsModuleOutput {
-    func playersModule(_ module: TeamsModuleInput, didSelectPlayer playerId: Int) {
-        // let playerInfoBuilder =
-        // playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
+    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int) {
+        //
     }
 }
 

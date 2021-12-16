@@ -3,17 +3,18 @@ import Foundation
 protocol TeamsModuleInput: AnyObject {}
 
 protocol TeamsModuleOutput: AnyObject {
-    func playersModule(_ module: TeamsModuleInput, didSelectPlayer playerId: Int)
+    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int)
 }
 
 final class TeamsModulePresenter {
     weak var view: TeamsModuleViewInput?
     private let networkService: NetworkService
     let output: TeamsModuleOutput
-
+    
+    private var teams = [TeamShortInfo]()
+    
     required init(networkService: NetworkService,
-                  output: TeamsModuleOutput)
-    {
+                  output: TeamsModuleOutput){
         self.networkService = networkService
         self.output = output
     }
@@ -26,11 +27,8 @@ extension TeamsModulePresenter: TeamsModuleInput {}
 // MARK: - TeamsModuleViewOutput
 
 extension TeamsModulePresenter: TeamsModuleViewOutput {
-    func playerSelected(_ player: Player) {
-        // TODO:
+    func selected(at indexPath: IndexPath) {
+        let team = teams[indexPath.row]
+        output.teamsModule(self, didSelectTeam: team.teamId)
     }
-}
-
-struct Player {
-    
 }

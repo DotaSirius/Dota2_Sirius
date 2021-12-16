@@ -16,7 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else { return false }
 
         let view = TeamsModuleViewController()
-        window.rootViewController = view
+        view.title = "Teams"
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]
+        UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
+        
+        let navigationController = UINavigationController(rootViewController: view)
+        navigationController.navigationBar.backgroundColor = ColorPalette.mainBackground
+        navigationController.navigationBar.barTintColor = ColorPalette.mainBackground
+        
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         return true
     }

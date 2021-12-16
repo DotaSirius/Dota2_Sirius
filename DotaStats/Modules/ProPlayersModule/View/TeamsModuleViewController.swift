@@ -5,7 +5,7 @@ protocol TeamsModuleViewInput: AnyObject {
 }
 
 protocol TeamsModuleViewOutput: AnyObject {
-    func playerSelected(_ player: Player)
+    func selected(at indexPath: IndexPath)
 }
 
 final class TeamsModuleViewController: UIViewController {
@@ -16,13 +16,28 @@ final class TeamsModuleViewController: UIViewController {
 //        super.init(nibName: nil, bundle: nil)
 //
 //    }
-    private lazy var tableView = UITableView()
+
+    private enum Constant {
+        static let headerHeight: CGFloat = 40
+    }
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(TeamsCell.self, forCellReuseIdentifier: TeamsCell.identifier)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = ColorPalette.mainBackground
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = .zero
+        }
+
+        return tableView
+    }()
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        tableView.register(TeamsCell.self, forCellReuseIdentifier: TeamsCell.identifier)
-        tableView.dataSource = self
-        tableView.delegate = self
+        view.backgroundColor = ColorPalette.mainBackground
         view.addSubview(tableView)
     }
 
@@ -32,12 +47,18 @@ final class TeamsModuleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        tableView.frame = view.bounds
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
 
@@ -75,18 +96,22 @@ extension TeamsModuleViewController: UITableViewDelegate {
         header.setup(delegate: self)
         return header
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        Constant.headerHeight
+    }
 }
 
 extension TeamsModuleViewController: TeamsHeaderViewDelegate {
     func nameTapped() {
-        print("name")
+        //
     }
     
     func ratingTapped() {
-        print("rating")
+        //
     }
     
     func winrateTapped() {
-        print("winrate")
+        //
     }
 }
