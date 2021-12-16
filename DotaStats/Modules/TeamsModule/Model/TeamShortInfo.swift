@@ -18,7 +18,7 @@ final class TeamShortInfo {
 
     private let lastMatchTime: Date
     var recentActivity: String {
-        dateToString(lastMatchTime)
+        recentActivityDateToString(lastMatchTime)
     }
 
     let rating: Float
@@ -26,7 +26,7 @@ final class TeamShortInfo {
         convertRatingToColor(rating)
     }
 
-    let winrate: Float
+    private let winrate: Float
     var winrateString: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -82,7 +82,7 @@ final class TeamShortInfo {
         }
     }
 
-    private func dateToString(_ date: Date) -> String {
+    private func recentActivityDateToString(_ date: Date) -> String {
         let now = Date().timeIntervalSince1970
         let diff = now - date.timeIntervalSince1970
         switch diff {

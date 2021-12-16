@@ -79,7 +79,6 @@ final class TeamsCell: UITableViewCell {
     func configure(with data: TeamShortInfo) {
         numTeamLabel.text = data.num
         teamLogoView.setImage(with: data.logoUrl ?? "")
-        // FIXME: set error image -> when empty logo url
         teamNameLabel.text = data.name
         recentActivityLabel.text = data.recentActivity
         ratingLabel.text = String(Int(data.rating))
