@@ -77,23 +77,16 @@ final class TeamsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with imageUrlString: String,
-                   numOfTeam: Int,
-                   teamName: String = "Team Spirit",
-                   recentActivity: String = "a day ago",
-                   rating: Int = 1000000,
-                   ratingColor: UIColor = .green,
-                   winPercent: Double = 56.7,
-                   winPercentColor: UIColor = .yellow) {
-        
-        numTeamLabel.text = getNumFromIndexPathRow(numOfTeam)
-        teamLogoView.setImage(with: imageUrlString)
-        teamNameLabel.text = teamName
-        recentActivityLabel.text = recentActivity
-        ratingLabel.text = String(rating)
-        ratingLabel.textColor = ratingColor
-        winrateLabel.text = String(winPercent) + "%"
-        winrateLabel.textColor = winPercentColor
+    func configure(with data: TeamShortInfo, forIndexPathRow row: Int) {
+        numTeamLabel.text = getNumFromIndexPathRow(row)
+        teamLogoView.setImage(with: data.logoUrl ?? "")
+        // TODO set error image -> when empty logo url
+        teamNameLabel.text = data.name
+        recentActivityLabel.text = "a day ago"
+        ratingLabel.text = String(data.rating)
+        ratingLabel.textColor = data.ratingColor
+        winrateLabel.text = String(data.winrate) + "%"
+        winrateLabel.textColor = data.winrateColor
     }
 
     private func setup() {

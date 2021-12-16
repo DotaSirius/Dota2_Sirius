@@ -7,25 +7,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-
-//        let appCoordinator = AppCoordinator()
-//        window!.rootViewController = appCoordinator.tabBarController
-//        window!.makeKeyAndVisible()
-//        application.statusBarStyle = .lightContent
-//        return true
+        
         guard let window = window else { return false }
-
-        let view = TeamsModuleViewController()
-        view.title = "Teams"
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]
-        UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
-        
-        let navigationController = UINavigationController(rootViewController: view)
-        navigationController.navigationBar.backgroundColor = ColorPalette.mainBackground
-        navigationController.navigationBar.barTintColor = ColorPalette.mainBackground
-        
-        window.rootViewController = navigationController
+        let appCoordinator = AppCoordinator()
+        window.rootViewController = appCoordinator.tabBarController
         window.makeKeyAndVisible()
+        application.statusBarStyle = .lightContent
         return true
+//
+//
+//        let network = NetworkClientImp(urlSession: .init(configuration: .default))
+//        let teamServiceImp = TeamsServiceImp(networkClient: network)
+//        teamServiceImp.requestTeams { result in
+//            switch result {
+//            case .success(let data):
+//                print(data)
+//            case .failure(let error):
+//                print(error)
+//                break
+//            }
+//        }
+//        let view = TeamsModuleViewController()
+//        view.title = "Teams"
+//        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]
+//        UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
+//
+//        let navigationController = UINavigationController(rootViewController: view)
+//        navigationController.navigationBar.backgroundColor = ColorPalette.mainBackground
+//        navigationController.navigationBar.barTintColor = ColorPalette.mainBackground
+//
+//        window.rootViewController = navigationController
+//        window.makeKeyAndVisible()
+//        return true
     }
 }

@@ -5,12 +5,13 @@ final class AppCoordinator {
     let tabBarController: MainTabBarController = .init()
 
     init() {
-        let playersModule = proPlayersBuilder()
+        let teamsModule = teamsModuleBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
         
         let viewControllers = [
-            playersModule.viewController,
+//            createNavigationController(for: teamsModule.viewController, with: "Команды"),
+            teamsModule.viewController,
             matchesModule.viewController,
             playerSearchModule.viewControler
         ]
@@ -25,15 +26,38 @@ final class AppCoordinator {
         tabBarController.tabImageNames = tabImageNames
 
         tabBarController.configurateTabs()
+        setupNavigationBarAppereance()
+    }
+
+    private func createNavigationController(for view: UIViewController,
+                                            with title: String) -> UINavigationController {
+        view.title = title
+        let navigationController = UINavigationController(rootViewController: view)
+        return navigationController
+    }
+
+    private func setupNavigationBarAppereance() {
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = ColorPalette.alternativeBackground
+            appearance.titleTextAttributes = titleTextAttributes
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        } else {
+            UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+            UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
+            UINavigationBar.appearance().barTintColor = ColorPalette.mainBackground
+        }
     }
 }
 
 extension AppCoordinator {
-    private func proPlayersBuilder() -> ProPlayersModuleBuilder {
-        ProPlayersModuleBuilder(
-            output: self,
-            networkService: NetworkServiceImp()
-        )
+    private func teamsModuleBuilder() -> TeamsModuleBuilder {
+        let networkClient = NetworkClientImp(urlSession: .init(configuration: .default))
+        let teamsService = TeamsServiceImp(networkClient: networkClient)
+        return TeamsModuleBuilder(output: self, teamsService: teamsService)
     }
 
     private func matchesBuilder() -> MatchesModuleBuilder {

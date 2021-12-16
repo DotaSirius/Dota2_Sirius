@@ -1,10 +1,10 @@
 import Foundation
 
 protocol TeamsService: AnyObject {
-    func requestTeams(_ closure: @escaping (Result<[Match], HTTPError>) -> Void) -> Cancellable?
+    func requestTeams(_ closure: @escaping (Result<[TeamResult], HTTPError>) -> Void) -> Cancellable?
 }
 
-class MatchesServiceImp: MatchesService {
+class TeamsServiceImp: TeamsService {
     private let networkClient: NetworkClient
 
     init(networkClient: NetworkClient) {
@@ -12,7 +12,7 @@ class MatchesServiceImp: MatchesService {
     }
 
     @discardableResult
-    func requestProMatches(_ closure: @escaping (Result<[Match], HTTPError>) -> Void) -> Cancellable? {
+    func requestTeams(_ closure: @escaping (Result<[TeamResult], HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
             request: createRequest(),
             completion: closure
@@ -20,6 +20,6 @@ class MatchesServiceImp: MatchesService {
     }
 
     private func createRequest() -> HTTPRequest {
-        HTTPRequest(route: "https://api.opendota.com/api/proMatches")
+        HTTPRequest(route: "https://api.opendota.com/api/teams")
     }
 }

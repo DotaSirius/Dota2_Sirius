@@ -362,7 +362,7 @@
 			children = (
 				EC4E6F8F2764C8550085B61D /* MatchInfoModule */,
 				F0F2EE4D2764D0D400EAB7E5 /* SearchPlayerModule */,
-				EC4E6F922764C8550085B61D /* ProPlayersModule */,
+				EC4E6F922764C8550085B61D /* TeamsModule */,
 				EC4E6F9A2764C8550085B61D /* PlayerInfoModule */,
 				EC4E6F9D2764C8550085B61D /* MatchesModule */,
 			);
@@ -385,7 +385,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		EC4E6F922764C8550085B61D /* ProPlayersModule */ = {
+		EC4E6F922764C8550085B61D /* TeamsModule */ = {
 			isa = PBXGroup;
 			children = (
 				EC4E6F932764C8550085B61D /* Presenter */,
@@ -393,7 +393,7 @@
 				EC4E6F962764C8550085B61D /* Model */,
 				EC4E6F982764C8550085B61D /* View */,
 			);
-			path = ProPlayersModule;
+			path = TeamsModule;
 			sourceTree = "<group>";
 		};
 		EC4E6F932764C8550085B61D /* Presenter */ = {
