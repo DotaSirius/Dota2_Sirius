@@ -35,7 +35,7 @@ final class TeamShortInfo {
         teamId = teamResult.teamId
         logoUrl = teamResult.logoUrl
         lastMatchTime = teamResult.lastMatchTime
-        name = teamResult.name.isEmpty ? "Anonymous Team" : teamResult.name
+        name = teamResult.name
         rating = teamResult.rating
         winrate = Float(teamResult.wins) / Float(teamResult.losses + teamResult.wins) * 100
     }
