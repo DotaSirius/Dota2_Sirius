@@ -2,6 +2,9 @@ import UIKit
 
 final class MatchPlayerCell: UITableViewCell {
     static let reuseIdentifier = "MatchPlayerCell"
+    let inset: CGFloat = 16
+    let smallInset: CGFloat = 8
+    let widthConstant: CGFloat = 30
 
     private lazy var playerImageView: UIImageView = {
         let playerImageView = UIImageView()
@@ -10,12 +13,14 @@ final class MatchPlayerCell: UITableViewCell {
         playerImageView.clipsToBounds = true
         playerImageView.widthAnchor.constraint(equalToConstant: 72).isActive = true
         playerImageView.heightAnchor.constraint(equalToConstant: 54).isActive = true
+        playerImageView.translatesAutoresizingMaskIntoConstraints = false
         return playerImageView
     }()
 
     private lazy var playerRankNameStack: UIStackView = {
         let playerRankNameStack = UIStackView()
         createStackView(stackView: playerRankNameStack, axis: .vertical, spacing: 8)
+        playerRankNameStack.translatesAutoresizingMaskIntoConstraints = false
         return playerRankNameStack
     }()
 
@@ -25,6 +30,7 @@ final class MatchPlayerCell: UITableViewCell {
         playerNameLabel.font = UIFont.systemFont(ofSize: 17) // изменить шрифт
         playerNameLabel.textAlignment = .left
         playerNameLabel.numberOfLines = 2
+        playerNameLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerNameLabel
     }()
 
@@ -34,6 +40,7 @@ final class MatchPlayerCell: UITableViewCell {
         playerRankLabel.font = UIFont.systemFont(ofSize: 17) // изменить шрифт
         playerRankLabel.textAlignment = .center
         playerRankLabel.numberOfLines = 3
+        playerRankLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerRankLabel
     }()
 
@@ -42,6 +49,7 @@ final class MatchPlayerCell: UITableViewCell {
         playerKillsLabel.textColor = ColorPalette.win
         playerKillsLabel.font = UIFont.systemFont(ofSize: 17)
         playerKillsLabel.textAlignment = .center
+        playerKillsLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerKillsLabel
     }()
 
@@ -50,6 +58,7 @@ final class MatchPlayerCell: UITableViewCell {
         playerDeathsLabel.textColor = ColorPalette.lose
         playerDeathsLabel.font = UIFont.systemFont(ofSize: 17)
         playerDeathsLabel.textAlignment = .center
+        playerDeathsLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerDeathsLabel
     }()
 
@@ -58,6 +67,7 @@ final class MatchPlayerCell: UITableViewCell {
         playerAssitsLabel.textColor = ColorPalette.subtitle
         playerAssitsLabel.font = UIFont.systemFont(ofSize: 17)
         playerAssitsLabel.textAlignment = .center
+        playerAssitsLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerAssitsLabel
     }()
 
@@ -66,13 +76,14 @@ final class MatchPlayerCell: UITableViewCell {
         playerGoldLabel.textColor = ColorPalette.accent
         playerGoldLabel.font = UIFont.systemFont(ofSize: 17)
         playerGoldLabel.textAlignment = .center
+        playerGoldLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerGoldLabel
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
-        setUpConstraints()
+        setupConstraints()
     }
 
     @available(*, unavailable)
@@ -98,40 +109,33 @@ final class MatchPlayerCell: UITableViewCell {
         }
     }
 
-    func setUpConstraints() {
-        [
-            playerImageView,
-            playerRankNameStack,
-            playerGoldLabel,
-            playerAssitsLabel,
-            playerDeathsLabel,
-            playerKillsLabel
-        ].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-
+    func setupConstraints() {
         NSLayoutConstraint.activate([
-            playerImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            playerImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: smallInset),
             playerImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
-            playerRankNameStack.leadingAnchor.constraint(equalTo: playerImageView.trailingAnchor, constant: 8),
-            playerRankNameStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerRankNameStack.leadingAnchor.constraint(equalTo: playerImageView.trailingAnchor, constant: smallInset),
+            playerRankNameStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
             playerRankNameStack.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
-            playerRankNameStack.trailingAnchor.constraint(equalTo: playerKillsLabel.leadingAnchor, constant: -8),
+            playerRankNameStack.trailingAnchor.constraint(
+                equalTo: playerKillsLabel.leadingAnchor, constant: -smallInset
+            ),
 
-            playerGoldLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            playerGoldLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
             playerGoldLabel.centerYAnchor.constraint(equalTo: playerRankNameStack.centerYAnchor),
-            playerGoldLabel.widthAnchor.constraint(equalToConstant: 30),
+            playerGoldLabel.widthAnchor.constraint(equalToConstant: widthConstant),
 
-            playerAssitsLabel.trailingAnchor.constraint(equalTo: playerGoldLabel.leadingAnchor, constant: -8),
+            playerAssitsLabel.trailingAnchor.constraint(equalTo: playerGoldLabel.leadingAnchor, constant: -smallInset),
             playerAssitsLabel.widthAnchor.constraint(equalTo: playerGoldLabel.widthAnchor),
             playerAssitsLabel.centerYAnchor.constraint(equalTo: playerRankNameStack.centerYAnchor),
 
-            playerDeathsLabel.trailingAnchor.constraint(equalTo: playerAssitsLabel.leadingAnchor, constant: -8),
+            playerDeathsLabel.trailingAnchor.constraint(
+                equalTo: playerAssitsLabel.leadingAnchor, constant: -smallInset
+            ),
             playerDeathsLabel.widthAnchor.constraint(equalTo: playerGoldLabel.widthAnchor),
             playerDeathsLabel.centerYAnchor.constraint(equalTo: playerRankNameStack.centerYAnchor),
 
-            playerKillsLabel.trailingAnchor.constraint(equalTo: playerDeathsLabel.leadingAnchor, constant: -8),
+            playerKillsLabel.trailingAnchor.constraint(equalTo: playerDeathsLabel.leadingAnchor, constant: -smallInset),
             playerKillsLabel.widthAnchor.constraint(equalTo: playerGoldLabel.widthAnchor),
             playerKillsLabel.centerYAnchor.constraint(equalTo: playerRankNameStack.centerYAnchor)
         ])
@@ -156,7 +160,7 @@ extension MatchPlayerCell: DetailedMatchInfoCellConfigurable {
             playerAssitsLabel.text = data.playerAssitsText
             playerGoldLabel.text = data.playerGoldText
             playerImageView.image = data.playerImage
-        default: break
+        default: assertionFailure("Произошла ошибка при заполнении ячейки данными")
         }
     }
 }

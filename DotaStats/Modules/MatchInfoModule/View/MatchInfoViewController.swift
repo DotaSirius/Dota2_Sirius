@@ -25,6 +25,7 @@ final class MatchInfoViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = ColorPalette.mainBackground
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -45,8 +46,6 @@ final class MatchInfoViewController: UIViewController {
     }
 
     func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

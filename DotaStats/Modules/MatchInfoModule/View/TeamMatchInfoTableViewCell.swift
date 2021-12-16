@@ -3,12 +3,14 @@ import UIKit
 final class TeamMatchInfoTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "TeamMatchInfoTableViewCell"
+    let topInset: CGFloat = 32
+    let smallInset: CGFloat = 8
 
     private lazy var teamNameLabel: UILabel = {
         let teamNameLabel = UILabel()
         teamNameLabel.textColor = ColorPalette.mainText
         teamNameLabel.font = UIFont.systemFont(ofSize: 20)
-        teamNameLabel.numberOfLines = 3
+        teamNameLabel.numberOfLines = 2
         teamNameLabel.textAlignment = .center
         teamNameLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
         teamNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +34,7 @@ final class TeamMatchInfoTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
-        setUpConstraints()
+        setupConstraints()
     }
 
     required init?(coder: NSCoder) {
@@ -55,11 +57,11 @@ final class TeamMatchInfoTableViewCell: UITableViewCell {
         stackView.spacing = spacing
     }
 
-     func setUpConstraints() {
-         teamNameWinStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32).isActive = true
-         teamNameWinStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-         teamNameWinStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
-         teamNameWinStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+     func setupConstraints() {
+         teamNameWinStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: topInset).isActive = true
+         teamNameWinStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: smallInset).isActive = true
+         teamNameWinStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -smallInset).isActive = true
+         teamNameWinStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -smallInset).isActive = true
     }
 }
 
@@ -69,7 +71,7 @@ extension TeamMatchInfoTableViewCell:  DetailedMatchInfoCellConfigurable {
             case .teamMatchInfo(let data):
                 teamNameLabel.text = data.teamNameLabelText
                 teamWinLabel.text = data.teamWinLabel
-            default : break
+            default : assertionFailure("Произошла ошибка при заполнении ячейки данными")
            }
         }
     }

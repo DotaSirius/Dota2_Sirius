@@ -2,12 +2,17 @@ import UIKit
 
 final class PlayersTableHeaderCell: UITableViewCell {
     static let reuseIdentifier = "PlayersTableHeaderCell"
+    let inset: CGFloat = 16
+    let smallInset: CGFloat = 8
+    let labelWidth: CGFloat = 30
+
 
     private lazy var playerNameHeaderLabel: UILabel = {
         let playerNameHeaderLabel = UILabel()
         playerNameHeaderLabel.textColor = ColorPalette.mainText
         playerNameHeaderLabel.font = UIFont.systemFont(ofSize: 15)
         playerNameHeaderLabel.textAlignment = .center
+        playerNameHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerNameHeaderLabel
     }()
 
@@ -16,6 +21,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerKillsHeaderLabel.textColor = ColorPalette.win
         playerKillsHeaderLabel.font = UIFont.systemFont(ofSize: 15)
         playerKillsHeaderLabel.textAlignment = .center
+        playerKillsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerKillsHeaderLabel
     }()
 
@@ -24,6 +30,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerDeathsHeaderLabel.textColor = ColorPalette.lose
         playerDeathsHeaderLabel.font = UIFont.systemFont(ofSize: 15)
         playerDeathsHeaderLabel.textAlignment = .center
+        playerDeathsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerDeathsHeaderLabel
     }()
 
@@ -32,6 +39,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerAssitsHeaderLabel.textColor = ColorPalette.subtitle
         playerAssitsHeaderLabel.font = UIFont.systemFont(ofSize: 15)
         playerAssitsHeaderLabel.textAlignment = .center
+        playerAssitsHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerAssitsHeaderLabel
     }()
 
@@ -40,13 +48,14 @@ final class PlayersTableHeaderCell: UITableViewCell {
         playerGoldHeaderLabel.textColor = ColorPalette.accent
         playerGoldHeaderLabel.font = UIFont.systemFont(ofSize: 15) // изменить шрифт
         playerGoldHeaderLabel.textAlignment = .center
+        playerGoldHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerGoldHeaderLabel
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
-        setUpConstraints()
+        setupConstraints()
     }
 
     @available(*, unavailable)
@@ -67,46 +76,37 @@ final class PlayersTableHeaderCell: UITableViewCell {
         }
     }
 
-    func setUpConstraints() {
-        [
-            playerNameHeaderLabel,
-            playerGoldHeaderLabel,
-            playerAssitsHeaderLabel,
-            playerDeathsHeaderLabel,
-            playerKillsHeaderLabel
-        ].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
+    func setupConstraints() {
         NSLayoutConstraint.activate([
-            playerNameHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            playerNameHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerNameHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            playerNameHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
             playerNameHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             playerNameHeaderLabel.trailingAnchor.constraint(equalTo: playerKillsHeaderLabel.leadingAnchor),
 
-            playerGoldHeaderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            playerGoldHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerGoldHeaderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+            playerGoldHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
             playerGoldHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            playerGoldHeaderLabel.widthAnchor.constraint(equalToConstant: 30),
+            playerGoldHeaderLabel.widthAnchor.constraint(equalToConstant: labelWidth),
 
             playerAssitsHeaderLabel.trailingAnchor.constraint(
-                equalTo: playerGoldHeaderLabel.leadingAnchor, constant: -8
+                equalTo: playerGoldHeaderLabel.leadingAnchor, constant: -smallInset
             ),
             playerAssitsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
-            playerAssitsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerAssitsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
             playerAssitsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
             playerDeathsHeaderLabel.trailingAnchor.constraint(
-                equalTo: playerAssitsHeaderLabel.leadingAnchor, constant: -8
+                equalTo: playerAssitsHeaderLabel.leadingAnchor, constant: -smallInset
             ),
             playerDeathsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
-            playerDeathsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerDeathsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
             playerDeathsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
             playerKillsHeaderLabel.trailingAnchor.constraint(
-                equalTo: playerDeathsHeaderLabel.leadingAnchor, constant: -8
+                equalTo: playerDeathsHeaderLabel.leadingAnchor, constant: -smallInset
             ),
             playerKillsHeaderLabel.widthAnchor.constraint(equalTo: playerGoldHeaderLabel.widthAnchor),
-            playerKillsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            playerKillsHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
             playerKillsHeaderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
