@@ -130,8 +130,8 @@ final class MatchesModuleViewController: UIViewController {
         NSLayoutConstraint.activate([
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label.topAnchor.constraint(equalTo: errorView.bottomAnchor),
-            label.bottomAnchor.constraint(equalTo: tableView.topAnchor)
+            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            label.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
 
@@ -142,7 +142,7 @@ final class MatchesModuleViewController: UIViewController {
         NSLayoutConstraint.activate([
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            tableView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -171,8 +171,8 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
         case .success:
             hideError()
             spinnerView.removeFromSuperview()
-            setupTableView()
             setupLabel()
+            setupTableView()
         }
     }
 
@@ -244,6 +244,7 @@ extension MatchesModuleViewController: ListTournamentsCellDelegate {
             withIdentifier: ListTournamentsCell.reuseIdentifier)
                 as? ListTournamentsCell else { return nil }
         header.configure(with: data, section: section, delegate: self)
+
         return header
     }
 
