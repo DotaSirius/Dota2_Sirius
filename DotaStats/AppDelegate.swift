@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let networkServise = NetworkClientImp(urlSession: .init(configuration: .default))
         let teamInfo = TeamInfoImp(networkClient: networkServise)
-        teamInfo.requestTeamMainInfo(id: 1) { result in
+        teamInfo.requestTeamMainInfo(id: 15) { result in
             switch result {
             case .success(let data):
                 print(data)
