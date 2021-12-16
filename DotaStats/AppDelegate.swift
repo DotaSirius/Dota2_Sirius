@@ -9,16 +9,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         let networkServise = NetworkClientImp(urlSession: .init(configuration: .default))
-        let teamInfo = TeamMatchesImp(networkClient: networkServise)
-        teamInfo.requestTeamMatches(id: 15) { result in
+        let teamInfo = TeamHeroesImp(networkClient: networkServise)
+        teamInfo.requestTeamHeroes(id: 15) { result in
             switch result {
             case .success(let data):
-                print("все ок")
+                print(data)
             case .failure(let error):
                 print(error)
             }
         }
-        
+
         let appCoordinator = AppCoordinator()
         window!.rootViewController = appCoordinator.tabBarController
         window!.makeKeyAndVisible()

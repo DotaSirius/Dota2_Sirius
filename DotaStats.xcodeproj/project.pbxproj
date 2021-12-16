@@ -50,6 +50,8 @@
 		837AED9F27690C530009589E /* SearchPlayerModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF329B27674C2E004670C0 /* SearchPlayerModuleBuilder.swift */; };
 		98FFE34E276B3F4F00C3839D /* TeamMatchesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE34D276B3F4F00C3839D /* TeamMatchesService.swift */; };
 		98FFE350276B409800C3839D /* TeamMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE34F276B409800C3839D /* TeamMatches.swift */; };
+		98FFE352276B6EC700C3839D /* TeamHeroesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE351276B6EC700C3839D /* TeamHeroesService.swift */; };
+		98FFE354276B6F1D00C3839D /* TeamHeroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE353276B6F1D00C3839D /* TeamHeroes.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
@@ -136,6 +138,8 @@
 		837AED9C27690ADB0009589E /* SearchPlayerModulePresenterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlayerModulePresenterState.swift; sourceTree = "<group>"; };
 		98FFE34D276B3F4F00C3839D /* TeamMatchesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMatchesService.swift; sourceTree = "<group>"; };
 		98FFE34F276B409800C3839D /* TeamMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMatches.swift; sourceTree = "<group>"; };
+		98FFE351276B6EC700C3839D /* TeamHeroesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeroesService.swift; sourceTree = "<group>"; };
+		98FFE353276B6F1D00C3839D /* TeamHeroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHeroes.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				F01B49062768C37200103100 /* SearchPlayerResult.swift */,
 				EA852BF972642EE930F2680C /* MatchDetail.swift */,
 				98FFE34F276B409800C3839D /* TeamMatches.swift */,
+				98FFE353276B6F1D00C3839D /* TeamHeroes.swift */,
 				5E3988E3276B619B00A3E54C /* TeamPlayers.swift */,
 				EA85264F7CF441C52C30E6D7 /* Players.swift */,
 				EA85276324310C6574CACFC6 /* Match.swift */,
@@ -500,6 +505,7 @@
 				EC1415F3276749A200715D00 /* MatchDetailService.swift */,
 				98FFE34D276B3F4F00C3839D /* TeamMatchesService.swift */,
 				5E3988E5276B61E400A3E54C /* TeamPlayersService.swift */,
+				98FFE351276B6EC700C3839D /* TeamHeroesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -712,6 +718,7 @@
 				EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */,
 				5D2518672768BE8F0005374B /* ListMatchesCell.swift in Sources */,
 				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
+				98FFE354276B6F1D00C3839D /* TeamHeroes.swift in Sources */,
 				EC4E6FA42764C8550085B61D /* PlayersModuleViewController.swift in Sources */,
 				5D2518692768BE980005374B /* MatchesModulePresenter.swift in Sources */,
 				EC1415F4276749A200715D00 /* MatchDetailService.swift in Sources */,
@@ -750,6 +757,7 @@
 				6035383F2767459500CC32AD /* ErrorView.swift in Sources */,
 				5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */,
 				F0DF32A32767850C004670C0 /* PlayerInfoFromSearch.swift in Sources */,
+				98FFE352276B6EC700C3839D /* TeamHeroesService.swift in Sources */,
 				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				837AED9E27690ADB0009589E /* SearchPlayerModulePresenterState.swift in Sources */,
 				F01B49072768C37200103100 /* SearchPlayerResult.swift in Sources */,
