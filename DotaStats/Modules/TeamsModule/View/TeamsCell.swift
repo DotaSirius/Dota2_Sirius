@@ -84,7 +84,7 @@ final class TeamsCell: UITableViewCell {
         recentActivityLabel.text = data.recentActivity
         ratingLabel.text = String(Int(data.rating))
         ratingLabel.textColor = data.ratingColor
-        winrateLabel.text = String(data.winrate) + "%"
+        winrateLabel.text = data.winrateString
         winrateLabel.textColor = data.winrateColor
     }
 

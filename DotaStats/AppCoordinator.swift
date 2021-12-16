@@ -10,7 +10,7 @@ final class AppCoordinator {
         let playerSearchModule = searchPlayerModuleBuilder()
 
         let viewControllers = [
-            createNavigationController(for: teamsModule.viewController, with: "Команды"),
+            createNavigationController(for: teamsModule.viewController, with: "Teams"),
             matchesModule.viewController,
             playerSearchModule.viewController
         ]

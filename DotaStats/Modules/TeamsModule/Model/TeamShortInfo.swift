@@ -27,6 +27,14 @@ final class TeamShortInfo {
     }
 
     let winrate: Float
+    var winrateString: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        let formatingWinrate = formatter.string(from: NSNumber(value: winrate)) ?? "0"
+        return formatingWinrate + "%"
+    }
+
     var winrateColor: UIColor {
         convertWinrateToColor(winrate)
     }
@@ -43,15 +51,15 @@ final class TeamShortInfo {
     private func convertRatingToColor(_ rating: Float) -> UIColor {
         switch rating {
         case 0...300:
-            return .brown
-        case 300...600:
             return .red
-        case 600...900:
+        case 300...600:
             return .orange
-        case 900...1200:
+        case 600...900:
             return .yellow
-        case 1200...1400:
+        case 900...1200:
             return .green
+        case 1200...1500:
+            return .cyan
         default:
             return .systemIndigo
         }
@@ -59,9 +67,7 @@ final class TeamShortInfo {
 
     private func convertWinrateToColor(_ winrate: Float) -> UIColor {
         switch winrate {
-        case 0...30:
-            return .brown
-        case 30...40:
+        case 0...40:
             return .red
         case 40...48:
             return .orange
@@ -69,6 +75,8 @@ final class TeamShortInfo {
             return .yellow
         case 53...58:
             return .green
+        case 58...63:
+            return .cyan
         default:
             return .systemIndigo
         }

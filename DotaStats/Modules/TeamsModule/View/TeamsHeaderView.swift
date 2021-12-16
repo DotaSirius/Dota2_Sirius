@@ -15,9 +15,9 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
         static let ratingWidth: CGFloat = 70
         static let winrateWidth: CGFloat = 75
         static let numTitle: String = NSLocalizedString("#", comment: "Номер команды в списке")
-        static let nameTitle: String = NSLocalizedString("НАЗВАНИЕ", comment: "Название команды")
-        static let ratingTitle: String = NSLocalizedString("РЕЙТИНГ", comment: "Рейтинг команды")
-        static let winrateTitle: String = NSLocalizedString("% ПОБЕД", comment: "Процент побед")
+        static let nameTitle: String = NSLocalizedString("NAME", comment: "Название команды")
+        static let ratingTitle: String = NSLocalizedString("RATING", comment: "Рейтинг команды")
+        static let winrateTitle: String = NSLocalizedString("WINRATE", comment: "Процент побед")
         static let titleFontSize: CGFloat = 12
         static let headerHeight: CGFloat = 40
     }

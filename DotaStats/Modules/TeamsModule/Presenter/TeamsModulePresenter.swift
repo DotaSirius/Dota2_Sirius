@@ -66,7 +66,7 @@ final class TeamsModulePresenter {
             return "\(num + 1)"
         }
     }
-    
+
     deinit {
         requestToken?.cancel()
     }
