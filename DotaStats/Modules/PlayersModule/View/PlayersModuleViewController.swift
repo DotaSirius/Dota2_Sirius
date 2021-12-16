@@ -12,6 +12,10 @@ protocol PlayersModuleViewOutput: AnyObject {
 final class PlayersModuleViewController: UIViewController {
     private var output: PlayersModuleViewOutput?
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
     init(output: PlayersModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)

@@ -99,7 +99,6 @@ final class SearchPlayerModulePresenter {
 // MARK: - SearchModuleViewOutput
 
 extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
-    
     var countOfRows: Int {
         players.count
     }
