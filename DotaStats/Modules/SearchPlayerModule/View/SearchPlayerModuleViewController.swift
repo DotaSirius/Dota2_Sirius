@@ -43,7 +43,7 @@ final class SearchPlayerModuleViewController: UIViewController {
         errorView.isUserInteractionEnabled = true
         let tapActionHideError = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         errorView.addGestureRecognizer(tapActionHideError)
-
+        
         setUpErrorViewConstraints()
         setUpSearchBarConstraints()
         setUpLoadingCircleConstraints()
@@ -78,7 +78,7 @@ final class SearchPlayerModuleViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = ColorPalette.mainBackground
         tableView.separatorColor = ColorPalette.separator
-        tableView.rowHeight = 55
+        tableView.rowHeight = 70
         return tableView
     }()
 
@@ -87,6 +87,7 @@ final class SearchPlayerModuleViewController: UIViewController {
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.delegate = self
+        searchBar.searchTextField.addTarget(self, action: #selector(debouncer), for: .editingChanged)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.barTintColor = ColorPalette.mainBackground
         searchBar.searchTextField.textColor = ColorPalette.mainText
@@ -166,6 +167,15 @@ final class SearchPlayerModuleViewController: UIViewController {
         hideError()
         print("tapped")
     }
+    
+    @objc func debouncer(_ textField: UISearchTextField){
+        var timer = Timer(fire: .now,
+                          interval: 0.5,
+                          repeats: false) { timer in
+            self.updateState(.loading)
+            self.output?.search(self.searchBar.text ?? "")
+        }
+    }
 }
 
 // MARK: extension for TableView
@@ -187,9 +197,9 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
         }
 
         cell.configurePlayer(
-            newAvatarImage: UIImage(named: "players")!,
+            newAvatarImage: player.avatarFull ?? "None",
             newNickname: player.personaname ?? "unknown",
-            newTimeMatch: player.lastMatchTime?.debugDescription ?? "Offline"
+            newTimeMatch: player.lastMatchTime?.debugDescription ?? " - "
         )
         cell.backgroundColor = indexPath.row % 2 == 0 ? ColorPalette.mainBackground : ColorPalette.alternativeBackground
         return cell
@@ -242,6 +252,6 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
     }
 
     func reload(at indexPath: IndexPath) {
-        //
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
