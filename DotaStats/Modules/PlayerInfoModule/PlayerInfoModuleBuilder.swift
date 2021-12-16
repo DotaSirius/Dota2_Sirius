@@ -15,7 +15,7 @@ final class PlayerInfoModuleBuilder {
             playerInfoService: playerInfoService,
             output: output,
             playerId: playerId)
-        viewController = PlayerInfoModuleViewController()
+        viewController = PlayerInfoModuleViewController(output: presenter)
         presenter.view = viewController
     }
 }

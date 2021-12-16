@@ -9,18 +9,20 @@ final class AppCoordinator {
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
         // don't forget to replace
-        let _ = playerInfoModuleBuilder(playerId: 153125655)
+        let playerInfoModule = playerInfoModuleBuilder(playerId: 153125655)
         
         let viewControllers = [
             playersModule.viewController,
             matchesModule.viewController,
-            playerSearchModule.viewControler
+            playerSearchModule.viewControler,
+            playerInfoModule.viewController
         ]
         
         let tabImageNames = [
             NSLocalizedString("players", comment: ""),
             NSLocalizedString("matches", comment: ""),
-            NSLocalizedString("players", comment: "")
+            NSLocalizedString("players", comment: ""),
+            NSLocalizedString("matches", comment: "")
         ]
         
         tabBarController.setViewControllers(viewControllers, animated: false)

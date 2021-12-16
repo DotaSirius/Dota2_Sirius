@@ -14,7 +14,7 @@ final class PlayerInfoModulePresenter {
     private let playerInfoService: PlayerInfoService
     let output: PlayerInfoModuleOutput
     let playerId: Int
-    var mainInfo: PlayerMainInfoView?
+    var mainInfo = PlayerMainInfoView()
     
     required init(playerInfoService: PlayerInfoService,
                   output: PlayerInfoModuleOutput,
@@ -62,6 +62,12 @@ final class PlayerInfoModulePresenter {
     }
 }
 
-extension  PlayerInfoModulePresenter: PlayerInfoModuleInput {
+extension PlayerInfoModulePresenter: PlayerInfoModuleInput {
     
+}
+
+extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
+    func getMainData() -> PlayerMainInfoView {
+        mainInfo
+    }
 }
