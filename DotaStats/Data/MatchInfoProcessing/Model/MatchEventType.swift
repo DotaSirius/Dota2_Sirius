@@ -1,6 +1,6 @@
 import Foundation
 
-enum MetchEventType {
+enum MatchEventType {
     case observer
     case sentry
     case firstBlood

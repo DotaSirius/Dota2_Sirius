@@ -36,9 +36,9 @@ struct MatchDetail: Decodable {
     let loss: Int?
     let win: Int?
     let replayUrl: String?
+    let objectives:[Object]
 
 //    let cosmetics
-//    let objectives
 //    let picks_bans
 //    let radiant_gold_adv
 //    let radiant_xp_adv
@@ -48,6 +48,10 @@ struct MatchDetail: Decodable {
 //    let league
 //    let all_word_counts
 //    let my_word_counts
+    
+    struct Object {
+        <#fields#>
+    }
 
     struct Chat: Decodable, Equatable {
         let time: Date?
