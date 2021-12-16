@@ -8,16 +8,20 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
+        let teamInfoModule = teamInfoModuleBuilder()
+
         let viewControllers = [
             playersModule.viewController,
             matchesModule.viewController,
-            playerSearchModule.viewController
+            playerSearchModule.viewController,
+            teamInfoModule.viewController
         ]
 
         let tabImageNames = [
             NSLocalizedString("players", comment: ""),
             NSLocalizedString("matches", comment: ""),
-            NSLocalizedString("search", comment: "")
+            NSLocalizedString("search", comment: ""),
+            NSLocalizedString("matches", comment: "")
         ]
 
         tabBarController.setViewControllers(viewControllers, animated: false)
@@ -58,6 +62,17 @@ extension AppCoordinator {
             imageNetworkService: StubImageNetworkService()
         )
     }
+
+    private func teamInfoModuleBuilder() -> TeamInfoModuleBuilder {
+        TeamInfoModuleBuilder(
+            converter: TeamInfoConverterImp(), output: self,
+            teamInfoService: TeamInfoImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ), teamId: 15
+        )
+    }
 }
 
 extension AppCoordinator: PlayersModuleOutput {
@@ -79,6 +94,8 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     }
 }
 
+extension AppCoordinator: TeamInfoModuleOutput {}
+
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -86,4 +103,5 @@ final class StubImageNetworkService: ImageNetworkService {
         }
         return nil
     }
+
 }
