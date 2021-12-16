@@ -20,7 +20,7 @@ struct TeamShortInfo {
         logoUrl = teamResult.logoUrl
         name = teamResult.name
         rating = teamResult.rating
-        winrate = Float(teamResult.wins) / Float(teamResult.losses)
+        winrate = Float(teamResult.wins) / Float(teamResult.losses + teamResult.wins) * 100
     }
 }
 

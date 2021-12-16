@@ -6,9 +6,9 @@ final class TeamsCell: UITableViewCell {
     private enum Constant {
         static let verticalPadding: CGFloat = 15
         static let spacing: CGFloat = 10
-        static let mainFointSize: CGFloat = 17
-        static let additionalInfoFontSize: CGFloat = 13
-        static let numWidth: CGFloat = 20
+        static let mainFointSize: CGFloat = 15
+        static let additionalInfoFontSize: CGFloat = 12
+        static let numWidth: CGFloat = 25
         static let avatarSide: CGFloat = 40
         static let winRateWidth: CGFloat = 60
         static let ratingWidth: CGFloat = 60
@@ -83,7 +83,7 @@ final class TeamsCell: UITableViewCell {
         // TODO set error image -> when empty logo url
         teamNameLabel.text = data.name
         recentActivityLabel.text = "a day ago"
-        ratingLabel.text = String(data.rating)
+        ratingLabel.text = String(Int(data.rating))
         ratingLabel.textColor = data.ratingColor
         winrateLabel.text = String(data.winrate) + "%"
         winrateLabel.textColor = data.winrateColor

@@ -29,12 +29,13 @@ final class AppCoordinator {
         setupNavigationBarAppereance()
     }
 
-    private func createNavigationController(for view: UIViewController,
-                                            with title: String) -> UINavigationController {
-        view.title = title
-        let navigationController = UINavigationController(rootViewController: view)
-        return navigationController
-    }
+//    private func createNavigationController(for viewController: UIViewController,
+//                                            with title: String) -> UINavigationController {
+//        return viewController
+//        //        viewController.title = title
+////        let navigationController = UINavigationController(rootViewController: viewController)
+////        return navigationController
+//    }
 
     private func setupNavigationBarAppereance() {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]

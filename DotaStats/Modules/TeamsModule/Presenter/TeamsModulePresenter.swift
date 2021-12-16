@@ -7,17 +7,25 @@ protocol TeamsModuleOutput: AnyObject {
 }
 
 final class TeamsModulePresenter {
-    weak var view: TeamsModuleViewInput?
+    weak var view: TeamsModuleViewInput? {
+        didSet {
+            loading()
+        }
+    }
     
     private let teamsService: TeamsService
     let output: TeamsModuleOutput
 
     private var teams = [TeamShortInfo]()
-
+    private var requestToken: Cancellable?
+    
     init(teamsService: TeamsService, output: TeamsModuleOutput) {
         self.teamsService = teamsService
         self.output = output
         print("init")
+    }
+    
+    private func loading() {
         view?.updateState(.loading)
 
         let teamsRequestToken = teamsService.requestTeams { [weak self] result in
@@ -31,8 +39,13 @@ final class TeamsModulePresenter {
                 self.view?.updateState(.failure)
             }
         }
+        
+        requestToken = teamsRequestToken
     }
     
+    deinit {
+        requestToken?.cancel()
+    }
 }
 
 // MARK: - TeamsModuleInput

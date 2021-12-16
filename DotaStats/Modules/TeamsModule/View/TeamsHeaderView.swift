@@ -11,7 +11,7 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
     weak var delegate: TeamsHeaderViewDelegate?
 
     private enum Constant {
-        static let numWidth: CGFloat = 40
+        static let numWidth: CGFloat = 45
         static let ratingWidth: CGFloat = 70
         static let winrateWidth: CGFloat = 75
         static let numTitle: String = NSLocalizedString("#", comment: "Номер команды в списке")
@@ -23,7 +23,7 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
     }
 
     private lazy var numButton = makeButton(with: Constant.numTitle)
-    
+
     private lazy var nameButton: UIButton = {
         let button = makeButton(with: Constant.nameTitle)
         button.addTarget(nil, action: #selector(nameButtonTapped), for: .touchUpInside)
