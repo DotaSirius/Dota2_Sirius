@@ -37,8 +37,10 @@ final class MatchInfoViewController: UIViewController {
         view.alpha = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
-        let tapActionHideError = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        view.addGestureRecognizer(tapActionHideError)
+        let tapActionGestureRecognizer = UITapGestureRecognizer(
+            target: self, action: #selector(handleTapOnErrorScreen(_:))
+        )
+        view.addGestureRecognizer(tapActionGestureRecognizer)
         return view
     }()
 
@@ -103,7 +105,7 @@ final class MatchInfoViewController: UIViewController {
         }
     }
 
-    @objc func handleTap(_: UITapGestureRecognizer) {
+    @objc func handleTapOnErrorScreen(_: UITapGestureRecognizer) {
         hideError()
     }
 

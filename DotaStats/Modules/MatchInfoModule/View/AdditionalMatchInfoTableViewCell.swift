@@ -99,6 +99,9 @@ final class AdditionalMatchInfoTableViewCell: UITableViewCell {
     private func copyMatchIdButtonPressed() {
         UIPasteboard.general.string = matchID
         matchIdCopyButton.setTitle("Copied!", for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.matchIdCopyButton.setTitle("Copy match ID", for: .normal)
+        }
     }
 
     func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {

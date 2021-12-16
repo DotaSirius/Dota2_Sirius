@@ -59,8 +59,8 @@ final class MatchInfoModulePresenter {
                     )
                 }
                 view?.update(state: .success)
-            case .error(let error):
-                view?.update(state: .error(error))
+            case .error:
+                view?.update(state: .error)
             case .loading:
                 view?.update(state: .loading)
             }
@@ -77,7 +77,7 @@ final class MatchInfoModulePresenter {
 
     private func requestData() {
         state = .loading
-        _ = networkService.requestMatchDetail(id: matchId) { [weak self] result in
+        networkService.requestMatchDetail(id: matchId) { [weak self] result in
             guard
                 let self = self
             else {
@@ -88,8 +88,8 @@ final class MatchInfoModulePresenter {
                 self.rawMatchInfo = rawMatchInfo
                 self.state = .success
 
-            case .failure(let error):
-                self.state = .error(error)
+            case .failure:
+                self.state = .error
             }
         }
     }
