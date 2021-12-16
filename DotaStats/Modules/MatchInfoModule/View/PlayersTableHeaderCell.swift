@@ -6,7 +6,6 @@ final class PlayersTableHeaderCell: UITableViewCell {
     let smallInset: CGFloat = 8
     let labelWidth: CGFloat = 30
 
-
     private lazy var playerNameHeaderLabel: UILabel = {
         let playerNameHeaderLabel = UILabel()
         playerNameHeaderLabel.textColor = ColorPalette.mainText

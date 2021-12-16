@@ -59,9 +59,18 @@ final class TeamMatchInfoTableViewCell: UITableViewCell {
 
      func setupConstraints() {
          teamNameWinStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: topInset).isActive = true
-         teamNameWinStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: smallInset).isActive = true
-         teamNameWinStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -smallInset).isActive = true
-         teamNameWinStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -smallInset).isActive = true
+         teamNameWinStack.leadingAnchor.constraint(
+            equalTo: contentView.leadingAnchor,
+            constant: smallInset
+         ).isActive = true
+         teamNameWinStack.trailingAnchor.constraint(
+            equalTo: contentView.trailingAnchor,
+            constant: -smallInset
+         ).isActive = true
+         teamNameWinStack.bottomAnchor.constraint(
+            equalTo: contentView.bottomAnchor,
+            constant: -smallInset
+         ).isActive = true
     }
 }
 
