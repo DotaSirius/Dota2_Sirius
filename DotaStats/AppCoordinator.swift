@@ -11,7 +11,7 @@ final class AppCoordinator {
 
         let viewControllers = [
             createNavigationController(for: teamsModule.viewController, with: "Teams"),
-            matchesModule.viewController,
+            createNavigationController(for: matchesModule.viewController, with: "Matches"),
             playerSearchModule.viewController
         ]
 
@@ -31,6 +31,7 @@ final class AppCoordinator {
     private func createNavigationController(for viewController: UIViewController,
                                             with title: String) -> UINavigationController {
         viewController.title = title
+        viewController.view?.backgroundColor = ColorPalette.mainBackground
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }
@@ -38,13 +39,13 @@ final class AppCoordinator {
     private func setupNavigationBarAppereance() {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]
         if #available(iOS 15, *) {
-
             UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+            UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
             UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
         } else {
             UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
             UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
-            UINavigationBar.appearance().barTintColor = ColorPalette.mainBackground
+            UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
         }
     }
 }

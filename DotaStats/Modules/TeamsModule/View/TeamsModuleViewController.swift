@@ -25,7 +25,6 @@ final class TeamsModuleViewController: UIViewController {
         self.output = output
         super.init(nibName: nil, bundle: nil)
 
-        view.backgroundColor = ColorPalette.mainBackground
         view.addSubview(tableView)
         setupConstraints()
     }
