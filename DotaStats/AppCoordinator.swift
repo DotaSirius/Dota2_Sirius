@@ -23,7 +23,7 @@ final class AppCoordinator {
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
-        
+
         tabBarController.configureTabs()
         setupNavigationBarAppereance()
     }
@@ -34,16 +34,13 @@ final class AppCoordinator {
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }
-    
+
     private func setupNavigationBarAppereance() {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]
         if #available(iOS 15, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = ColorPalette.alternativeBackground
-            appearance.titleTextAttributes = titleTextAttributes
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+
+            UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+            UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
         } else {
             UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
             UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
@@ -58,7 +55,7 @@ extension AppCoordinator {
         let teamsService = TeamsServiceImp(networkClient: networkClient)
         return TeamsModuleBuilder(output: self, teamsService: teamsService)
     }
-    
+
     private func matchesBuilder() -> MatchesModuleBuilder {
         MatchesModuleBuilder(
             output: self,
@@ -69,7 +66,7 @@ extension AppCoordinator {
             )
         )
     }
-    
+
     private func searchPlayerModuleBuilder() -> SearchPlayerModuleBuilder {
         SearchPlayerModuleBuilder(
             output: self,

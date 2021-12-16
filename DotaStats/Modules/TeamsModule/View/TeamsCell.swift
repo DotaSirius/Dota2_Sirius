@@ -23,7 +23,7 @@ final class TeamsCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private lazy var teamLogoView: CachedImageView = {
         let imageView = CachedImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,7 @@ final class TeamsCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private lazy var ratingLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: Constant.additionalInfoFontSize, weight: .bold)
@@ -66,23 +66,22 @@ final class TeamsCell: UITableViewCell {
         return label
     }()
 
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func configure(with data: TeamShortInfo, forIndexPathRow row: Int) {
-        numTeamLabel.text = getNumFromIndexPathRow(row)
+
+    func configure(with data: TeamShortInfo) {
+        numTeamLabel.text = data.num
         teamLogoView.setImage(with: data.logoUrl ?? "")
-        // TODO set error image -> when empty logo url
+        // FIXME: set error image -> when empty logo url
         teamNameLabel.text = data.name
-        recentActivityLabel.text = "a day ago"
+        recentActivityLabel.text = data.recentActivity
         ratingLabel.text = String(Int(data.rating))
         ratingLabel.textColor = data.ratingColor
         winrateLabel.text = String(data.winrate) + "%"
@@ -104,42 +103,36 @@ final class TeamsCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             numTeamLabel.widthAnchor.constraint(equalToConstant: Constant.numWidth),
-            numTeamLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.spacing),
+            numTeamLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                  constant: Constant.spacing),
             numTeamLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
             teamLogoView.widthAnchor.constraint(equalToConstant: Constant.avatarSide),
             teamLogoView.heightAnchor.constraint(equalToConstant: Constant.avatarSide),
-            teamLogoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constant.verticalPadding),
-            teamLogoView.leadingAnchor.constraint(equalTo: numTeamLabel.trailingAnchor, constant: Constant.verticalPadding),
+            teamLogoView.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                              constant: Constant.verticalPadding),
+            teamLogoView.leadingAnchor.constraint(equalTo: numTeamLabel.trailingAnchor,
+                                                  constant: Constant.verticalPadding),
             bottomConstraint,
 
-            teamNameLabel.leadingAnchor.constraint(equalTo: teamLogoView.trailingAnchor, constant: Constant.spacing),
+            teamNameLabel.leadingAnchor.constraint(equalTo: teamLogoView.trailingAnchor,
+                                                   constant: Constant.spacing),
             teamNameLabel.topAnchor.constraint(equalTo: teamLogoView.topAnchor),
-            teamNameLabel.trailingAnchor.constraint(equalTo: ratingLabel.leadingAnchor, constant: Constant.spacing),
+            teamNameLabel.trailingAnchor.constraint(equalTo: ratingLabel.leadingAnchor,
+                                                    constant: Constant.spacing),
 
             recentActivityLabel.topAnchor.constraint(equalTo: teamNameLabel.bottomAnchor),
             recentActivityLabel.leadingAnchor.constraint(equalTo: teamNameLabel.leadingAnchor),
-            
+
             ratingLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            ratingLabel.trailingAnchor.constraint(equalTo: winrateLabel.leadingAnchor, constant: -Constant.spacing),
+            ratingLabel.trailingAnchor.constraint(equalTo: winrateLabel.leadingAnchor,
+                                                  constant: -Constant.spacing),
             ratingLabel.widthAnchor.constraint(equalToConstant: Constant.ratingWidth),
- 
+
             winrateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            winrateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constant.spacing),
+            winrateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                   constant: -Constant.spacing),
             winrateLabel.widthAnchor.constraint(equalToConstant: Constant.winRateWidth)
         ])
-    }
-}
-
-func getNumFromIndexPathRow(_ num: Int) -> String {
-    switch num {
-    case 0:
-        return "🥇"
-    case 1:
-        return "🥈"
-    case 2:
-        return "🥉"
-    default:
-        return "\(num + 1)"
     }
 }

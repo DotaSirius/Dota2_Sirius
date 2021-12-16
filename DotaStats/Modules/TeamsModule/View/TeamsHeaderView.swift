@@ -35,7 +35,7 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
         button.addTarget(nil, action: #selector(ratingButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var winrateButton: UIButton = {
         let button = makeButton(with: Constant.winrateTitle)
         button.addTarget(nil, action: #selector(winrateButtonTapped), for: .touchUpInside)

@@ -12,19 +12,24 @@ final class TeamsModulePresenter {
             loading()
         }
     }
-    
+
+    private enum Constant {
+        static let firstEmoji: String = NSLocalizedString("🥇", comment: "Эмодзи для первого места в списке команд")
+        static let secondEmoji: String = NSLocalizedString("🥈", comment: "Эмодзи для второго места в списке команд")
+        static let thirdEmoji: String = NSLocalizedString("🥉", comment: "Эмодзи для третьего места в списке команд")
+    }
+
     private let teamsService: TeamsService
     let output: TeamsModuleOutput
 
     private var teams = [TeamShortInfo]()
     private var requestToken: Cancellable?
-    
+
     init(teamsService: TeamsService, output: TeamsModuleOutput) {
         self.teamsService = teamsService
         self.output = output
-        print("init")
     }
-    
+
     private func loading() {
         view?.updateState(.loading)
 
@@ -32,15 +37,27 @@ final class TeamsModulePresenter {
             guard let self = self else { return }
             switch result {
             case .success(let teamResult):
-                print(teamResult)
                 self.teams = teamResult.map { TeamShortInfo(from: $0) }
                 self.view?.updateState(.success)
             case .failure:
                 self.view?.updateState(.failure)
             }
         }
-        
+
         requestToken = teamsRequestToken
+    }
+
+    private func getNumFromIndexPathRow(_ num: Int) -> String {
+        switch num {
+        case 0:
+            return Constant.firstEmoji
+        case 1:
+            return Constant.secondEmoji
+        case 2:
+            return Constant.thirdEmoji
+        default:
+            return "\(num + 1)"
+        }
     }
     
     deinit {
@@ -60,9 +77,11 @@ extension TeamsModulePresenter: TeamsModuleViewOutput {
     }
 
     func getData(at indexPath: IndexPath) -> TeamShortInfo {
-        teams[indexPath.row]
+        let team = teams[indexPath.row]
+        team.num = getNumFromIndexPathRow(indexPath.row)
+        return team
     }
-    
+
     func selected(at indexPath: IndexPath) {
         print(indexPath)
         let team = teams[indexPath.row]

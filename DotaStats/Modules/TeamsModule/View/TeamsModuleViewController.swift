@@ -13,6 +13,14 @@ protocol TeamsModuleViewOutput: AnyObject {
 final class TeamsModuleViewController: UIViewController {
     private var output: TeamsModuleViewOutput?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
+    private enum Constant {
+        static let headerHeight: CGFloat = 40
+    }
+
     init(output: TeamsModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
@@ -22,10 +30,6 @@ final class TeamsModuleViewController: UIViewController {
         setupConstraints()
     }
 
-    private enum Constant {
-        static let headerHeight: CGFloat = 40
-    }
-
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -33,6 +37,7 @@ final class TeamsModuleViewController: UIViewController {
         tableView.register(TeamsCell.self, forCellReuseIdentifier: TeamsCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = ColorPalette.mainBackground
+
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = .zero
         }
@@ -53,7 +58,7 @@ final class TeamsModuleViewController: UIViewController {
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -96,7 +101,7 @@ extension TeamsModuleViewController: UITableViewDataSource {
             return .init()
         }
 
-        cell.configure(with: data, forIndexPathRow: indexPath.row)
+        cell.configure(with: data)
         cell.selectionStyle = .none
         return cell
     }
@@ -119,7 +124,7 @@ extension TeamsModuleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         Constant.headerHeight
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         output?.selected(at: indexPath)
     }
