@@ -287,35 +287,27 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		5E3988DF276B605C00A3E54C /* TeamsInfoModule */ = {
+		98FFE355276B709F00C3839D /* TeamInfoModule */ = {
 			isa = PBXGroup;
 			children = (
-				5E3988E2276B610A00A3E54C /* Presenter */,
-				5E3988E1276B60FA00A3E54C /* View */,
-				5E3988E0276B60D500A3E54C /* Model */,
+				98FFE357276B72E200C3839D /* Model */,
+				98FFE356276B70BE00C3839D /* Presenter */,
 			);
-			path = TeamsInfoModule;
+			path = TeamInfoModule;
 			sourceTree = "<group>";
 		};
-		5E3988E0276B60D500A3E54C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5E3988E1276B60FA00A3E54C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		5E3988E2276B610A00A3E54C /* Presenter */ = {
+		98FFE356276B70BE00C3839D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		98FFE357276B72E200C3839D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B61F593C2760A4FB00D08CEA = {
@@ -395,7 +387,7 @@
 		EC4E6F8E2764C8550085B61D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				5E3988DF276B605C00A3E54C /* TeamsInfoModule */,
+				98FFE355276B709F00C3839D /* TeamInfoModule */,
 				EC4E6F8F2764C8550085B61D /* MatchInfoModule */,
 				F0F2EE4D2764D0D400EAB7E5 /* SearchPlayerModule */,
 				EC4E6F922764C8550085B61D /* PlayersModule */,
