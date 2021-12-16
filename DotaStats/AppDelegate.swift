@@ -9,11 +9,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         let networkServise = NetworkClientImp(urlSession: .init(configuration: .default))
-        let teamInfo = TeamInfoImp(networkClient: networkServise)
-        teamInfo.requestTeamMainInfo(id: 15) { result in
+        let teamInfo = TeamMatchesImp(networkClient: networkServise)
+        teamInfo.requestTeamMatches(id: 15) { result in
             switch result {
             case .success(let data):
-                print(data)
+                print("все ок")
             case .failure(let error):
                 print(error)
             }
