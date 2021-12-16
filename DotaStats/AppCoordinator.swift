@@ -63,6 +63,17 @@ extension AppCoordinator {
         )
     }
 
+    private func makeMatchInfoModuleBuilder() -> MatchInfoModuleBuilder {
+        MatchInfoModuleBuilder(
+            output: self,
+            networkService: MatchDetailImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ), converter: MatchInfoConverterImp()
+        )
+    }
+
     private func playerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
         PlayerInfoModuleBuilder(
             output: self,
@@ -85,7 +96,9 @@ extension AppCoordinator: PlayersModuleOutput {
 
 extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
-        // todo
+        let matchInfoModule = makeMatchInfoModuleBuilder()
+        matchInfoModule.input.setMatchId(matchId)
+        tabBarController.present(matchInfoModule.viewControler, animated: true)
     }
 }
 
@@ -95,8 +108,9 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     }
 }
 
-extension AppCoordinator: PlayerInfoModuleOutput {
-}
+extension AppCoordinator: PlayerInfoModuleOutput {}
+
+extension AppCoordinator: MatchInfoModuleOutput {}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
