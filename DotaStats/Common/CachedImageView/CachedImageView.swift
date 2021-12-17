@@ -36,7 +36,6 @@ final class CachedImageView: UIImageView {
         gradientLayer.frame = frame
     }
 
-
     func setImage(with url: String) {
         startAnimation()
 
