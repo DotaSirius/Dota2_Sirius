@@ -5,7 +5,7 @@ protocol PlayerInfoModuleViewInput: AnyObject {
 }
 
 protocol PlayerInfoModuleViewOutput: AnyObject {
-    func getCellData(forRow: Int) -> PlayerTableViewCellData
+    func getCellData(forIndexPath: IndexPath) -> PlayerTableViewCellData
     func getRowsInSection(section: Int) -> Int
 }
 
@@ -14,12 +14,13 @@ final class PlayerInfoModuleViewController: UIViewController {
 
     private var output: PlayerInfoModuleViewOutput?
     private var errorConstraint: NSLayoutConstraint?
-    private var first = true
     private var data: PlayerTableViewCellData?
     private var spiner = UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
         setupErrorViewConstraints()
+        setupTableView()
+        tableView.isHidden = true
         view.backgroundColor = ColorPalette.mainBackground
     }
 
@@ -98,7 +99,7 @@ final class PlayerInfoModuleViewController: UIViewController {
 
     // MARK: Show/hide errors function
 
-    func showError() {
+    private func showError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        options: [.curveEaseInOut]) {
@@ -108,7 +109,7 @@ final class PlayerInfoModuleViewController: UIViewController {
         }
     }
 
-    func hideError() {
+    private func hideError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        options: [.curveEaseOut]) {
@@ -138,18 +139,16 @@ extension PlayerInfoModuleViewController: PlayerInfoModuleViewInput {
         case .successWL, .successMain, .successMatch:
             hideError()
             spiner.removeFromSuperview()
-            if first {
-                setupTableView()
-                first = false
-            }
-            tableView.reloadData()
+            tableView.isHidden = false
+            self.tableView.reloadData()
+            print(output?.getRowsInSection(section: 1))
         }
     }
 }
 
 extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,7 +157,7 @@ extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let data = output?.getCellData(forRow: indexPath.row),
+            let data = output?.getCellData(forIndexPath: indexPath),
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: data.reuseIdentificator,
                 for: indexPath) as? (UITableViewCell & PlayerInfoCellConfigurable)

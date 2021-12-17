@@ -38,6 +38,7 @@ final class PlayerInfoModulePresenter {
                 view?.update(state: .successWL)
             case .successMatch(let player):
                 playerMatch += player.map { convert(playerMatch: $0) }
+                view?.update(state: .successMatch)
             case .error(let error):
                 view?.update(state: .error(error.localizedDescription))
             case .loading:
@@ -130,22 +131,32 @@ extension PlayerInfoModulePresenter: PlayerInfoModuleInput {
 }
 
 extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
-    func getCellData(forRow: Int) -> PlayerTableViewCellData {
-        switch forRow {
+    func getCellData(forIndexPath: IndexPath) -> PlayerTableViewCellData {
+        switch forIndexPath.section {
         case 0:
-            return PlayerTableViewCellData.playerMainInfo(playerMainInfo)
-        case 1:
-            return PlayerTableViewCellData.playerWL(playerWL)
-        case 2:
-            return PlayerTableViewCellData.recentMatchesTitle
-        case 3:
-            return PlayerTableViewCellData.recentMatchesHeader
+            switch forIndexPath.row {
+            case 0:
+                return PlayerTableViewCellData.playerMainInfo(playerMainInfo)
+            case 1:
+                return PlayerTableViewCellData.playerWL(playerWL)
+            case 2:
+                return PlayerTableViewCellData.recentMatchesTitle
+            default:
+                return PlayerTableViewCellData.recentMatchesHeader
+            }
         default:
-            return PlayerTableViewCellData.playerMatch(playerMatch[forRow - 4])
+            return PlayerTableViewCellData.playerMatch(playerMatch[forIndexPath.row])
         }
     }
 
     func getRowsInSection(section: Int) -> Int {
-        section == 0 ? 3 + playerMatch.count : 0
+        switch section {
+        case 0:
+            return 4
+        case 1:
+            return playerMatch.count
+        default:
+            return 0
+        }
     }
 }

@@ -109,11 +109,11 @@ final class PlayerWLCell: UITableViewCell {
                 constant: -10
             ),
             winLoseStackView.trailingAnchor.constraint(
-                equalTo: contentView.safeAreaLayoutGuide.trailingAnchor,
+                lessThanOrEqualTo: contentView.safeAreaLayoutGuide.trailingAnchor,
                 constant: -10
             ),
             winLoseStackView.leadingAnchor.constraint(
-                equalTo: contentView.safeAreaLayoutGuide.leadingAnchor,
+                greaterThanOrEqualTo: contentView.safeAreaLayoutGuide.leadingAnchor,
                 constant: 10
             )
         ])
