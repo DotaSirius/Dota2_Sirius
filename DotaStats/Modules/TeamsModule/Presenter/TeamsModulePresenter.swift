@@ -90,7 +90,6 @@ extension TeamsModulePresenter: TeamsModuleViewOutput {
     }
 
     func selected(at indexPath: IndexPath) {
-        print(indexPath)
         let team = teams[indexPath.row]
         output.teamsModule(self, didSelectTeam: team.teamId)
     }
