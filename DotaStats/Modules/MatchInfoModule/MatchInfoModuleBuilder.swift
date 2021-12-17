@@ -22,7 +22,7 @@ final class MatchInfoModuleBuilder {
             networkService: networkService,
             regionsService: regionsService
         )
-        self.viewControler = MatchInfoViewController(output: presenter)
-        self.presenter.view = viewControler
+        self.viewController = MatchInfoViewController(output: presenter)
+        self.presenter.view = viewController
     }
 }
