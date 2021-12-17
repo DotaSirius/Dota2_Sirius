@@ -279,4 +279,3 @@ extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
         }
     }
 }
-
