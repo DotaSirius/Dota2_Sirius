@@ -66,7 +66,7 @@ final class GamesInfoHeader: UITableViewCell {
 
             playerGamesLabel.trailingAnchor.constraint(equalTo: playerWinrateLabel.leadingAnchor, constant: -inset),
             playerGamesLabel.widthAnchor.constraint(equalToConstant: 70),
-            playerGamesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
+            playerGamesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset)
         ])
     }
 }

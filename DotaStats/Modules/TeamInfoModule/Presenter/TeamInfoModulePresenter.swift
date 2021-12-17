@@ -109,7 +109,9 @@ final class TeamInfoModulePresenter {
             switch result {
             case .success(let rawTeamMainInfo):
                 self.rawTeamMainInfo = rawTeamMainInfo
-                if !self.rawTeamPlayersInfo.isEmpty && !self.rawTeamHeroesInfo.isEmpty && !self.rawMatchesTeamInfo.isEmpty {
+                if !self.rawTeamPlayersInfo.isEmpty
+                    && !self.rawTeamHeroesInfo.isEmpty
+                    && !self.rawMatchesTeamInfo.isEmpty {
                     self.state = .success
                 }
             case .failure:
@@ -126,7 +128,9 @@ final class TeamInfoModulePresenter {
             switch result {
             case .success(let rawTeamPlayersInfo):
                 self.rawTeamPlayersInfo = rawTeamPlayersInfo
-                if self.rawTeamMainInfo != nil && !self.rawTeamHeroesInfo.isEmpty  && !self.rawMatchesTeamInfo.isEmpty  {
+                if self.rawTeamMainInfo != nil
+                    && !self.rawTeamHeroesInfo.isEmpty
+                    && !self.rawMatchesTeamInfo.isEmpty {
                     self.state = .success
                 }
             case .failure:
@@ -143,7 +147,9 @@ final class TeamInfoModulePresenter {
             switch result {
             case .success(let rawTeamHeroesInfo):
                 self.rawTeamHeroesInfo = rawTeamHeroesInfo
-                if self.rawTeamMainInfo != nil && !self.rawTeamPlayersInfo.isEmpty  && !self.rawMatchesTeamInfo.isEmpty  {
+                if self.rawTeamMainInfo != nil
+                    && !self.rawTeamPlayersInfo.isEmpty
+                    && !self.rawMatchesTeamInfo.isEmpty {
                     self.state = .success
                 }
             case .failure:
@@ -161,7 +167,9 @@ final class TeamInfoModulePresenter {
                     switch result {
                     case .success(let rawMatchesTeamInfo):
                         self.rawMatchesTeamInfo = rawMatchesTeamInfo
-                    if self.rawTeamMainInfo != nil && !self.rawTeamPlayersInfo.isEmpty && !self.rawTeamHeroesInfo.isEmpty {
+                    if self.rawTeamMainInfo != nil
+                        && !self.rawTeamPlayersInfo.isEmpty
+                        && !self.rawTeamHeroesInfo.isEmpty {
                             self.state = .success
                         }
                     case .failure:

@@ -61,7 +61,7 @@ final class CurrentPlayersCell: UITableViewCell {
         }
         gamesProgressBar.trackTintColor = ColorPalette.subtitle
         gamesProgressBar.tintColor = ColorPalette.win
-        
+
         winRateProgressBar.trackTintColor = ColorPalette.subtitle
         winRateProgressBar.tintColor = ColorPalette.win
     }
@@ -84,11 +84,11 @@ final class CurrentPlayersCell: UITableViewCell {
             gamesProgressBar.topAnchor.constraint(equalTo: playerGamesLabel.bottomAnchor),
             gamesProgressBar.centerXAnchor.constraint(equalTo: playerGamesLabel.centerXAnchor),
             gamesProgressBar.widthAnchor.constraint(equalToConstant: 70),
-            
+
             winRateProgressBar.topAnchor.constraint(equalTo: playerWinrateLabel.bottomAnchor),
             winRateProgressBar.centerXAnchor.constraint(equalTo: playerWinrateLabel.centerXAnchor),
             winRateProgressBar.widthAnchor.constraint(equalToConstant: 70)
-            
+
         ])
     }
 }
@@ -110,7 +110,7 @@ extension CurrentPlayersCell: DetailedTeamInfoCellConfigurable {
             UIView.animate(withDuration: 0.4) {
                 self.winRateProgressBar.setProgress(self.progressPercent, animated: true)
                         }
-            
+
         case .currentHeroesInfo(let data):
             playerNameLabel.text = data.heroesNameLabelText
             playerGamesLabel.text = data.heroesGamesLabelText
@@ -133,4 +133,3 @@ extension CurrentPlayersCell: DetailedTeamInfoCellConfigurable {
         }
     }
 }
-

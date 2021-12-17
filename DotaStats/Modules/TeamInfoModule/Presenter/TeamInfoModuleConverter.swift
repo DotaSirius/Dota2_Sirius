@@ -19,7 +19,7 @@ protocol TeamMatchesInfoConverter: AnyObject {
 
 class TeamInfoConverterImp {
     var gamesArray = [Int]()
-    
+
     private func convertDuration(seconds: Int?) -> String {
             guard
                 let seconds = seconds
@@ -139,7 +139,7 @@ extension TeamInfoConverterImp: TeamHeroesInfoConverter {
             let gamesPlayed = rawInfo.gamesPlayed ?? 0
             let wins = rawInfo.wins ?? 0
             let winrate = Int(Float(wins)/Float(gamesPlayed)*100)
-            
+
             countOfElements += 1
             return .init(
                 heroesNameLabelText: name,
