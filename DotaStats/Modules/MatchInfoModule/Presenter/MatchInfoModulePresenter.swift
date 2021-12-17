@@ -58,6 +58,8 @@ final class MatchInfoModulePresenter {
                         )
                     )
                 }
+                self.convertedData.append(
+                    MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: self.rawMatchInfo)))
                 view?.update(state: .success)
             case .error:
                 view?.update(state: .error)

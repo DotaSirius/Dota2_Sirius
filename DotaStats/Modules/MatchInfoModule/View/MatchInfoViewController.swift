@@ -24,6 +24,8 @@ final class MatchInfoViewController: UIViewController {
                            forCellReuseIdentifier: TeamMatchInfoTableViewCell.reuseIdentifier)
         tableView.register(PlayersTableHeaderCell.self,
                            forCellReuseIdentifier: PlayersTableHeaderCell.reuseIdentifier)
+        tableView.register(WardsMapTableViewCell.self,
+                           forCellReuseIdentifier: WardsMapTableViewCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = ColorPalette.mainBackground
