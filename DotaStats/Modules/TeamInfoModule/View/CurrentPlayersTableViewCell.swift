@@ -21,7 +21,7 @@ final class CurrentPlayersCell: UITableViewCell {
 
     private lazy var playerGamesLabel: UILabel = {
         let playerGamesLabel = UILabel()
-        playerGamesLabel.textColor = ColorPalette.mainText
+        playerGamesLabel.textColor = ColorPalette.text
         playerGamesLabel.font = UIFont.systemFont(ofSize: 17)
         playerGamesLabel.textAlignment = .center
         playerGamesLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +30,7 @@ final class CurrentPlayersCell: UITableViewCell {
 
     private lazy var playerWinrateLabel: UILabel = {
         playerWinrateLabel = UILabel()
-        playerWinrateLabel.textColor = ColorPalette.lose
+        playerWinrateLabel.textColor = ColorPalette.text
         playerWinrateLabel.font = UIFont.systemFont(ofSize: 17)
         playerWinrateLabel.textAlignment = .center
         playerWinrateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -67,11 +67,11 @@ final class CurrentPlayersCell: UITableViewCell {
             playerNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
 
             playerWinrateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
-            playerWinrateLabel.widthAnchor.constraint(equalToConstant: 30),
+            playerWinrateLabel.widthAnchor.constraint(equalToConstant: 50),
             playerWinrateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
 
             playerGamesLabel.trailingAnchor.constraint(equalTo: playerWinrateLabel.leadingAnchor, constant: -inset),
-            playerGamesLabel.widthAnchor.constraint(equalToConstant: 30),
+            playerGamesLabel.widthAnchor.constraint(equalToConstant: 50),
             playerGamesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
 
 //            gamesProgressBar.topAnchor.constraint(equalTo: playerGamesLabel.bottomAnchor, constant: -inset),

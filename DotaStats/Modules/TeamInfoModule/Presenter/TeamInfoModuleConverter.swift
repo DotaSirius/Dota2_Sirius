@@ -6,10 +6,11 @@ protocol TeamInfoConverter: AnyObject {
 }
 
 protocol TeamGamesInfoConverter: AnyObject {
-    func teamGamesInfo(from rawTeamGamesInfo: [TeamPlayers], playerId: Int) -> CurrentPlayersInfo
+    func teamGamesInfo(from rawTeamGamesInfo: [TeamPlayers]) -> [CurrentPlayersInfo]
 }
 
 class TeamInfoConverterImp {
+    var gamesArray = [Int]()
 
     private func convert(name: String?) -> String {
           guard
@@ -65,15 +66,24 @@ extension TeamInfoConverterImp: TeamInfoConverter {
 }
 
 extension TeamInfoConverterImp: TeamGamesInfoConverter {
-    func teamGamesInfo(from rawTeamGamesInfo: [TeamPlayers], playerId: Int) -> CurrentPlayersInfo {
-        let playerNameLabelText = convert(name: rawTeamGamesInfo[playerId].name)
-        let gamesLabelText = convert(stat: rawTeamGamesInfo[playerId].gamesPlayed)
-        let winrateLabelText = convert(stat: rawTeamGamesInfo[playerId].wins)
-
-        return CurrentPlayersInfo(
-            playerNameLabelText: playerNameLabelText,
-            gamesLabelText: gamesLabelText,
-            winrateLabelText: winrateLabelText
-        )
+    func teamGamesInfo(from rawTeamGamesInfo: [TeamPlayers]) -> [CurrentPlayersInfo] {
+        let array: [CurrentPlayersInfo] = rawTeamGamesInfo.compactMap({ rawInfo in
+            guard
+                rawInfo.isCurrentTeamMember == true,
+                let name = rawInfo.name
+            else {
+                return nil
+            }
+            let gamesPlayed = rawInfo.gamesPlayed ?? 0
+            let wins = rawInfo.wins ?? 0
+            return .init(
+                playerNameLabelText: name,
+                gamesLabelText: String(gamesPlayed),
+                winrateLabelText: String(wins)
+            )
+        })
+        return array.sorted(by: {
+            Int($0.gamesLabelText)! > Int($1.gamesLabelText)!
+        })
     }
 }

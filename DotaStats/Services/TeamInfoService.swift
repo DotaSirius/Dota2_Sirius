@@ -1,18 +1,22 @@
 import Foundation
 
 protocol TeamInfoService: AnyObject {
+    @discardableResult
     func requestTeamMainInfo(
         id: Int,
         completion: @escaping (Result<TeamInfo, HTTPError>) -> Void
     ) -> Cancellable?
+    @discardableResult
     func requestTeamMatches(
         id: Int,
         completion: @escaping (Result<[TeamMatches], HTTPError>) -> Void
     ) -> Cancellable?
+    @discardableResult
     func requestTeamHeroes(
         id: Int,
         completion: @escaping (Result<[TeamHeroes], HTTPError>) -> Void
     ) -> Cancellable?
+    @discardableResult
     func requestTeamPlayers(
         id: Int,
         completion: @escaping (Result<[TeamPlayers], HTTPError>) -> Void
@@ -27,7 +31,6 @@ final class TeamInfoImp: TeamInfoService {
         )
     }
 
-    @discardableResult
     func requestTeamMatches(id: Int, completion: @escaping (Result<[TeamMatches], HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
             request: createMatchesRequest(id: id),
@@ -35,7 +38,6 @@ final class TeamInfoImp: TeamInfoService {
         )
     }
 
-    @discardableResult
     func requestTeamHeroes(id: Int, completion: @escaping (Result<[TeamHeroes], HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
             request: createHeroesRequest(id: id),
@@ -43,7 +45,6 @@ final class TeamInfoImp: TeamInfoService {
         )
     }
 
-    @discardableResult
     func requestTeamPlayers(id: Int, completion: @escaping (Result<[TeamPlayers], HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
             request: createPlayersRequest(id: id),
