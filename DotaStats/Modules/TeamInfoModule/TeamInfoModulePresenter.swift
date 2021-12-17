@@ -38,10 +38,9 @@ final class TeamInfoModulePresenter {
                 self.convertedData = [
                     TeamInfoTableViewCellType.mainTeamInfo(
                         converter.teamMainInfo(from: self.rawTeamMainInfo)
-                    )
-//                    TeamInfoTableViewCellType.teamButtonsInfo(
-//                        converter.teamButtonsInfo(from: self.rawTeamMainInfo)
-//                    )
+                    ),
+                    TeamInfoTableViewCellType.teamButtonsInfo,
+                    TeamInfoTableViewCellType.teamsInfoMatchesHeader
                 ]
                 view?.update(state: .success)
             case .error:

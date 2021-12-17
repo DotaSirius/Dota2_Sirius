@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 protocol TeamInfoConverter: AnyObject {
-    func teamMainInfo(from rawMainTeamInfo: TeamInfo) -> MainTeamInfo
+    func teamMainInfo(from rawMainTeamInfo: TeamInfo) -> TeamMainInfo
 }
 
 class TeamInfoConverterImp {
@@ -45,13 +45,13 @@ class TeamInfoConverterImp {
 }
 
 extension TeamInfoConverterImp: TeamInfoConverter {
-    func teamMainInfo(from rawTeamMainInfo: TeamInfo) -> MainTeamInfo {
+    func teamMainInfo(from rawTeamMainInfo: TeamInfo) -> TeamMainInfo {
         let teamNameLabelText = convert(teamName: rawTeamMainInfo.name)
         let winsLabelText = convert(stat: rawTeamMainInfo.wins)
         let lossesLabelText = convert(stat: rawTeamMainInfo.losses)
         let ratingLabelText = convert(rating: rawTeamMainInfo.rating)
 
-        return MainTeamInfo(
+        return TeamMainInfo(
             teamNameLabelText: teamNameLabelText,
             winsLabelText: winsLabelText,
             lossesLabelText: lossesLabelText,

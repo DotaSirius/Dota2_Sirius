@@ -23,6 +23,10 @@ final class TeamInfoModuleViewController: UIViewController {
             let tableView = UITableView()
             tableView.register(MainTeamInfoTableViewCell.self,
                                forCellReuseIdentifier: MainTeamInfoTableViewCell.reuseIdentifier)
+            tableView.register(TeamButtonsInfoTableViewCell.self,
+                           forCellReuseIdentifier: TeamButtonsInfoTableViewCell.reuseIdentifier)
+            tableView.register(TeamsInfoMatchesHeader.self,
+                       forCellReuseIdentifier: TeamsInfoMatchesHeader.reuseIdentifier)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.backgroundColor = ColorPalette.mainBackground

@@ -1,7 +1,7 @@
 enum TeamInfoTableViewCellType {
-    case mainTeamInfo (MainTeamInfo)
+    case mainTeamInfo (TeamMainInfo)
     case teamButtonsInfo
-//    case matchPlayerInfo (PlayerList)
+    case teamsInfoMatchesHeader
 //    case teamMatchInfo (TeamMatchInfo)
 //    case matchPlayerHeaderInfo
 }
@@ -13,7 +13,8 @@ extension TeamInfoTableViewCellType {
             return MainTeamInfoTableViewCell.reuseIdentifier
         case .teamButtonsInfo:
             return TeamButtonsInfoTableViewCell.reuseIdentifier
-
+        case .teamsInfoMatchesHeader :
+            return TeamsInfoMatchesHeader.reuseIdentifier
         }
     }
 }

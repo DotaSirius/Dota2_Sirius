@@ -81,7 +81,7 @@ final class MainTeamInfoTableViewCell: UITableViewCell {
 
     private lazy var ratingLabel: UILabel = {
         let ratingLabel = UILabel()
-        ratingLabel.textColor = ColorPalette.text
+        ratingLabel.textColor = ColorPalette.mainText
         ratingLabel.font = UIFont.systemFont(ofSize: 20)
         ratingLabel.translatesAutoresizingMaskIntoConstraints = false
         return ratingLabel
@@ -131,17 +131,19 @@ final class MainTeamInfoTableViewCell: UITableViewCell {
             teamNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
 
             lossesStackView.topAnchor.constraint(equalTo: teamNameLabel.bottomAnchor, constant: inset),
-            lossesStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: inset),
-            lossesStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            lossesStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            lossesStackView.widthAnchor.constraint(equalToConstant: 100),
+            lossesStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
 
             winsStackView.topAnchor.constraint(equalTo: teamNameLabel.bottomAnchor, constant: inset),
-            winsStackView.trailingAnchor.constraint(equalTo: lossesStackView.leadingAnchor, constant: -inset),
-            winsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            winsStackView.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -70),
+            winsStackView.widthAnchor.constraint(equalToConstant: 100),
+            lossesStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
 
-            ratingStackView.leadingAnchor.constraint(equalTo: lossesStackView.trailingAnchor, constant: inset),
             ratingStackView.topAnchor.constraint(equalTo: teamNameLabel.bottomAnchor, constant: inset),
-            ratingStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: inset)
-
+            ratingStackView.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 70),
+            ratingStackView.widthAnchor.constraint(equalToConstant: 100),
+            lossesStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)
         ])
     }
 
