@@ -69,7 +69,7 @@ class MatchInfoConverterImp {
         guard
             let isRadiantWin = isRadiantWin
         else {
-            return "Winner is not spesified"
+            return "Winner is not specified"
         }
         return isRadiantWin ? "Radiant Victory" : "Dire Victory"
     }
@@ -101,7 +101,7 @@ class MatchInfoConverterImp {
     // How long ago match was ended. Not implemented yet,
     // because in future startTime will be converted from Int to Date in Networking
     private func convert(startTime: Date?, duration: Int?) -> String {
-        return "0 HOURS AGO."
+        "0 HOURS AGO."
     }
 
     // MARK: - AdditionalMatchInfo converters
@@ -111,7 +111,7 @@ class MatchInfoConverterImp {
             let region = region,
             let regionString = regions[String(region)]
         else {
-            return "Unspesified"
+            return "Unspecified"
         }
         return regionString
     }

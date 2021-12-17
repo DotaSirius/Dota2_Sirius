@@ -32,6 +32,6 @@ final class MainTabBarController: UITabBarController {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-          return .lightContent
+        .lightContent
     }
 }

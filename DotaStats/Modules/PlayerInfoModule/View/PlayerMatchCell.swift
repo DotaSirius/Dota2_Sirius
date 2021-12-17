@@ -106,7 +106,7 @@ final class PlayerMatchCell: UITableViewCell {
     // MARK: - Set up constraints
 
     private func setUp() {
-        self.selectionStyle = .none
+        selectionStyle = .none
         gameSkillLabel.addArrangedSubview(gameModeLabel)
         gameSkillLabel.addArrangedSubview(skillLabel)
         contentView.addSubview(gameSkillLabel)

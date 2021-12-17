@@ -9,7 +9,7 @@ enum PlayerTableViewCellData {
 }
 
 extension PlayerTableViewCellData {
-    var reuseIdentificator: String {
+    var reuseIdentifier: String {
         switch self {
         case .playerMainInfo:
             return PlayerMainInfoCell.reuseIdentifier
