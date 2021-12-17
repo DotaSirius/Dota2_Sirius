@@ -47,10 +47,10 @@
 		5D9C6B8D276CBF6200BAAEA6 /* HeroImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6B8C276CBF6200BAAEA6 /* HeroImage.swift */; };
 		5D9C6B8F276CBF7500BAAEA6 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6B8E276CBF7500BAAEA6 /* GameMode.swift */; };
 		5D9C6BB8276CC81400BAAEA6 /* PlayerInfoModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BB7276CC81400BAAEA6 /* PlayerInfoModuleBuilder.swift */; };
-		5D9C6BBE276CC82700BAAEA6 /* PlayerMainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BB9276CC82600BAAEA6 /* PlayerMainInfoView.swift */; };
+		5D9C6BBE276CC82700BAAEA6 /* PlayerMainInfoViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BB9276CC82600BAAEA6 /* PlayerMainInfoViewState.swift */; };
 		5D9C6BBF276CC82700BAAEA6 /* PlayerInfoModulePresenterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BBA276CC82600BAAEA6 /* PlayerInfoModulePresenterState.swift */; };
-		5D9C6BC0276CC82700BAAEA6 /* PlayerMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BBB276CC82700BAAEA6 /* PlayerMatchView.swift */; };
-		5D9C6BC1276CC82700BAAEA6 /* PlayerWLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BBC276CC82700BAAEA6 /* PlayerWLView.swift */; };
+		5D9C6BC0276CC82700BAAEA6 /* PlayerMatchViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BBB276CC82700BAAEA6 /* PlayerMatchViewState.swift */; };
+		5D9C6BC1276CC82700BAAEA6 /* PlayerWLViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BBC276CC82700BAAEA6 /* PlayerWLViewState.swift */; };
 		5D9C6BC2276CC82700BAAEA6 /* PlayerInfoModuleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BBD276CC82700BAAEA6 /* PlayerInfoModuleViewState.swift */; };
 		5D9C6BC4276CC82F00BAAEA6 /* PlayerInfoModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BC3276CC82F00BAAEA6 /* PlayerInfoModulePresenter.swift */; };
 		5D9C6BCD276CC83900BAAEA6 /* PlayerInfoModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C6BC5276CC83900BAAEA6 /* PlayerInfoModuleViewController.swift */; };
@@ -182,10 +182,10 @@
 		5D9C6B8C276CBF6200BAAEA6 /* HeroImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroImage.swift; sourceTree = "<group>"; };
 		5D9C6B8E276CBF7500BAAEA6 /* GameMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		5D9C6BB7276CC81400BAAEA6 /* PlayerInfoModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoModuleBuilder.swift; sourceTree = "<group>"; };
-		5D9C6BB9276CC82600BAAEA6 /* PlayerMainInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMainInfoView.swift; sourceTree = "<group>"; };
+		5D9C6BB9276CC82600BAAEA6 /* PlayerMainInfoViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMainInfoViewState.swift; sourceTree = "<group>"; };
 		5D9C6BBA276CC82600BAAEA6 /* PlayerInfoModulePresenterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoModulePresenterState.swift; sourceTree = "<group>"; };
-		5D9C6BBB276CC82700BAAEA6 /* PlayerMatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMatchView.swift; sourceTree = "<group>"; };
-		5D9C6BBC276CC82700BAAEA6 /* PlayerWLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerWLView.swift; sourceTree = "<group>"; };
+		5D9C6BBB276CC82700BAAEA6 /* PlayerMatchViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMatchViewState.swift; sourceTree = "<group>"; };
+		5D9C6BBC276CC82700BAAEA6 /* PlayerWLViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerWLViewState.swift; sourceTree = "<group>"; };
 		5D9C6BBD276CC82700BAAEA6 /* PlayerInfoModuleViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoModuleViewState.swift; sourceTree = "<group>"; };
 		5D9C6BC3276CC82F00BAAEA6 /* PlayerInfoModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoModulePresenter.swift; sourceTree = "<group>"; };
 		5D9C6BC5276CC83900BAAEA6 /* PlayerInfoModuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInfoModuleViewController.swift; sourceTree = "<group>"; };
@@ -433,9 +433,9 @@
 			children = (
 				5D9C6BBA276CC82600BAAEA6 /* PlayerInfoModulePresenterState.swift */,
 				5D9C6BBD276CC82700BAAEA6 /* PlayerInfoModuleViewState.swift */,
-				5D9C6BB9276CC82600BAAEA6 /* PlayerMainInfoView.swift */,
-				5D9C6BBB276CC82700BAAEA6 /* PlayerMatchView.swift */,
-				5D9C6BBC276CC82700BAAEA6 /* PlayerWLView.swift */,
+				5D9C6BB9276CC82600BAAEA6 /* PlayerMainInfoViewState.swift */,
+				5D9C6BBB276CC82700BAAEA6 /* PlayerMatchViewState.swift */,
+				5D9C6BBC276CC82700BAAEA6 /* PlayerWLViewState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -895,7 +895,7 @@
 				F09C5B76276CB55000413011 /* Converter.swift in Sources */,
 				EC4E6FA42764C8550085B61D /* TeamsModuleViewController.swift in Sources */,
 				5D9C6BDD276CC8DE00BAAEA6 /* PlayerMainInfo.swift in Sources */,
-				5D9C6BBE276CC82700BAAEA6 /* PlayerMainInfoView.swift in Sources */,
+				5D9C6BBE276CC82700BAAEA6 /* PlayerMainInfoViewState.swift in Sources */,
 				5D2518692768BE980005374B /* MatchesModulePresenter.swift in Sources */,
 				EC1415F4276749A200715D00 /* MatchDetailService.swift in Sources */,
 				F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */,
@@ -921,7 +921,7 @@
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
 				5D25187D2769029E0005374B /* AppCoordinator.swift in Sources */,
 				5D25186F2768BEA70005374B /* MatchesModuleViewState.swift in Sources */,
-				5D9C6BC1276CC82700BAAEA6 /* PlayerWLView.swift in Sources */,
+				5D9C6BC1276CC82700BAAEA6 /* PlayerWLViewState.swift in Sources */,
 				300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */,
 				6035383B2766619800CC32AD /* SearchPlayerTableViewCell.swift in Sources */,
 				CEFEF69C276A28E800CAE93B /* MatchesInfoModuleState.swift in Sources */,
@@ -957,7 +957,7 @@
 				303AC4E22767873E00A8C462 /* PlayerSearchService.swift in Sources */,
 				5D25186E2768BEA70005374B /* MatchCollectionPresenterData.swift in Sources */,
 				ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */,
-				5D9C6BC0276CC82700BAAEA6 /* PlayerMatchView.swift in Sources */,
+				5D9C6BC0276CC82700BAAEA6 /* PlayerMatchViewState.swift in Sources */,
 				5D9C6BD2276CC83900BAAEA6 /* PlayerMatchCell.swift in Sources */,
 				F09C5B45276B29CD00413011 /* TeamShortInfo.swift in Sources */,
 				6035383F2767459500CC32AD /* ErrorView.swift in Sources */,
