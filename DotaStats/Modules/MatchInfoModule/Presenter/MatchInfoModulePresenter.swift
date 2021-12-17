@@ -86,17 +86,21 @@ final class MatchInfoModulePresenter {
     private func requestData() {
         state = .loading
 
-        regionsService.requestRegionsDetails { [weak self] result in
-            guard
-                let self = self
-            else {
-                return
-            }
-            switch result {
-            case .success(let regions):
-                self.regions = regions
-                print(regions)
-            case .failure: break
+        if let regionsData = ConstanceStorage.instance.regionsData {
+            regions = regionsData
+        } else {
+            regionsService.requestRegionsDetails { [weak self] result in
+                guard
+                    let self = self
+                else {
+                    return
+                }
+                switch result {
+                case .success(let regions):
+                    self.regions = regions
+                    print(regions)
+                case .failure: break
+                }
             }
         }
 
