@@ -13,10 +13,6 @@ protocol TeamsModuleViewOutput: AnyObject {
 final class TeamsModuleViewController: UIViewController {
     private var output: TeamsModuleViewOutput?
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-
     private enum Constant {
         static let headerHeight: CGFloat = 40
     }

@@ -107,6 +107,7 @@
 		F09C5B4F276BBD5600413011 /* TeamsModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6F952764C8550085B61D /* TeamsModuleBuilder.swift */; };
 		F09C5B74276C820C00413011 /* SquareLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09C5B73276C820C00413011 /* SquareLoadingView.swift */; };
 		F09C5B76276CB55000413011 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09C5B75276CB55000413011 /* Converter.swift */; };
+		F09C5B78276CDA4100413011 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09C5B77276CDA4100413011 /* CustomNavigationController.swift */; };
 		F0DF32A32767850C004670C0 /* PlayerInfoFromSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */; };
 		F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */; };
 		F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */; };
@@ -151,8 +152,6 @@
 		5D25186B2768BEA70005374B /* MatchCollectionPresenterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchCollectionPresenterData.swift; sourceTree = "<group>"; };
 		5D25186C2768BEA70005374B /* MatchesModuleViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesModuleViewState.swift; sourceTree = "<group>"; };
 		5D25187C2769029E0005374B /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		5D9C6B81276CA56C00BAAEA6 /* HeroImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroImage.swift; sourceTree = "<group>"; };
-		5D9C6B83276CA62000BAAEA6 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		5D9C6B8A276CBF4000BAAEA6 /* GithubConstantsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubConstantsService.swift; sourceTree = "<group>"; };
 		5D9C6B8C276CBF6200BAAEA6 /* HeroImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroImage.swift; sourceTree = "<group>"; };
 		5D9C6B8E276CBF7500BAAEA6 /* GameMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
@@ -211,6 +210,7 @@
 		F09C5B4C276B3E5500413011 /* TeamResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamResult.swift; sourceTree = "<group>"; };
 		F09C5B73276C820C00413011 /* SquareLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareLoadingView.swift; sourceTree = "<group>"; };
 		F09C5B75276CB55000413011 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		F09C5B77276CDA4100413011 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		F0DF329B27674C2E004670C0 /* SearchPlayerModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleBuilder.swift; sourceTree = "<group>"; };
 		F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoFromSearch.swift; sourceTree = "<group>"; };
 		F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlayerModulePresenter.swift; sourceTree = "<group>"; };
@@ -333,22 +333,12 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		5D9C6B85276CBED600BAAEA6 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				5D9C6B81276CA56C00BAAEA6 /* HeroImage.swift */,
-				5D9C6B83276CA62000BAAEA6 /* GameMode.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		B61F593C2760A4FB00D08CEA = {
 			isa = PBXGroup;
 			children = (
 				B61F59472760A4FB00D08CEA /* DotaStats */,
 				300FCA0927625B8500A7A0EF /* DotaStatsTests */,
 				B61F59462760A4FB00D08CEA /* Products */,
-				5D9C6B85276CBED600BAAEA6 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -453,9 +443,10 @@
 		EC1415F92767790F00715D00 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F09C5B75276CB55000413011 /* Converter.swift */,
+				F09C5B77276CDA4100413011 /* CustomNavigationController.swift */,
 				F09C5B72276C81D400413011 /* SquareAnimationView */,
 				EC1415FA2767793F00715D00 /* CachedImageView */,
-				F09C5B75276CB55000413011 /* Converter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -850,6 +841,7 @@
 				837AED9E27690ADB0009589E /* SearchPlayerModulePresenterState.swift in Sources */,
 				F01B49072768C37200103100 /* SearchPlayerResult.swift in Sources */,
 				5D9C6B8F276CBF7500BAAEA6 /* GameMode.swift in Sources */,
+				F09C5B78276CDA4100413011 /* CustomNavigationController.swift in Sources */,
 				CEFEF69D276A28E800CAE93B /* MatchTableViewCellData.swift in Sources */,
 				303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */,
 				F09C5B41276A2ED100413011 /* TeamsHeaderView.swift in Sources */,
