@@ -72,6 +72,7 @@
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
 		B61F59552760A4FD00D08CEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B61F59532760A4FD00D08CEA /* LaunchScreen.storyboard */; };
+		CE72264D276CC21000ED1F95 /* ConstanceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72264C276CC21000ED1F95 /* ConstanceStorage.swift */; };
 		CEFEF697276A28E800CAE93B /* MatchInfoConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF68A276A28E800CAE93B /* MatchInfoConverter.swift */; };
 		CEFEF698276A28E800CAE93B /* MatchInfoModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF68B276A28E800CAE93B /* MatchInfoModulePresenter.swift */; };
 		CEFEF699276A28E800CAE93B /* PlayerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFEF68D276A28E800CAE93B /* PlayerList.swift */; };
@@ -201,6 +202,7 @@
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F59512760A4FD00D08CEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B61F59542760A4FD00D08CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CE72264C276CC21000ED1F95 /* ConstanceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstanceStorage.swift; sourceTree = "<group>"; };
 		CEFEF68A276A28E800CAE93B /* MatchInfoConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchInfoConverter.swift; sourceTree = "<group>"; };
 		CEFEF68B276A28E800CAE93B /* MatchInfoModulePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchInfoModulePresenter.swift; sourceTree = "<group>"; };
 		CEFEF68D276A28E800CAE93B /* PlayerList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerList.swift; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 				303AC4E12767873E00A8C462 /* PlayerSearchService.swift */,
 				EC1415F3276749A200715D00 /* MatchDetailService.swift */,
 				307F5CA6276C9080000B6548 /* RegionsService.swift */,
+				CE72264C276CC21000ED1F95 /* ConstanceStorage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				F01B49092768C3A700103100 /* ImageNetworkService.swift in Sources */,
 				5D9C6BCF276CC83900BAAEA6 /* PlayerWLCell.swift in Sources */,
 				5D9C6BCE276CC83900BAAEA6 /* PlayerMainInfoCell.swift in Sources */,
+				CE72264D276CC21000ED1F95 /* ConstanceStorage.swift in Sources */,
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
 				5D25187D2769029E0005374B /* AppCoordinator.swift in Sources */,
 				5D25186F2768BEA70005374B /* MatchesModuleViewState.swift in Sources */,
