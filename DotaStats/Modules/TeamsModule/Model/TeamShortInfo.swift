@@ -23,7 +23,7 @@ final class TeamShortInfo {
 
     let rating: Float
     var ratingColor: UIColor {
-        convertRatingToColor(rating)
+        Converter.convertRatingToColor(rating)
     }
 
     private let winrate: Float
@@ -36,7 +36,7 @@ final class TeamShortInfo {
     }
 
     var winrateColor: UIColor {
-        convertWinrateToColor(winrate)
+        Converter.convertWinrateToColor(winrate)
     }
 
     init(from teamResult: TeamResult) {
@@ -46,40 +46,6 @@ final class TeamShortInfo {
         name = teamResult.name
         rating = teamResult.rating
         winrate = Float(teamResult.wins) / Float(teamResult.losses + teamResult.wins) * 100
-    }
-
-    private func convertRatingToColor(_ rating: Float) -> UIColor {
-        switch rating {
-        case 0...300:
-            return .red
-        case 300...600:
-            return .orange
-        case 600...900:
-            return .yellow
-        case 900...1200:
-            return .green
-        case 1200...1500:
-            return .cyan
-        default:
-            return .systemIndigo
-        }
-    }
-
-    private func convertWinrateToColor(_ winrate: Float) -> UIColor {
-        switch winrate {
-        case 0...40:
-            return .red
-        case 40...48:
-            return .orange
-        case 48...53:
-            return .yellow
-        case 53...58:
-            return .green
-        case 58...63:
-            return .cyan
-        default:
-            return .systemIndigo
-        }
     }
 
     private func recentActivityDateToString(_ date: Date) -> String {
