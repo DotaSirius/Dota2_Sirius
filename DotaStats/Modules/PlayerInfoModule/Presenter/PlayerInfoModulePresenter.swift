@@ -96,6 +96,16 @@ final class PlayerInfoModulePresenter {
     private func convert(playerMatch: PlayerMatch) -> PlayerMatchView {
         let radiantWin = playerMatch.radiantWin ?? false
         let isRadiant = playerMatch.playerSlot ?? 0 < 128
+        var skill = ""
+        if (playerMatch.skill == 1) {
+            skill = "Normal skill"
+        } else if (playerMatch.skill == 2) {
+            skill = "High skill"
+        } else if (playerMatch.skill == 3) {
+            skill = "Very High skill"
+        } else {
+            skill = "Unknown skill"
+        }
 
         return PlayerMatchView(
             matchId: playerMatch.matchId,
@@ -105,7 +115,7 @@ final class PlayerInfoModulePresenter {
             kills: playerMatch.kills ?? 0,
             deaths: playerMatch.deaths ?? 0,
             assists: playerMatch.assists ?? 0,
-            skill: String(playerMatch.skill ?? 0),
+            skill: skill,
             gameMode: playerMatch.gameMode ?? 0
         )
     }
@@ -116,17 +126,17 @@ extension PlayerInfoModulePresenter: PlayerInfoModuleInput {
 }
 
 extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
-    func getCellData(forSection: Int) -> PlayerTableViewCellData {
-        if (forSection == 0) {
+    func getCellData(forRow: Int) -> PlayerTableViewCellData {
+        if (forRow == 0) {
             return PlayerTableViewCellData.playerMainInfo(playerMainInfo)
-        } else if (forSection == 1) {
+        } else if (forRow == 1) {
             return PlayerTableViewCellData.playerWL(playerWL)
-        } else if (forSection == 2) {
+        } else if (forRow == 2) {
             return PlayerTableViewCellData.recentMatchesTitle
-        } else if (forSection == 3) {
+        } else if (forRow == 3) {
             return PlayerTableViewCellData.recentMatchesHeader
         } else {
-            return PlayerTableViewCellData.playerMatch(playerMatch[forSection - 4])
+            return PlayerTableViewCellData.playerMatch(playerMatch[forRow - 4])
         }
     }
 

@@ -4,6 +4,13 @@ protocol MatchInfoModuleViewInput: AnyObject {
     func update(state: MatchesInfoModuleViewState)
 }
 
+protocol MatchInfoModuleViewOutput: AnyObject {
+    func getSectionCount() -> Int
+    func getRowsCountInSection(_ section: Int) -> Int
+    func getCellData(for row: Int) -> MatchTableViewCellData
+    func matchTapped(indexPath: IndexPath)
+}
+
 final class MatchInfoViewController: UIViewController {
     var spiner = UIActivityIndicatorView(style: .large)
 
@@ -139,6 +146,11 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
         // swiftlint:enable line_length
         cell.configure(with: data)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        output?.matchTapped(indexPath: indexPath)
     }
 }
 

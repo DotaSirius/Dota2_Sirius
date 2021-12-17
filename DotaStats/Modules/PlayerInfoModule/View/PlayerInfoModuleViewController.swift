@@ -5,7 +5,7 @@ protocol PlayerInfoModuleViewInput: AnyObject {
 }
 
 protocol PlayerInfoModuleViewOutput: AnyObject {
-    func getCellData(forSection: Int) -> PlayerTableViewCellData
+    func getCellData(forRow: Int) -> PlayerTableViewCellData
     func getRowsInSection(section: Int) -> Int
 }
 
@@ -13,8 +13,13 @@ final class PlayerInfoModuleViewController: UIViewController {
     // MARK: - Properties
 
     private var output: PlayerInfoModuleViewOutput?
+    private var first = true
     private var data: PlayerTableViewCellData?
     private var spiner = UIActivityIndicatorView(style: .large)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = ColorPalette.mainBackground
+    }
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -75,7 +80,10 @@ extension PlayerInfoModuleViewController: PlayerInfoModuleViewInput {
             spiner.removeFromSuperview()
         case .successWL, .successMain, .successMatch:
             spiner.removeFromSuperview()
-            setupTableView()
+            if first {
+                setupTableView()
+                first = false
+            }
             tableView.reloadData()
         }
     }
@@ -92,7 +100,7 @@ extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let data = output?.getCellData(forSection: indexPath.row),
+            let data = output?.getCellData(forRow: indexPath.row),
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: data.reuseIdentificator,
                 for: indexPath) as? (UITableViewCell & PlayerInfoCellConfigurable)

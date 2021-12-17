@@ -30,7 +30,7 @@ final class RecentMatchesHeader: UITableViewCell {
         name.textColor = ColorPalette.mainText
         name.font = UIFont.systemFont(ofSize: 13)
         name.textAlignment = .center
-        name.numberOfLines = 1
+        name.numberOfLines = 2
         name.translatesAutoresizingMaskIntoConstraints = false
         return name
     }()
@@ -113,11 +113,12 @@ final class RecentMatchesHeader: UITableViewCell {
             duration.trailingAnchor.constraint(equalTo: kill.leadingAnchor),
             duration.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             duration.widthAnchor.constraint(equalToConstant: 60),
+            duration.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+            duration.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
 
-            gameMode.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            gameMode.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
             gameMode.leadingAnchor.constraint(equalTo: hero.trailingAnchor),
-            gameMode.trailingAnchor.constraint(equalTo: duration.leadingAnchor)
+            gameMode.trailingAnchor.constraint(equalTo: duration.leadingAnchor),
+            gameMode.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
 
@@ -133,7 +134,7 @@ extension RecentMatchesHeader: PlayerInfoCellConfigurable {
     func configure(with data: PlayerTableViewCellData) {
         hero.text = "Hero"
         gameMode.text = "Game mode"
-        duration.text = "Duration"
+        duration.text = "Duration, min"
         kill.text = "K"
         death.text = "D"
         assistant.text = "A"

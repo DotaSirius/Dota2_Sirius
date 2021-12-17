@@ -8,21 +8,17 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
-        // don't forget to replace
-        let playerInfoModule = playerInfoModuleBuilder(playerId: 153125655)
 
         let viewControllers = [
             playersModule.viewController,
             matchesModule.viewController,
-            playerSearchModule.viewController,
-            playerInfoModule.viewController
+            playerSearchModule.viewController
         ]
 
         let tabImageNames = [
             NSLocalizedString("players", comment: ""),
             NSLocalizedString("matches", comment: ""),
-            NSLocalizedString("search", comment: ""),
-            NSLocalizedString("matches", comment: "")
+            NSLocalizedString("search", comment: "")
         ]
 
         tabBarController.setViewControllers(viewControllers, animated: false)
@@ -110,7 +106,16 @@ extension AppCoordinator: SearchPlayerModuleOutput {
 
 extension AppCoordinator: PlayerInfoModuleOutput {}
 
-extension AppCoordinator: MatchInfoModuleOutput {}
+extension AppCoordinator: MatchInfoModuleOutput {
+    func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
+        let playerInfoModule = playerInfoModuleBuilder(playerId: playerId)
+        viewController?.present(playerInfoModule.viewController, animated: true)
+    }
+
+    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
+        presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
+    }
+}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
