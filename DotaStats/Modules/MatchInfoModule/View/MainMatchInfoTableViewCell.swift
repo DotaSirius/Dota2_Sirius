@@ -7,7 +7,6 @@ final class MainMatchInfoTableViewCell: UITableViewCell {
 
     private lazy var winnersLabel: UILabel = {
         let winnersLabel = UILabel()
-        winnersLabel.textColor = ColorPalette.win
         winnersLabel.font = UIFont.systemFont(ofSize: 30)
         winnersLabel.numberOfLines = 3
         winnersLabel.textAlignment = .center
@@ -99,6 +98,11 @@ extension MainMatchInfoTableViewCell: DetailedMatchInfoCellConfigurable {
         switch data.type {
         case .mainMatchInfo(let data):
             winnersLabel.text = data.winnersLabelText
+            if winnersLabel.text == "Radiant Victory" {
+                winnersLabel.textColor = ColorPalette.win
+            } else {
+                winnersLabel.textColor = ColorPalette.lose
+            }
             gameTimeLabel.text = data.gameTimeLabelText
             firstTeamScoreLabel.text = data.firstTeamScoreLabelText
             secondTeamScoreLabel.text = data.secondTeamScoreLabelText
