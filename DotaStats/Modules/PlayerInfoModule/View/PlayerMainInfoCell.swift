@@ -2,7 +2,7 @@ import UIKit
 
 final class PlayerMainInfoCell: UITableViewCell {
     static let reuseIdentifier = "PlayerMainInfoCell"
-    
+
     private enum Constant {
         static let avatarWidth: CGFloat = 150
         static let spacing: CGFloat = 10

@@ -137,12 +137,11 @@ final class PlayerMatchCell: UITableViewCell {
                                                 constant: Constant.spacing),
             gameSkillLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
                                                    constant: -Constant.spacing),
-            
+
             winLabel.leadingAnchor.constraint(equalTo: gameSkillLabel.trailingAnchor,
                                               constant: Constant.spacing),
             winLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            
-        
+
             assistantLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor,
                                                      constant: -Constant.spacing),
             assistantLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -158,16 +157,7 @@ final class PlayerMatchCell: UITableViewCell {
 
             durationLabel.trailingAnchor.constraint(equalTo: killLabel.leadingAnchor),
             durationLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            durationLabel.widthAnchor.constraint(equalToConstant: 60),
-//
-//            winLabel.trailingAnchor.constraint(equalTo: durationLabel.leadingAnchor),
-//            winLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//            winLabel.widthAnchor.constraint(equalToConstant: 30),
-
-//            gameSkillLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-//            gameSkillLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
-//            gameSkillLabel.leadingAnchor.constraint(equalTo: heroImageView.trailingAnchor),
-//            gameSkillLabel.trailingAnchor.constraint(equalTo: winLabel.leadingAnchor)
+            durationLabel.widthAnchor.constraint(equalToConstant: 60)
         ])
     }
 
