@@ -63,7 +63,7 @@ class TeamInfoConverterImp {
         else {
             return "no rating"
         }
-        return "\(rating)"
+        return "\(Int(rating))"
     }
 
     private func convert(stat: Int?) -> String {
@@ -94,6 +94,7 @@ extension TeamInfoConverterImp: TeamInfoConverter {
 
 extension TeamInfoConverterImp: TeamPlayersInfoConverter {
     func teamPlayersInfo(from rawTeamPlayersInfo: [TeamPlayers]) -> [CurrentPlayersInfo] {
+        var maxGamesAmount = rawTeamPlayersInfo[0].gamesPlayed ?? 0
         let array: [CurrentPlayersInfo] = rawTeamPlayersInfo.compactMap({ rawInfo in
             guard
                 rawInfo.isCurrentTeamMember == true,
@@ -103,10 +104,12 @@ extension TeamInfoConverterImp: TeamPlayersInfoConverter {
             }
             let gamesPlayed = rawInfo.gamesPlayed ?? 0
             let wins = rawInfo.wins ?? 0
+            let winrate = Int(Float(wins)/Float(gamesPlayed)*100)
             return .init(
                 playerNameLabelText: name,
                 gamesLabelText: String(gamesPlayed),
-                winrateLabelText: String(wins)
+                winrateLabelText: String(winrate),
+                maxGamesAmount: maxGamesAmount
             )
         })
         return array.sorted(by: {
@@ -118,26 +121,30 @@ extension TeamInfoConverterImp: TeamPlayersInfoConverter {
 extension TeamInfoConverterImp: TeamHeroesInfoConverter {
     func teamHeroesInfo(from rawTeamHeroesInfo: [TeamHeroes]) -> [CurrentHeroesInfo] {
         var countOfElements = 0
-        var array: [CurrentHeroesInfo] = rawTeamHeroesInfo.compactMap({ rawInfo in
+        var maxGameCount = rawTeamHeroesInfo[0].gamesPlayed ?? 0
+        let array: [CurrentHeroesInfo] = rawTeamHeroesInfo.compactMap({ rawInfo in
             guard
-                countOfElements <= 5,
+                countOfElements <= 9,
                 let name = rawInfo.localizedName
             else {
                 return nil
             }
             let gamesPlayed = rawInfo.gamesPlayed ?? 0
             let wins = rawInfo.wins ?? 0
+            let winrate = Int(Float(wins)/Float(gamesPlayed)*100)
+            
             countOfElements += 1
             return .init(
                 heroesNameLabelText: name,
                 heroesGamesLabelText: String(gamesPlayed),
-                heroesWinrateLabelText: String(wins)
+                heroesWinrateLabelText: String(winrate),
+                heroesMaxGameCount: maxGameCount
             )
         })
-        array = Array(array.prefix(5))
-        return array.sorted(by: {
+        let sortedArray = array.sorted(by: {
             Int($0.heroesGamesLabelText)! > Int($1.heroesGamesLabelText)!
         })
+        return sortedArray
     }
 }
 

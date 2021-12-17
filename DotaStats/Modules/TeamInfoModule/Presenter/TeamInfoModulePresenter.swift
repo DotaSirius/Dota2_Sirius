@@ -45,6 +45,8 @@ final class TeamInfoModulePresenter {
                     view?.update(state: .error)
                 case .loading:
                     view?.update(state: .loading)
+                case .update:
+                    view?.update(state: .update)
                 }
             }
         }
@@ -62,7 +64,7 @@ final class TeamInfoModulePresenter {
             TeamInfoTableViewCellType.teamsInfoMatches($0)
         }
         convertedData.append(contentsOf: teamMatchesInfo)
-        view?.update(state: .success)
+        view?.update(state: .update)
     }
     private func showPlayersData() {
         convertedData.removeAll()
@@ -71,13 +73,13 @@ final class TeamInfoModulePresenter {
                 converter.teamMainInfo(from: self.rawTeamMainInfo!)
             ),
             TeamInfoTableViewCellType.preferredDataViewModePicker,
-            TeamInfoTableViewCellType.teamsInfoMatchesHeader
+            TeamInfoTableViewCellType.currentHeroesHeader
         ]
         let teamPlayersInfo = converter.teamPlayersInfo(from: self.rawTeamPlayersInfo).map({
             TeamInfoTableViewCellType.currentPlayersInfo($0)
         })
         convertedData.append(contentsOf: teamPlayersInfo)
-        view?.update(state: .success)
+        view?.update(state: .update)
     }
 
     private func showHeroesData() {
@@ -87,13 +89,14 @@ final class TeamInfoModulePresenter {
                 converter.teamMainInfo(from: self.rawTeamMainInfo!)
             ),
             TeamInfoTableViewCellType.preferredDataViewModePicker,
-            TeamInfoTableViewCellType.teamsInfoMatchesHeader
+            TeamInfoTableViewCellType.currentHeroesHeader
         ]
         let teamHeroesInfo = converter.teamHeroesInfo(from: self.rawTeamHeroesInfo).map({
             TeamInfoTableViewCellType.currentHeroesInfo($0)
         })
         convertedData.append(contentsOf: teamHeroesInfo)
-        view?.update(state: .success)
+        
+        view?.update(state: .update)
     }
 
     private func requestData() {

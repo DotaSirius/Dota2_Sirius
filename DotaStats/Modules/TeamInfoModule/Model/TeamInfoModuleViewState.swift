@@ -4,4 +4,5 @@ enum TeamInfoModuleViewState {
     case loading
     case error
     case success
+    case update
 }

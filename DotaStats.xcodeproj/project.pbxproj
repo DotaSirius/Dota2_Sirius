@@ -69,6 +69,7 @@
 		98FFE37C276CD57300C3839D /* CurrentHerousInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE37B276CD57200C3839D /* CurrentHerousInfo.swift */; };
 		98FFE37E276D000900C3839D /* TeamMatchesInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE37D276D000900C3839D /* TeamMatchesInfo.swift */; };
 		98FFE380276D007300C3839D /* TeamsInfoMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE37F276D007300C3839D /* TeamsInfoMatches.swift */; };
+		98FFE382276D3C9000C3839D /* GamesInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE381276D3C8F00C3839D /* GamesInfoHeader.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
@@ -174,6 +175,7 @@
 		98FFE37B276CD57200C3839D /* CurrentHerousInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentHerousInfo.swift; sourceTree = "<group>"; };
 		98FFE37D276D000900C3839D /* TeamMatchesInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMatchesInfo.swift; sourceTree = "<group>"; };
 		98FFE37F276D007300C3839D /* TeamsInfoMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsInfoMatches.swift; sourceTree = "<group>"; };
+		98FFE381276D3C8F00C3839D /* GamesInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesInfoHeader.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				98FFE369276BB66D00C3839D /* MainTeamInfoTableViewCell.swift */,
 				98FFE36B276BB6E200C3839D /* TeamButtonsInfoTableViewCell.swift */,
 				98FFE375276C902300C3839D /* TeamsInfoMatchesHeader.swift */,
+				98FFE381276D3C8F00C3839D /* GamesInfoHeader.swift */,
 				98FFE373276C8D5800C3839D /* CurrentPlayersTableViewCell.swift */,
 				98FFE371276BC6A800C3839D /* DetailedTeamInfoCellConfigurable.swift */,
 				98FFE37F276D007300C3839D /* TeamsInfoMatches.swift */,
@@ -769,6 +772,7 @@
 				5D2518652768BE8F0005374B /* MatchesModuleViewController.swift in Sources */,
 				EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */,
 				5D2518672768BE8F0005374B /* ListMatchesCell.swift in Sources */,
+				98FFE382276D3C9000C3839D /* GamesInfoHeader.swift in Sources */,
 				98FFE362276BB1CE00C3839D /* TeamInfoModuleViewState.swift in Sources */,
 				B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */,
 				98FFE354276B6F1D00C3839D /* TeamHeroes.swift in Sources */,

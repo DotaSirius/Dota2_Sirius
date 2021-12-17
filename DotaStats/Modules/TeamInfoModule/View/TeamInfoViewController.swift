@@ -31,6 +31,8 @@ final class TeamInfoModuleViewController: UIViewController {
                     forCellReuseIdentifier: CurrentPlayersCell.reuseIdentifier)
             tableView.register(TeamsInfoMatches.self,
                     forCellReuseIdentifier: TeamsInfoMatches.reuseIdentifier)
+        tableView.register(GamesInfoHeader.self,
+                           forCellReuseIdentifier: GamesInfoHeader.reuseIdentifier)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.backgroundColor = ColorPalette.mainBackground
@@ -157,6 +159,7 @@ extension TeamInfoModuleViewController: TeamInfoModuleViewInput {
             case .success:
                 view.addSubview(tableView)
                 setupConstraints()
+            case .update:
                 tableView.reloadData()
             }
         }

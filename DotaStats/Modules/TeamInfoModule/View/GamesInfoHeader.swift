@@ -1,13 +1,10 @@
 import UIKit
 
-final class CurrentPlayersCell: UITableViewCell {
-    static let reuseIdentifier = "CurrentPlayersCell"
+final class GamesInfoHeader: UITableViewCell {
+    static let reuseIdentifier = "GamesInfoHeader"
     let inset: CGFloat = 16
     let smallInset: CGFloat = 8
     let widthConstant: CGFloat = 30
-
-    private let gamesProgressBar = UIProgressView()
-    private var progressPercent: Float = 0
 
     private lazy var playerNameLabel: UILabel = {
         let playerNameLabel = UILabel()
@@ -21,7 +18,7 @@ final class CurrentPlayersCell: UITableViewCell {
 
     private lazy var playerGamesLabel: UILabel = {
         let playerGamesLabel = UILabel()
-        playerGamesLabel.textColor = ColorPalette.text
+        playerGamesLabel.textColor = ColorPalette.mainText
         playerGamesLabel.font = UIFont.systemFont(ofSize: 17)
         playerGamesLabel.textAlignment = .center
         playerGamesLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +27,7 @@ final class CurrentPlayersCell: UITableViewCell {
 
     private lazy var playerWinrateLabel: UILabel = {
         playerWinrateLabel = UILabel()
-        playerWinrateLabel.textColor = ColorPalette.text
+        playerWinrateLabel.textColor = ColorPalette.mainText
         playerWinrateLabel.font = UIFont.systemFont(ofSize: 17)
         playerWinrateLabel.textAlignment = .center
         playerWinrateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -52,17 +49,13 @@ final class CurrentPlayersCell: UITableViewCell {
         [
             playerNameLabel,
             playerGamesLabel,
-            playerWinrateLabel,
-            gamesProgressBar
+            playerWinrateLabel
         ].forEach {
             contentView.addSubview($0)
         }
-        gamesProgressBar.trackTintColor = ColorPalette.alternativeBackground
-        gamesProgressBar.tintColor = ColorPalette.win
     }
 
     func setupConstraints() {
-        gamesProgressBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             playerNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             playerNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
@@ -74,41 +67,14 @@ final class CurrentPlayersCell: UITableViewCell {
             playerGamesLabel.trailingAnchor.constraint(equalTo: playerWinrateLabel.leadingAnchor, constant: -inset),
             playerGamesLabel.widthAnchor.constraint(equalToConstant: 70),
             playerGamesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
-
-            gamesProgressBar.topAnchor.constraint(equalTo: playerGamesLabel.bottomAnchor),
-            gamesProgressBar.centerXAnchor.constraint(equalTo: playerGamesLabel.centerXAnchor),
-            gamesProgressBar.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
 }
 
-extension CurrentPlayersCell: DetailedTeamInfoCellConfigurable {
+extension GamesInfoHeader: DetailedTeamInfoCellConfigurable {
     func configure(with data: TeamInfoTableViewCellData) {
-        switch data.type {
-        case .currentPlayersInfo(let data):
-            playerNameLabel.text = data.playerNameLabelText
-            playerGamesLabel.text = data.gamesLabelText
-            playerWinrateLabel.text = data.winrateLabelText
-            let playersGamesCount = Float(data.maxGamesAmount) ?? 0
-            progressPercent = playersGamesCount/Float(data.maxGamesAmount)
-            UIView.animate(withDuration: 0.4) {
-                self.gamesProgressBar.setProgress(self.progressPercent, animated: true)
-                        }
-        case .currentHeroesInfo(let data):
-            playerNameLabel.text = data.heroesNameLabelText
-            playerGamesLabel.text = data.heroesGamesLabelText
-            playerWinrateLabel.text = data.heroesWinrateLabelText
-            let herousGamesCount = Float(data.heroesGamesLabelText) ?? 0
-            progressPercent = herousGamesCount/Float(data.heroesMaxGameCount)
-            UIView.animate(withDuration: 0.4) {
-                self.gamesProgressBar.setProgress(self.progressPercent, animated: true)
-                        }
-        case .currentHeroesHeader:
-            playerNameLabel.text = "Hero"
+            playerNameLabel.text = "Name"
             playerGamesLabel.text = "Games"
             playerWinrateLabel.text = "Winrate"
-        default: assertionFailure("Произошла ошибка при заполнении ячейки данными")
-        }
     }
 }
-
