@@ -144,7 +144,7 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
         let isEven = indexPath.row % 2 == 0
         let matchPlayersCellIndexes = indexPath.row > 3
         // swiftlint:disable line_length
-        cell.backgroundColor = (isEven && matchPlayersCellIndexes) ? ColorPalette.alternativeBackground : ColorPalette.mainBackground
+        cell.backgroundColor = (!isEven && matchPlayersCellIndexes) ? ColorPalette.alternativeBackground : ColorPalette.mainBackground
         // swiftlint:enable line_length
         cell.configure(with: data)
         return cell
