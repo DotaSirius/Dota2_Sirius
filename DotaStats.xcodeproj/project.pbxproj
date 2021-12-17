@@ -160,10 +160,10 @@
 		303AC4E12767873E00A8C462 /* PlayerSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchService.swift; sourceTree = "<group>"; };
 		303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchServiceReceivingDataTest.swift; sourceTree = "<group>"; };
 		303AC4E62767933700A8C462 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		307F5CA6276C9080000B6548 /* RegionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsService.swift; sourceTree = "<group>"; };
 		30B40F23276A2C8C00B22DCC /* MatchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEvent.swift; sourceTree = "<group>"; };
 		30B40F26276A2FC700B22DCC /* MatchDetailToEventsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailToEventsConverter.swift; sourceTree = "<group>"; };
 		30B40F29276B2D9F00B22DCC /* MatchEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEventType.swift; sourceTree = "<group>"; };
-		307F5CA6276C9080000B6548 /* RegionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsService.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatchDetail.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
@@ -939,7 +939,6 @@
 				30B40F2A276B2D9F00B22DCC /* MatchEventType.swift in Sources */,
 				F01B49102769390800103100 /* TeamsCell.swift in Sources */,
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
-				CEFEF69B276A28E800CAE93B /* MatchTableViewData.swift in Sources */,
 				CEFEF698276A28E800CAE93B /* MatchInfoModulePresenter.swift in Sources */,
 				837AED9D27690ADB0009589E /* SearchPlayerModuleViewState.swift in Sources */,
 				5D9C6B8D276CBF6200BAAEA6 /* HeroImage.swift in Sources */,

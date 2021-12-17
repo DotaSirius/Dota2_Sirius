@@ -4,7 +4,7 @@ import UIKit
 protocol MatchInfoConverter: AnyObject {
     func mainMatchInfo(from rawMatchInfo: MatchDetail) -> MainMatchInfo
     func additionalMatchInfo(from rawMatchInfo: MatchDetail, regions: [String: String]) -> AdditionalMatchInfo
-    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList
+    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int, ranks:[String:String]) -> PlayerList
     func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int: [MatchEvent]]
@@ -29,13 +29,20 @@ class MatchInfoConverterImp {
     // TODO: - Приходит в виде Int. Ранги в доте называются "Legend", "Immortal" и тд.
     // Сделать правильную конвертацию из цифр в ранги
 
-    private func convert(playerRankTier: Int?) -> String {
+    private func convert(playerRankTier: Int?, ranks:[String:String]) -> String {
         guard
-            let playerRankTier = playerRankTier
+            let playerRankTier = playerRankTier,
+            let firstNumberString = String(playerRankTier).first,
+            let secondNumberString = String(playerRankTier).last,
+            let rankString = ranks[String(firstNumberString)]
         else {
             return "Unknown"
         }
-        return "\(playerRankTier)"
+        if rankString == "Immortal" {
+            return rankString
+        } else {
+            return rankString + " \(secondNumberString)"
+        }
     }
 
     private func convert(networth: Int?) -> String {
@@ -156,7 +163,7 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         )
     }
 
-    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList {
+    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int, ranks: [String : String]) -> PlayerList {
         var safeNumber: Int
         if playerNumber < rawMatchInfo.players.count {
             safeNumber = playerNumber
@@ -165,7 +172,7 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         }
         let player = rawMatchInfo.players[safeNumber]
         let playerNameLabelText = convert(playerName: player.personaname, playerProName: player.name)
-        let playerRankText = convert(playerRankTier: player.rankTier)
+        let playerRankText = convert(playerRankTier: player.rankTier, ranks: ranks)
         let playerKillsText = convert(stat: player.kills)
         let playerDeathsText = convert(stat: player.deaths)
         let playerAssitsText = convert(stat: player.assists)
