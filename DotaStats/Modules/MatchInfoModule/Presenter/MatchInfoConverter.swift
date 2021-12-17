@@ -160,6 +160,7 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         let playerAssitsText = convert(stat: player.assists)
         let playerGoldText = convert(networth: player.totalGold)
         return PlayerList(
+            playerId: player.accountId ?? 0,
             playerNameLabelText: playerNameLabelText,
             playerRankText: playerRankText,
             playerKillsText: playerKillsText,
