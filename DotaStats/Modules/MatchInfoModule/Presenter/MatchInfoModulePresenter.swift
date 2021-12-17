@@ -30,6 +30,7 @@ final class MatchInfoModulePresenter {
                     MatchTableViewCellType.additionalMatchInfo(
                         converter.additionalMatchInfo(from: self.rawMatchInfo)
                     ),
+                    MatchTableViewCellType.preferredDataViewModePicker,
                     MatchTableViewCellType.teamMatchInfo(
                         converter.radiantMatchInfo(from: self.rawMatchInfo)
                     ),
