@@ -14,9 +14,16 @@ final class RegionsServiceImp: RegionsService {
 
     func requestRegionsDetails(completion: @escaping (Result<[String: String], HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
-            request: createRequest(),
-            completion: completion
-        )
+            request: createRequest()
+        ) { (result: Result<[String: String], HTTPError>) in
+            switch result {
+            case .success(let regionsData):
+                ConstanceStorage.instance.regionsData = regionsData
+            case .failure:
+                break
+            }
+            completion(result)
+        }
     }
 
     private func createRequest() -> HTTPRequest {

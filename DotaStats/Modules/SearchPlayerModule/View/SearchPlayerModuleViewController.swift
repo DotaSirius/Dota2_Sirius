@@ -18,6 +18,7 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
 
 final class SearchPlayerModuleViewController: UIViewController {
     private var output: SearchPlayerModuleViewOutput?
+    private var searchDebouncerTimer: Timer?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -39,25 +40,60 @@ final class SearchPlayerModuleViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(loadingCircle)
         view.addSubview(errorView)
+        view.addSubview(startScreenImage)
+        view.addSubview(emptyScreenImage)
+        view.addSubview(errorScreenImage)
 
         errorView.isUserInteractionEnabled = true
-        let tapActionHideError = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let tapActionHideError = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleTap(_:))
+        )
         errorView.addGestureRecognizer(tapActionHideError)
 
         setUpErrorViewConstraints()
         setUpSearchBarConstraints()
         setUpLoadingCircleConstraints()
         setUpTableViewConstraints()
+        setUpImagesConstraint(imageView: startScreenImage)
+        setUpImagesConstraint(imageView: emptyScreenImage)
+        setUpImagesConstraint(imageView: errorScreenImage)
         updateState(.startScreen)
     }
 
-    // MARK: Spinner
+    // MARK: StartScreenImage
 
-    private lazy var loadingCircle: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .large)
-        view.color = ColorPalette.accent
+    private lazy var startScreenImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "startScreenImage")
+        view.alpha = 0.5
+        view.contentMode = .scaleAspectFit
         return view
     }()
+
+    // MARK: EmptyScreenImage
+
+    private lazy var emptyScreenImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "emtyImage")
+        view.alpha = 0.5
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+
+    // MARK: ErrorScreenImage
+
+    private lazy var errorScreenImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "errorImage")
+        view.alpha = 0.5
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+
+    // MARK: Spinner
+
+    private lazy var loadingCircle = SquareLoadingView()
 
     // MARK: ErrorView
 
@@ -78,7 +114,7 @@ final class SearchPlayerModuleViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = ColorPalette.mainBackground
         tableView.separatorColor = ColorPalette.separator
-        tableView.rowHeight = 55
+        tableView.rowHeight = 70
         return tableView
     }()
 
@@ -93,6 +129,8 @@ final class SearchPlayerModuleViewController: UIViewController {
         searchBar.searchTextField.backgroundColor = ColorPalette.separator
         searchBar.tintColor = ColorPalette.mainText
         searchBar.searchTextField.leftView?.tintColor = ColorPalette.mainText
+        searchBar.placeholder = "Enter a nickname..."
+        searchBar.showsCancelButton = false
         return searchBar
     }()
 
@@ -120,11 +158,28 @@ final class SearchPlayerModuleViewController: UIViewController {
     // MARK: LoadingCircle Constraints
 
     private func setUpLoadingCircleConstraints() {
-        loadingCircle.color = ColorPalette.text
         loadingCircle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loadingCircle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingCircle.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    // MARK: setImagesConstraint
+
+    private func setUpImagesConstraint(imageView: UIImageView) {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: 40
+            ),
+            imageView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -40
+            ),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 
@@ -164,7 +219,7 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     @objc func handleTap(_: UITapGestureRecognizer) {
         hideError()
-        print("tapped")
+        updateState(.startScreen)
     }
 }
 
@@ -187,9 +242,10 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
         }
 
         cell.configurePlayer(
-            newAvatarImage: UIImage(named: "players")!,
+            newAvatarImageURL: player.avatarFull,
             newNickname: player.personaname ?? "unknown",
-            newTimeMatch: player.lastMatchTime?.debugDescription ?? "Offline"
+            newTimeMatch: player.lastMatchTime?.debugDescription,
+            indexPath: indexPath
         )
         cell.backgroundColor = indexPath.row % 2 == 0 ? ColorPalette.mainBackground : ColorPalette.alternativeBackground
         return cell
@@ -203,13 +259,25 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
 // MARK: extension for SearchBar
 
 extension SearchPlayerModuleViewController: UISearchBarDelegate {
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = true
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchDebouncerTimer?.invalidate()
+
+        let timer = Timer.scheduledTimer(
+            withTimeInterval: 1.0,
+            repeats: false
+        ) { [weak self] _ in
+            self?.fireTimer()
+        }
+
+        searchDebouncerTimer = timer
     }
 
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        updateState(.loading)
-        output?.search(searchBar.text ?? "")
+    private func fireTimer() {
+        if searchBar.text?.isEmpty ?? true {
+            updateState(.startScreen)
+        } else {
+            output?.search(searchBar.text ?? "")
+        }
     }
 }
 
@@ -219,29 +287,40 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
     func updateState(_ state: SearchPlayerModuleViewState) {
         switch state {
         case .startScreen:
+            loadingCircle.stopAnimation()
             tableView.isHidden = true
-        // TODO: start screen image
+            startScreenImage.isHidden = false
+            emptyScreenImage.isHidden = true
+            errorScreenImage.isHidden = true
         case .empty:
+            emptyScreenImage.isHidden = false
+            startScreenImage.isHidden = true
+            errorScreenImage.isHidden = true
             tableView.isHidden = true
-        // TODO: imgae nothing have been founded
         case .loading:
+            startScreenImage.isHidden = true
+            emptyScreenImage.isHidden = true
+            errorScreenImage.isHidden = true
             hideError()
             tableView.isHidden = true
-            loadingCircle.startAnimating()
-        // TODO: wait until Matvey make custom loading
+            loadingCircle.startAnimation()
         case .success:
             hideError()
-            loadingCircle.stopAnimating()
+            loadingCircle.stopAnimation()
             tableView.reloadData()
             tableView.isHidden = false
+            emptyScreenImage.isHidden = true
+            startScreenImage.isHidden = true
+            errorScreenImage.isHidden = true
         case .failure:
             showError()
-            // TODO: show error image
-            print("error")
+            emptyScreenImage.isHidden = true
+            startScreenImage.isHidden = true
+            errorScreenImage.isHidden = false
         }
     }
 
     func reload(at indexPath: IndexPath) {
-        //
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }

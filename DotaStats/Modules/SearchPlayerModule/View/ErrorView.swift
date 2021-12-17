@@ -5,7 +5,7 @@ final class ErrorView: UIView {
         let label = UILabel()
         label.textColor = ColorPalette.mainText
         label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-        label.text = "200"
+        label.text = "Error! Check your internet connection or restart the app!"
         return label
     }()
 
@@ -33,7 +33,10 @@ final class ErrorView: UIView {
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             errorLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            errorLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            errorLabel.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -10
+            )
         ])
     }
 }
