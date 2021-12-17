@@ -71,13 +71,11 @@ extension TeamsModuleViewController: TeamsModuleViewInput {
             loadingView.startAnimation()
         case .success:
             loadingView.stopAnimation()
-            loadingView.removeFromSuperview()
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
         case .failure:
             loadingView.stopAnimation()
-            loadingView.removeFromSuperview()
         }
     }
 }
