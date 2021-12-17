@@ -1,6 +1,6 @@
 import Foundation
 
-struct PlayerMatchView {
+struct PlayerMatchViewState {
     let matchId: Int
     let win: Bool
     let duration: Int

@@ -141,7 +141,6 @@ extension PlayerInfoModuleViewController: PlayerInfoModuleViewInput {
             spiner.removeFromSuperview()
             tableView.isHidden = false
             self.tableView.reloadData()
-            print(output?.getRowsInSection(section: 1))
         }
     }
 }

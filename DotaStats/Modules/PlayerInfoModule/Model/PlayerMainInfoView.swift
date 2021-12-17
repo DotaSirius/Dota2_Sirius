@@ -1,6 +1,6 @@
 import Foundation
 
-struct PlayerMainInfoView {
+struct PlayerMainInfoViewState {
     var name: String
     var avatarUrl: String?
     var leaderboardRank: Int

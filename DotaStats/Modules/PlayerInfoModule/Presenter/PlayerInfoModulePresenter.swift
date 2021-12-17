@@ -14,9 +14,9 @@ final class PlayerInfoModulePresenter {
     let output: PlayerInfoModuleOutput
     private let playerInfoService: PlayerInfoService
     private let playerId: Int
-    private var playerMainInfo = PlayerMainInfoView()
-    private var playerWL = PlayerWLView()
-    private var playerMatch: [PlayerMatchView] = []
+    private var playerMainInfo = PlayerMainInfoViewState()
+    private var playerWL = PlayerWLViewState()
+    private var playerMatch: [PlayerMatchViewState] = []
 
     required init(playerInfoService: PlayerInfoService,
                   output: PlayerInfoModuleOutput,
@@ -79,27 +79,27 @@ final class PlayerInfoModulePresenter {
         }
     }
 
-    private func convert(playerMainInfo: PlayerMainInfo) -> PlayerMainInfoView {
-        PlayerMainInfoView(
+    private func convert(playerMainInfo: PlayerMainInfo) -> PlayerMainInfoViewState {
+        PlayerMainInfoViewState(
             name: playerMainInfo.profile.name ?? NSLocalizedString("", comment: ""),
             avatarUrl: playerMainInfo.profile.avatarfull,
             leaderboardRank: playerMainInfo.leaderboardRank ?? 0
         )
     }
 
-    private func convert(playerWL: PlayerWL) -> PlayerWLView {
-        PlayerWLView(
+    private func convert(playerWL: PlayerWL) -> PlayerWLViewState {
+        PlayerWLViewState(
             win: playerWL.win,
             lose: playerWL.lose
         )
     }
 
-    private func convert(playerMatch: PlayerMatch) -> PlayerMatchView {
+    private func convert(playerMatch: PlayerMatch) -> PlayerMatchViewState {
         let radiantWin = playerMatch.radiantWin ?? false
         let isRadiant = playerMatch.playerSlot ?? 0 < 128
         let skill = convert(skill: playerMatch.skill)
 
-        return PlayerMatchView(
+        return PlayerMatchViewState(
             matchId: playerMatch.matchId,
             win: isRadiant ? radiantWin : !radiantWin,
             duration: (playerMatch.duration ?? 0) / 60,

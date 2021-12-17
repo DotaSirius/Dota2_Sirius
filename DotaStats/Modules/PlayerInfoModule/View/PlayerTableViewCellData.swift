@@ -1,9 +1,9 @@
 import Foundation
 
 enum PlayerTableViewCellData {
-    case playerMainInfo(PlayerMainInfoView)
-    case playerWL(PlayerWLView)
-    case playerMatch(PlayerMatchView)
+    case playerMainInfo(PlayerMainInfoViewState)
+    case playerWL(PlayerWLViewState)
+    case playerMatch(PlayerMatchViewState)
     case recentMatchesTitle
     case recentMatchesHeader
 }

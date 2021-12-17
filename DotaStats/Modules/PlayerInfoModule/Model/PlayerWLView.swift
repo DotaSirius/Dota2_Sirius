@@ -1,6 +1,6 @@
 import Foundation
 
-struct PlayerWLView {
+struct PlayerWLViewState {
     let win: Int
     let lose: Int
 
