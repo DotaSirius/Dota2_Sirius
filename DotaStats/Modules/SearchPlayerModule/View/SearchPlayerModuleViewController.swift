@@ -20,10 +20,6 @@ final class SearchPlayerModuleViewController: UIViewController {
     private var output: SearchPlayerModuleViewOutput?
     private var searchDebouncerTimer: Timer?
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-
     init(output: SearchPlayerModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
