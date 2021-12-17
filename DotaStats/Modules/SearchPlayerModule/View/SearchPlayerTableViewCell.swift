@@ -86,8 +86,7 @@ final class SearchPlayerTableViewCell: UITableViewCell {
             timeMatchLabel.leadingAnchor.constraint(
                 equalTo: avatarImageView.trailingAnchor,
                 constant: Margin.leadingMargin
-            ),
-
+            )
         ])
     }
 
