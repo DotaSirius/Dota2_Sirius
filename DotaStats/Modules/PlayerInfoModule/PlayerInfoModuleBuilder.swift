@@ -10,9 +10,13 @@ final class PlayerInfoModuleBuilder {
         presenter
     }
 
-    init(output: PlayerInfoModuleOutput, playerInfoService: PlayerInfoService, playerId: Int) {
+    init(output: PlayerInfoModuleOutput,
+         playerInfoService: PlayerInfoService,
+         constantsService: GithubConstantsService,
+         playerId: Int) {
         presenter = PlayerInfoModulePresenter(
             playerInfoService: playerInfoService,
+            constantsService: constantsService,
             output: output,
             playerId: playerId
         )

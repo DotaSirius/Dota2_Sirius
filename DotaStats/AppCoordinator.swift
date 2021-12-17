@@ -99,6 +99,11 @@ extension AppCoordinator {
                     urlSession: URLSession(configuration: .default)
                 )
             ),
+            constantsService: GithubConstantsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
             playerId: playerId
         )
     }
