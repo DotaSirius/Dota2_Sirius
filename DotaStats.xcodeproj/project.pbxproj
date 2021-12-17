@@ -65,6 +65,7 @@
 		98FFE374276C8D5900C3839D /* CurrentPlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE373276C8D5800C3839D /* CurrentPlayersTableViewCell.swift */; };
 		98FFE376276C902300C3839D /* TeamsInfoMatchesHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE375276C902300C3839D /* TeamsInfoMatchesHeader.swift */; };
 		98FFE378276C922700C3839D /* TeamsInfoMatchesInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE377276C922700C3839D /* TeamsInfoMatchesInfo.swift */; };
+		98FFE37A276CA96200C3839D /* CurrentPlayersInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FFE379276CA96200C3839D /* CurrentPlayersInfo.swift */; };
 		B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F59482760A4FB00D08CEA /* AppDelegate.swift */; };
 		B61F594D2760A4FB00D08CEA /* CostilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F594C2760A4FB00D08CEA /* CostilViewController.swift */; };
 		B61F59522760A4FD00D08CEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61F59512760A4FD00D08CEA /* Assets.xcassets */; };
@@ -166,6 +167,7 @@
 		98FFE373276C8D5800C3839D /* CurrentPlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPlayersTableViewCell.swift; sourceTree = "<group>"; };
 		98FFE375276C902300C3839D /* TeamsInfoMatchesHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsInfoMatchesHeader.swift; sourceTree = "<group>"; };
 		98FFE377276C922700C3839D /* TeamsInfoMatchesInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsInfoMatchesInfo.swift; sourceTree = "<group>"; };
+		98FFE379276CA96200C3839D /* CurrentPlayersInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPlayersInfo.swift; sourceTree = "<group>"; };
 		B61F59452760A4FB00D08CEA /* DotaStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61F59482760A4FB00D08CEA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61F594C2760A4FB00D08CEA /* CostilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostilViewController.swift; sourceTree = "<group>"; };
@@ -320,8 +322,6 @@
 				98FFE35C276B7AA400C3839D /* View */,
 				98FFE357276B72E200C3839D /* Model */,
 				98FFE356276B70BE00C3839D /* Presenter */,
-				98FFE358276B787700C3839D /* TeamInfoModulePresenter.swift */,
-				98FFE36F276BBB5700C3839D /* TeamInfoModuleConverter.swift */,
 			);
 			path = TeamInfoModule;
 			sourceTree = "<group>";
@@ -329,6 +329,8 @@
 		98FFE356276B70BE00C3839D /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				98FFE358276B787700C3839D /* TeamInfoModulePresenter.swift */,
+				98FFE36F276BBB5700C3839D /* TeamInfoModuleConverter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -338,6 +340,7 @@
 			children = (
 				98FFE361276BB1CE00C3839D /* TeamInfoModuleViewState.swift */,
 				98FFE363276BB49C00C3839D /* TeamInfoTableViewCellType.swift */,
+				98FFE379276CA96200C3839D /* CurrentPlayersInfo.swift */,
 				98FFE367276BB5D100C3839D /* TeamMainInfo.swift */,
 				98FFE377276C922700C3839D /* TeamsInfoMatchesInfo.swift */,
 				98FFE365276BB50200C3839D /* TeamInfoTableViewCellData.swift */,
@@ -350,9 +353,9 @@
 			children = (
 				98FFE35D276B7AD900C3839D /* TeamInfoViewController.swift */,
 				98FFE369276BB66D00C3839D /* MainTeamInfoTableViewCell.swift */,
-				98FFE373276C8D5800C3839D /* CurrentPlayersTableViewCell.swift */,
-				98FFE375276C902300C3839D /* TeamsInfoMatchesHeader.swift */,
 				98FFE36B276BB6E200C3839D /* TeamButtonsInfoTableViewCell.swift */,
+				98FFE375276C902300C3839D /* TeamsInfoMatchesHeader.swift */,
+				98FFE373276C8D5800C3839D /* CurrentPlayersTableViewCell.swift */,
 				98FFE371276BC6A800C3839D /* DetailedTeamInfoCellConfigurable.swift */,
 			);
 			path = View;
@@ -753,6 +756,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98FFE37A276CA96200C3839D /* CurrentPlayersInfo.swift in Sources */,
 				5D2518652768BE8F0005374B /* MatchesModuleViewController.swift in Sources */,
 				EC4E6FA02764C8550085B61D /* MatchInfo.swift in Sources */,
 				5D2518672768BE8F0005374B /* ListMatchesCell.swift in Sources */,

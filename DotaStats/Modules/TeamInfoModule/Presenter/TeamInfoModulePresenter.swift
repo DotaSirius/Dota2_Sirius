@@ -16,13 +16,14 @@ final class TeamInfoModulePresenter {
     }
 
     let output: TeamInfoModuleOutput
-    private let converter: TeamInfoConverter
+    private let converter: TeamInfoConverterImp
     private let teamInfoService: TeamInfoService
     private var convertedData: [TeamInfoTableViewCellType] = []
     private var matchId: Int
-    private var rawTeamMainInfo: TeamInfo!
+    private var rawTeamMainInfo: TeamInfo?
+    private var rawTeamGamesInfo: [TeamPlayers] = []
 
-    required init(converter: TeamInfoConverter, teamInfoService: TeamInfoService,
+    required init(converter: TeamInfoConverterImp, teamInfoService: TeamInfoService,
                   output: TeamInfoModuleOutput, teamId: Int) {
         self.teamInfoService = teamInfoService
         self.output = output
@@ -37,11 +38,18 @@ final class TeamInfoModulePresenter {
             case .success:
                 self.convertedData = [
                     TeamInfoTableViewCellType.mainTeamInfo(
-                        converter.teamMainInfo(from: self.rawTeamMainInfo)
+                        converter.teamMainInfo(from: self.rawTeamMainInfo!)
                     ),
                     TeamInfoTableViewCellType.teamButtonsInfo,
                     TeamInfoTableViewCellType.teamsInfoMatchesHeader
-                ]
+                    ]
+                for index in 0..<5 {
+                     self.convertedData.append(
+                        TeamInfoTableViewCellType.currentPlayersInfo(
+                            converter.teamGamesInfo(from: self.rawTeamGamesInfo, playerId: index)
+                         )
+                     )
+                 }
                 view?.update(state: .success)
             case .error:
                 view?.update(state: .error)
@@ -62,7 +70,26 @@ final class TeamInfoModulePresenter {
             switch result {
             case .success(let rawTeamMainInfo):
                 self.rawTeamMainInfo = rawTeamMainInfo
-                self.state = .success
+                if !self.rawTeamGamesInfo.isEmpty {
+                    self.state = .success
+                }
+            case .failure:
+                self.state = .error
+            }
+        }
+
+        teamInfoService.requestTeamPlayers (id: matchId) { [weak self] result in
+            guard
+                let self = self
+            else {
+                return
+            }
+            switch result {
+            case .success(let rawTeamGamesInfo):
+                self.rawTeamGamesInfo = rawTeamGamesInfo
+                if self.rawTeamMainInfo != nil {
+                    self.state = .success
+                }
             case .failure:
                 self.state = .error
             }

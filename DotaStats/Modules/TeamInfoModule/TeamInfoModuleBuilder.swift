@@ -10,7 +10,7 @@ final class TeamInfoModuleBuilder {
         presenter
     }
 
-    init(converter: TeamInfoConverter, output: TeamInfoModuleOutput, teamInfoService: TeamInfoService, teamId: Int) {
+    init(converter: TeamInfoConverterImp, output: TeamInfoModuleOutput, teamInfoService: TeamInfoService, teamId: Int) {
         presenter = TeamInfoModulePresenter(
             converter: converter,
             teamInfoService: teamInfoService,
