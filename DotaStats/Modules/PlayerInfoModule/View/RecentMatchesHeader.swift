@@ -81,7 +81,7 @@ final class RecentMatchesHeader: UITableViewCell {
 
     // MARK: - Set up constraints
 
-    func setUp() {
+    private func setUp() {
         self.selectionStyle = .none
         contentView.addSubview(hero)
         contentView.addSubview(gameMode)
@@ -91,24 +91,16 @@ final class RecentMatchesHeader: UITableViewCell {
         contentView.addSubview(assistant)
     }
 
-    func setUpConstraints() {
+    private func setUpConstraints() {
         NSLayoutConstraint.activate([
             hero.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 5),
             hero.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             hero.heightAnchor.constraint(equalToConstant: 30),
             hero.widthAnchor.constraint(equalToConstant: 50),
 
-            assistant.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -5),
-            assistant.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            assistant.widthAnchor.constraint(equalToConstant: 30),
-
-            death.trailingAnchor.constraint(equalTo: assistant.leadingAnchor),
-            death.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            death.widthAnchor.constraint(equalToConstant: 30),
-
-            kill.trailingAnchor.constraint(equalTo: death.leadingAnchor),
-            kill.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            kill.widthAnchor.constraint(equalToConstant: 30),
+            gameMode.leadingAnchor.constraint(equalTo: hero.trailingAnchor),
+            gameMode.trailingAnchor.constraint(equalTo: duration.leadingAnchor),
+            gameMode.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
             duration.trailingAnchor.constraint(equalTo: kill.leadingAnchor),
             duration.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -116,13 +108,21 @@ final class RecentMatchesHeader: UITableViewCell {
             duration.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
             duration.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
 
-            gameMode.leadingAnchor.constraint(equalTo: hero.trailingAnchor),
-            gameMode.trailingAnchor.constraint(equalTo: duration.leadingAnchor),
-            gameMode.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            kill.trailingAnchor.constraint(equalTo: death.leadingAnchor),
+            kill.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            kill.widthAnchor.constraint(equalToConstant: 30),
+
+            death.trailingAnchor.constraint(equalTo: assistant.leadingAnchor),
+            death.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            death.widthAnchor.constraint(equalToConstant: 30),
+
+            assistant.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+            assistant.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            assistant.widthAnchor.constraint(equalToConstant: 30)
         ])
     }
 
-    func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
+    private func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
         stackView.axis = axis
         stackView.distribution = .equalSpacing
         stackView.alignment = .center

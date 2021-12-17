@@ -15,7 +15,7 @@ final class PlayerWLCell: UITableViewCell {
         return name
     }()
 
-    private lazy var winNumber: UILabel = {
+    private lazy var winNumberLabel: UILabel = {
         let name = UILabel()
         name.textColor = ColorPalette.win
         name.font = UIFont.systemFont(ofSize: 20)
@@ -35,7 +35,7 @@ final class PlayerWLCell: UITableViewCell {
         return name
     }()
 
-    private lazy var loseNumber: UILabel = {
+    private lazy var loseNumberLabel: UILabel = {
         let name = UILabel()
         name.textColor = ColorPalette.lose
         name.font = UIFont.systemFont(ofSize: 20)
@@ -45,21 +45,21 @@ final class PlayerWLCell: UITableViewCell {
         return name
     }()
 
-    private lazy var winStack: UIStackView = {
+    private lazy var winStackView: UIStackView = {
         let winStack = UIStackView()
         createStackView(stackView: winStack, axis: .vertical, spacing: 10)
         winStack.translatesAutoresizingMaskIntoConstraints = false
         return winStack
     }()
 
-    private lazy var loseStack: UIStackView = {
+    private lazy var loseStackView: UIStackView = {
         let loseStack = UIStackView()
         createStackView(stackView: loseStack, axis: .vertical, spacing: 10)
         loseStack.translatesAutoresizingMaskIntoConstraints = false
         return loseStack
     }()
 
-    private lazy var winLoseStack: UIStackView = {
+    private lazy var winLoseStackView: UIStackView = {
         let winLoseStack = UIStackView()
         createStackView(stackView: winLoseStack, axis: .horizontal, spacing: 50)
         winLoseStack.translatesAutoresizingMaskIntoConstraints = false
@@ -89,22 +89,33 @@ final class PlayerWLCell: UITableViewCell {
 
     // MARK: - Set up constraints
 
-    func setUp() {
+    private func setUp() {
         self.selectionStyle = .none
-        winStack.addArrangedSubview(winLabel)
-        winStack.addArrangedSubview(winNumber)
-        loseStack.addArrangedSubview(loseLabel)
-        loseStack.addArrangedSubview(loseNumber)
-        winLoseStack.addArrangedSubview(winStack)
-        winLoseStack.addArrangedSubview(loseStack)
-        contentView.addSubview(winLoseStack)
+        winStackView.addArrangedSubview(winLabel)
+        winStackView.addArrangedSubview(winNumberLabel)
+        loseStackView.addArrangedSubview(loseLabel)
+        loseStackView.addArrangedSubview(loseNumberLabel)
+        winLoseStackView.addArrangedSubview(winStackView)
+        winLoseStackView.addArrangedSubview(loseStackView)
+        contentView.addSubview(winLoseStackView)
     }
 
-    func setUpConstraints() {
+    private func setUpConstraints() {
         NSLayoutConstraint.activate([
-            winLoseStack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            winLoseStack.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
-            winLoseStack.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            winLoseStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            winLoseStackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            winLoseStackView.bottomAnchor.constraint(
+                equalTo: contentView.safeAreaLayoutGuide.bottomAnchor,
+                constant: -10
+            ),
+            winLoseStackView.trailingAnchor.constraint(
+                equalTo: contentView.safeAreaLayoutGuide.trailingAnchor,
+                constant: -10
+            ),
+            winLoseStackView.leadingAnchor.constraint(
+                equalTo: contentView.safeAreaLayoutGuide.leadingAnchor,
+                constant: 10
+            )
         ])
     }
 }
@@ -113,8 +124,8 @@ extension PlayerWLCell: PlayerInfoCellConfigurable {
     func configure(with data: PlayerTableViewCellData) {
         switch data {
         case .playerWL(let data):
-            winNumber.text = String(data.win)
-            loseNumber.text = String(data.lose)
+            winNumberLabel.text = String(data.win)
+            loseNumberLabel.text = String(data.lose)
         default: assertionFailure("Произошла ошибка при заполнении ячейки данными")
         }
     }

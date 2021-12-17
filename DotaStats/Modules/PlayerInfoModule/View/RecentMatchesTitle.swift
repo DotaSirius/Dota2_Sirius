@@ -31,12 +31,12 @@ final class RecentMatchesTitle: UITableViewCell {
 
     // MARK: - Set up constraints
 
-    func setUp() {
+    private func setUp() {
         self.selectionStyle = .none
         contentView.addSubview(name)
     }
 
-    func setUpConstraints() {
+    private func setUpConstraints() {
         NSLayoutConstraint.activate([
             name.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
             name.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8),

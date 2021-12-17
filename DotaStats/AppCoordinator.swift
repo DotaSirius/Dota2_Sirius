@@ -70,7 +70,7 @@ extension AppCoordinator {
         )
     }
 
-    private func playerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
+    private func makePlayerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
         PlayerInfoModuleBuilder(
             output: self,
             playerInfoService: PlayerInfoServiceImp(
@@ -80,6 +80,11 @@ extension AppCoordinator {
             ),
             playerId: playerId
         )
+    }
+
+    private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
+        let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
+        viewController?.present(playerInfoModule.viewController, animated: true)
     }
 }
 
@@ -107,11 +112,6 @@ extension AppCoordinator: SearchPlayerModuleOutput {
 extension AppCoordinator: PlayerInfoModuleOutput {}
 
 extension AppCoordinator: MatchInfoModuleOutput {
-    func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
-        let playerInfoModule = playerInfoModuleBuilder(playerId: playerId)
-        viewController?.present(playerInfoModule.viewController, animated: true)
-    }
-
     func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
         presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
     }

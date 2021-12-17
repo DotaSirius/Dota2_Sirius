@@ -11,12 +11,12 @@ final class PlayerInfoModulePresenter {
         }
     }
 
-    private let playerInfoService: PlayerInfoService
     let output: PlayerInfoModuleOutput
-    let playerId: Int
-    var playerMainInfo = PlayerMainInfoView()
-    var playerWL = PlayerWLView()
-    var playerMatch: [PlayerMatchView] = []
+    private let playerInfoService: PlayerInfoService
+    private let playerId: Int
+    private var playerMainInfo = PlayerMainInfoView()
+    private var playerWL = PlayerWLView()
+    private var playerMatch: [PlayerMatchView] = []
 
     required init(playerInfoService: PlayerInfoService,
                   output: PlayerInfoModuleOutput,
@@ -96,17 +96,7 @@ final class PlayerInfoModulePresenter {
     private func convert(playerMatch: PlayerMatch) -> PlayerMatchView {
         let radiantWin = playerMatch.radiantWin ?? false
         let isRadiant = playerMatch.playerSlot ?? 0 < 128
-        var skill = ""
-        switch playerMatch.skill {
-        case 1:
-            skill = "Normal skill"
-        case 2:
-            skill = "High skill"
-        case 3:
-            skill = "Very High skill"
-        default:
-            skill = "Unknown skill"
-        }
+        let skill = convert(skill: playerMatch.skill)
 
         return PlayerMatchView(
             matchId: playerMatch.matchId,
@@ -119,6 +109,19 @@ final class PlayerInfoModulePresenter {
             skill: skill,
             gameMode: playerMatch.gameMode ?? 0
         )
+    }
+
+    private func convert(skill: Int?) -> String {
+        switch skill {
+        case 1:
+            return NSLocalizedString("Normal skill", comment: "")
+        case 2:
+            return NSLocalizedString("High skill", comment: "")
+        case 3:
+            return NSLocalizedString("Very High skill", comment: "")
+        default:
+            return NSLocalizedString("Unknown skill", comment: "")
+        }
     }
 }
 

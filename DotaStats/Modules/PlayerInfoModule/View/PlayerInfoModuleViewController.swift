@@ -49,7 +49,10 @@ final class PlayerInfoModuleViewController: UIViewController {
         view.alpha = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
-        let tapActionHideError = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let tapActionHideError = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleErrorViewTapped(_:))
+        )
         view.addGestureRecognizer(tapActionHideError)
         return view
     }()
@@ -115,7 +118,7 @@ final class PlayerInfoModuleViewController: UIViewController {
         }
     }
 
-    @objc func handleTap(_: UITapGestureRecognizer) {
+    @objc func handleErrorViewTapped(_: UITapGestureRecognizer) {
         hideError()
     }
 }
