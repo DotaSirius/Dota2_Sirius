@@ -51,24 +51,6 @@ struct MatchDetail: Decodable {
 //    let all_word_counts
 //    let my_word_counts
 
-    struct Chat: Decodable, Equatable {
-        let time: Date?
-        let unit: String?
-        let key: String?
-        let slot: Int?
-        let playerSlot: Int?
-    }
-
-    struct DraftTiming: Decodable, Equatable {
-        let order: Int
-        let pick: Bool
-        let activeTeam: Int
-        let heroId: Int
-        let playerSlot: Int?
-        let extraTime: Int
-        let totalTimeTaken: Int
-    }
-
     struct Player: Decodable {
         let matchId: Int
         let playerSlot: Int?
