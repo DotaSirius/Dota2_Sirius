@@ -7,6 +7,7 @@ protocol MatchInfoConverter: AnyObject {
     func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList
     func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
+    func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int: [MatchEvent]]
 }
 
 class MatchInfoConverterImp {
@@ -161,6 +162,10 @@ class MatchInfoConverterImp {
 }
 
 extension MatchInfoConverterImp: MatchInfoConverter {
+    func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int : [MatchEvent]] {
+        MatchDetailToEventsConverter.convert(rawMatchInfo)
+    }
+
     func mainMatchInfo(from rawMatchInfo: MatchDetail) -> MainMatchInfo {
         let winnersLabelText = convert(isRadiantWin: rawMatchInfo.radiantWin)
         let gameTimeLabelText = convert(duration: rawMatchInfo.duration)
