@@ -6,16 +6,16 @@ class MatchDetailToEventsConverter {
     static func convert(_ details: MatchDetail) -> ConvertedEventsDictionary {
         var dictionaryToReturn: ConvertedEventsDictionary = [:]
 
-        dictionaryToReturn = dictionaryToReturn.merging(convertMatchObjectivesDetails(details)) { current, _ in
-            current
+        dictionaryToReturn = dictionaryToReturn.merging(convertMatchObjectivesDetails(details)) { current, new in
+            current + new
         }
 
-        dictionaryToReturn = dictionaryToReturn.merging(convertMatchTeamFightsDetails(details)) { current, _ in
-            current
+        dictionaryToReturn = dictionaryToReturn.merging(convertMatchTeamFightsDetails(details)) { current, new in
+            current + new
         }
 
-        dictionaryToReturn = dictionaryToReturn.merging(convertMatchWardsDetails(details)) { current, _ in
-            current
+        dictionaryToReturn = dictionaryToReturn.merging(convertMatchWardsDetails(details)) { current, new in
+            current + new
         }
 
         return dictionaryToReturn
@@ -28,7 +28,7 @@ class MatchDetailToEventsConverter {
             guard let objectTime = object.time,
                   let objectType = object.type,
                   let objectPlayerSlot = object.playerSlot
-                    else {
+            else {
                 return
             }
 
@@ -41,9 +41,9 @@ class MatchDetailToEventsConverter {
             }
 
             let createdEvent = MatchEvent(
-                    eventType: MatchEventType(rawValue: objectType),
-                    involvedPlayers: involvedPlayers,
-                    coordinates: nil)
+                eventType: MatchEventType(rawValue: objectType),
+                involvedPlayers: involvedPlayers,
+                coordinates: nil)
 
             if dictionaryToReturn[objectTime] != nil {
                 dictionaryToReturn[objectTime]?.append(createdEvent)
@@ -58,17 +58,17 @@ class MatchDetailToEventsConverter {
     private static func convertMatchTeamFightsDetails(_ details: MatchDetail) -> ConvertedEventsDictionary {
         var dictionaryToReturn: ConvertedEventsDictionary = [:]
 
-        details.teamfights?.forEach { teamFight in
+        details.teamFights?.forEach { teamFight in
             guard let startTime = teamFight.start,
                   let endTime = teamFight.end
-                    else {
+            else {
                 return
             }
 
             let createdEvent = MatchEvent(
-                    eventType: MatchEventType.teamFight,
-                    involvedPlayers: details.players,
-                    coordinates: nil)
+                eventType: MatchEventType.teamFight,
+                involvedPlayers: details.players,
+                coordinates: nil)
 
             for timeStamp in startTime...endTime {
                 if dictionaryToReturn[timeStamp] != nil {
@@ -90,7 +90,7 @@ class MatchDetailToEventsConverter {
                   let obsLeftLog = player.obsLeftLog,
                   let senLog = player.senLog,
                   let senLeftLog = player.senLeftLog
-                    else {
+            else {
                 return
             }
 
@@ -99,15 +99,15 @@ class MatchDetailToEventsConverter {
                       let obsYCoordinate = observer.element.y,
                       let obsStartTime = observer.element.time,
                       let obsEndTime = observer.offset < obsLeftLog.count ?
-                              obsLeftLog[observer.offset].time : details.duration
-                        else {
+                      obsLeftLog[observer.offset].time : details.duration
+                else {
                     return
                 }
 
                 let createdEvent = MatchEvent(
-                        eventType: MatchEventType.observer,
-                        involvedPlayers: [player],
-                        coordinates: (x: obsXCoordinate, y: obsYCoordinate))
+                    eventType: MatchEventType.observer,
+                    involvedPlayers: [player],
+                    coordinates: (x: obsXCoordinate, y: obsYCoordinate))
 
                 for timeStamp in obsStartTime...obsEndTime {
                     if dictionaryToReturn[timeStamp] != nil {
@@ -120,17 +120,18 @@ class MatchDetailToEventsConverter {
 
             for sentry in senLog.enumerated() {
                 guard let senXCoordinate = sentry.element.x,
-                      let senYCoordinate = sentry.element.x,
+                      let senYCoordinate = sentry.element.y,
                       let senStartTime = sentry.element.time,
-                      let senEndTime = senLeftLog[sentry.offset].time
-                        else {
+                      let senEndTime = sentry.offset < senLeftLog.count ?
+                        senLeftLog[sentry.offset].time : details.duration
+                else {
                     return
                 }
 
                 let createdEvent = MatchEvent(
-                        eventType: MatchEventType.sentry,
-                        involvedPlayers: [player],
-                        coordinates: (x: senXCoordinate, y: senYCoordinate))
+                    eventType: MatchEventType.sentry,
+                    involvedPlayers: [player],
+                    coordinates: (x: senXCoordinate, y: senYCoordinate))
 
                 for timeStamp in senStartTime...senEndTime {
                     if dictionaryToReturn[timeStamp] != nil {

@@ -37,7 +37,7 @@ struct MatchDetail: Decodable {
     let win: Int?
     let replayUrl: String?
     let objectives: [Object]?
-    let teamfights: [TeamFight]?
+    let teamFights: [TeamFight]?
 
     struct Player: Decodable {
         let matchId: Int
