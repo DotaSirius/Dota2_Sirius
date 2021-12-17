@@ -97,8 +97,8 @@ extension MainMatchInfoTableViewCell: DetailedMatchInfoCellConfigurable {
     func configure(with data: MatchTableViewCellData) {
         switch data.type {
         case .mainMatchInfo(let data):
-            winnersLabel.text = data.winnersLabelText
-            if winnersLabel.text == "Radiant Victory" {
+            winnersLabel.text = "🏆 " + data.winnersLabelText
+            if data.isRadiantWin {
                 winnersLabel.textColor = ColorPalette.win
             } else {
                 winnersLabel.textColor = ColorPalette.lose
