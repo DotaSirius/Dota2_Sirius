@@ -90,7 +90,7 @@ final class PlayerWLCell: UITableViewCell {
     // MARK: - Set up constraints
 
     private func setUp() {
-        self.selectionStyle = .none
+        selectionStyle = .none
         winStackView.addArrangedSubview(winLabel)
         winStackView.addArrangedSubview(winNumberLabel)
         loseStackView.addArrangedSubview(loseLabel)

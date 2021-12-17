@@ -138,8 +138,8 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
         guard
             let data = output?.getCellData(for: indexPath.row),
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: data.type.reuseIdentificator,
-                for: indexPath) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
+                withIdentifier: data.type.reuseIdentifier,
+                for: indexPath) as? UITableViewCell & DetailedMatchInfoCellConfigurable
         else {
             // TODO: - Error handling
             return UITableViewCell()

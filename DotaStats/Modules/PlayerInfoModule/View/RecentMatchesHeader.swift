@@ -82,7 +82,7 @@ final class RecentMatchesHeader: UITableViewCell {
     // MARK: - Set up constraints
 
     private func setUp() {
-        self.selectionStyle = .none
+        selectionStyle = .none
         contentView.addSubview(hero)
         contentView.addSubview(gameMode)
         contentView.addSubview(duration)

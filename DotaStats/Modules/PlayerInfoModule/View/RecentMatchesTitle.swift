@@ -32,7 +32,7 @@ final class RecentMatchesTitle: UITableViewCell {
     // MARK: - Set up constraints
 
     private func setUp() {
-        self.selectionStyle = .none
+        selectionStyle = .none
         contentView.addSubview(name)
     }
 

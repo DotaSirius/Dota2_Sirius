@@ -48,7 +48,7 @@ final class PlayerMainInfoCell: UITableViewCell {
     // MARK: - Set up constraints
 
     private func setUp() {
-        self.selectionStyle = .none
+        selectionStyle = .none
         contentView.addSubview(avatar)
         contentView.addSubview(nameLabel)
         contentView.addSubview(rankLabel)

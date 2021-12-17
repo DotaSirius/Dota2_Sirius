@@ -26,17 +26,17 @@ final class TeamShortInfo {
         Converter.convertRatingToColor(rating)
     }
 
-    private let winrate: Float
-    var winrateString: String {
+    private let winRate: Float
+    var winRateString: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
-        let formatingWinrate = formatter.string(from: NSNumber(value: winrate)) ?? "0"
-        return formatingWinrate + "%"
+        let formatingWinRate = formatter.string(from: NSNumber(value: winRate)) ?? "0"
+        return formatingWinRate + "%"
     }
 
-    var winrateColor: UIColor {
-        Converter.convertWinrateToColor(winrate)
+    var winRateColor: UIColor {
+        Converter.convertWinRateToColor(winRate)
     }
 
     init(from teamResult: TeamResult) {
@@ -45,7 +45,7 @@ final class TeamShortInfo {
         lastMatchTime = teamResult.lastMatchTime
         name = teamResult.name
         rating = teamResult.rating
-        winrate = Float(teamResult.wins) / Float(teamResult.losses + teamResult.wins) * 100
+        winRate = Float(teamResult.wins) / Float(teamResult.losses + teamResult.wins) * 100
     }
 
     private func recentActivityDateToString(_ date: Date) -> String {

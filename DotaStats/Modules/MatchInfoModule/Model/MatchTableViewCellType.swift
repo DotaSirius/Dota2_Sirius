@@ -9,7 +9,7 @@ enum MatchTableViewCellType {
 }
 
 extension MatchTableViewCellType {
-    var reuseIdentificator: String {
+    var reuseIdentifier: String {
         switch self {
         case .mainMatchInfo:
             return MainMatchInfoTableViewCell.reuseIdentifier

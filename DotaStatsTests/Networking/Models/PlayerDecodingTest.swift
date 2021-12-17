@@ -20,7 +20,7 @@ final class PlayerDecodingTest: XCTestCase {
 
         XCTAssertEqual(decodedData.trackedUntil, nil)
         XCTAssertEqual(decodedData.leaderboardRank, nil)
-        XCTAssertEqual(decodedData.mmrEstimate.estimate, nil)
+        XCTAssertEqual(decodedData.mmrEstimate?.estimate, nil)
         XCTAssertEqual(decodedData.competitiveRank, nil)
         XCTAssertEqual(decodedData.soloCompetitiveRank, nil)
         XCTAssertEqual(decodedData.rankTier, nil)

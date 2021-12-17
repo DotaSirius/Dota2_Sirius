@@ -16,13 +16,13 @@ final class MatchInfoModuleBuilder {
         regionsService: RegionsService,
         converter: MatchInfoConverter
     ) {
-        self.presenter = MatchInfoModulePresenter(
+        presenter = MatchInfoModulePresenter(
             converter: converter,
             output: output,
             networkService: networkService,
             regionsService: regionsService
         )
-        self.viewController = MatchInfoViewController(output: presenter)
-        self.presenter.view = viewController
+        viewController = MatchInfoViewController(output: presenter)
+        presenter.view = viewController
     }
 }
