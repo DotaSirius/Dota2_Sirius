@@ -44,17 +44,6 @@ final class MatchesModuleViewController: UIViewController {
         return table
     }()
 
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = ColorPalette.alternativeBackground
-        label.text = "MATCHES"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        label.textColor = ColorPalette.mainText
-        return label
-    }()
-
     private lazy var errorView: ErrorView = {
         let view = ErrorView()
         view.alpha = 0
@@ -123,18 +112,6 @@ final class MatchesModuleViewController: UIViewController {
         hideError()
     }
 
-    // MARK: - Setup UILabel "MATCHES"
-
-    private func setupLabel() {
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label.topAnchor.constraint(equalTo: errorView.bottomAnchor),
-            label.bottomAnchor.constraint(equalTo: tableView.topAnchor)
-        ])
-    }
-
     // MARK: - Setup UITableView
 
     private func setupTableView() {
@@ -142,7 +119,7 @@ final class MatchesModuleViewController: UIViewController {
         NSLayoutConstraint.activate([
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -172,7 +149,6 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
             hideError()
             spinnerView.removeFromSuperview()
             setupTableView()
-            setupLabel()
         }
     }
 
@@ -244,6 +220,7 @@ extension MatchesModuleViewController: ListTournamentsCellDelegate {
             withIdentifier: ListTournamentsCell.reuseIdentifier)
                 as? ListTournamentsCell else { return nil }
         header.configure(with: data, section: section, delegate: self)
+
         return header
     }
 

@@ -5,12 +5,13 @@ final class AppCoordinator {
     let tabBarController: MainTabBarController = .init()
 
     init() {
-        let playersModule = playersBuilder()
+        let teamsModule = teamsModuleBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
+
         let viewControllers = [
-            playersModule.viewController,
-            matchesModule.viewController,
+            makeNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
+            makeNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
             playerSearchModule.viewController
         ]
 
@@ -24,15 +25,30 @@ final class AppCoordinator {
         tabBarController.tabImageNames = tabImageNames
 
         tabBarController.configureTabs()
+        setupNavigationBarAppereance()
+    }
+
+    private func makeNavigationController(rootViewController: UIViewController,
+                                          title: String) -> UINavigationController {
+        rootViewController.title = title
+        rootViewController.view?.backgroundColor = ColorPalette.mainBackground
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        return navigationController
+    }
+
+    private func setupNavigationBarAppereance() {
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.mainText]
+        UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+        UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
+        UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
     }
 }
 
 extension AppCoordinator {
-    private func playersBuilder() -> PlayersModuleBuilder {
-        PlayersModuleBuilder(
-            output: self,
-            networkService: NetworkServiceImp()
-        )
+    private func teamsModuleBuilder() -> TeamsModuleBuilder {
+        let networkClient = NetworkClientImp(urlSession: .init(configuration: .default))
+        let teamsService = TeamsServiceImp(networkClient: networkClient)
+        return TeamsModuleBuilder(output: self, teamsService: teamsService)
     }
 
     private func matchesBuilder() -> MatchesModuleBuilder {
@@ -58,18 +74,30 @@ extension AppCoordinator {
             imageNetworkService: StubImageNetworkService()
         )
     }
+
+    private func makeMatchInfoModuleBuilder() -> MatchInfoModuleBuilder {
+        MatchInfoModuleBuilder(
+            output: self,
+            networkService: MatchDetailImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ), converter: MatchInfoConverterImp()
+        )
+    }
 }
 
-extension AppCoordinator: PlayersModuleOutput {
-    func playersModule(_ module: PlayersModuleInput, didSelectPlayer playerId: Int) {
-        // let playerInfoBuilder =
-        // playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
+extension AppCoordinator: TeamsModuleOutput {
+    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int) {
+        //
     }
 }
 
 extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
-        // todo
+        let matchInfoModule = makeMatchInfoModuleBuilder()
+        matchInfoModule.input.setMatchId(matchId)
+        tabBarController.present(matchInfoModule.viewControler, animated: true)
     }
 }
 
@@ -78,6 +106,8 @@ extension AppCoordinator: SearchPlayerModuleOutput {
         // TODO: show player profile info
     }
 }
+
+extension AppCoordinator: MatchInfoModuleOutput {}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
