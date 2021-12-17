@@ -97,26 +97,11 @@ final class SearchPlayerTableViewCell: UITableViewCell {
         } else {
             avatarImageView.image = UIImage(named: "unknownAvatarImage")
         }
-        avatarImageView.layer.borderColor = indexPath.row % 2 == 0 ? ColorPalette.alternativeBackground.cgColor : ColorPalette.mainBackground.cgColor
-        nicknameLabel.text = newNickname
-        if newTimeMatch != "a long time ago" {
-            guard let unwrappedTime = newTimeMatch else {
-                return
-            }
-            let formatterD = DateFormatter()
-            formatterD.locale = Locale(identifier: "en_US_POSIX")
-            formatterD.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-            let date = formatterD.date(from: unwrappedTime)
+        avatarImageView.layer.borderColor = indexPath.row % 2 == 0 ?
+            ColorPalette.alternativeBackground.cgColor : ColorPalette.mainBackground.cgColor
 
-            let formatter = RelativeDateTimeFormatter()
-            formatter.dateTimeStyle = .named
-            timeMatchLabel.text = formatter.localizedString(
-                for: date!,
-                relativeTo: Date()
-            )
-        } else {
-            timeMatchLabel.text = "a long time ago"
-        }
+        nicknameLabel.text = newNickname
+        timeMatchLabel.text = Converter.convertDate(newTimeMatch)
     }
 
     @available(*, unavailable)

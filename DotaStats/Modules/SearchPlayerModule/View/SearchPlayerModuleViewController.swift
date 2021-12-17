@@ -58,7 +58,7 @@ final class SearchPlayerModuleViewController: UIViewController {
         setUpImagesConstraint(imageView: startScreenImage)
         setUpImagesConstraint(imageView: emptyScreenImage)
         setUpImagesConstraint(imageView: errorScreenImage)
-        updateState(.failure)
+        updateState(.startScreen)
     }
 
     // MARK: StartScreenImage
@@ -66,7 +66,7 @@ final class SearchPlayerModuleViewController: UIViewController {
     private lazy var startScreenImage: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "startScreenImage")
-        view.alpha = 0.6
+        view.alpha = 0.5
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -76,7 +76,7 @@ final class SearchPlayerModuleViewController: UIViewController {
     private lazy var emptyScreenImage: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "emtyImage")
-        view.alpha = 0.6
+        view.alpha = 0.5
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -86,7 +86,7 @@ final class SearchPlayerModuleViewController: UIViewController {
     private lazy var errorScreenImage: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "errorImage")
-        view.alpha = 0.6
+        view.alpha = 0.5
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -244,7 +244,7 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
         cell.configurePlayer(
             newAvatarImageURL: player.avatarFull,
             newNickname: player.personaname ?? "unknown",
-            newTimeMatch: player.lastMatchTime?.debugDescription ?? "a long time ago",
+            newTimeMatch: player.lastMatchTime?.debugDescription,
             indexPath: indexPath
         )
         cell.backgroundColor = indexPath.row % 2 == 0 ? ColorPalette.mainBackground : ColorPalette.alternativeBackground
@@ -297,7 +297,6 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
             startScreenImage.isHidden = true
             errorScreenImage.isHidden = true
             tableView.isHidden = true
-        // TODO: imgae nothing have been founded // wisp
         case .loading:
             startScreenImage.isHidden = true
             emptyScreenImage.isHidden = true
@@ -318,7 +317,6 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
             emptyScreenImage.isHidden = true
             startScreenImage.isHidden = true
             errorScreenImage.isHidden = false
-            print("error")
         }
     }
 
