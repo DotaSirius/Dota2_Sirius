@@ -12,8 +12,8 @@ final class WardsMapTableViewCell: UITableViewCell {
     }
 
     private struct Constants {
-        static let mapMax = 192
-        static let mapMin = 64
+        static let coordinateMax = 192
+        static let coordinateMin = 64
         static let mapWidth: CGFloat = 128
     }
 
@@ -89,11 +89,11 @@ final class WardsMapTableViewCell: UITableViewCell {
     }
 
     private func convertToMapCoordsX(_ value: Int) -> CGFloat {
-        CGFloat(value - Constants.mapMin) / Constants.mapWidth * map.frame.width
+        CGFloat(value - Constants.coordinateMin) / Constants.mapWidth * map.frame.width
     }
 
     private func convertToMapCoordsY(_ value: Int) -> CGFloat {
-        CGFloat(Constants.mapMax - value) / Constants.mapWidth * map.frame.width
+        CGFloat(Constants.coordinateMax - value) / Constants.mapWidth * map.frame.width
     }
 
     private func makeWardView(isObserver: Bool, isRadiant: Bool) -> UIView {
