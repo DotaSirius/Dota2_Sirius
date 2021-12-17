@@ -84,7 +84,8 @@ extension PlayerMainInfoCell: PlayerInfoCellConfigurable {
             name.text = data.name
             rank.text = String("🏆 \(data.leaderboardRank)")
             avatar.setImage(
-                with: data.avatar ?? "https://offers-api.agregatoreat.ru/api/file/649bf689-2165-46b1-8e5c-0ec89a54c05f"
+                with: data.avatarUrl ??
+                "https://offers-api.agregatoreat.ru/api/file/649bf689-2165-46b1-8e5c-0ec89a54c05f"
             )
         default: assertionFailure("Произошла ошибка при заполнении ячейки данными")
         }

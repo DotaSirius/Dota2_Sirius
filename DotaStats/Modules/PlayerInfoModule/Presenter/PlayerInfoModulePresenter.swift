@@ -81,7 +81,7 @@ final class PlayerInfoModulePresenter {
     private func convert(playerMainInfo: PlayerMainInfo) -> PlayerMainInfoView {
         PlayerMainInfoView(
             name: playerMainInfo.profile.name ?? NSLocalizedString("", comment: ""),
-            avatar: playerMainInfo.profile.avatarfull,
+            avatarUrl: playerMainInfo.profile.avatarfull,
             leaderboardRank: playerMainInfo.leaderboardRank ?? 0
         )
     }
@@ -97,13 +97,14 @@ final class PlayerInfoModulePresenter {
         let radiantWin = playerMatch.radiantWin ?? false
         let isRadiant = playerMatch.playerSlot ?? 0 < 128
         var skill = ""
-        if (playerMatch.skill == 1) {
+        switch playerMatch.skill {
+        case 1:
             skill = "Normal skill"
-        } else if (playerMatch.skill == 2) {
+        case 2:
             skill = "High skill"
-        } else if (playerMatch.skill == 3) {
+        case 3:
             skill = "Very High skill"
-        } else {
+        default:
             skill = "Unknown skill"
         }
 
@@ -127,25 +128,21 @@ extension PlayerInfoModulePresenter: PlayerInfoModuleInput {
 
 extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
     func getCellData(forRow: Int) -> PlayerTableViewCellData {
-        if (forRow == 0) {
+        switch forRow {
+        case 0:
             return PlayerTableViewCellData.playerMainInfo(playerMainInfo)
-        } else if (forRow == 1) {
+        case 1:
             return PlayerTableViewCellData.playerWL(playerWL)
-        } else if (forRow == 2) {
+        case 2:
             return PlayerTableViewCellData.recentMatchesTitle
-        } else if (forRow == 3) {
+        case 3:
             return PlayerTableViewCellData.recentMatchesHeader
-        } else {
+        default:
             return PlayerTableViewCellData.playerMatch(playerMatch[forRow - 4])
         }
     }
 
     func getRowsInSection(section: Int) -> Int {
-        switch section {
-        case 0:
-            return 3 + playerMatch.count
-        default:
-            return 0
-        }
+        section == 0 ? 3 + playerMatch.count : 0
     }
 }
