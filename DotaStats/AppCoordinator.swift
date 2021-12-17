@@ -28,11 +28,11 @@ final class AppCoordinator {
         setupNavigationBarAppereance()
     }
 
-    private func makeNavigationController(rootViewController viewController: UIViewController,
+    private func makeNavigationController(rootViewController: UIViewController,
                                           title: String) -> UINavigationController {
-        viewController.title = title
-        viewController.view?.backgroundColor = ColorPalette.mainBackground
-        let navigationController = UINavigationController(rootViewController: viewController)
+        rootViewController.title = title
+        rootViewController.view?.backgroundColor = ColorPalette.mainBackground
+        let navigationController = UINavigationController(rootViewController: rootViewController)
         return navigationController
     }
 
