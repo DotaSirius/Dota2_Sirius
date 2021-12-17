@@ -81,7 +81,13 @@ extension AppCoordinator {
                 networkClient: NetworkClientImp(
                     urlSession: URLSession(configuration: .default)
                 )
-            ), converter: MatchInfoConverterImp()
+            ),
+            regionsService: RegionsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            converter: MatchInfoConverterImp()
         )
     }
 
@@ -113,7 +119,7 @@ extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
         let matchInfoModule = makeMatchInfoModuleBuilder()
         matchInfoModule.input.setMatchId(matchId)
-        tabBarController.present(matchInfoModule.viewControler, animated: true)
+        tabBarController.present(matchInfoModule.viewController, animated: true)
     }
 }
 

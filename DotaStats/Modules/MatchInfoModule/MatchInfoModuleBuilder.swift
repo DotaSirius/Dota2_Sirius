@@ -1,7 +1,7 @@
 import Foundation
 
 final class MatchInfoModuleBuilder {
-    let viewControler: MatchInfoViewController
+    let viewController: MatchInfoViewController
     private let presenter:  MatchInfoModulePresenter
     var output:  MatchInfoModuleOutput {
         presenter.output
@@ -10,9 +10,19 @@ final class MatchInfoModuleBuilder {
         presenter
     }
 
-    init(output: MatchInfoModuleOutput, networkService: MatchDetailService, converter: MatchInfoConverter) {
-        self.presenter = MatchInfoModulePresenter(converter: converter, output: output, networkService: networkService)
-        self.viewControler = MatchInfoViewController(output: presenter)
-        self.presenter.view = viewControler
+    init(
+        output: MatchInfoModuleOutput,
+        networkService: MatchDetailService,
+        regionsService: RegionsService,
+        converter: MatchInfoConverter
+    ) {
+        self.presenter = MatchInfoModulePresenter(
+            converter: converter,
+            output: output,
+            networkService: networkService,
+            regionsService: regionsService
+        )
+        self.viewController = MatchInfoViewController(output: presenter)
+        self.presenter.view = viewController
     }
 }

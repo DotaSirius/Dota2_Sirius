@@ -4,6 +4,7 @@ enum MatchTableViewCellType {
     case additionalMatchInfo (AdditionalMatchInfo)
     case matchPlayerInfo (PlayerList)
     case teamMatchInfo (TeamMatchInfo)
+    case wardsMapInfo ([Int: [MatchEvent]])
     case matchPlayerHeaderInfo
 }
 
@@ -22,6 +23,8 @@ extension MatchTableViewCellType {
             return TeamMatchInfoTableViewCell.reuseIdentifier
         case .matchPlayerHeaderInfo:
             return PlayersTableHeaderCell.reuseIdentifier
+        case .wardsMapInfo:
+            return WardsMapTableViewCell.reuseIdentifier
         }
     }
 }
