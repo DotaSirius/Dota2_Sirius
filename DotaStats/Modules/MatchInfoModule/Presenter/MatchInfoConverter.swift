@@ -162,17 +162,23 @@ class MatchInfoConverterImp {
 
 extension MatchInfoConverterImp: MatchInfoConverter {
     func mainMatchInfo(from rawMatchInfo: MatchDetail) -> MainMatchInfo {
-        let winnersLabelText = convert(isRadiantWin: rawMatchInfo.radiantWin)
+        var winnersLabelText = convert(isRadiantWin: rawMatchInfo.radiantWin)
         let gameTimeLabelText = convert(duration: rawMatchInfo.duration)
         let firstTeamScoreLabelText = convert(score: rawMatchInfo.radiantScore)
         let secondTeamScoreLabelText = convert(score: rawMatchInfo.direScore)
         let matchEndTimeLabelText = convert(startTime: rawMatchInfo.startTime, duration: rawMatchInfo.duration)
+        if let radiantName = rawMatchInfo.radiantTeam?.name,
+           let direName = rawMatchInfo.direTeam?.name,
+           let radiantWin = rawMatchInfo.radiantWin {
+            winnersLabelText = radiantWin ? radiantName : direName
+        }
         return MainMatchInfo(
             winnersLabelText: winnersLabelText,
             gameTimeLabelText: gameTimeLabelText,
             firstTeamScoreLabelText: firstTeamScoreLabelText,
             secondTeamScoreLabelText: secondTeamScoreLabelText,
-            matchEndTimeLabelText: matchEndTimeLabelText
+            matchEndTimeLabelText: matchEndTimeLabelText,
+            isRadiantWin: rawMatchInfo.radiantWin ?? true
         )
     }
 
@@ -213,7 +219,7 @@ extension MatchInfoConverterImp: MatchInfoConverter {
     }
 
     func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo {
-        let teamNameLabelText = "Radiant"
+        let teamNameLabelText = rawMatchInfo.radiantTeam?.name ?? "Radiant"
         guard
             let isRadiantWin = rawMatchInfo.radiantWin
         else {
@@ -227,7 +233,7 @@ extension MatchInfoConverterImp: MatchInfoConverter {
     }
 
     func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo {
-        let teamNameLabelText = "Dire"
+        let teamNameLabelText = rawMatchInfo.direTeam?.name ?? "Dire"
         guard
             let isRadiantWin = rawMatchInfo.radiantWin
         else {
