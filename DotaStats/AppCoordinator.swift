@@ -23,7 +23,6 @@ final class AppCoordinator {
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
-
         tabBarController.configureTabs()
         setupNavigationBarAppereance()
     }
@@ -74,8 +73,31 @@ extension AppCoordinator {
                 networkClient: NetworkClientImp(
                     urlSession: URLSession(configuration: .default)
                 )
-            ), converter: MatchInfoConverterImp()
+            ),
+            regionsService: RegionsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            converter: MatchInfoConverterImp()
         )
+    }
+
+    private func makePlayerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
+        PlayerInfoModuleBuilder(
+            output: self,
+            playerInfoService: PlayerInfoServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            playerId: playerId
+        )
+    }
+
+    private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
+        let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
+        viewController?.present(playerInfoModule.viewController, animated: true)
     }
 }
 
@@ -89,7 +111,7 @@ extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
         let matchInfoModule = makeMatchInfoModuleBuilder()
         matchInfoModule.input.setMatchId(matchId)
-        tabBarController.present(matchInfoModule.viewControler, animated: true)
+        tabBarController.present(matchInfoModule.viewController, animated: true)
     }
 }
 
@@ -99,7 +121,13 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     }
 }
 
-extension AppCoordinator: MatchInfoModuleOutput {}
+extension AppCoordinator: PlayerInfoModuleOutput {}
+
+extension AppCoordinator: MatchInfoModuleOutput {
+    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
+        presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
+    }
+}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {

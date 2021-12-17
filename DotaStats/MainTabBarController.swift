@@ -30,4 +30,8 @@ final class MainTabBarController: UITabBarController {
             tabBar.items![i].title = nil
         }
     }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+          return .lightContent
+    }
 }
