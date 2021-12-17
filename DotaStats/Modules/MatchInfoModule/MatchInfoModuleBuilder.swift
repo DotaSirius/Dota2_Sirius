@@ -10,9 +10,19 @@ final class MatchInfoModuleBuilder {
         presenter
     }
 
-    init(output: MatchInfoModuleOutput, networkService: MatchDetailService, converter: MatchInfoConverter) {
-        self.presenter = MatchInfoModulePresenter(converter: converter, output: output, networkService: networkService)
-        self.viewController = MatchInfoViewController(output: presenter)
-        self.presenter.view = viewController
+    init(
+        output: MatchInfoModuleOutput,
+        networkService: MatchDetailService,
+        regionsService: RegionsService,
+        converter: MatchInfoConverter
+    ) {
+        self.presenter = MatchInfoModulePresenter(
+            converter: converter,
+            output: output,
+            networkService: networkService,
+            regionsService: regionsService
+        )
+        self.viewControler = MatchInfoViewController(output: presenter)
+        self.presenter.view = viewControler
     }
 }

@@ -14,10 +14,12 @@ final class MatchInfoModulePresenter {
     let output: MatchInfoModuleOutput
     private let converter: MatchInfoConverter
     private var convertedData: [MatchTableViewCellType] = []
-    private let networkService: MatchDetailService
     private var rawMatchInfo: MatchDetail!
     private var convertedMatchInfo: [MatchTableViewCellType]?
     private var matchId: Int
+    private let networkService: MatchDetailService
+    private let regionsService: RegionsService
+    private var regions: [String: String] = [:]
 
     private var state: MatchesInfoModuleViewState {
         didSet {
@@ -28,7 +30,7 @@ final class MatchInfoModulePresenter {
                         converter.mainMatchInfo(from: self.rawMatchInfo)
                     ),
                     MatchTableViewCellType.additionalMatchInfo(
-                        converter.additionalMatchInfo(from: self.rawMatchInfo)
+                        converter.additionalMatchInfo(from: self.rawMatchInfo, regions: regions)
                     ),
                     MatchTableViewCellType.teamMatchInfo(
                         converter.radiantMatchInfo(from: self.rawMatchInfo)
@@ -65,16 +67,41 @@ final class MatchInfoModulePresenter {
         }
     }
 
-    required init(converter: MatchInfoConverter, output: MatchInfoModuleOutput, networkService: MatchDetailService) {
+    required init(
+        converter: MatchInfoConverter,
+        output: MatchInfoModuleOutput,
+        networkService: MatchDetailService,
+        regionsService: RegionsService
+    ) {
         self.converter = converter
         self.output = output
         self.networkService = networkService
+        self.regionsService = regionsService
         self.state = .loading
         self.matchId = 1
     }
 
     private func requestData() {
         state = .loading
+
+        if let regionsData = ConstanceStorage.instance.regionsData {
+            regions = regionsData
+        } else {
+            regionsService.requestRegionsDetails { [weak self] result in
+                guard
+                    let self = self
+                else {
+                    return
+                }
+                switch result {
+                case .success(let regions):
+                    self.regions = regions
+                    print(regions)
+                case .failure: break
+                }
+            }
+        }
+
         networkService.requestMatchDetail(id: matchId) { [weak self] result in
             guard
                 let self = self
