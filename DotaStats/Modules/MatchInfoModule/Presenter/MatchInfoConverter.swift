@@ -32,7 +32,7 @@ class MatchInfoConverterImp {
         guard
             let playerRankTier = playerRankTier
         else {
-            return "-"
+            return "Unknown"
         }
         return "\(playerRankTier)"
     }
@@ -41,7 +41,7 @@ class MatchInfoConverterImp {
         guard
             let networth = networth
         else {
-            return "-"
+            return "0"
         }
         return "\(networth / 1000)k"
     }
@@ -50,7 +50,7 @@ class MatchInfoConverterImp {
         guard
             let stat = stat
         else {
-            return "-"
+            return "0"
         }
         return "\(stat)"
     }
@@ -61,7 +61,7 @@ class MatchInfoConverterImp {
         guard
             let isRadiantWin = isRadiantWin
         else {
-            return "-"
+            return "Winner is not spesified"
         }
         return isRadiantWin ? "Radiant Victory" : "Dire Victory"
     }
@@ -70,7 +70,7 @@ class MatchInfoConverterImp {
         guard
             let duration = duration
         else {
-            return "-"
+            return "00:00"
         }
         let hr = duration / 3600
         let min = (duration % 3600) / 60
@@ -112,7 +112,7 @@ class MatchInfoConverterImp {
         guard
             let skillBracket = skillBracket
         else {
-            return "-"
+            return "Tournament"
         }
         return "\(skillBracket)"
     }
