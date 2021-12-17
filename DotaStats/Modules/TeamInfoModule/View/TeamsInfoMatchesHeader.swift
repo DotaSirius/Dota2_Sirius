@@ -7,8 +7,8 @@ final class TeamsInfoMatchesHeader: UITableViewCell {
 
     private lazy var number: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.textAlignment = .left
         label.textColor = ColorPalette.mainText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -17,8 +17,8 @@ final class TeamsInfoMatchesHeader: UITableViewCell {
 
     private lazy var results: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.textAlignment = .left
         label.textColor = ColorPalette.mainText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -27,8 +27,8 @@ final class TeamsInfoMatchesHeader: UITableViewCell {
 
     private lazy var duration: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.textAlignment = .left
         label.textColor = ColorPalette.mainText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -37,8 +37,8 @@ final class TeamsInfoMatchesHeader: UITableViewCell {
 
     private lazy var enemy: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.textAlignment = .left
         label.textColor = ColorPalette.mainText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -68,19 +68,19 @@ final class TeamsInfoMatchesHeader: UITableViewCell {
         contentView.addSubview(enemy)
 
         NSLayoutConstraint.activate([
-            number.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            number.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             number.centerYAnchor.constraint(equalTo: centerYAnchor),
-            number.widthAnchor.constraint(equalToConstant: 70),
+            number.trailingAnchor.constraint(equalTo: duration.leadingAnchor, constant: -22),
 
-            duration.trailingAnchor.constraint(equalTo: results.leadingAnchor, constant: -8),
+            duration.trailingAnchor.constraint(equalTo: results.leadingAnchor, constant: -10),
             duration.centerYAnchor.constraint(equalTo: centerYAnchor),
-            duration.widthAnchor.constraint(equalToConstant: 70),
+            duration.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 165),
 
-            results.trailingAnchor.constraint(equalTo: enemy.leadingAnchor, constant: -8),
+            results.trailingAnchor.constraint(equalTo: enemy.leadingAnchor, constant: -30),
             results.centerYAnchor.constraint(equalTo: centerYAnchor),
-            results.widthAnchor.constraint(equalToConstant: 70),
+            results.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 240),
 
-            enemy.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            enemy.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             enemy.centerYAnchor.constraint(equalTo: centerYAnchor),
             enemy.widthAnchor.constraint(equalToConstant: 70)
 

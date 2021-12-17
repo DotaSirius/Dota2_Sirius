@@ -365,10 +365,10 @@
 				98FFE369276BB66D00C3839D /* MainTeamInfoTableViewCell.swift */,
 				98FFE36B276BB6E200C3839D /* TeamButtonsInfoTableViewCell.swift */,
 				98FFE375276C902300C3839D /* TeamsInfoMatchesHeader.swift */,
+				98FFE37F276D007300C3839D /* TeamsInfoMatches.swift */,
 				98FFE381276D3C8F00C3839D /* GamesInfoHeader.swift */,
 				98FFE373276C8D5800C3839D /* CurrentPlayersTableViewCell.swift */,
 				98FFE371276BC6A800C3839D /* DetailedTeamInfoCellConfigurable.swift */,
-				98FFE37F276D007300C3839D /* TeamsInfoMatches.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
