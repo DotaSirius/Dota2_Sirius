@@ -40,7 +40,11 @@ final class MatchInfoModulePresenter {
                 for index in 0..<5 {
                     self.convertedData.append(
                         MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index, ranks: ConstanceStorage.instance.ranks)
+                            converter.playerInfo(
+                                from: self.rawMatchInfo,
+                                playerNumber: index,
+                                ranks: ConstanceStorage.instance.ranks
+                            )
                         )
                     )
                 }
@@ -52,7 +56,11 @@ final class MatchInfoModulePresenter {
                 for index in 5..<10 {
                     self.convertedData.append(
                         MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index, ranks: ConstanceStorage.instance.ranks)
+                            converter.playerInfo(
+                                from: self.rawMatchInfo,
+                                playerNumber: index,
+                                ranks: ConstanceStorage.instance.ranks
+                            )
                         )
                     )
                 }
