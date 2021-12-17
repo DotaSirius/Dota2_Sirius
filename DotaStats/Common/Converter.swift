@@ -36,15 +36,13 @@ final class Converter {
     }
 
     static func convertDate(_ date: Date?) -> String {
-            guard let date = date else {
-                return "long ago"
-            }
-            let formatter = RelativeDateTimeFormatter()
-            formatter.dateTimeStyle = .named
-            let dateString = formatter.localizedString(
-                for: date,
-                relativeTo: Date()
-            )
-            return dateString
+        guard let date = date else { return "long ago" }
+        let relativeDateFormatter = RelativeDateTimeFormatter()
+        relativeDateFormatter.dateTimeStyle = .named
+        let dateString = relativeDateFormatter.localizedString(
+            for: date,
+            relativeTo: Date()
+        )
+        return dateString
     }
 }

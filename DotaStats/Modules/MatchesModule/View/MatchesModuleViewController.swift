@@ -18,10 +18,6 @@ protocol MatchesModuleViewOutput: AnyObject {
 }
 
 final class MatchesModuleViewController: UIViewController {
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-
     // MARK: - Properties
 
     private var output: MatchesModuleViewOutput?

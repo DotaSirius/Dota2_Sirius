@@ -18,7 +18,7 @@ final class TeamShortInfo {
 
     private let lastMatchTime: Date
     var recentActivity: String {
-        recentActivityDateToString(lastMatchTime)
+        Converter.convertDate(lastMatchTime)
     }
 
     let rating: Float

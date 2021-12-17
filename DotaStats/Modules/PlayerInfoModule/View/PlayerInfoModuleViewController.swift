@@ -15,7 +15,8 @@ final class PlayerInfoModuleViewController: UIViewController {
     private var output: PlayerInfoModuleViewOutput?
     private var errorConstraint: NSLayoutConstraint?
     private var data: PlayerTableViewCellData?
-    private var spiner = UIActivityIndicatorView(style: .large)
+    private lazy var loadingView = SquareLoadingView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupErrorViewConstraints()
@@ -129,16 +130,15 @@ extension PlayerInfoModuleViewController: PlayerInfoModuleViewInput {
         switch state {
         case .loading:
             hideError()
-            spiner.color = ColorPalette.accent
-            view.addSubview(spiner)
-            spiner.center = view.center
-            spiner.startAnimating()
+            view.addSubview(loadingView)
+            loadingView.center = view.center
+            loadingView.startAnimation()
         case .error:
             showError()
-            spiner.removeFromSuperview()
+            loadingView.stopAnimation()
         case .successWL, .successMain, .successMatch:
             hideError()
-            spiner.removeFromSuperview()
+            loadingView.stopAnimation()
             tableView.isHidden = false
             self.tableView.reloadData()
         }

@@ -10,9 +10,9 @@ final class AppCoordinator {
         let playerSearchModule = searchPlayerModuleBuilder()
 
         let viewControllers = [
-            makeNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
-            makeNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
-            playerSearchModule.viewController
+            CustomNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
+            CustomNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
+            CustomNavigationController(rootViewController: playerSearchModule.viewController, title: "Search")
         ]
 
         let tabImageNames = [
@@ -25,14 +25,6 @@ final class AppCoordinator {
         tabBarController.tabImageNames = tabImageNames
         tabBarController.configureTabs()
         setupNavigationBarAppereance()
-    }
-
-    private func makeNavigationController(rootViewController: UIViewController,
-                                          title: String) -> UINavigationController {
-        rootViewController.title = title
-        rootViewController.view?.backgroundColor = ColorPalette.mainBackground
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        return navigationController
     }
 
     private func setupNavigationBarAppereance() {
@@ -95,6 +87,11 @@ extension AppCoordinator {
         PlayerInfoModuleBuilder(
             output: self,
             playerInfoService: PlayerInfoServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            constantsService: GithubConstantsServiceImp(
                 networkClient: NetworkClientImp(
                     urlSession: URLSession(configuration: .default)
                 )

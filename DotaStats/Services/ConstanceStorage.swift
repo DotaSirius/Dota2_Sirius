@@ -5,6 +5,8 @@ final class ConstanceStorage {
     static let instance = ConstanceStorage()
 
     var regionsData: [String: String]?
+    var heroImages: [String: HeroImage]?
+    var gameModes: [String: GameMode]?
     var ranks: [String: String] = [
                         "1": "Herald",
                         "2": "Guardian",
