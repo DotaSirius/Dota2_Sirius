@@ -10,8 +10,8 @@ final class AppCoordinator {
         let playerSearchModule = searchPlayerModuleBuilder()
 
         let viewControllers = [
-            createNavigationController(for: teamsModule.viewController, with: "Teams"),
-            createNavigationController(for: matchesModule.viewController, with: "Matches"),
+            makeNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
+            makeNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
             playerSearchModule.viewController
         ]
 
@@ -28,8 +28,8 @@ final class AppCoordinator {
         setupNavigationBarAppereance()
     }
 
-    private func createNavigationController(for viewController: UIViewController,
-                                            with title: String) -> UINavigationController {
+    private func makeNavigationController(rootViewController viewController: UIViewController,
+                                          title: String) -> UINavigationController {
         viewController.title = title
         viewController.view?.backgroundColor = ColorPalette.mainBackground
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -37,16 +37,10 @@ final class AppCoordinator {
     }
 
     private func setupNavigationBarAppereance() {
-        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.text]
-        if #available(iOS 15, *) {
-            UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
-            UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
-            UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
-        } else {
-            UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
-            UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
-            UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
-        }
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.mainText]
+        UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+        UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
+        UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
     }
 }
 

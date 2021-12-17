@@ -44,12 +44,7 @@ final class TeamsModuleViewController: UIViewController {
         return tableView
     }()
 
-    private lazy var spiner: UIActivityIndicatorView = {
-        let activity = UIActivityIndicatorView(style: .large)
-        activity.color = ColorPalette.accent
-        activity.center = view.center
-        return activity
-    }()
+    private lazy var loadingView = SquareLoadingView()
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -71,15 +66,18 @@ extension TeamsModuleViewController: TeamsModuleViewInput {
     func updateState(_ state: TeamsModuleViewState) {
         switch state {
         case .loading:
-            view.addSubview(spiner)
-            spiner.startAnimating()
+            view.addSubview(loadingView)
+            loadingView.center = view.center
+            loadingView.startAnimation()
         case .success:
-            spiner.removeFromSuperview()
+            loadingView.stopAnimation()
+            loadingView.removeFromSuperview()
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
         case .failure:
-            spiner.removeFromSuperview()
+            loadingView.stopAnimation()
+            loadingView.removeFromSuperview()
         }
     }
 }
