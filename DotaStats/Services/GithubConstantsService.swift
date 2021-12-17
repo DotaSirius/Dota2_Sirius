@@ -18,18 +18,32 @@ final class GithubConstantsServiceImp: GithubConstantsService {
         networkClient.processRequest(
             request: createRequest(
                 url: "https://raw.githubusercontent.com/odota/dotaconstants/master/build/heroes.json"
-            ),
-            completion: completion
-        )
+            )
+        ) { (result: Result<[String: HeroImage], HTTPError>) in
+                switch result {
+                case .success(let heroImages):
+                    ConstanceStorage.instance.heroImages = heroImages
+                case .failure:
+                    break
+                }
+                completion(result)
+            }
     }
 
     func requestGameModes(completion: @escaping (Result<[String : GameMode], HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
             request: createRequest(
                 url: "https://raw.githubusercontent.com/odota/dotaconstants/master/build/game_mode.json"
-            ),
-            completion: completion
-        )
+            )
+        ) { (result: Result<[String: GameMode], HTTPError>) in
+            switch result {
+            case .success(let gameModes):
+                ConstanceStorage.instance.gameModes = gameModes
+            case .failure:
+                break
+            }
+            completion(result)
+        }
     }
 
     private func createRequest(url: String) -> HTTPRequest {
