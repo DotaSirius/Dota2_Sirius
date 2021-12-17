@@ -6,9 +6,15 @@ final class WardsMapTableViewCell: UITableViewCell {
     private let map = UIImageView(image: UIImage(named: "map"))
     private let slider = UISlider()
 
-    private var events = [Int: [MatchEvent]]()
+    private var eventsByTime = [Int: [MatchEvent]]()
     private var matchTime: Int {
-        events.count
+        eventsByTime.count
+    }
+
+    private struct Constants {
+        static let mapMax = 192
+        static let mapMin = 64
+        static let mapWidth: CGFloat = 128
     }
 
     // MARK: - Init
@@ -50,7 +56,7 @@ final class WardsMapTableViewCell: UITableViewCell {
 
     @objc private func sliderAction(sender: UISlider) {
         let currentTime = convertToTime(from: sender.value)
-        guard let currentEvents = events[currentTime] else {
+        guard let currentEvents = eventsByTime[currentTime] else {
             return
         }
         clearMap()
@@ -62,9 +68,9 @@ final class WardsMapTableViewCell: UITableViewCell {
             }
             switch event.eventType {
             case .observer:
-                drawWard(coordinates: coordinates, isObserver: true, isRadiant: isRadiant)
+                drawWard(at: coordinates, isObserver: true, isRadiant: isRadiant)
             case .sentry:
-                drawWard(coordinates: coordinates, isObserver: false, isRadiant: isRadiant)
+                drawWard(at: coordinates, isObserver: false, isRadiant: isRadiant)
             default:
                 break
             }
@@ -75,22 +81,22 @@ final class WardsMapTableViewCell: UITableViewCell {
         Int(value * Float(matchTime))
     }
 
-    private func drawWard(coordinates: (x: Int, y: Int), isObserver: Bool, isRadiant: Bool) {
-        let wardView = createWardView(isObserver: isObserver, isRadiant: isRadiant)
+    private func drawWard(at coordinates: MatchEvent.Coordinates, isObserver: Bool, isRadiant: Bool) {
+        let wardView = makeWardView(isObserver: isObserver, isRadiant: isRadiant)
         map.addSubview(wardView)
         wardView.center.x = convertToMapCoordsX(coordinates.x)
         wardView.center.y = convertToMapCoordsY(coordinates.y)
     }
 
     private func convertToMapCoordsX(_ value: Int) -> CGFloat {
-        CGFloat(value - 64) / 128 * map.frame.width
+        CGFloat(value - Constants.mapMin) / Constants.mapWidth * map.frame.width
     }
 
     private func convertToMapCoordsY(_ value: Int) -> CGFloat {
-        CGFloat(192 - value) / 128 * map.frame.width
+        CGFloat(Constants.mapMax - value) / Constants.mapWidth * map.frame.width
     }
 
-    private func createWardView(isObserver: Bool, isRadiant: Bool) -> UIView {
+    private func makeWardView(isObserver: Bool, isRadiant: Bool) -> UIView {
         let size: CGFloat = isObserver ? 60 : 30
         let wardView = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size))
         wardView.layer.cornerRadius = size / 2
@@ -106,7 +112,6 @@ final class WardsMapTableViewCell: UITableViewCell {
             subview.removeFromSuperview()
         }
     }
-
 }
 
 // MARK: - AdditionalMatchInfoTableViewCell
@@ -115,7 +120,7 @@ extension WardsMapTableViewCell: DetailedMatchInfoCellConfigurable {
     func configure(with data: MatchTableViewCellData) {
         switch data.type {
         case .wardsMapInfo(let newEvents):
-            events = newEvents
+            eventsByTime = newEvents
         default: assertionFailure("Произошла ошибка при заполнении ячейки данными")
         }
     }
