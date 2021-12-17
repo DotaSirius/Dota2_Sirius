@@ -1,167 +1,93 @@
 import UIKit
 
-protocol MatchInfoModuleInput: AnyObject {
+protocol PlotGmpModuleInput: AnyObject {
     func setMatchId(_ id: Int)
 }
 
-protocol MatchInfoModuleOutput: AnyObject {}
+protocol PlotGmpModuleOutput: AnyObject {}
 
-protocol MatchInfoModuleViewOutput: AnyObject {
-    func getSectionCount() -> Int
-    func getRowsCountInSection(_ section: Int) -> Int
-    func getCellData(for row: Int) -> MatchTableViewCellData
-    func getArrayOfGoldT() -> [[Int]]
-    func getArrayOfColors() -> [UIColor]
-    func getArrayOfHeroes() -> [String]
-    func getScaledGoldT(arrays: [[Int]],
-                        widthOfMinute: CGFloat,
-                        height: CGFloat,
-                        heightOfGmpView: CGFloat,
-                        maxGold: CGFloat,
-                        space: CGPoint) -> [[CGPoint]]
-    func getPointsInGoldAxis(maxGold: CGFloat) -> [Int]
-    func getScaledHorLeft(pointsInGoldAxis points: [Int],
-                          height: CGFloat,
-                          heightOfGmpView: CGFloat,
-                          maxGold: CGFloat,
-                          space: CGPoint) -> [CGPoint]
-    func getScaledHorRight(pointsInGoldAxis points: [Int],
-                           height: CGFloat,
-                           heightOfGmpView: CGFloat,
-                           maxGold: CGFloat,
-                           goldTCount: Int,
-                           space: CGPoint,
-                           widthOfMinute: CGFloat) -> [CGPoint]
-    func getScaledVerBottom(goldTCount: Int,
-                            widthOfMinute: CGFloat,
-                            heightOfGmpView: CGFloat,
-                            space: CGPoint) -> [CGPoint]
-    func getScaledVerTop(goldTCount: Int,
-                         height: CGFloat,
-                         heightOfGmpView: CGFloat,
-                         space: CGPoint,
-                         maxGold: CGFloat,
-                         widthOfMinute: CGFloat,
-                         pointsInGoldAxis points: [Int]) -> [CGPoint]
-    func getPlotLines(form arrays: [[CGPoint]],
-                      colors: [UIColor],
-                      fillColor: UIColor?) -> [CAShapeLayer]
-    func getVertGridLines(pointsVertBottom: [CGPoint],
-                          pointsVertTop: [CGPoint],
-                          fillColor: UIColor?) -> CAShapeLayer
-    func getHorGridLines(pointsHorLeft: [CGPoint],
-                         pointsHorRight: [CGPoint],
-                         fillColor: UIColor?) -> CAShapeLayer
-}
-
-final class MatchInfoModulePresenter {
-    weak var view: MatchInfoModuleViewInput?
-
-    let output: MatchInfoModuleOutput
-    private let converter: MatchInfoConverter
-    private var convertedData: [MatchTableViewCellType] = []
-    private let networkService: MatchDetailService
-    private var rawMatchInfo: MatchDetail!
-    private var convertedMatchInfo: [MatchTableViewCellType]?
-    private var matchId: Int
-    private var gmpData: [GmpPresenterData] = []
-
-    private var state: MatchesInfoModuleViewState {
+final class PlotGmpModulePresenter {
+    weak var view: PlotGmpModuleViewInput? {
         didSet {
-            switch state {
-            case .success:
-                self.convertedData = [
-                    MatchTableViewCellType.mainMatchInfo(
-                        converter.mainMatchInfo(from: self.rawMatchInfo)
-                    ),
-                    MatchTableViewCellType.additionalMatchInfo(
-                        converter.additionalMatchInfo(from: self.rawMatchInfo)
-                    ),
-                    MatchTableViewCellType.teamMatchInfo(
-                        converter.radiantMatchInfo(from: self.rawMatchInfo)
-                    ),
-                    MatchTableViewCellType.matchPlayerHeaderInfo
-                ]
-                for index in 0..<5 {
-                    self.convertedData.append(
-                        MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index)
-                        )
-                    )
-                }
-                self.convertedData.append(
-                    MatchTableViewCellType.teamMatchInfo(
-                        converter.direMatchInfo(from: self.rawMatchInfo)
-                    )
-                )
-                for index in 5..<10 {
-                    self.convertedData.append(
-                        MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index)
-                        )
-                    )
-                }
-                view?.update(state: .success)
-            case .error:
-                view?.update(state: .error)
-            case .loading:
-                view?.update(state: .loading)
-            }
+            requestData()
         }
     }
 
-    required init(converter: MatchInfoConverter, output: MatchInfoModuleOutput, networkService: MatchDetailService) {
-        self.converter = converter
+    private var gmpData: [GmpPresenterData] = []
+
+    let output: PlotGmpModuleOutput
+    private let networkService: MatchDetailService
+    private var matchDetail: MatchDetail!
+    private var matchId: Int
+
+    required init(output: PlotGmpModuleOutput, networkService: MatchDetailService) {
         self.output = output
         self.networkService = networkService
-        self.state = .loading
-        self.matchId = 1
+        self.state = .none
+        self.matchId = 6325355953 //6323862456 
+    }
+
+    private var state: PlotGmpModulePresenterState {
+        didSet {
+            switch state {
+            case .success(let matchDetail):
+                convert(from: matchDetail)
+                view?.update(state: .success)
+            case .error(let error):
+                view?.update(state: .error(error.localizedDescription))
+            case .loading:
+                view?.update(state: .loading)
+            case .none:
+                break
+            }
+        }
     }
 
     private func requestData() {
         state = .loading
-        networkService.requestMatchDetail(id: matchId) { [weak self] result in
-            guard
-                let self = self
-            else {
-                return
-            }
+        _ = networkService.requestMatchDetail(id: matchId) { [weak self] result in
             switch result {
-            case .success(let rawMatchInfo):
-                self.rawMatchInfo = rawMatchInfo
-                self.state = .success
-
-            case .failure:
-                self.state = .error
+            case .success(let matchDetail):
+                self?.state = .success(matchDetail)
+            case .failure(let error):
+                self?.state = .error(error)
             }
+        }
+    }
+
+    private func convert(from matchDetail: MatchDetail) {
+        let players = matchDetail.players
+        let arrayOfColors: [UIColor] = [.magenta,
+                                        .red,
+                                        .blue,
+                                        .brown,
+                                        .green,
+                                        .cyan,
+                                        .systemPink,
+                                        .systemPurple,
+                                        .black,
+                                        .orange]
+
+        for i in 0..<players.count {
+            let shortGmpData = GmpPresenterData(heroId: players[i].heroId ?? 0,
+                                                gmp: players[i].goldT ?? [], color: arrayOfColors[i])
+            gmpData.append(shortGmpData)
         }
     }
 }
 
-// MARK: - MatchInfoModuleInput
+// MARK: - PlotGmpModuleInput
 
-extension MatchInfoModulePresenter: MatchInfoModuleInput {
+extension PlotGmpModulePresenter: PlotGmpModuleInput {
     func setMatchId(_ id: Int) {
         matchId = id
         requestData()
     }
 }
 
-// MARK: - MatchInfoModuleViewOutput
+// MARK: - PlotGmpModuleViewOutput
 
-extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
-    func getSectionCount() -> Int {
-        return 1
-    }
-
-    func getRowsCountInSection(_ section: Int) -> Int {
-        return convertedData.count
-    }
-
-    func getCellData(for row: Int) -> MatchTableViewCellData {
-        return MatchTableViewCellData(type: convertedData[row])
-    }
-
+extension PlotGmpModulePresenter: PlotGmpModuleViewOutput {
     func getScaledGoldT(arrays: [[Int]],
                         widthOfMinute: CGFloat,
                         height: CGFloat,
@@ -279,12 +205,13 @@ extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
             for point in arr {
                 linePath.addLine(to: point)
             }
-
+  
             line.path = linePath.cgPath
             line.strokeColor = colors[i].cgColor
-            line.lineWidth = 2
+            line.lineWidth = 5
             line.lineJoin = .round
             line.fillColor = fillColor?.cgColor
+//            line.borderWidth
 
             lines.append(line)
         }
@@ -353,6 +280,19 @@ extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
         for data in gmpData {
             res.append("ID: \(data.heroId)")
         }
+        return res
+    }
+}
+
+extension CGPoint {
+    func add(_ space: CGPoint) -> CGPoint {
+        CGPoint(x: x + space.x, y: y + space.y)
+    }
+}
+
+extension CGFloat {
+    func round() -> Int {
+        let res = (Int(self) + 1000)/1000 * 1000
         return res
     }
 }

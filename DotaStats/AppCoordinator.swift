@@ -8,16 +8,19 @@ final class AppCoordinator {
         let teamsModule = teamsModuleBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
+        let plotGpmModule = plotGpmModuleBuilder()
 
         let viewControllers = [
             makeNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
             makeNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
-            playerSearchModule.viewController
+            playerSearchModule.viewController,
+            plotGpmModule.viewControler
         ]
 
         let tabImageNames = [
             NSLocalizedString("players", comment: ""),
             NSLocalizedString("matches", comment: ""),
+            NSLocalizedString("search", comment: ""),
             NSLocalizedString("search", comment: "")
         ]
 
@@ -85,6 +88,17 @@ extension AppCoordinator {
             ), converter: MatchInfoConverterImp()
         )
     }
+
+    private func plotGpmModuleBuilder() -> PlotGmpModuleBuilder {
+        PlotGmpModuleBuilder(
+            output: self,
+            plotService: MatchDetailImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            )
+        )
+    }
 }
 
 extension AppCoordinator: TeamsModuleOutput {
@@ -108,6 +122,8 @@ extension AppCoordinator: SearchPlayerModuleOutput {
 }
 
 extension AppCoordinator: MatchInfoModuleOutput {}
+
+extension AppCoordinator: PlotGmpModuleOutput {}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {

@@ -4,6 +4,7 @@ enum MatchTableViewCellType {
     case matchPlayerInfo (PlayerList)
     case teamMatchInfo (TeamMatchInfo)
     case matchPlayerHeaderInfo
+    case plotGpmInfo (GmpPresenterData)
 }
 
 extension MatchTableViewCellType {
@@ -19,6 +20,8 @@ extension MatchTableViewCellType {
             return TeamMatchInfoTableViewCell.reuseIdentifier
         case .matchPlayerHeaderInfo:
             return PlayersTableHeaderCell.reuseIdentifier
+        case .plotGpmInfo:
+            return PlotGpmTableViewCell.reuseIdentifier
         }
     }
 }
