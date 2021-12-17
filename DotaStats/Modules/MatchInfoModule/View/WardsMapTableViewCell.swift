@@ -1,10 +1,3 @@
-//
-//  WardsMapTableViewCell.swift
-//  DotaStats
-//
-//  Created by Борисов Матвей Евгеньевич on 17.12.2021.
-//
-
 import UIKit
 
 final class WardsMapTableViewCell: UITableViewCell {
