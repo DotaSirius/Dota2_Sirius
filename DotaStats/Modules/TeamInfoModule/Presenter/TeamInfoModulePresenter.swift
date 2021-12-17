@@ -6,6 +6,7 @@ protocol TeamInfoModuleViewOutput: AnyObject {
     func getSectionCount() -> Int
     func getRowsCountInSection(_ section: Int) -> Int
     func getCellData(for row: Int) -> TeamInfoTableViewCellData
+    func pickSection(_ pickedSection: Int)
 }
 
 final class TeamInfoModulePresenter {
@@ -22,6 +23,8 @@ final class TeamInfoModulePresenter {
     private var matchId: Int
     private var rawTeamMainInfo: TeamInfo?
     private var rawTeamPlayersInfo: [TeamPlayers] = []
+    private var rawTeamHeroesInfo: [TeamHeroes] = []
+    private var rawMatchesTeamInfo: [TeamMatches] = []
 
     required init(converter: TeamInfoConverterImp, teamInfoService: TeamInfoService,
                   output: TeamInfoModuleOutput, teamId: Int) {
@@ -33,27 +36,64 @@ final class TeamInfoModulePresenter {
     }
 
     private var state: TeamInfoModuleViewState {
-        didSet {
-            switch state {
-            case .success:
-                convertedData = [
-                    TeamInfoTableViewCellType.mainTeamInfo(
-                        converter.teamMainInfo(from: self.rawTeamMainInfo!)
-                    ),
-                    TeamInfoTableViewCellType.teamButtonsInfo,
-                    TeamInfoTableViewCellType.teamsInfoMatchesHeader
-                ]
-                let teamGamesInfo = converter.teamGamesInfo(from: self.rawTeamPlayersInfo).map({
-                    TeamInfoTableViewCellType.currentPlayersInfo($0)
-                })
-                convertedData.append(contentsOf: teamGamesInfo)
-                view?.update(state: .success)
-            case .error:
-                view?.update(state: .error)
-            case .loading:
-                view?.update(state: .loading)
+            didSet {
+                switch state {
+                case .success:
+                    showMatchesData()
+                    view?.update(state: .success)
+                case .error:
+                    view?.update(state: .error)
+                case .loading:
+                    view?.update(state: .loading)
+                }
             }
         }
+
+    private func showMatchesData() {
+        convertedData.removeAll()
+        convertedData = [
+            TeamInfoTableViewCellType.mainTeamInfo(
+                converter.teamMainInfo(from: self.rawTeamMainInfo!)
+            ),
+            TeamInfoTableViewCellType.preferredDataViewModePicker,
+            TeamInfoTableViewCellType.teamsInfoMatchesHeader
+        ]
+        let teamMatchesInfo = converter.teamMatchesInfo(from: rawMatchesTeamInfo).map {
+            TeamInfoTableViewCellType.teamsInfoMatches($0)
+        }
+        convertedData.append(contentsOf: teamMatchesInfo)
+        view?.update(state: .success)
+    }
+    private func showPlayersData() {
+        convertedData.removeAll()
+        convertedData = [
+            TeamInfoTableViewCellType.mainTeamInfo(
+                converter.teamMainInfo(from: self.rawTeamMainInfo!)
+            ),
+            TeamInfoTableViewCellType.preferredDataViewModePicker,
+            TeamInfoTableViewCellType.teamsInfoMatchesHeader
+        ]
+        let teamPlayersInfo = converter.teamPlayersInfo(from: self.rawTeamPlayersInfo).map({
+            TeamInfoTableViewCellType.currentPlayersInfo($0)
+        })
+        convertedData.append(contentsOf: teamPlayersInfo)
+        view?.update(state: .success)
+    }
+
+    private func showHeroesData() {
+        convertedData.removeAll()
+        convertedData = [
+            TeamInfoTableViewCellType.mainTeamInfo(
+                converter.teamMainInfo(from: self.rawTeamMainInfo!)
+            ),
+            TeamInfoTableViewCellType.preferredDataViewModePicker,
+            TeamInfoTableViewCellType.teamsInfoMatchesHeader
+        ]
+        let teamHeroesInfo = converter.teamHeroesInfo(from: self.rawTeamHeroesInfo).map({
+            TeamInfoTableViewCellType.currentHeroesInfo($0)
+        })
+        convertedData.append(contentsOf: teamHeroesInfo)
+        view?.update(state: .success)
     }
 
     private func requestData() {
@@ -67,7 +107,7 @@ final class TeamInfoModulePresenter {
             switch result {
             case .success(let rawTeamMainInfo):
                 self.rawTeamMainInfo = rawTeamMainInfo
-                if !self.rawTeamPlayersInfo.isEmpty {
+                if !self.rawTeamPlayersInfo.isEmpty && !self.rawTeamHeroesInfo.isEmpty && !self.rawMatchesTeamInfo.isEmpty {
                     self.state = .success
                 }
             case .failure:
@@ -84,12 +124,47 @@ final class TeamInfoModulePresenter {
             switch result {
             case .success(let rawTeamPlayersInfo):
                 self.rawTeamPlayersInfo = rawTeamPlayersInfo
-                if self.rawTeamMainInfo != nil {
+                if self.rawTeamMainInfo != nil && !self.rawTeamHeroesInfo.isEmpty  && !self.rawMatchesTeamInfo.isEmpty  {
                     self.state = .success
                 }
             case .failure:
                 self.state = .error
             }
+        }
+
+        teamInfoService.requestTeamHeroes(id: matchId) { [weak self] result in
+            guard
+                let self = self
+            else {
+                return
+            }
+            switch result {
+            case .success(let rawTeamHeroesInfo):
+                self.rawTeamHeroesInfo = rawTeamHeroesInfo
+                if self.rawTeamMainInfo != nil && !self.rawTeamPlayersInfo.isEmpty  && !self.rawMatchesTeamInfo.isEmpty  {
+                    self.state = .success
+                }
+            case .failure:
+                self.state = .error
+            }
+        }
+
+        teamInfoService.requestTeamMatches(id: matchId) { [weak self] result in
+                    guard
+                        let self = self
+                    else {
+                        return
+                    }
+
+                    switch result {
+                    case .success(let rawMatchesTeamInfo):
+                        self.rawMatchesTeamInfo = rawMatchesTeamInfo
+                    if self.rawTeamMainInfo != nil && !self.rawTeamPlayersInfo.isEmpty && !self.rawTeamHeroesInfo.isEmpty {
+                            self.state = .success
+                        }
+                    case .failure:
+                        self.state = .error
+                    }
         }
     }
 
@@ -108,5 +183,20 @@ extension TeamInfoModulePresenter: TeamInfoModuleViewOutput {
 
     func getCellData(for row: Int) -> TeamInfoTableViewCellData {
         return TeamInfoTableViewCellData(type: convertedData[row])
+    }
+}
+
+extension TeamInfoModulePresenter {
+    func pickSection(_ pickedSection: Int) {
+        switch pickedSection {
+        case 0:
+            showMatchesData()
+        case 1:
+            showPlayersData()
+        case 2:
+            showHeroesData()
+        default:
+            break
+        }
     }
 }

@@ -52,7 +52,7 @@ final class CurrentPlayersCell: UITableViewCell {
         [
             playerNameLabel,
             playerGamesLabel,
-            playerWinrateLabel,
+            playerWinrateLabel
 //            gamesProgressBar
         ].forEach {
             contentView.addSubview($0)
@@ -72,7 +72,7 @@ final class CurrentPlayersCell: UITableViewCell {
 
             playerGamesLabel.trailingAnchor.constraint(equalTo: playerWinrateLabel.leadingAnchor, constant: -inset),
             playerGamesLabel.widthAnchor.constraint(equalToConstant: 50),
-            playerGamesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
+            playerGamesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset)
 
 //            gamesProgressBar.topAnchor.constraint(equalTo: playerGamesLabel.bottomAnchor, constant: -inset),
 //            gamesProgressBar.leadingAnchor.constraint(equalTo: playerGamesLabel.leadingAnchor),
@@ -88,6 +88,11 @@ extension CurrentPlayersCell: DetailedTeamInfoCellConfigurable {
             playerNameLabel.text = data.playerNameLabelText
             playerGamesLabel.text = data.gamesLabelText
             playerWinrateLabel.text = data.winrateLabelText
+        case .currentHeroesInfo(let data):
+            playerNameLabel.text = data.heroesNameLabelText
+            playerGamesLabel.text = data.heroesGamesLabelText
+            playerWinrateLabel.text = data.heroesWinrateLabelText
+
 //            progressPercent = data.playerGamesAmount/data.maxGamesAmount
 //            UIView.animate(withDuration: 0.4) {
 //                self.gamesProgressBar.setProgress(self.progressPercent, animated: true)

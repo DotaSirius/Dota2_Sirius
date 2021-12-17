@@ -1,56 +1,27 @@
 import UIKit
 
 final class TeamButtonsInfoTableViewCell: UITableViewCell {
-    // MARK: - Properties
-
     static let reuseIdentifier = "TeamButtonsInfoTableViewCell"
+    let inset: CGFloat = 32
+    let smallInset: CGFloat = 16
+    var output: TeamInfoModuleViewOutput?
 
-    private lazy var matchesView: UIButton = {
-        let label = UIButton()
-        label.backgroundColor = ColorPalette.alternativeBackground
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.setTitleColor(ColorPalette.mainText, for: .normal)
-        label.addTarget(self, action: #selector(chooseTitle), for: .touchUpInside)
-        return label
+    private lazy var segmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: ["Matches", "Players", "Heroes"])
+        segmentedControl.tintColor = ColorPalette.accent
+        segmentedControl.sizeToFit()
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.setTitleTextAttributes([.foregroundColor: ColorPalette.mainText], for: .normal)
+        segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
+        segmentedControl.addTarget(self, action: #selector(valueChanged(_:)), for: .valueChanged)
+        return segmentedControl
     }()
-
-    private lazy var playersView: UIButton = {
-        let label = UIButton()
-        label.backgroundColor = ColorPalette.alternativeBackground
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.setTitleColor(ColorPalette.mainText, for: .normal)
-        label.addTarget(self, action: #selector(chooseTitle), for: .touchUpInside)
-        return label
-    }()
-
-    private lazy var herousView: UIButton = {
-        let label = UIButton()
-        label.backgroundColor = ColorPalette.alternativeBackground
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.setTitleColor(ColorPalette.mainText, for: .normal)
-        label.addTarget(self, action: #selector(chooseTitle), for: .touchUpInside)
-        return label
-    }()
-
-    @objc
-    private func chooseTitle(sender: UIButton) {
-        if matchesView != sender {
-            matchesView.setTitleColor(ColorPalette.mainText, for: .normal)
-        }
-        if playersView != sender {
-            playersView.setTitleColor(ColorPalette.mainText, for: .normal)
-        }
-        if herousView != sender {
-            herousView.setTitleColor(ColorPalette.mainText, for: .normal)
-        }
-        sender.setTitleColor(ColorPalette.accent, for: .normal)
-    }
-
-    // MARK: - Init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
+        setupConstraints()
     }
 
     @available(*, unavailable)
@@ -58,39 +29,33 @@ final class TeamButtonsInfoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Setup constrains
+    func setup() {
+        selectionStyle = .none
+        contentView.addSubview(segmentedControl)
+    }
 
-    private func setup() {
-        backgroundColor = ColorPalette.alternativeBackground
+    @objc
+    func valueChanged(_ sender: UISegmentedControl) {
+        output?.pickSection(sender.selectedSegmentIndex)
+    }
 
-        contentView.addSubview(matchesView)
-        contentView.addSubview(playersView)
-        contentView.addSubview(herousView)
-
+    func setupConstraints() {
         NSLayoutConstraint.activate([
-            playersView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            playersView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            playersView.heightAnchor.constraint(equalToConstant: 30),
-            playersView.widthAnchor.constraint(equalToConstant: 100),
-
-            matchesView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            matchesView.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -70),
-            matchesView.heightAnchor.constraint(equalToConstant: 30),
-            matchesView.widthAnchor.constraint(equalToConstant: 100),
-
-            herousView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            herousView.leadingAnchor.constraint(equalTo: centerXAnchor, constant: 70),
-            herousView.heightAnchor.constraint(equalToConstant: 30),
-            herousView.widthAnchor.constraint(equalToConstant: 100)
+            segmentedControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            segmentedControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
+            segmentedControl.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
+            segmentedControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -smallInset)
         ])
     }
 }
 
 extension TeamButtonsInfoTableViewCell: DetailedTeamInfoCellConfigurable {
-    // MARK: - Cell configuration
     func configure(with data: TeamInfoTableViewCellData) {
-        matchesView.setTitle("Matches", for: .normal)
-        playersView.setTitle("Players", for: .normal)
-        herousView.setTitle("Herous", for: .normal)
+        switch data.type {
+        case .preferredDataViewModePicker:
+            break
+        default:
+            assertionFailure("Произошла ошибка при заполнении ячейки данными")
+        }
     }
 }

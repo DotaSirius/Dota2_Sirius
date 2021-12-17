@@ -22,13 +22,15 @@ final class TeamInfoModuleViewController: UIViewController {
     private lazy var tableView: UITableView = {
             let tableView = UITableView()
             tableView.register(MainTeamInfoTableViewCell.self,
-                               forCellReuseIdentifier: MainTeamInfoTableViewCell.reuseIdentifier)
+                    forCellReuseIdentifier: MainTeamInfoTableViewCell.reuseIdentifier)
             tableView.register(TeamButtonsInfoTableViewCell.self,
-                           forCellReuseIdentifier: TeamButtonsInfoTableViewCell.reuseIdentifier)
+                    forCellReuseIdentifier: TeamButtonsInfoTableViewCell.reuseIdentifier)
             tableView.register(TeamsInfoMatchesHeader.self,
-                       forCellReuseIdentifier: TeamsInfoMatchesHeader.reuseIdentifier)
+                    forCellReuseIdentifier: TeamsInfoMatchesHeader.reuseIdentifier)
             tableView.register(CurrentPlayersCell.self,
-                   forCellReuseIdentifier: CurrentPlayersCell.reuseIdentifier)
+                    forCellReuseIdentifier: CurrentPlayersCell.reuseIdentifier)
+            tableView.register(TeamsInfoMatches.self,
+                    forCellReuseIdentifier: TeamsInfoMatches.reuseIdentifier)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.backgroundColor = ColorPalette.mainBackground
@@ -128,6 +130,9 @@ extension TeamInfoModuleViewController: UITableViewDelegate, UITableViewDataSour
             // TODO: - Error handling
             return UITableViewCell()
         }
+        if let teamButtonsInfoTableViewCell = cell as? TeamButtonsInfoTableViewCell {
+            teamButtonsInfoTableViewCell.output = output
+        }
         let isEven = indexPath.row % 2 == 0
         let matchPlayersCellIndexes = indexPath.row > 3
         // swiftlint:disable line_length
@@ -152,6 +157,7 @@ extension TeamInfoModuleViewController: TeamInfoModuleViewInput {
             case .success:
                 view.addSubview(tableView)
                 setupConstraints()
+                tableView.reloadData()
             }
         }
 }

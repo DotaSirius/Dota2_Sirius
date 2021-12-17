@@ -3,12 +3,12 @@ import UIKit
 final class TeamsInfoMatchesHeader: UITableViewCell {
     // MARK: - Properties
 
-    static let reuseIdentifier = "TeamsInfoMatches"
+    static let reuseIdentifier = "TeamsInfoMatchesHeader"
 
     private lazy var number: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textAlignment = .right
+        label.textAlignment = .center
         label.textColor = ColorPalette.mainText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -18,7 +18,7 @@ final class TeamsInfoMatchesHeader: UITableViewCell {
     private lazy var results: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.textColor = ColorPalette.mainText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -34,11 +34,11 @@ final class TeamsInfoMatchesHeader: UITableViewCell {
         label.numberOfLines = 2
         return label
     }()
-    
+
     private lazy var enemy: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.textColor = ColorPalette.mainText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
@@ -72,11 +72,11 @@ final class TeamsInfoMatchesHeader: UITableViewCell {
             number.centerYAnchor.constraint(equalTo: centerYAnchor),
             number.widthAnchor.constraint(equalToConstant: 70),
 
-            duration.trailingAnchor.constraint(equalTo: results.leadingAnchor, constant: -20),
+            duration.trailingAnchor.constraint(equalTo: results.leadingAnchor, constant: -8),
             duration.centerYAnchor.constraint(equalTo: centerYAnchor),
             duration.widthAnchor.constraint(equalToConstant: 70),
 
-            results.trailingAnchor.constraint(equalTo: enemy.leadingAnchor, constant: -15),
+            results.trailingAnchor.constraint(equalTo: enemy.leadingAnchor, constant: -8),
             results.centerYAnchor.constraint(equalTo: centerYAnchor),
             results.widthAnchor.constraint(equalToConstant: 70),
 
