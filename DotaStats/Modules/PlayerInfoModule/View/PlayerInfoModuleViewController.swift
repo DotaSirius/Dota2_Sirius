@@ -13,11 +13,13 @@ final class PlayerInfoModuleViewController: UIViewController {
     // MARK: - Properties
 
     private var output: PlayerInfoModuleViewOutput?
+    private var errorConstraint: NSLayoutConstraint?
     private var first = true
     private var data: PlayerTableViewCellData?
     private var spiner = UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupErrorViewConstraints()
         view.backgroundColor = ColorPalette.mainBackground
     }
 
@@ -40,6 +42,16 @@ final class PlayerInfoModuleViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         return tableView
+    }()
+
+    private lazy var errorView: ErrorView = {
+        let view = ErrorView()
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = true
+        let tapActionHideError = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        view.addGestureRecognizer(tapActionHideError)
+        return view
     }()
 
     // MARK: - Init
@@ -66,19 +78,62 @@ final class PlayerInfoModuleViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+
+    // MARK: ErrorView Constraints
+
+    private func setupErrorViewConstraints() {
+        view.addSubview(errorView)
+        let errorConstraint = errorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        NSLayoutConstraint.activate([
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            errorConstraint,
+            errorView.heightAnchor.constraint(equalToConstant: 90)
+        ])
+        self.errorConstraint = errorConstraint
+    }
+
+    // MARK: Show/hide errors function
+
+    func showError() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseInOut]) {
+            self.errorConstraint?.constant = 35
+            self.errorView.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    func hideError() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       options: [.curveEaseOut]) {
+            self.errorConstraint?.constant = 0
+            self.errorView.alpha = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func handleTap(_: UITapGestureRecognizer) {
+        hideError()
+    }
 }
 
 extension PlayerInfoModuleViewController: PlayerInfoModuleViewInput {
     func update(state: PlayerInfoModuleViewState) {
         switch state {
         case .loading:
+            hideError()
             spiner.color = ColorPalette.accent
             view.addSubview(spiner)
             spiner.center = view.center
             spiner.startAnimating()
         case .error:
+            showError()
             spiner.removeFromSuperview()
         case .successWL, .successMain, .successMatch:
+            hideError()
             spiner.removeFromSuperview()
             if first {
                 setupTableView()
