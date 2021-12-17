@@ -13,6 +13,7 @@ final class CachedImageView: UIImageView {
 
         return gradientLayer
     }()
+
     private var isAnimationRunning = false
 
     private var lastRequest: Cancellable?
@@ -26,6 +27,7 @@ final class CachedImageView: UIImageView {
         setupImageView()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

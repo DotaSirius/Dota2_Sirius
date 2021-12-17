@@ -18,6 +18,7 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
 
 final class SearchPlayerModuleViewController: UIViewController {
     private var output: SearchPlayerModuleViewOutput?
+    private var searchDebouncerTimer: Timer?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -39,17 +40,56 @@ final class SearchPlayerModuleViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(loadingCircle)
         view.addSubview(errorView)
+        view.addSubview(startScreenImage)
+        view.addSubview(emptyScreenImage)
+        view.addSubview(errorScreenImage)
 
         errorView.isUserInteractionEnabled = true
-        let tapActionHideError = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        let tapActionHideError = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleTap(_:))
+        )
         errorView.addGestureRecognizer(tapActionHideError)
 
         setUpErrorViewConstraints()
         setUpSearchBarConstraints()
         setUpLoadingCircleConstraints()
         setUpTableViewConstraints()
-        updateState(.startScreen)
+        setUpImagesConstraint(imageView: startScreenImage)
+        setUpImagesConstraint(imageView: emptyScreenImage)
+        setUpImagesConstraint(imageView: errorScreenImage)
+        updateState(.failure)
     }
+
+    // MARK: StartScreenImage
+
+    private lazy var startScreenImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "startScreenImage")
+        view.alpha = 0.6
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+
+    // MARK: EmptyScreenImage
+
+    private lazy var emptyScreenImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "emtyImage")
+        view.alpha = 0.6
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+
+    // MARK: ErrorScreenImage
+
+    private lazy var errorScreenImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "errorImage")
+        view.alpha = 0.6
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
 
     // MARK: Spinner
 
@@ -93,6 +133,8 @@ final class SearchPlayerModuleViewController: UIViewController {
         searchBar.searchTextField.backgroundColor = ColorPalette.separator
         searchBar.tintColor = ColorPalette.mainText
         searchBar.searchTextField.leftView?.tintColor = ColorPalette.mainText
+        searchBar.placeholder = "Enter a nickname..."
+        searchBar.showsCancelButton = false
         return searchBar
     }()
 
@@ -125,6 +167,24 @@ final class SearchPlayerModuleViewController: UIViewController {
         NSLayoutConstraint.activate([
             loadingCircle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingCircle.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    // MARK: setImagesConstraint
+
+    private func setUpImagesConstraint(imageView: UIImageView) {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: 40
+            ),
+            imageView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -40
+            ),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 
@@ -164,6 +224,7 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     @objc func handleTap(_: UITapGestureRecognizer) {
         hideError()
+        updateState(.startScreen)
     }
 }
 
@@ -186,9 +247,10 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
         }
 
         cell.configurePlayer(
-            newAvatarImage: player.avatarFull ?? "None",
+            newAvatarImageURL: player.avatarFull,
             newNickname: player.personaname ?? "unknown",
-            newTimeMatch: player.lastMatchTime?.debugDescription ?? " - "
+            newTimeMatch: player.lastMatchTime?.debugDescription ?? "a long time ago",
+            indexPath: indexPath
         )
         cell.backgroundColor = indexPath.row % 2 == 0 ? ColorPalette.mainBackground : ColorPalette.alternativeBackground
         return cell
@@ -202,30 +264,24 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
 // MARK: extension for SearchBar
 
 extension SearchPlayerModuleViewController: UISearchBarDelegate {
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.searchBar.showsCancelButton = true
-    }
-
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        var searchBarTimer = Timer.scheduledTimer(
-            timeInterval: 1.0,
-            target: self,
-            selector: #selector(fireTimer),
-            userInfo: nil,
-            repeats: false
-        )
+        searchDebouncerTimer?.invalidate()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            searchBarTimer.fire()
+        let timer = Timer.scheduledTimer(
+            withTimeInterval: 1.0,
+            repeats: false
+        ) { [weak self] _ in
+            self?.fireTimer()
         }
+
+        searchDebouncerTimer = timer
     }
 
-    @objc func fireTimer() {
-        if searchBar.text != "" {
-            updateState(.loading)
-            output?.search(searchBar.text ?? "")
-        } else {
+    private func fireTimer() {
+        if searchBar.text?.isEmpty ?? true {
             updateState(.startScreen)
+        } else {
+            output?.search(searchBar.text ?? "")
         }
     }
 }
@@ -236,24 +292,37 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
     func updateState(_ state: SearchPlayerModuleViewState) {
         switch state {
         case .startScreen:
+            loadingCircle.stopAnimating()
             tableView.isHidden = true
-        // TODO: start screen image
+            startScreenImage.isHidden = false
+            emptyScreenImage.isHidden = true
+            errorScreenImage.isHidden = true
         case .empty:
+            emptyScreenImage.isHidden = false
+            startScreenImage.isHidden = true
+            errorScreenImage.isHidden = true
             tableView.isHidden = true
-        // TODO: imgae nothing have been founded
+        // TODO: imgae nothing have been founded // wisp
         case .loading:
+            startScreenImage.isHidden = true
+            emptyScreenImage.isHidden = true
+            errorScreenImage.isHidden = true
             hideError()
             tableView.isHidden = true
             loadingCircle.startAnimating()
-        // TODO: wait until Matvey make custom loading
         case .success:
             hideError()
             loadingCircle.stopAnimating()
             tableView.reloadData()
             tableView.isHidden = false
+            emptyScreenImage.isHidden = true
+            startScreenImage.isHidden = true
+            errorScreenImage.isHidden = true
         case .failure:
             showError()
-            // TODO: show error image
+            emptyScreenImage.isHidden = true
+            startScreenImage.isHidden = true
+            errorScreenImage.isHidden = false
             print("error")
         }
     }
