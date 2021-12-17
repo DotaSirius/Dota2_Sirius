@@ -36,6 +36,8 @@ final class MatchInfoViewController: UIViewController {
                 forCellReuseIdentifier: PreferredDataViewModePickerCell.reuseIdentifier)
         tableView.register(WardsMapTableViewCell.self,
                 forCellReuseIdentifier: WardsMapTableViewCell.reuseIdentifier)
+        tableView.register(PlotGpmTableViewCell.self,
+                forCellReuseIdentifier: PlotGpmTableViewCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = ColorPalette.mainBackground

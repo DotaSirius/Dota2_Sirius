@@ -8,6 +8,7 @@ protocol MatchInfoConverter: AnyObject {
     func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int: [MatchEvent]]
+    func plotInfo(from rawMatchInfo: MatchDetail) -> [PlotGpmInfo]
 }
 
 class MatchInfoConverterImp {
@@ -215,5 +216,27 @@ extension MatchInfoConverterImp: MatchInfoConverter {
             teamNameLabelText: teamNameLabelText,
             teamWinLabel: teamWinLabel
         )
+    }
+    
+    func plotInfo(from rawMatchInfo: MatchDetail) -> [PlotGpmInfo] {
+        var res = [PlotGpmInfo]()
+        let players = rawMatchInfo.players
+        let arrayOfColors: [UIColor] = [.magenta,
+                                        .red,
+                                        .blue,
+                                        .brown,
+                                        .green,
+                                        .cyan,
+                                        .systemPink,
+                                        .systemPurple,
+                                        .black,
+                                        .orange]
+
+        for i in 0..<players.count {
+            let shortGmpData = PlotGpmInfo(heroId: players[i].heroId ?? 0,
+                                                gmp: players[i].goldT ?? [], color: arrayOfColors[i])
+            res.append(shortGmpData)
+        }
+        return res
     }
 }

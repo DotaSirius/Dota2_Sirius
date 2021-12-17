@@ -200,6 +200,9 @@ final class MatchInfoModulePresenter {
             )
         ]
 
+        convertedData.append(
+            MatchTableViewCellType.plotGpmInfo(converter.plotInfo(from: rawMatchInfo)))
+
         view?.update(state: .update)
     }
 
