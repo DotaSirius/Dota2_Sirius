@@ -26,7 +26,7 @@ final class MatchesModuleViewController: UIViewController {
 
     private var output: MatchesModuleViewOutput?
     private var errorConstraint: NSLayoutConstraint?
-    private lazy var spinnerView: UIActivityIndicatorView = .init(style: .large)
+    private let loadingView = SquareLoadingView()
 
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -127,9 +127,8 @@ final class MatchesModuleViewController: UIViewController {
     // MARK: - Setup Loading
 
     private func setupLoading() {
-        spinnerView.color = ColorPalette.accent
-        view.addSubview(spinnerView)
-        spinnerView.center = view.center
+        view.addSubview(loadingView)
+        loadingView.center = view.center
     }
 }
 
@@ -141,13 +140,13 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
         case .loading:
             hideError()
             setupLoading()
-            spinnerView.startAnimating()
+            loadingView.startAnimation()
         case .error:
-            spinnerView.removeFromSuperview()
+            loadingView.stopAnimation()
             showError()
         case .success:
             hideError()
-            spinnerView.removeFromSuperview()
+            loadingView.stopAnimation()
             setupTableView()
         }
     }
