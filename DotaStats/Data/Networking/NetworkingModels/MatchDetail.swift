@@ -36,36 +36,8 @@ struct MatchDetail: Decodable {
     let loss: Int?
     let win: Int?
     let replayUrl: String?
-
-//    let cosmetics
-//    let objectives
-//    let picks_bans
-//    let radiant_gold_adv
-//    let radiant_xp_adv
-//    let teamfights
-//    let radiant_team
-//    let dire_team
-//    let league
-//    let all_word_counts
-//    let my_word_counts
-
-    struct Chat: Decodable, Equatable {
-        let time: Date?
-        let unit: String?
-        let key: String?
-        let slot: Int?
-        let playerSlot: Int?
-    }
-
-    struct DraftTiming: Decodable, Equatable {
-        let order: Int
-        let pick: Bool
-        let activeTeam: Int
-        let heroId: Int
-        let playerSlot: Int?
-        let extraTime: Int
-        let totalTimeTaken: Int
-    }
+    let objectives: [Object]?
+    let teamFights: [TeamFight]?
 
     struct Player: Decodable {
         let matchId: Int
@@ -154,6 +126,82 @@ struct MatchDetail: Decodable {
         let actionsPerMin: Int?
         let lifeStateDead: Int?
         let rankTier: Int?
+        let obsLeftLog: [ObsLeftLog]?
+        let obsLog: [ObsLog]?
+        let senLeftLog: [SenLeftLog]?
+        let senLog: [SenLog]?
+    }
+
+    struct ObsLeftLog: Decodable, Equatable {
+        let time: Int?
+        let x: Int?
+        let y: Int?
+        let ehandle: Int?
+    }
+
+    struct ObsLog: Decodable, Equatable {
+        let time: Int?
+        let x: Int?
+        let y: Int?
+        let ehandle: Int?
+    }
+
+    struct SenLeftLog: Decodable, Equatable {
+        let time: Int?
+        let x: Int?
+        let y: Int?
+        let ehandle: Int?
+    }
+
+    struct SenLog: Decodable, Equatable {
+        let time: Int?
+        let x: Int?
+        let y: Int?
+        let ehandle: Int?
+    }
+
+    struct TeamFight: Decodable, Equatable {
+        let start: Int?
+        let end: Int?
+        let deaths: Int?
+    }
+
+//    let cosmetics
+//    let picks_bans
+//    let radiant_gold_adv
+//    let radiant_xp_adv
+//    let teamfights
+//    let radiant_team
+//    let dire_team
+//    let league
+//    let all_word_counts
+//    let my_word_counts
+
+    struct Object: Decodable, Equatable {
+        let time: Int?
+        let type: String?
+        let slot: Int?
+        let playerSlot: Int?
+        let team: Int?
+        let unit: String?
+    }
+
+    struct Chat: Decodable, Equatable {
+        let time: Date?
+        let unit: String?
+        let key: String?
+        let slot: Int?
+        let playerSlot: Int?
+    }
+
+    struct DraftTiming: Decodable, Equatable {
+        let order: Int
+        let pick: Bool
+        let activeTeam: Int
+        let heroId: Int
+        let playerSlot: Int?
+        let extraTime: Int
+        let totalTimeTaken: Int
     }
 
     struct BuybackLog: Decodable, Equatable {
