@@ -98,10 +98,14 @@ class MatchInfoConverterImp {
         return "\(score)"
     }
 
-    // How long ago match was ended. Not implemented yet,
-    // because in future startTime will be converted from Int to Date in Networking
     private func convert(startTime: Date?, duration: Int?) -> String {
-        return "0 HOURS AGO."
+        guard
+            let duration = duration,
+            let startTime = startTime?.addingTimeInterval(Double(duration))
+        else {
+                return "Ended Long Time Ago.".uppercased()
+        }
+        return "Ended \(Converter.convertDate(startTime))".uppercased()
     }
 
     // MARK: - AdditionalMatchInfo converters
