@@ -5,7 +5,7 @@ protocol MatchInfoModuleViewInput: AnyObject {
 }
 
 final class MatchInfoViewController: UIViewController {
-    var spiner = UIActivityIndicatorView(style: .large)
+    private let loadingView = SquareLoadingView()
 
     var output: MatchInfoModuleViewOutput?
     var data: MatchTableViewCellData?
@@ -146,14 +146,14 @@ extension MatchInfoViewController: MatchInfoModuleViewInput {
     func update(state: MatchesInfoModuleViewState) {
         switch state {
         case .loading:
-            spiner.color = ColorPalette.accent
-            view.addSubview(spiner)
-            spiner.center = view.center
-            spiner.startAnimating()
+            view.addSubview(loadingView)
+            loadingView.center = view.center
+            loadingView.startAnimation()
         case .error:
-            spiner.removeFromSuperview()
+            loadingView.stopAnimation()
             showError()
         case .success:
+            loadingView.stopAnimation()
             view.addSubview(tableView)
             setupConstraints()
         }
