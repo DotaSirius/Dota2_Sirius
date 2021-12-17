@@ -167,8 +167,8 @@ extension PlayerMatchCell: PlayerInfoCellConfigurable {
     func configure(with data: PlayerTableViewCellData) {
         switch data {
         case .playerMatch(let data):
-            heroImageView.setImage(with: "https://api.opendota.com/apps/dota2/images/heroes/slardar_full.png")
-            gameModeLabel.text = String(data.gameMode)
+            heroImageView.setImage(with: data.heroImage)
+            gameModeLabel.text = data.gameMode
             skillLabel.text = data.skill
             winLabel.text = data.win ? "🏆" : ""
             durationLabel.text = String(data.duration)

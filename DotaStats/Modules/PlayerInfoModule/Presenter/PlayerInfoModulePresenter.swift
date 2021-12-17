@@ -13,15 +13,20 @@ final class PlayerInfoModulePresenter {
 
     let output: PlayerInfoModuleOutput
     private let playerInfoService: PlayerInfoService
+    private let constantsService: GithubConstantsService
+    private var heroImages: [String: String] = [:]
+    private var gameModes: [String: String] = [:]
     private let playerId: Int
     private var playerMainInfo = PlayerMainInfoViewState()
     private var playerWL = PlayerWLViewState()
     private var playerMatch: [PlayerMatchViewState] = []
 
     required init(playerInfoService: PlayerInfoService,
+                  constantsService: GithubConstantsService,
                   output: PlayerInfoModuleOutput,
                   playerId: Int) {
         self.playerInfoService = playerInfoService
+        self.constantsService = constantsService
         self.output = output
         self.state = .none
         self.playerId = playerId
@@ -51,6 +56,9 @@ final class PlayerInfoModulePresenter {
 
     private func updateView() {
         state = .loading
+        loadGameModeData()
+        loadHeroImages()
+
         playerInfoService.requestPlayerMainInfo(id: playerId) { [weak self] result in
             switch result {
             case .success(let player):
@@ -79,6 +87,44 @@ final class PlayerInfoModulePresenter {
         }
     }
 
+    private func loadGameModeData() {
+        if let gameModesData = ConstanceStorage.instance.gameModes {
+            gameModes = self.convert(gameModes: gameModesData)
+        } else {
+            constantsService.requestGameModes { [weak self] result in
+                guard
+                    let self = self
+                else {
+                    return
+                }
+                switch result {
+                case .success(let gameModesData):
+                    self.gameModes = self.convert(gameModes: gameModesData)
+                case .failure: break
+                }
+            }
+        }
+    }
+
+    private func loadHeroImages() {
+        if let heroImagesData = ConstanceStorage.instance.heroImages {
+            heroImages = self.convert(heroImages: heroImagesData)
+        } else {
+            constantsService.requestImagesHero { [weak self] result in
+                guard
+                    let self = self
+                else {
+                    return
+                }
+                switch result {
+                case .success(let heroImagesData):
+                    self.heroImages = self.convert(heroImages: heroImagesData)
+                case .failure: break
+                }
+            }
+        }
+    }
+
     private func convert(playerMainInfo: PlayerMainInfo) -> PlayerMainInfoViewState {
         PlayerMainInfoViewState(
             name: playerMainInfo.profile.name ?? NSLocalizedString("", comment: ""),
@@ -103,12 +149,17 @@ final class PlayerInfoModulePresenter {
             matchId: playerMatch.matchId,
             win: isRadiant ? radiantWin : !radiantWin,
             duration: (playerMatch.duration ?? 0) / 60,
-            heroId: playerMatch.heroId ?? 0,
+            heroImage:
+                heroImages[String(playerMatch.heroId ?? 0)] ??
+                NSLocalizedString(
+                    "https://offers-api.agregatoreat.ru/api/file/649bf689-2165-46b1-8e5c-0ec89a54c05f",
+                    comment: "No image"
+                ),
             kills: playerMatch.kills ?? 0,
             deaths: playerMatch.deaths ?? 0,
             assists: playerMatch.assists ?? 0,
             skill: skill,
-            gameMode: playerMatch.gameMode ?? 0
+            gameMode: gameModes[String(playerMatch.gameMode ?? 0)] ?? "Game mode unknown"
         )
     }
 
@@ -123,6 +174,25 @@ final class PlayerInfoModulePresenter {
         default:
             return NSLocalizedString("Unknown skill", comment: "")
         }
+    }
+
+    private func convert(heroImages: [String: HeroImage]) -> [String: String] {
+        var heroImagesConverted: [String: String] = [:]
+        for (index, image) in heroImages {
+            heroImagesConverted[index] =
+            NSLocalizedString("https://api.opendota.com", comment: "URL of opendota API") + (image.img ?? "")
+        }
+        return heroImagesConverted
+    }
+
+    private func convert(gameModes: [String: GameMode]) -> [String: String] {
+        var gameModesConverted: [String: String] = [:]
+        for (index, gameMode) in gameModes {
+            let parsedMode = gameMode.name?.components(separatedBy: "_").dropFirst().dropFirst() ?? []
+            let finalMode = parsedMode.joined(separator: " ")
+            gameModesConverted[index] = finalMode
+        }
+        return gameModesConverted
     }
 }
 
