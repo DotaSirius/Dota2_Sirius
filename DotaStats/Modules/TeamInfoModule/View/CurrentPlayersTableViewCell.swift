@@ -7,6 +7,7 @@ final class CurrentPlayersCell: UITableViewCell {
     let widthConstant: CGFloat = 30
 
     private let gamesProgressBar = UIProgressView()
+    private let winRateProgressBar = UIProgressView()
     private var progressPercent: Float = 0
 
     private lazy var playerNameLabel: UILabel = {
@@ -53,16 +54,21 @@ final class CurrentPlayersCell: UITableViewCell {
             playerNameLabel,
             playerGamesLabel,
             playerWinrateLabel,
-            gamesProgressBar
+            gamesProgressBar,
+            winRateProgressBar
         ].forEach {
             contentView.addSubview($0)
         }
-        gamesProgressBar.trackTintColor = ColorPalette.alternativeBackground
+        gamesProgressBar.trackTintColor = ColorPalette.subtitle
         gamesProgressBar.tintColor = ColorPalette.win
+        
+        winRateProgressBar.trackTintColor = ColorPalette.subtitle
+        winRateProgressBar.tintColor = ColorPalette.win
     }
 
     func setupConstraints() {
         gamesProgressBar.translatesAutoresizingMaskIntoConstraints = false
+        winRateProgressBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             playerNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             playerNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
@@ -77,7 +83,12 @@ final class CurrentPlayersCell: UITableViewCell {
 
             gamesProgressBar.topAnchor.constraint(equalTo: playerGamesLabel.bottomAnchor),
             gamesProgressBar.centerXAnchor.constraint(equalTo: playerGamesLabel.centerXAnchor),
-            gamesProgressBar.widthAnchor.constraint(equalToConstant: 80)
+            gamesProgressBar.widthAnchor.constraint(equalToConstant: 70),
+            
+            winRateProgressBar.topAnchor.constraint(equalTo: playerWinrateLabel.bottomAnchor),
+            winRateProgressBar.centerXAnchor.constraint(equalTo: playerWinrateLabel.centerXAnchor),
+            winRateProgressBar.widthAnchor.constraint(equalToConstant: 70)
+            
         ])
     }
 }
@@ -89,11 +100,17 @@ extension CurrentPlayersCell: DetailedTeamInfoCellConfigurable {
             playerNameLabel.text = data.playerNameLabelText
             playerGamesLabel.text = data.gamesLabelText
             playerWinrateLabel.text = data.winrateLabelText
-            let playersGamesCount = Float(data.maxGamesAmount) ?? 0
+            let playersGamesCount = Float(data.gamesLabelText) ?? 0
             progressPercent = playersGamesCount/Float(data.maxGamesAmount)
             UIView.animate(withDuration: 0.4) {
                 self.gamesProgressBar.setProgress(self.progressPercent, animated: true)
                         }
+            let playersWinrateCount = Float(data.winrateLabelText) ?? 0
+            progressPercent = playersWinrateCount/Float(100)
+            UIView.animate(withDuration: 0.4) {
+                self.winRateProgressBar.setProgress(self.progressPercent, animated: true)
+                        }
+            
         case .currentHeroesInfo(let data):
             playerNameLabel.text = data.heroesNameLabelText
             playerGamesLabel.text = data.heroesGamesLabelText
@@ -102,6 +119,11 @@ extension CurrentPlayersCell: DetailedTeamInfoCellConfigurable {
             progressPercent = herousGamesCount/Float(data.heroesMaxGameCount)
             UIView.animate(withDuration: 0.4) {
                 self.gamesProgressBar.setProgress(self.progressPercent, animated: true)
+                        }
+            let playersWinrateCount = Float(data.heroesWinrateLabelText) ?? 0
+            progressPercent = playersWinrateCount/Float(100)
+            UIView.animate(withDuration: 0.4) {
+                self.winRateProgressBar.setProgress(self.progressPercent, animated: true)
                         }
         case .currentHeroesHeader:
             playerNameLabel.text = "Hero"

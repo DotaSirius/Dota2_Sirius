@@ -95,7 +95,6 @@ final class TeamInfoModulePresenter {
             TeamInfoTableViewCellType.currentHeroesInfo($0)
         })
         convertedData.append(contentsOf: teamHeroesInfo)
-        
         view?.update(state: .update)
     }
 

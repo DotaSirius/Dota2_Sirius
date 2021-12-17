@@ -94,7 +94,14 @@ extension TeamInfoConverterImp: TeamInfoConverter {
 
 extension TeamInfoConverterImp: TeamPlayersInfoConverter {
     func teamPlayersInfo(from rawTeamPlayersInfo: [TeamPlayers]) -> [CurrentPlayersInfo] {
-        var maxGamesAmount = rawTeamPlayersInfo[0].gamesPlayed ?? 0
+        var maxGamesAmount = 0
+        for element in rawTeamPlayersInfo {
+            if element.isCurrentTeamMember == true {
+            maxGamesAmount = element.gamesPlayed ?? 0
+            break
+            }
+        }
+
         let array: [CurrentPlayersInfo] = rawTeamPlayersInfo.compactMap({ rawInfo in
             guard
                 rawInfo.isCurrentTeamMember == true,
@@ -121,7 +128,7 @@ extension TeamInfoConverterImp: TeamPlayersInfoConverter {
 extension TeamInfoConverterImp: TeamHeroesInfoConverter {
     func teamHeroesInfo(from rawTeamHeroesInfo: [TeamHeroes]) -> [CurrentHeroesInfo] {
         var countOfElements = 0
-        var maxGameCount = rawTeamHeroesInfo[0].gamesPlayed ?? 0
+        let maxGameCount = rawTeamHeroesInfo[0].gamesPlayed ?? 0
         let array: [CurrentHeroesInfo] = rawTeamHeroesInfo.compactMap({ rawInfo in
             guard
                 countOfElements <= 9,
