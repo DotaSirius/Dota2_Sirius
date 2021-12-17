@@ -51,7 +51,7 @@ final class PlayerInfoModulePresenter {
 
     private func updateView() {
         state = .loading
-        _ = playerInfoService.requestPlayerMainInfo(id: playerId) { [weak self] result in
+        playerInfoService.requestPlayerMainInfo(id: playerId) { [weak self] result in
             switch result {
             case .success(let player):
                 self?.state = .successMain(player)
@@ -60,7 +60,7 @@ final class PlayerInfoModulePresenter {
             }
         }
 
-        _ = playerInfoService.requestPlayerWLInfo(id: playerId) { [weak self] result in
+        playerInfoService.requestPlayerWLInfo(id: playerId) { [weak self] result in
             switch result {
             case .success(let player):
                 self?.state = .successWL(player)
@@ -69,7 +69,7 @@ final class PlayerInfoModulePresenter {
             }
         }
 
-        _ = playerInfoService.requestPlayerMatchesInfo(id: playerId) { [weak self] result in
+        playerInfoService.requestPlayerMatchesInfo(id: playerId) { [weak self] result in
             switch result {
             case .success(let player):
                 self?.state = .successMatch(player)
