@@ -25,6 +25,7 @@
 		303AC4E52767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */; };
 		303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E62767933700A8C462 /* DateFormatterExtension.swift */; };
 		303AC4E82767933700A8C462 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E62767933700A8C462 /* DateFormatterExtension.swift */; };
+		307F5CA7276C9080000B6548 /* RegionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307F5CA6276C9080000B6548 /* RegionsService.swift */; };
 		30B40F1B2769E39100B22DCC /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49062768C37200103100 /* SearchPlayerResult.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchDetailDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
@@ -127,6 +128,7 @@
 		303AC4E12767873E00A8C462 /* PlayerSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchService.swift; sourceTree = "<group>"; };
 		303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchServiceReceivingDataTest.swift; sourceTree = "<group>"; };
 		303AC4E62767933700A8C462 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		307F5CA6276C9080000B6548 /* RegionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsService.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatchDetail.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				EC1415FF27677E3600715D00 /* ImageService.swift */,
 				303AC4E12767873E00A8C462 /* PlayerSearchService.swift */,
 				EC1415F3276749A200715D00 /* MatchDetailService.swift */,
+				307F5CA6276C9080000B6548 /* RegionsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 				6035383B2766619800CC32AD /* SearchPlayerTableViewCell.swift in Sources */,
 				CEFEF69C276A28E800CAE93B /* MatchesInfoModuleState.swift in Sources */,
 				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
+				307F5CA7276C9080000B6548 /* RegionsService.swift in Sources */,
 				5D2518662768BE8F0005374B /* ListTournamentsCell.swift in Sources */,
 				CEFEF6AD276A2B7B00CAE93B /* TeamMatchInfoTableViewCell.swift in Sources */,
 				CEFEF6B1276A2B7B00CAE93B /* MainMatchInfoTableViewCell.swift in Sources */,
