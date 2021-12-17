@@ -93,11 +93,7 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     // MARK: Spinner
 
-    private lazy var loadingCircle: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(style: .large)
-        view.color = ColorPalette.accent
-        return view
-    }()
+    private lazy var loadingCircle = SquareLoadingView()
 
     // MARK: ErrorView
 
@@ -162,7 +158,6 @@ final class SearchPlayerModuleViewController: UIViewController {
     // MARK: LoadingCircle Constraints
 
     private func setUpLoadingCircleConstraints() {
-        loadingCircle.color = ColorPalette.text
         loadingCircle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loadingCircle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -292,7 +287,7 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
     func updateState(_ state: SearchPlayerModuleViewState) {
         switch state {
         case .startScreen:
-            loadingCircle.stopAnimating()
+            loadingCircle.stopAnimation()
             tableView.isHidden = true
             startScreenImage.isHidden = false
             emptyScreenImage.isHidden = true
@@ -309,10 +304,10 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
             errorScreenImage.isHidden = true
             hideError()
             tableView.isHidden = true
-            loadingCircle.startAnimating()
+            loadingCircle.startAnimation()
         case .success:
             hideError()
-            loadingCircle.stopAnimating()
+            loadingCircle.stopAnimation()
             tableView.reloadData()
             tableView.isHidden = false
             emptyScreenImage.isHidden = true
