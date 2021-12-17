@@ -20,10 +20,6 @@ final class SearchPlayerModuleViewController: UIViewController {
     private var output: SearchPlayerModuleViewOutput?
     private var searchDebouncerTimer: Timer?
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-
     init(output: SearchPlayerModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
@@ -244,7 +240,7 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
         cell.configurePlayer(
             newAvatarImageURL: player.avatarFull,
             newNickname: player.personaname ?? "unknown",
-            newTimeMatch: player.lastMatchTime?.debugDescription,
+            newTimeMatch: player.lastMatchTime,
             indexPath: indexPath
         )
         cell.backgroundColor = indexPath.row % 2 == 0 ? ColorPalette.mainBackground : ColorPalette.alternativeBackground

@@ -35,25 +35,14 @@ final class Converter {
         }
     }
 
-    static func convertDate(_ date: String?) -> String {
-        if date != nil {
-            guard let unwrappedTime = date else {
-                return ""
-            }
-            let formatterD = DateFormatter()
-            formatterD.locale = Locale(identifier: "en_US_POSIX")
-            formatterD.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-            let date = formatterD.date(from: unwrappedTime)
-
-            let formatter = RelativeDateTimeFormatter()
-            formatter.dateTimeStyle = .named
-            let realDate = formatter.localizedString(
-                for: date!,
-                relativeTo: Date()
-            )
-            return realDate
-        } else {
-            return "long ago"
-        }
+    static func convertDate(_ date: Date?) -> String {
+        guard let date = date else { return "long ago" }
+        let relativeDateFormatter = RelativeDateTimeFormatter()
+        relativeDateFormatter.dateTimeStyle = .named
+        let dateString = relativeDateFormatter.localizedString(
+            for: date,
+            relativeTo: Date()
+        )
+        return dateString
     }
 }

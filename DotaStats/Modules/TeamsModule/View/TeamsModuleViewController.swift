@@ -13,10 +13,6 @@ protocol TeamsModuleViewOutput: AnyObject {
 final class TeamsModuleViewController: UIViewController {
     private var output: TeamsModuleViewOutput?
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-
     private enum Constant {
         static let headerHeight: CGFloat = 40
     }
@@ -86,6 +82,11 @@ extension TeamsModuleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let countOfRows = output?.countOfRows else { return 0 }
         return min(countOfRows, 100)
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let backgroundColor = indexPath.row % 2 != 0 ? ColorPalette.mainBackground : ColorPalette.alternativeBackground
+        cell.backgroundColor = backgroundColor
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
