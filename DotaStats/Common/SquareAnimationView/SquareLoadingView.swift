@@ -96,25 +96,25 @@ final class SquareLoadingView: UIView {
     }
 
     private func makeView(_ xPos: HorizontalPosition, _ yPos: VerticalPosition) -> UIView {
-        let side = self.frame.width / 3
+        let side = frame.width / 3
         var x: CGFloat
         switch xPos {
         case .left:
-            x = self.frame.width / 6
+            x = frame.width / 6
         case .middle:
-            x = self.frame.width / 2
+            x = frame.width / 2
         case .right:
-            x = 5 * (self.frame.width / 6)
+            x = 5 * (frame.width / 6)
         }
 
         var y: CGFloat
         switch yPos {
         case .top:
-            y = self.frame.height / 6
+            y = frame.height / 6
         case .center:
-            y = self.frame.height / 2
+            y = frame.height / 2
         case .bottom:
-            y = 5 * (self.frame.height / 6)
+            y = 5 * (frame.height / 6)
         }
 
         let view = UIView(frame: CGRect(x: x, y: y, width: side, height: side))
