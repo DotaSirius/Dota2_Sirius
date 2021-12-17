@@ -244,7 +244,7 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
         cell.configurePlayer(
             newAvatarImageURL: player.avatarFull,
             newNickname: player.personaname ?? "unknown",
-            newTimeMatch: player.lastMatchTime?.debugDescription,
+            newTimeMatch: player.lastMatchTime,
             indexPath: indexPath
         )
         cell.backgroundColor = indexPath.row % 2 == 0 ? ColorPalette.mainBackground : ColorPalette.alternativeBackground
