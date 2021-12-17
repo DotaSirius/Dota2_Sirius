@@ -6,15 +6,27 @@ final class MatchPlayerCell: UITableViewCell {
     let smallInset: CGFloat = 8
     let widthConstant: CGFloat = 30
 
-    private lazy var playerImageView: UIImageView = {
-        let playerImageView = UIImageView()
-        playerImageView.contentMode = .scaleAspectFit
-        playerImageView.translatesAutoresizingMaskIntoConstraints = false
-        playerImageView.clipsToBounds = true
-        playerImageView.widthAnchor.constraint(equalToConstant: 72).isActive = true
-        playerImageView.heightAnchor.constraint(equalToConstant: 54).isActive = true
-        playerImageView.translatesAutoresizingMaskIntoConstraints = false
-        return playerImageView
+//    private lazy var playerImageView: UIImageView = {
+//        let playerImageView = UIImageView()
+//        playerImageView.contentMode = .scaleAspectFit
+//        playerImageView.translatesAutoresizingMaskIntoConstraints = false
+//        playerImageView.clipsToBounds = true
+//        playerImageView.widthAnchor.constraint(equalToConstant: 72).isActive = true
+//        playerImageView.heightAnchor.constraint(equalToConstant: 54).isActive = true
+//        playerImageView.translatesAutoresizingMaskIntoConstraints = false
+//        return playerImageView
+//    }()
+
+    private lazy var heroImageView: CachedImageView = {
+        let image = CachedImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.widthAnchor.constraint(equalToConstant: 72).isActive = true
+        image.heightAnchor.constraint(equalToConstant: 54).isActive = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
 
     private lazy var playerRankNameStack: UIStackView = {
@@ -93,7 +105,7 @@ final class MatchPlayerCell: UITableViewCell {
 
     func setup() {
         [
-            playerImageView,
+            heroImageView,
             playerRankNameStack,
             playerGoldLabel,
             playerAssitsLabel,
@@ -111,10 +123,10 @@ final class MatchPlayerCell: UITableViewCell {
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            playerImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: smallInset),
-            playerImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            heroImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: smallInset),
+            heroImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
-            playerRankNameStack.leadingAnchor.constraint(equalTo: playerImageView.trailingAnchor, constant: smallInset),
+            playerRankNameStack.leadingAnchor.constraint(equalTo: heroImageView.trailingAnchor, constant: smallInset),
             playerRankNameStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
             playerRankNameStack.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
             playerRankNameStack.trailingAnchor.constraint(
@@ -159,7 +171,7 @@ extension MatchPlayerCell: DetailedMatchInfoCellConfigurable {
             playerKillsLabel.text = data.playerKillsText
             playerAssitsLabel.text = data.playerAssitsText
             playerGoldLabel.text = data.playerGoldText
-            playerImageView.image = data.playerImage
+            heroImageView.setImage(with: data.playerImage)
         default: assertionFailure("Произошла ошибка при заполнении ячейки данными")
         }
     }

@@ -14,13 +14,15 @@ final class MatchInfoModuleBuilder {
         output: MatchInfoModuleOutput,
         networkService: MatchDetailService,
         regionsService: RegionsService,
+        heroImagesService: GithubConstantsService,
         converter: MatchInfoConverter
     ) {
         self.presenter = MatchInfoModulePresenter(
             converter: converter,
             output: output,
             networkService: networkService,
-            regionsService: regionsService
+            regionsService: regionsService,
+            heroImagesService: heroImagesService
         )
         self.viewController = MatchInfoViewController(output: presenter)
         self.presenter.view = viewController
