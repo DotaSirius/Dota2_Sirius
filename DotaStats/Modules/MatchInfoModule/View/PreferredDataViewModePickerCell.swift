@@ -5,6 +5,8 @@ final class PreferredDataViewModePickerCell: UITableViewCell {
     let inset: CGFloat = 32
     let smallInset: CGFloat = 16
 
+    var output: MatchInfoModuleViewOutput?
+
     private lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["Overview", "Graphs", "Vision"])
         segmentedControl.tintColor = ColorPalette.accent
@@ -20,11 +22,20 @@ final class PreferredDataViewModePickerCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
         setupConstraints()
+        setupOnclick()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func setupOnclick() {
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+    }
+
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        output?.pickSection(sender.selectedSegmentIndex)
     }
 
     func setup() {
@@ -45,8 +56,15 @@ final class PreferredDataViewModePickerCell: UITableViewCell {
 extension PreferredDataViewModePickerCell: DetailedMatchInfoCellConfigurable {
     func configure(with data: MatchTableViewCellData) {
         switch data.type {
-        case .preferredDataViewModePicker:
-            break
+        case .preferredDataViewModePicker(let data):
+            switch data {
+            case .overview:
+                segmentedControl.selectedSegmentIndex = 0
+            case .graph:
+                segmentedControl.selectedSegmentIndex = 1
+            case .vision:
+                segmentedControl.selectedSegmentIndex = 2
+            }
         default:
             assertionFailure("Произошла ошибка при заполнении ячейки данными")
         }

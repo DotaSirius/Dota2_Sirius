@@ -1,6 +1,6 @@
 enum MatchTableViewCellType {
     case mainMatchInfo (MainMatchInfo)
-    case preferredDataViewModePicker
+    case preferredDataViewModePicker (PickedDisplayingMode)
     case additionalMatchInfo (AdditionalMatchInfo)
     case matchPlayerInfo (PlayerList)
     case teamMatchInfo (TeamMatchInfo)
