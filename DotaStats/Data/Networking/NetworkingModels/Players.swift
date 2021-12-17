@@ -6,7 +6,7 @@ struct Players: Decodable {
     let competitiveRank: String?
     let rankTier: Int?
     let leaderboardRank: Int?
-    let mmrEstimate: Estimate
+    let mmrEstimate: Estimate?
     let profile: Profile?
 
     struct Estimate: Decodable {

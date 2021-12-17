@@ -18,25 +18,25 @@ final class TeamShortInfo {
 
     private let lastMatchTime: Date
     var recentActivity: String {
-        recentActivityDateToString(lastMatchTime)
+        Converter.convertDate(lastMatchTime)
     }
 
     let rating: Float
     var ratingColor: UIColor {
-        convertRatingToColor(rating)
+        Converter.convertRatingToColor(rating)
     }
 
-    private let winrate: Float
-    var winrateString: String {
+    private let winRate: Float
+    var winRateString: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
-        let formatingWinrate = formatter.string(from: NSNumber(value: winrate)) ?? "0"
-        return formatingWinrate + "%"
+        let formatingWinRate = formatter.string(from: NSNumber(value: winRate)) ?? "0"
+        return formatingWinRate + "%"
     }
 
-    var winrateColor: UIColor {
-        convertWinrateToColor(winrate)
+    var winRateColor: UIColor {
+        Converter.convertWinRateToColor(winRate)
     }
 
     init(from teamResult: TeamResult) {
@@ -45,41 +45,7 @@ final class TeamShortInfo {
         lastMatchTime = teamResult.lastMatchTime
         name = teamResult.name
         rating = teamResult.rating
-        winrate = Float(teamResult.wins) / Float(teamResult.losses + teamResult.wins) * 100
-    }
-
-    private func convertRatingToColor(_ rating: Float) -> UIColor {
-        switch rating {
-        case 0...300:
-            return .red
-        case 300...600:
-            return .orange
-        case 600...900:
-            return .yellow
-        case 900...1200:
-            return .green
-        case 1200...1500:
-            return .cyan
-        default:
-            return .systemIndigo
-        }
-    }
-
-    private func convertWinrateToColor(_ winrate: Float) -> UIColor {
-        switch winrate {
-        case 0...40:
-            return .red
-        case 40...48:
-            return .orange
-        case 48...53:
-            return .yellow
-        case 53...58:
-            return .green
-        case 58...63:
-            return .cyan
-        default:
-            return .systemIndigo
-        }
+        winRate = Float(teamResult.wins) / Float(teamResult.losses + teamResult.wins) * 100
     }
 
     private func recentActivityDateToString(_ date: Date) -> String {

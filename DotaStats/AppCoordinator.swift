@@ -11,10 +11,9 @@ final class AppCoordinator {
         let plotGpmModule = plotGpmModuleBuilder()
 
         let viewControllers = [
-            makeNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
-            makeNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
-            playerSearchModule.viewController,
-            plotGpmModule.viewControler
+            CustomNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
+            CustomNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
+            CustomNavigationController(rootViewController: playerSearchModule.viewController, title: "Search")
         ]
 
         let tabImageNames = [
@@ -26,20 +25,11 @@ final class AppCoordinator {
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
-
         tabBarController.configureTabs()
-        setupNavigationBarAppereance()
+        setupNavigationBarAppearance()
     }
 
-    private func makeNavigationController(rootViewController: UIViewController,
-                                          title: String) -> UINavigationController {
-        rootViewController.title = title
-        rootViewController.view?.backgroundColor = ColorPalette.mainBackground
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        return navigationController
-    }
-
-    private func setupNavigationBarAppereance() {
+    private func setupNavigationBarAppearance() {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.mainText]
         UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
         UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
@@ -85,10 +75,37 @@ extension AppCoordinator {
                 networkClient: NetworkClientImp(
                     urlSession: URLSession(configuration: .default)
                 )
-            ), converter: MatchInfoConverterImp()
+            ),
+            regionsService: RegionsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            converter: MatchInfoConverterImp()
         )
     }
 
+    private func makePlayerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
+        PlayerInfoModuleBuilder(
+            output: self,
+            playerInfoService: PlayerInfoServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            constantsService: GithubConstantsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            playerId: playerId
+        )
+    }
+
+    private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
+        let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
+        viewController?.present(playerInfoModule.viewController, animated: true)
+    }
     private func plotGpmModuleBuilder() -> PlotGmpModuleBuilder {
         PlotGmpModuleBuilder(
             output: self,
@@ -111,7 +128,7 @@ extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
         let matchInfoModule = makeMatchInfoModuleBuilder()
         matchInfoModule.input.setMatchId(matchId)
-        tabBarController.present(matchInfoModule.viewControler, animated: true)
+        tabBarController.present(matchInfoModule.viewController, animated: true)
     }
 }
 
@@ -121,7 +138,13 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     }
 }
 
-extension AppCoordinator: MatchInfoModuleOutput {}
+extension AppCoordinator: PlayerInfoModuleOutput {}
+
+extension AppCoordinator: MatchInfoModuleOutput {
+    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
+        presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
+    }
+}
 
 extension AppCoordinator: PlotGmpModuleOutput {}
 

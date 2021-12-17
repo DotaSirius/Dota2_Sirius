@@ -52,6 +52,11 @@ final class ListMatchesCell: UITableViewCell {
     func configure(with data: TournamentViewState.Match) {
         firstTeam.text = data.radiantTeam
         secondTeam.text = data.direTeam
+        if data.radiant {
+            firstTeam.text = "🏆 " + (firstTeam.text ?? "")
+        } else {
+            secondTeam.text = "🏆 " + (secondTeam.text ?? "")
+        }
         score.text = data.score
     }
 

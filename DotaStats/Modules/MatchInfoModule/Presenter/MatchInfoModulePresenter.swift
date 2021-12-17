@@ -4,126 +4,123 @@ protocol MatchInfoModuleInput: AnyObject {
     func setMatchId(_ id: Int)
 }
 
-protocol MatchInfoModuleOutput: AnyObject {}
-
-protocol MatchInfoModuleViewOutput: AnyObject {
-    func getSectionCount() -> Int
-    func getRowsCountInSection(_ section: Int) -> Int
-    func getCellData(for row: Int) -> MatchTableViewCellData
-    func getArrayOfGoldT() -> [[Int]]
-    func getArrayOfColors() -> [UIColor]
-    func getArrayOfHeroes() -> [String]
-    func getScaledGoldT(arrays: [[Int]],
-                        widthOfMinute: CGFloat,
-                        height: CGFloat,
-                        heightOfGmpView: CGFloat,
-                        maxGold: CGFloat,
-                        space: CGPoint) -> [[CGPoint]]
-    func getPointsInGoldAxis(maxGold: CGFloat) -> [Int]
-    func getScaledHorLeft(pointsInGoldAxis points: [Int],
-                          height: CGFloat,
-                          heightOfGmpView: CGFloat,
-                          maxGold: CGFloat,
-                          space: CGPoint) -> [CGPoint]
-    func getScaledHorRight(pointsInGoldAxis points: [Int],
-                           height: CGFloat,
-                           heightOfGmpView: CGFloat,
-                           maxGold: CGFloat,
-                           goldTCount: Int,
-                           space: CGPoint,
-                           widthOfMinute: CGFloat) -> [CGPoint]
-    func getScaledVerBottom(goldTCount: Int,
-                            widthOfMinute: CGFloat,
-                            heightOfGmpView: CGFloat,
-                            space: CGPoint) -> [CGPoint]
-    func getScaledVerTop(goldTCount: Int,
-                         height: CGFloat,
-                         heightOfGmpView: CGFloat,
-                         space: CGPoint,
-                         maxGold: CGFloat,
-                         widthOfMinute: CGFloat,
-                         pointsInGoldAxis points: [Int]) -> [CGPoint]
-    func getPlotLines(form arrays: [[CGPoint]],
-                      colors: [UIColor],
-                      fillColor: UIColor?) -> [CAShapeLayer]
-    func getVertGridLines(pointsVertBottom: [CGPoint],
-                          pointsVertTop: [CGPoint],
-                          fillColor: UIColor?) -> CAShapeLayer
-    func getHorGridLines(pointsHorLeft: [CGPoint],
-                         pointsHorRight: [CGPoint],
-                         fillColor: UIColor?) -> CAShapeLayer
+protocol MatchInfoModuleOutput: AnyObject {
+    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int)
 }
 
 final class MatchInfoModulePresenter {
     weak var view: MatchInfoModuleViewInput?
 
+    private var pickedDisplayingMode = PickedDisplayingMode.overview
+
     let output: MatchInfoModuleOutput
     private let converter: MatchInfoConverter
     private var convertedData: [MatchTableViewCellType] = []
-    private let networkService: MatchDetailService
     private var rawMatchInfo: MatchDetail!
     private var convertedMatchInfo: [MatchTableViewCellType]?
     private var matchId: Int
+    private let networkService: MatchDetailService
+    private let regionsService: RegionsService
+    private var regions: [String: String] = [:]
     private var gmpData: [GmpPresenterData] = []
 
     private var state: MatchesInfoModuleViewState {
         didSet {
             switch state {
             case .success:
-                self.convertedData = [
+                convertedData = [
                     MatchTableViewCellType.mainMatchInfo(
-                        converter.mainMatchInfo(from: self.rawMatchInfo)
+                            converter.mainMatchInfo(from: rawMatchInfo)
                     ),
                     MatchTableViewCellType.additionalMatchInfo(
-                        converter.additionalMatchInfo(from: self.rawMatchInfo)
+                            converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+                    ),
+                    MatchTableViewCellType.preferredDataViewModePicker(
+                            pickedDisplayingMode
                     ),
                     MatchTableViewCellType.teamMatchInfo(
-                        converter.radiantMatchInfo(from: self.rawMatchInfo)
+                            converter.radiantMatchInfo(from: rawMatchInfo)
                     ),
                     MatchTableViewCellType.matchPlayerHeaderInfo
                 ]
                 for index in 0..<5 {
-                    self.convertedData.append(
+                    convertedData.append(
                         MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index)
+                            converter.playerInfo(
+                                from: rawMatchInfo,
+                                playerNumber: index,
+                                ranks: ConstanceStorage.instance.ranks
+                            )
                         )
                     )
                 }
-                self.convertedData.append(
-                    MatchTableViewCellType.teamMatchInfo(
-                        converter.direMatchInfo(from: self.rawMatchInfo)
-                    )
+                convertedData.append(
+                        MatchTableViewCellType.teamMatchInfo(
+                                converter.direMatchInfo(from: rawMatchInfo)
+                        )
                 )
                 for index in 5..<10 {
-                    self.convertedData.append(
+                    convertedData.append(
                         MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index)
+                            converter.playerInfo(
+                                from: rawMatchInfo,
+                                playerNumber: index,
+                                ranks: ConstanceStorage.instance.ranks
+                            )
                         )
                     )
                 }
+                convertedData.append(
+                        MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
                 view?.update(state: .success)
             case .error:
                 view?.update(state: .error)
             case .loading:
                 view?.update(state: .loading)
+            case .update:
+                view?.update(state: .update)
             }
         }
     }
 
-    required init(converter: MatchInfoConverter, output: MatchInfoModuleOutput, networkService: MatchDetailService) {
+    required init(
+            converter: MatchInfoConverter,
+            output: MatchInfoModuleOutput,
+            networkService: MatchDetailService,
+            regionsService: RegionsService
+    ) {
         self.converter = converter
         self.output = output
         self.networkService = networkService
-        self.state = .loading
-        self.matchId = 1
+        self.regionsService = regionsService
+        state = .loading
+        matchId = 1
     }
 
     private func requestData() {
         state = .loading
+
+        if let regionsData = ConstanceStorage.instance.regionsData {
+            regions = regionsData
+        } else {
+            regionsService.requestRegionsDetails { [weak self] result in
+                guard
+                        let self = self
+                        else {
+                    return
+                }
+                switch result {
+                case .success(let regions):
+                    self.regions = regions
+                case .failure: break
+                }
+            }
+        }
+
         networkService.requestMatchDetail(id: matchId) { [weak self] result in
             guard
-                let self = self
-            else {
+                    let self = self
+                    else {
                 return
             }
             switch result {
@@ -135,6 +132,105 @@ final class MatchInfoModulePresenter {
                 self.state = .error
             }
         }
+    }
+
+    private func showOverviewData() {
+        clearDisplayingData()
+
+        pickedDisplayingMode = PickedDisplayingMode.overview
+
+        convertedData = [
+            MatchTableViewCellType.mainMatchInfo(
+                    converter.mainMatchInfo(from: rawMatchInfo)
+            ),
+            MatchTableViewCellType.additionalMatchInfo(
+                    converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+            ),
+            MatchTableViewCellType.preferredDataViewModePicker(
+                    pickedDisplayingMode
+            ),
+            MatchTableViewCellType.teamMatchInfo(
+                    converter.radiantMatchInfo(from: rawMatchInfo)
+            ),
+            MatchTableViewCellType.matchPlayerHeaderInfo
+        ]
+        for index in 0..<5 {
+            convertedData.append(
+                    MatchTableViewCellType.matchPlayerInfo(
+                            converter.playerInfo(
+                                    from: rawMatchInfo,
+                                    playerNumber: index,
+                                    ranks: ConstanceStorage.instance.ranks)
+                    )
+            )
+        }
+        convertedData.append(
+                MatchTableViewCellType.teamMatchInfo(
+                        converter.direMatchInfo(from: rawMatchInfo)
+                )
+        )
+        for index in 5..<10 {
+            convertedData.append(
+                    MatchTableViewCellType.matchPlayerInfo(
+                            converter.playerInfo(
+                                    from: rawMatchInfo,
+                                    playerNumber: index,
+                                    ranks: ConstanceStorage.instance.ranks)
+                    )
+            )
+        }
+        convertedData.append(
+                MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
+        view?.update(state: .update)
+    }
+
+    private func showGraphsData() {
+        clearDisplayingData()
+
+        pickedDisplayingMode = PickedDisplayingMode.graph
+
+        convertedData = [
+            MatchTableViewCellType.mainMatchInfo(
+                    converter.mainMatchInfo(from: rawMatchInfo)
+            ),
+            MatchTableViewCellType.additionalMatchInfo(
+                    converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+            ),
+            MatchTableViewCellType.preferredDataViewModePicker(
+                    pickedDisplayingMode
+            )
+        ]
+
+        view?.update(state: .update)
+    }
+
+    private func showVisionData() {
+        clearDisplayingData()
+
+        pickedDisplayingMode = PickedDisplayingMode.vision
+
+        convertedData = [
+            MatchTableViewCellType.mainMatchInfo(
+                    converter.mainMatchInfo(from: rawMatchInfo)
+            ),
+            MatchTableViewCellType.additionalMatchInfo(
+                    converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+            ),
+            MatchTableViewCellType.preferredDataViewModePicker(
+                    pickedDisplayingMode
+            )
+        ]
+
+        convertedData.append(
+                MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
+
+        view?.update(state: .update)
+    }
+
+    private func clearDisplayingData() {
+        convertedData.removeAll()
+
+        view?.update(state: .update)
     }
 }
 
@@ -150,16 +246,38 @@ extension MatchInfoModulePresenter: MatchInfoModuleInput {
 // MARK: - MatchInfoModuleViewOutput
 
 extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
+    func matchTapped(indexPath: IndexPath) {
+        switch convertedData[indexPath.row] {
+        case .matchPlayerInfo(let player):
+            output.matchInfoModule(self, didSelectPlayer: player.playerId)
+        default:
+            break
+        }
+    }
+
     func getSectionCount() -> Int {
-        return 1
+        1
     }
 
     func getRowsCountInSection(_ section: Int) -> Int {
-        return convertedData.count
+        convertedData.count
     }
 
     func getCellData(for row: Int) -> MatchTableViewCellData {
-        return MatchTableViewCellData(type: convertedData[row])
+        MatchTableViewCellData(type: convertedData[row])
+    }
+
+    func pickSection(_ pickedSection: Int) {
+        switch pickedSection {
+        case 0:
+            showOverviewData()
+        case 1:
+            showGraphsData()
+        case 2:
+            showVisionData()
+        default:
+            showOverviewData()
+        }
     }
 
     func getScaledGoldT(arrays: [[Int]],

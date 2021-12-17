@@ -39,10 +39,10 @@ final class TeamsModulePresenter {
             switch result {
             case .success(let teamResult):
                 let filteredTeams = teamResult.filter { team in
-                    return team.lastMatchTime.distance(to: Date()) < Constant.yearsSeconds
-                    && !team.name.isEmpty
-                    && team.logoUrl != nil
-                    && !team.tag.isEmpty
+                    team.lastMatchTime.distance(to: Date()) < Constant.yearsSeconds
+                            && !team.name.isEmpty
+                            && team.logoUrl != nil
+                            && !team.tag.isEmpty
                 }
                 self.teams = filteredTeams.map { TeamShortInfo(from: $0) }
                 self.view?.updateState(.success)

@@ -138,6 +138,5 @@ final class MatchInfoDecodingTest: XCTestCase {
         XCTAssertEqual(decodedData.players[0].actionsPerMin, nil)
         XCTAssertEqual(decodedData.players[0].lifeStateDead, nil)
         XCTAssertEqual(decodedData.players[0].rankTier, nil)
-//        XCTAssertEqual(decodedData.players[0].cosmetics, [])
     }
 }

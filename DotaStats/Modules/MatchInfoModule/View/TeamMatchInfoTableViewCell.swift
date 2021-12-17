@@ -3,13 +3,12 @@ import UIKit
 final class TeamMatchInfoTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "TeamMatchInfoTableViewCell"
-    let topInset: CGFloat = 32
     let smallInset: CGFloat = 8
 
     private lazy var teamNameLabel: UILabel = {
         let teamNameLabel = UILabel()
         teamNameLabel.textColor = ColorPalette.mainText
-        teamNameLabel.font = UIFont.systemFont(ofSize: 20)
+        teamNameLabel.font = UIFont.systemFont(ofSize: 15)
         teamNameLabel.numberOfLines = 2
         teamNameLabel.textAlignment = .center
         teamNameLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
@@ -20,7 +19,7 @@ final class TeamMatchInfoTableViewCell: UITableViewCell {
     private lazy var teamWinLabel: UILabel = {
         let teamWinLabel = UILabel()
         teamWinLabel.textColor = ColorPalette.win
-        teamWinLabel.font = UIFont.systemFont(ofSize: 20)
+        teamWinLabel.font = UIFont.systemFont(ofSize: 15)
         return teamWinLabel
     }()
 
@@ -58,7 +57,10 @@ final class TeamMatchInfoTableViewCell: UITableViewCell {
     }
 
      func setupConstraints() {
-         teamNameWinStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: topInset).isActive = true
+         teamNameWinStack.topAnchor.constraint(
+                 equalTo: contentView.topAnchor,
+                 constant: smallInset
+         ).isActive = true
          teamNameWinStack.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor,
             constant: smallInset
