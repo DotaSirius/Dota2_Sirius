@@ -8,16 +8,19 @@ final class AppCoordinator {
         let playersModule = playersBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
+        let plotModule = plotGmpBuilder()
         
         let viewControllers = [
             playersModule.viewController,
             matchesModule.viewController,
-            playerSearchModule.viewControler
+            playerSearchModule.viewControler,
+            plotModule.viewControler
         ]
         
         let tabImageNames = [
             NSLocalizedString("players", comment: ""),
             NSLocalizedString("matches", comment: ""),
+            NSLocalizedString("players", comment: ""),
             NSLocalizedString("players", comment: "")
         ]
         
@@ -58,6 +61,14 @@ extension AppCoordinator {
             imageNetworkService: StubImageNetworkService()
         )
     }
+    
+    private func plotGmpBuilder() -> PlotGmpModuleBuilder {
+        PlotGmpModuleBuilder(
+            output: self,
+            plotService: MatchDetailImp(
+                networkClient: NetworkClientImp(urlSession: URLSession(configuration: .default)))
+        )
+    }
 }
 
 extension AppCoordinator: PlayersModuleOutput {
@@ -77,6 +88,9 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch) {
         // TODO: show player profile info
     }
+}
+
+extension AppCoordinator: PlotGmpModuleOutput {
 }
 
 final class StubImageNetworkService: ImageNetworkService {

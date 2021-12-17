@@ -1,8 +1,8 @@
 import XCTest
 
 final class PlayerSearchServiceReceivingDataTest: XCTestCase {
-    private func receiveData() -> [Search]? {
-        var receivedResult: [Search]?
+    private func receiveData() -> [SearchPlayerResult]? {
+        var receivedResult: [SearchPlayerResult]?
 
         let expectations = expectation(description: "\(#function)\(#line)")
 
@@ -12,7 +12,7 @@ final class PlayerSearchServiceReceivingDataTest: XCTestCase {
 
         let playerSearchService = PlayerSearchServiceImp(networkClient: networkClient)
 
-        playerSearchService.playersByName("Test") { (result: Result<[Search], HTTPError>) in
+        playerSearchService.playersByName("Test") { (result: Result<[SearchPlayerResult], HTTPError>) in
             switch result {
             case .success(let searchResults):
                 expectations.fulfill()

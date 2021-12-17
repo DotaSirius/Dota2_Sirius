@@ -222,3 +222,4 @@ struct MatchDetail: Decodable {
         let key: Int
     }
 }
+

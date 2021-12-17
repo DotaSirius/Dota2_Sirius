@@ -1,8 +1,9 @@
 import XCTest
+@testable import DotaStats
 
-final class MatchDetailServiceReceivingDataTest: XCTestCase {
-    private func receiveData() -> MatchDetail? {
-        var receivedResult: MatchDetail?
+final class HeroesServiceReceivingDataTest: XCTestCase {
+    private func receiveData() -> [Hero]? {
+        var receivedResult: [Hero]?
 
         let expectations = expectation(description: "\(#function)\(#line)")
 
@@ -10,14 +11,14 @@ final class MatchDetailServiceReceivingDataTest: XCTestCase {
 
         let networkClient = NetworkClientImp(urlSession: urlSession)
 
-        let matchDetailService = MatchDetailImp(networkClient: networkClient)
+        let heroService = HeroesServiceImp(networkClient: networkClient)
 
-        matchDetailService.requestMatchDetail(id: 6323862456) { result in
+        heroService.requestHeroes { result in
             switch result {
-            case .success(let matchDetail):
+            case .success(let heroes):
                 expectations.fulfill()
 
-                receivedResult = matchDetail
+                receivedResult = heroes
             case .failure:
                 XCTFail("Missing response")
             }

@@ -19,7 +19,6 @@
 		303AC4D82764EFBA00A8C462 /* MatchDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA852BF972642EE930F2680C /* MatchDetail.swift */; };
 		303AC4D92764EFBC00A8C462 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85264F7CF441C52C30E6D7 /* Players.swift */; };
 		303AC4DB2767418A00A8C462 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85276324310C6574CACFC6 /* Match.swift */; };
-		303AC4DD27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4DC27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift */; };
 		303AC4E22767873E00A8C462 /* PlayerSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E12767873E00A8C462 /* PlayerSearchService.swift */; };
 		303AC4E32767873E00A8C462 /* PlayerSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E12767873E00A8C462 /* PlayerSearchService.swift */; };
 		303AC4E52767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */; };
@@ -30,6 +29,18 @@
 		3C1B5AD4276A1108002DDF31 /* PlotGmpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B5AD3276A1108002DDF31 /* PlotGmpBuilder.swift */; };
 		3C1B5AD6276A11F0002DDF31 /* PlotGmpViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B5AD5276A11F0002DDF31 /* PlotGmpViewState.swift */; };
 		3C1B5AD8276A1694002DDF31 /* PlotGmpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B5AD7276A1694002DDF31 /* PlotGmpPresenter.swift */; };
+		3CCCB64D276B84C900A0B63F /* PlotGmpModulePresentorViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCB64C276B84C900A0B63F /* PlotGmpModulePresentorViewState.swift */; };
+		3CCCB64F276B8B4F00A0B63F /* PlayerGmp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCB64E276B8B4F00A0B63F /* PlayerGmp.swift */; };
+		3CCCB651276BB46100A0B63F /* Heroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCB650276BB46100A0B63F /* Heroes.swift */; };
+		3CCCB653276BB4D100A0B63F /* HeroesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCB652276BB4D100A0B63F /* HeroesService.swift */; };
+		3CCCB655276BB56F00A0B63F /* HeroesRecievingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCB654276BB56F00A0B63F /* HeroesRecievingDataTest.swift */; };
+		3CCCB656276BB64C00A0B63F /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49062768C37200103100 /* SearchPlayerResult.swift */; };
+		3CCCB657276BB66500A0B63F /* Heroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCB650276BB46100A0B63F /* Heroes.swift */; };
+		3CCCB658276BB66C00A0B63F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E6FA82764C85E0085B61D /* NetworkService.swift */; };
+		3CCCB659276BB67800A0B63F /* HeroesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCB652276BB4D100A0B63F /* HeroesService.swift */; };
+		3CCCB65B276BB6C000A0B63F /* NetworkServiceReceivingDataByPassingQueriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4DC27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift */; };
+		3CCCB65E276BB71000A0B63F /* MockHeroes.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CCCB65D276BB71000A0B63F /* MockHeroes.json */; };
+		3CCCB660276BB80000A0B63F /* PlotGmpConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCB65F276BB80000A0B63F /* PlotGmpConstants.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchDetailDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatchDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */; };
@@ -116,6 +127,13 @@
 		3C1B5AD3276A1108002DDF31 /* PlotGmpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpBuilder.swift; sourceTree = "<group>"; };
 		3C1B5AD5276A11F0002DDF31 /* PlotGmpViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpViewState.swift; sourceTree = "<group>"; };
 		3C1B5AD7276A1694002DDF31 /* PlotGmpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpPresenter.swift; sourceTree = "<group>"; };
+		3CCCB64C276B84C900A0B63F /* PlotGmpModulePresentorViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpModulePresentorViewState.swift; sourceTree = "<group>"; };
+		3CCCB64E276B8B4F00A0B63F /* PlayerGmp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerGmp.swift; sourceTree = "<group>"; };
+		3CCCB650276BB46100A0B63F /* Heroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heroes.swift; sourceTree = "<group>"; };
+		3CCCB652276BB4D100A0B63F /* HeroesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesService.swift; sourceTree = "<group>"; };
+		3CCCB654276BB56F00A0B63F /* HeroesRecievingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesRecievingDataTest.swift; sourceTree = "<group>"; };
+		3CCCB65D276BB71000A0B63F /* MockHeroes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockHeroes.json; sourceTree = "<group>"; };
+		3CCCB65F276BB80000A0B63F /* PlotGmpConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGmpConstants.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatchDetail.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
@@ -258,6 +276,7 @@
 				303AC4D1276371A600A8C462 /* MockMatches.json */,
 				3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */,
 				3CF8F5232763C72600AC0DD4 /* MockPlayer.json */,
+				3CCCB65D276BB71000A0B63F /* MockHeroes.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -283,6 +302,9 @@
 			isa = PBXGroup;
 			children = (
 				3C1B5AD5276A11F0002DDF31 /* PlotGmpViewState.swift */,
+				3CCCB64C276B84C900A0B63F /* PlotGmpModulePresentorViewState.swift */,
+				3CCCB64E276B8B4F00A0B63F /* PlayerGmp.swift */,
+				3CCCB65F276BB80000A0B63F /* PlotGmpConstants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +388,7 @@
 				EA852BF972642EE930F2680C /* MatchDetail.swift */,
 				EA85264F7CF441C52C30E6D7 /* Players.swift */,
 				EA85276324310C6574CACFC6 /* Match.swift */,
+				3CCCB650276BB46100A0B63F /* Heroes.swift */,
 			);
 			path = NetworkingModels;
 			sourceTree = "<group>";
@@ -480,6 +503,7 @@
 				ECAA0D042764ED8B00DF81ED /* MatchesService.swift */,
 				303AC4E12767873E00A8C462 /* PlayerSearchService.swift */,
 				EC1415F3276749A200715D00 /* MatchDetailService.swift */,
+				3CCCB652276BB4D100A0B63F /* HeroesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -498,6 +522,7 @@
 				ECAA0D082764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift */,
 				303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */,
 				EC1415F627674C2000715D00 /* MatchDetailServiceReceivingDataTest.swift */,
+				3CCCB654276BB56F00A0B63F /* HeroesRecievingDataTest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -617,6 +642,7 @@
 				303AC4D2276371A600A8C462 /* MockMatches.json in Resources */,
 				3CF8F5262763C87C00AC0DD4 /* MockMatchDetail.json in Resources */,
 				3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */,
+				3CCCB65E276BB71000A0B63F /* MockHeroes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,15 +674,20 @@
 				3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */,
 				ECAA0D062764ED8B00DF81ED /* MatchesService.swift in Sources */,
 				303AC4E32767873E00A8C462 /* PlayerSearchService.swift in Sources */,
+				3CCCB656276BB64C00A0B63F /* SearchPlayerResult.swift in Sources */,
+				3CCCB658276BB66C00A0B63F /* NetworkService.swift in Sources */,
 				303AC4D0276370F400A8C462 /* MatchesDecodingTest.swift in Sources */,
+				3CCCB65B276BB6C000A0B63F /* NetworkServiceReceivingDataByPassingQueriesTest.swift in Sources */,
 				303AC4E52767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift in Sources */,
 				EC1415E6276728E200715D00 /* NetworkClient.swift in Sources */,
+				3CCCB659276BB67800A0B63F /* HeroesService.swift in Sources */,
 				EC1415E8276728F200715D00 /* HTTPMethod.swift in Sources */,
 				EC1415E7276728EA00715D00 /* HTTPRequest.swift in Sources */,
 				EC4E6FAC2764CCE10085B61D /* NetworkClientImp.swift in Sources */,
+				3CCCB657276BB66500A0B63F /* Heroes.swift in Sources */,
 				EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */,
 				300FCA132762618000A7A0EF /* NetworkClientReceivingDataTest.swift in Sources */,
-				303AC4DD27674C4000A8C462 /* NetworkServiceReceivingDataByPassingQueriesTest.swift in Sources */,
+				3CCCB655276BB56F00A0B63F /* HeroesRecievingDataTest.swift in Sources */,
 				EC1415EA2767290800715D00 /* HTTPNetworkResponse.swift in Sources */,
 				303AC4DB2767418A00A8C462 /* Match.swift in Sources */,
 			);
@@ -682,6 +713,7 @@
 				300FC9F42762237900A7A0EF /* NetworkClient.swift in Sources */,
 				5D25187D2769029E0005374B /* AppCoordinator.swift in Sources */,
 				5D25186F2768BEA70005374B /* MatchesModuleViewState.swift in Sources */,
+				3CCCB64F276B8B4F00A0B63F /* PlayerGmp.swift in Sources */,
 				3C1B5AD2276A0DBC002DDF31 /* PlotGmpView.swift in Sources */,
 				EC4E6FA32764C8550085B61D /* Player.swift in Sources */,
 				300FC9F82762304300A7A0EF /* HTTPMethod.swift in Sources */,
@@ -690,6 +722,7 @@
 				300FCA0127623F0A00A7A0EF /* HTTPNetworkResponse.swift in Sources */,
 				5D2518662768BE8F0005374B /* ListTournamentsCell.swift in Sources */,
 				5D25186D2768BEA70005374B /* MatchesModulePresenterState.swift in Sources */,
+				3CCCB660276BB80000A0B63F /* PlotGmpConstants.swift in Sources */,
 				EC4E6FA92764C85E0085B61D /* NetworkService.swift in Sources */,
 				300FC9FA2762334900A7A0EF /* HTTPError.swift in Sources */,
 				EC4E6FA22764C8550085B61D /* PlayersModuleBuilder.swift in Sources */,
@@ -703,6 +736,7 @@
 				303AC4E22767873E00A8C462 /* PlayerSearchService.swift in Sources */,
 				5D25186E2768BEA70005374B /* MatchCollectionPresenterData.swift in Sources */,
 				ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */,
+				3CCCB653276BB4D100A0B63F /* HeroesService.swift in Sources */,
 				EC4E6FA52764C8550085B61D /* PlayerInfo.swift in Sources */,
 				6035383F2767459500CC32AD /* ErrorView.swift in Sources */,
 				5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */,
@@ -710,7 +744,9 @@
 				EC4E6FA12764C8550085B61D /* PlayersModulePresenter.swift in Sources */,
 				837AED9E27690ADB0009589E /* SearchPlayerModulePresenterState.swift in Sources */,
 				F01B49072768C37200103100 /* SearchPlayerResult.swift in Sources */,
+				3CCCB651276BB46100A0B63F /* Heroes.swift in Sources */,
 				303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */,
+				3CCCB64D276B84C900A0B63F /* PlotGmpModulePresentorViewState.swift in Sources */,
 				EA8525C10313780ABFC01843 /* Match.swift in Sources */,
 				837AED9F27690C530009589E /* SearchPlayerModuleBuilder.swift in Sources */,
 				EC4E6F8D2764C8250085B61D /* ColorPalette.swift in Sources */,
