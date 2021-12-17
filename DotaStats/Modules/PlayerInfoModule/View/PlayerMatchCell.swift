@@ -2,7 +2,7 @@ import UIKit
 
 final class PlayerMatchCell: UITableViewCell {
     static let reuseIdentifier = "PlayerMatchCell"
-    
+
     private enum Constant {
         static let spacing: CGFloat = 10
         static let heroImageWidth: CGFloat = 60
