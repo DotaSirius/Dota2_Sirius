@@ -4,12 +4,8 @@ protocol MatchInfoModuleInput: AnyObject {
     func setMatchId(_ id: Int)
 }
 
-protocol MatchInfoModuleOutput: AnyObject {}
-
-protocol MatchInfoModuleViewOutput: AnyObject {
-    func getSectionCount() -> Int
-    func getRowsCountInSection(_ section: Int) -> Int
-    func getCellData(for row: Int) -> MatchTableViewCellData
+protocol MatchInfoModuleOutput: AnyObject {
+    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int)
 }
 
 final class MatchInfoModulePresenter {
@@ -133,6 +129,15 @@ extension MatchInfoModulePresenter: MatchInfoModuleInput {
 // MARK: - MatchInfoModuleViewOutput
 
 extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
+    func matchTapped(indexPath: IndexPath) {
+        switch convertedData[indexPath.row] {
+        case .matchPlayerInfo(let player):
+            output.matchInfoModule(self, didSelectPlayer: player.playerId)
+        default:
+            break
+        }
+    }
+
     func getSectionCount() -> Int {
         return 1
     }

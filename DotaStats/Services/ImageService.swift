@@ -15,7 +15,11 @@ final class ImageServiceImp: ImageService {
     @discardableResult
     func fetchImage(with url: String, completion: @escaping (Result<UIImage, HTTPError>) -> Void) -> Cancellable? {
         guard let requestUrl = URL(string: url) else {
-            completion(.failure(HTTPError.missingURL))
+            if let image = UIImage(named: url) {
+                completion(.success(image))
+            } else {
+                completion(.failure(HTTPError.missingURL))
+            }
             return nil
         }
 

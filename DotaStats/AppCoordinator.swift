@@ -23,7 +23,6 @@ final class AppCoordinator {
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
-
         tabBarController.configureTabs()
         setupNavigationBarAppereance()
     }
@@ -91,6 +90,23 @@ extension AppCoordinator {
             converter: MatchInfoConverterImp()
         )
     }
+
+    private func makePlayerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
+        PlayerInfoModuleBuilder(
+            output: self,
+            playerInfoService: PlayerInfoServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            playerId: playerId
+        )
+    }
+
+    private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
+        let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
+        viewController?.present(playerInfoModule.viewController, animated: true)
+    }
 }
 
 extension AppCoordinator: TeamsModuleOutput {
@@ -113,7 +129,13 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     }
 }
 
-extension AppCoordinator: MatchInfoModuleOutput {}
+extension AppCoordinator: PlayerInfoModuleOutput {}
+
+extension AppCoordinator: MatchInfoModuleOutput {
+    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
+        presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
+    }
+}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
