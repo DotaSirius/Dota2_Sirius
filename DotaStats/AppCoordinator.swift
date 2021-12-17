@@ -66,7 +66,13 @@ extension AppCoordinator {
                 networkClient: NetworkClientImp(
                     urlSession: URLSession(configuration: .default)
                 )
-            ), converter: MatchInfoConverterImp()
+            ),
+            regionsService: RegionsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            converter: MatchInfoConverterImp()
         )
     }
 }

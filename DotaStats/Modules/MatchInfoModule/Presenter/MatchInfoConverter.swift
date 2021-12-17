@@ -3,7 +3,7 @@ import UIKit
 
 protocol MatchInfoConverter: AnyObject {
     func mainMatchInfo(from rawMatchInfo: MatchDetail) -> MainMatchInfo
-    func additionalMatchInfo(from rawMatchInfo: MatchDetail) -> AdditionalMatchInfo
+    func additionalMatchInfo(from rawMatchInfo: MatchDetail, regions: [String: String]) -> AdditionalMatchInfo
     func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int) -> PlayerList
     func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
@@ -98,57 +98,15 @@ class MatchInfoConverterImp {
 
     // MARK: - AdditionalMatchInfo converters
 
-    // TODO: - Check correctness of cases. I got them from
-    // https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/game/dota/pak01_dir/scripts/regions.txt
-
-    // swiftlint:disable cyclomatic_complexity
-    private func convert(region: Int?) -> String {
+    private func convert(region: Int?, regions: [String: String]) -> String {
         guard
-            let region = region
+            let region = region,
+            let regionString = regions[String(region)]
         else {
-            return "-"
-        }
-        var regionString = ""
-        switch region {
-        case 0:
-            regionString = "unspecified"
-        case 1:
-            regionString = "US West"
-        case 2:
-            regionString = "US East"
-        case 3:
-            regionString = "Europe"
-        case 5:
-            regionString = "Singapore"
-        case 6:
-            regionString = "Dubai"
-        case 7:
-            regionString = "Australia"
-        case 8:
-            regionString = "Stockholm"
-        case 9:
-            regionString = "Austria"
-        case 10:
-            regionString = "Brazil"
-        case 11:
-            regionString = "South Africa"
-        case 14:
-            regionString = "Chile"
-        case 15:
-            regionString = "Peru"
-        case 16:
-            regionString = "India"
-        case 19:
-            regionString = "Japan"
-        case 37:
-            regionString = "Taiwan"
-        default:
-            regionString = "Other"
+            return "Unspesified"
         }
         return regionString
     }
-
-    // swiftlint:enable cyclomatic_complexity
 
     private func convert(skillBracket: Int?) -> String {
         guard
@@ -176,9 +134,9 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         )
     }
 
-    func additionalMatchInfo(from rawMatchInfo: MatchDetail) -> AdditionalMatchInfo {
+    func additionalMatchInfo(from rawMatchInfo: MatchDetail, regions: [String: String]) -> AdditionalMatchInfo {
         let matchIdLabelText = "\(rawMatchInfo.matchId)"
-        let regionLabelText = convert(region: rawMatchInfo.region)
+        let regionLabelText = convert(region: rawMatchInfo.region, regions: regions)
         let skillLabelText = convert(skillBracket: rawMatchInfo.skill)
         return AdditionalMatchInfo(
             matchIdLabelText: matchIdLabelText,

@@ -12,7 +12,7 @@ final class MatchDetailServiceReceivingDataTest: XCTestCase {
 
         let matchDetailService = MatchDetailImp(networkClient: networkClient)
 
-        matchDetailService.requestMatchDetail(id: 1) { result in
+        matchDetailService.requestMatchDetail(id: 6323862456) { result in
             switch result {
             case .success(let matchDetail):
                 expectations.fulfill()
