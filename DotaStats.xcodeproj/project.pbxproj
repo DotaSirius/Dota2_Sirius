@@ -119,6 +119,7 @@
 		ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA0D042764ED8B00DF81ED /* MatchesService.swift */; };
 		ECAA0D062764ED8B00DF81ED /* MatchesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA0D042764ED8B00DF81ED /* MatchesService.swift */; };
 		ECAA0D0A2764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA0D082764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift */; };
+		F0153D8D276D206A00D26E12 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0153D8C276D206900D26E12 /* Extensions.swift */; };
 		F01B49072768C37200103100 /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49062768C37200103100 /* SearchPlayerResult.swift */; };
 		F01B49092768C3A700103100 /* ImageNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49082768C3A700103100 /* ImageNetworkService.swift */; };
 		F01B49102769390800103100 /* TeamsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B490F2769390800103100 /* TeamsCell.swift */; };
@@ -247,6 +248,7 @@
 		EC4E6FAA2764CCE10085B61D /* NetworkClientImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientImp.swift; sourceTree = "<group>"; };
 		ECAA0D042764ED8B00DF81ED /* MatchesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesService.swift; sourceTree = "<group>"; };
 		ECAA0D082764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesServiceReceivingDataTest.swift; sourceTree = "<group>"; };
+		F0153D8C276D206900D26E12 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F01B49062768C37200103100 /* SearchPlayerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlayerResult.swift; sourceTree = "<group>"; };
 		F01B49082768C3A700103100 /* ImageNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageNetworkService.swift; sourceTree = "<group>"; };
 		F01B490F2769390800103100 /* TeamsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsCell.swift; sourceTree = "<group>"; };
@@ -396,13 +398,6 @@
 				5D2518682768BE980005374B /* MatchesModulePresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		5D9C6B85276CBED600BAAEA6 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		5D9C6BD5276CC84400BAAEA6 /* View */ = {
@@ -558,6 +553,7 @@
 				F09C5B77276CDA4100413011 /* CustomNavigationController.swift */,
 				F09C5B72276C81D400413011 /* SquareAnimationView */,
 				EC1415FA2767793F00715D00 /* CachedImageView */,
+				F0153D8C276D206900D26E12 /* Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -947,6 +943,7 @@
 				5D9C6BD0276CC83900BAAEA6 /* RecentMatchesHeader.swift in Sources */,
 				CEFEF6AC276A2B7B00CAE93B /* DetailedMatchInfoCellConfigurable.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
+				F0153D8D276D206A00D26E12 /* Extensions.swift in Sources */,
 				5D9C6BC2276CC82700BAAEA6 /* PlayerInfoModuleViewState.swift in Sources */,
 				EC1415FC2767797400715D00 /* CachedImageView.swift in Sources */,
 				EA852117FB5669A545C9F8B4 /* MatchDetail.swift in Sources */,

@@ -93,7 +93,7 @@ final class RecentMatchesHeader: UITableViewCell {
 
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
-            hero.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+            hero.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             hero.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             hero.heightAnchor.constraint(equalToConstant: 30),
             hero.widthAnchor.constraint(equalToConstant: 50),
@@ -116,7 +116,7 @@ final class RecentMatchesHeader: UITableViewCell {
             death.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             death.widthAnchor.constraint(equalToConstant: 30),
 
-            assistant.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+            assistant.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             assistant.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             assistant.widthAnchor.constraint(equalToConstant: 30)
         ])

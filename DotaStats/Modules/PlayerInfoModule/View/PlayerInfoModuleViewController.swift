@@ -140,7 +140,7 @@ extension PlayerInfoModuleViewController: PlayerInfoModuleViewInput {
             hideError()
             loadingView.stopAnimation()
             tableView.isHidden = false
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
     }
 }
