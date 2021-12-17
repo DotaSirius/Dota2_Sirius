@@ -6,15 +6,18 @@ final class MatchDetailToEventsConverter {
     static func convert(_ details: MatchDetail) -> ConvertedEventsDictionary {
         var convertedEventsDictionary: ConvertedEventsDictionary = [:]
 
-        convertedEventsDictionary = convertedEventsDictionary.merging(convertMatchObjectivesDetails(details)) { current, new in
+        let objectives = convertMatchObjectivesDetails(details)
+        convertedEventsDictionary = convertedEventsDictionary.merging(objectives) { current, new in
             current + new
         }
 
-        convertedEventsDictionary = convertedEventsDictionary.merging(convertMatchTeamFightsDetails(details)) { current, new in
+        let fights = convertMatchTeamFightsDetails(details)
+        convertedEventsDictionary = convertedEventsDictionary.merging(fights) { current, new in
             current + new
         }
 
-        convertedEventsDictionary = convertedEventsDictionary.merging(convertMatchWardsDetails(details)) { current, new in
+        let wards = convertMatchWardsDetails(details)
+        convertedEventsDictionary = convertedEventsDictionary.merging(wards) { current, new in
             current + new
         }
 
