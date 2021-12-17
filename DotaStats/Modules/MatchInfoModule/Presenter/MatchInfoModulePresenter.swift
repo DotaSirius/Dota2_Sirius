@@ -44,7 +44,7 @@ final class MatchInfoModulePresenter {
                 for index in 0..<5 {
                     self.convertedData.append(
                         MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index)
+                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index, ranks: ConstanceStorage.instance.ranks)
                         )
                     )
                 }
@@ -56,7 +56,7 @@ final class MatchInfoModulePresenter {
                 for index in 5..<10 {
                     self.convertedData.append(
                         MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index)
+                            converter.playerInfo(from: self.rawMatchInfo, playerNumber: index, ranks: ConstanceStorage.instance.ranks)
                         )
                     )
                 }
@@ -98,7 +98,6 @@ final class MatchInfoModulePresenter {
                 switch result {
                 case .success(let regions):
                     self.regions = regions
-                    print(regions)
                 case .failure: break
                 }
             }
