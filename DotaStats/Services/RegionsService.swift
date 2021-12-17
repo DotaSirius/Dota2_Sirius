@@ -2,7 +2,7 @@ import Foundation
 
 protocol RegionsService: AnyObject {
     @discardableResult
-    func requestRegionsDetails(id: Int, completion: @escaping (Result<[String: String], HTTPError>) -> Void) -> Cancellable?
+    func requestRegionsDetails(completion: @escaping (Result<[String: String], HTTPError>) -> Void) -> Cancellable?
 }
 
 final class RegionsServiceImp: RegionsService {
@@ -12,7 +12,7 @@ final class RegionsServiceImp: RegionsService {
         self.networkClient = networkClient
     }
 
-    func requestRegionsDetails(id: Int, completion: @escaping (Result<[String: String], HTTPError>) -> Void) -> Cancellable? {
+    func requestRegionsDetails(completion: @escaping (Result<[String: String], HTTPError>) -> Void) -> Cancellable? {
         networkClient.processRequest(
             request: createRequest(),
             completion: completion
