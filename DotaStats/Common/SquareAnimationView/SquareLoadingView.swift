@@ -74,6 +74,7 @@ final class SquareLoadingView: UIView {
             self.layer.opacity = 0
         } completion: { _ in
             self.layer.removeAllAnimations()
+            self.removeFromSuperview()
         }
     }
 

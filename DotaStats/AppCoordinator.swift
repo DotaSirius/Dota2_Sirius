@@ -5,12 +5,13 @@ final class AppCoordinator {
     let tabBarController: MainTabBarController = .init()
 
     init() {
-        let playersModule = playersBuilder()
+        let teamsModule = teamsModuleBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
+
         let viewControllers = [
-            playersModule.viewController,
-            matchesModule.viewController,
+            makeNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
+            makeNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
             playerSearchModule.viewController
         ]
 
@@ -22,17 +23,31 @@ final class AppCoordinator {
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
-
         tabBarController.configureTabs()
+        setupNavigationBarAppereance()
+    }
+
+    private func makeNavigationController(rootViewController: UIViewController,
+                                          title: String) -> UINavigationController {
+        rootViewController.title = title
+        rootViewController.view?.backgroundColor = ColorPalette.mainBackground
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        return navigationController
+    }
+
+    private func setupNavigationBarAppereance() {
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.mainText]
+        UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+        UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
+        UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
     }
 }
 
 extension AppCoordinator {
-    private func playersBuilder() -> PlayersModuleBuilder {
-        PlayersModuleBuilder(
-            output: self,
-            networkService: NetworkServiceImp()
-        )
+    private func teamsModuleBuilder() -> TeamsModuleBuilder {
+        let networkClient = NetworkClientImp(urlSession: .init(configuration: .default))
+        let teamsService = TeamsServiceImp(networkClient: networkClient)
+        return TeamsModuleBuilder(output: self, teamsService: teamsService)
     }
 
     private func matchesBuilder() -> MatchesModuleBuilder {
@@ -69,12 +84,28 @@ extension AppCoordinator {
             ), converter: MatchInfoConverterImp()
         )
     }
+
+    private func makePlayerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
+        PlayerInfoModuleBuilder(
+            output: self,
+            playerInfoService: PlayerInfoServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            playerId: playerId
+        )
+    }
+
+    private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
+        let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
+        viewController?.present(playerInfoModule.viewController, animated: true)
+    }
 }
 
-extension AppCoordinator: PlayersModuleOutput {
-    func playersModule(_ module: PlayersModuleInput, didSelectPlayer playerId: Int) {
-        // let playerInfoBuilder =
-        // playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
+extension AppCoordinator: TeamsModuleOutput {
+    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int) {
+        //
     }
 }
 
@@ -92,7 +123,13 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     }
 }
 
-extension AppCoordinator: MatchInfoModuleOutput {}
+extension AppCoordinator: PlayerInfoModuleOutput {}
+
+extension AppCoordinator: MatchInfoModuleOutput {
+    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
+        presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
+    }
+}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {

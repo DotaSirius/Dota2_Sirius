@@ -4,25 +4,37 @@ final class SearchPlayerTableViewCell: UITableViewCell {
     // MARK: Margins for items in TableViewCell
 
     private enum Margin {
-        static let topMargin: CGFloat = 5
-        static let bottomMargin: CGFloat = -5
-        static let leadingMargin: CGFloat = 20
-        static let trailingMargin: CGFloat = -50
+        static let topMargin: CGFloat = 10
+        static let bottomMargin: CGFloat = -10
+        static let leadingMargin: CGFloat = 25
+        static let trailingMargin: CGFloat = -20
     }
 
-    private lazy var avatarImage = UIImageView()
-    private lazy var nickname: UILabel = {
+    private lazy var avatarImageView: CachedImageView = {
+        let view = CachedImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.borderWidth = 2
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = layer.frame.height / 2
+        view.clipsToBounds = true
+        return view
+    }()
+
+    private lazy var nicknameLabel: UILabel = {
         let nickname = UILabel()
+        nickname.layer.frame.size.width = contentView.layer.frame.size.width / 2
+        nickname.lineBreakMode = .byTruncatingTail
+        nickname.numberOfLines = 1
         nickname.font = .systemFont(ofSize: 17)
         nickname.textColor = ColorPalette.mainText
         nickname.translatesAutoresizingMaskIntoConstraints = false
         return nickname
     }()
 
-    private lazy var timeMatch: UILabel = {
+    private lazy var timeMatchLabel: UILabel = {
         let view = UILabel()
-        view.font = .systemFont(ofSize: 17)
-        view.textColor = ColorPalette.mainText
+        view.font = .systemFont(ofSize: 14)
+        view.textColor = ColorPalette.subtitle
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -31,35 +43,64 @@ final class SearchPlayerTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
+        setupCellsConstrains()
     }
 
     // MARK: setupConstrains of items in TableViewCell
 
-    private func setup() {
-        contentView.addSubview(avatarImage)
-        contentView.addSubview(nickname)
-        contentView.addSubview(timeMatch)
+    private func setupCellsConstrains() {
+        contentView.addSubview(avatarImageView)
+        contentView.addSubview(timeMatchLabel)
+        contentView.addSubview(nicknameLabel)
 
-        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        nicknameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         NSLayoutConstraint.activate([
-            avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: Margin.topMargin),
-            avatarImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Margin.leadingMargin),
-            avatarImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Margin.bottomMargin),
-            avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
+            avatarImageView.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: Margin.topMargin
+            ),
+            avatarImageView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: Margin.leadingMargin
+            ),
+            avatarImageView.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: Margin.bottomMargin
+            ),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
 
-            nickname.centerYAnchor.constraint(equalTo: centerYAnchor),
-            nickname.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: Margin.leadingMargin),
+            nicknameLabel.bottomAnchor.constraint(equalTo: centerYAnchor),
+            nicknameLabel.leadingAnchor.constraint(
+                equalTo: avatarImageView.trailingAnchor,
+                constant: Margin.leadingMargin
+            ),
+            nicknameLabel.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: Margin.trailingMargin
+            ),
 
-            timeMatch.centerYAnchor.constraint(equalTo: centerYAnchor),
-            timeMatch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Margin.trailingMargin)
+            timeMatchLabel.topAnchor.constraint(
+                equalTo: nicknameLabel.bottomAnchor,
+                constant: 5
+            ),
+            timeMatchLabel.leadingAnchor.constraint(
+                equalTo: avatarImageView.trailingAnchor,
+                constant: Margin.leadingMargin
+            )
         ])
     }
 
-    func configurePlayer(newAvatarImage: UIImage, newNickname: String, newTimeMatch: String) {
-        avatarImage.image = newAvatarImage
-        nickname.text = newNickname
-        timeMatch.text = newTimeMatch
+    func configurePlayer(newAvatarImageURL: String?, newNickname: String, newTimeMatch: String?, indexPath: IndexPath) {
+        if newAvatarImageURL != nil {
+            avatarImageView.setImage(with: newAvatarImageURL!)
+        } else {
+            avatarImageView.image = UIImage(named: "unknownAvatarImage")
+        }
+        avatarImageView.layer.borderColor = indexPath.row % 2 == 0 ?
+            ColorPalette.alternativeBackground.cgColor : ColorPalette.mainBackground.cgColor
+
+        nicknameLabel.text = newNickname
+        timeMatchLabel.text = Converter.convertDate(newTimeMatch)
     }
 
     @available(*, unavailable)

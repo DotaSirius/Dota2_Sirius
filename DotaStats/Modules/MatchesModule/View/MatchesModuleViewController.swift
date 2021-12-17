@@ -26,7 +26,7 @@ final class MatchesModuleViewController: UIViewController {
 
     private var output: MatchesModuleViewOutput?
     private var errorConstraint: NSLayoutConstraint?
-    private lazy var spinnerView: UIActivityIndicatorView = .init(style: .large)
+    private let loadingView = SquareLoadingView()
 
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -42,17 +42,6 @@ final class MatchesModuleViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         return table
-    }()
-
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = ColorPalette.alternativeBackground
-        label.text = "MATCHES"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        label.textColor = ColorPalette.mainText
-        return label
     }()
 
     private lazy var errorView: ErrorView = {
@@ -123,18 +112,6 @@ final class MatchesModuleViewController: UIViewController {
         hideError()
     }
 
-    // MARK: - Setup UILabel "MATCHES"
-
-    private func setupLabel() {
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            label.heightAnchor.constraint(equalToConstant: 80)
-        ])
-    }
-
     // MARK: - Setup UITableView
 
     private func setupTableView() {
@@ -142,7 +119,7 @@ final class MatchesModuleViewController: UIViewController {
         NSLayoutConstraint.activate([
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -150,9 +127,8 @@ final class MatchesModuleViewController: UIViewController {
     // MARK: - Setup Loading
 
     private func setupLoading() {
-        spinnerView.color = ColorPalette.accent
-        view.addSubview(spinnerView)
-        spinnerView.center = view.center
+        view.addSubview(loadingView)
+        loadingView.center = view.center
     }
 }
 
@@ -164,14 +140,13 @@ extension MatchesModuleViewController: MatchesModuleViewInput {
         case .loading:
             hideError()
             setupLoading()
-            spinnerView.startAnimating()
+            loadingView.startAnimation()
         case .error:
-            spinnerView.removeFromSuperview()
+            loadingView.stopAnimation()
             showError()
         case .success:
             hideError()
-            spinnerView.removeFromSuperview()
-            setupLabel()
+            loadingView.stopAnimation()
             setupTableView()
         }
     }

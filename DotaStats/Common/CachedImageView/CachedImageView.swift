@@ -13,6 +13,7 @@ final class CachedImageView: UIImageView {
 
         return gradientLayer
     }()
+
     private var isAnimationRunning = false
 
     private var lastRequest: Cancellable?
@@ -26,6 +27,7 @@ final class CachedImageView: UIImageView {
         setupImageView()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,18 +44,21 @@ final class CachedImageView: UIImageView {
             lastRequest.cancel()
         }
 
-        imageLoader.fetchImage(with: url) { [weak self] result in
+        lastRequest = imageLoader.fetchImage(with: url) { [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case .success(let newImage):
-                self?.image = newImage
+                self.image = newImage
             case .failure:
-                if let errorPlaceholder = self?.errorPlaceholder {
-                    self?.image = errorPlaceholder
+                if let errorPlaceholder = self.errorPlaceholder {
+                    self.image = errorPlaceholder
                 } else if let errorImage = UIImage(named: "error_load_image") {
-                    self?.image = errorImage
+                    self.image = errorImage
                 }
             }
-            self?.stopAnimation()
+            self.stopAnimation()
         }
     }
 
