@@ -4,4 +4,5 @@ struct MainMatchInfo {
     let firstTeamScoreLabelText: String
     let secondTeamScoreLabelText: String
     let matchEndTimeLabelText: String
+    let isRadiantWin: Bool
 }
