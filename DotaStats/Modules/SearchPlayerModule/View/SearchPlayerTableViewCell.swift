@@ -90,7 +90,7 @@ final class SearchPlayerTableViewCell: UITableViewCell {
         ])
     }
 
-    func configurePlayer(newAvatarImageURL: String?, newNickname: String, newTimeMatch: String?, indexPath: IndexPath) {
+    func configurePlayer(newAvatarImageURL: String?, newNickname: String, newTimeMatch: Date?, indexPath: IndexPath) {
         if newAvatarImageURL != nil {
             avatarImageView.setImage(with: newAvatarImageURL!)
         } else {

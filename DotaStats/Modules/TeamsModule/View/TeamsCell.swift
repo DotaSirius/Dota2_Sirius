@@ -88,7 +88,6 @@ final class TeamsCell: UITableViewCell {
     }
 
     private func setup() {
-        backgroundColor = ColorPalette.mainBackground
         contentView.addSubview(numTeamLabel)
         contentView.addSubview(teamLogoView)
         contentView.addSubview(recentActivityLabel)

@@ -38,6 +38,18 @@ struct MatchDetail: Decodable {
     let replayUrl: String?
     let objectives: [Object]?
     let teamFights: [TeamFight]?
+    let radiantTeam: Team?
+    let direTeam: Team?
+
+//    let cosmetics
+//    let objectives
+//    let picks_bans
+//    let radiant_gold_adv
+//    let radiant_xp_adv
+//    let teamfights
+//    let league
+//    let all_word_counts
+//    let my_word_counts
 
     struct Player: Decodable {
         let matchId: Int
@@ -230,5 +242,9 @@ struct MatchDetail: Decodable {
     struct RunesLog: Decodable, Equatable {
         let time: Date
         let key: Int
+    }
+
+    struct Team: Codable {
+        let name: String
     }
 }
