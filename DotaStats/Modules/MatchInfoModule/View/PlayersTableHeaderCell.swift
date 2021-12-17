@@ -10,7 +10,7 @@ final class PlayersTableHeaderCell: UITableViewCell {
         let playerNameHeaderLabel = UILabel()
         playerNameHeaderLabel.textColor = ColorPalette.mainText
         playerNameHeaderLabel.font = UIFont.systemFont(ofSize: 15)
-        playerNameHeaderLabel.textAlignment = .center
+        playerNameHeaderLabel.textAlignment = .left
         playerNameHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
         return playerNameHeaderLabel
     }()
