@@ -18,6 +18,6 @@ struct Match: Decodable, Comparable {
     let radiant: Bool?
 
     static func < (lhs: Match, rhs: Match) -> Bool {
-        return lhs.startTime < rhs.startTime
+        lhs.startTime < rhs.startTime
     }
 }

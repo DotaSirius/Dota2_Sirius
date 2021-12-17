@@ -8,10 +8,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
+        guard let window = window else { return false }
         let appCoordinator = AppCoordinator()
-        window!.rootViewController = appCoordinator.tabBarController
-        window!.makeKeyAndVisible()
-        application.statusBarStyle = .lightContent
+        window.rootViewController = appCoordinator.tabBarController
+        window.makeKeyAndVisible()
+
         return true
     }
 }
