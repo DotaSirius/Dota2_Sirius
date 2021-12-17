@@ -26,6 +26,8 @@
 		303AC4E72767933700A8C462 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E62767933700A8C462 /* DateFormatterExtension.swift */; };
 		303AC4E82767933700A8C462 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AC4E62767933700A8C462 /* DateFormatterExtension.swift */; };
 		307F5CA7276C9080000B6548 /* RegionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307F5CA6276C9080000B6548 /* RegionsService.swift */; };
+		307F5CAB276CB61B000B6548 /* PreferredDataViewModePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307F5CAA276CB61B000B6548 /* PreferredDataViewModePickerCell.swift */; };
+		307F5CAD276D03F0000B6548 /* PickedDisplayingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307F5CAC276D03F0000B6548 /* PickedDisplayingMode.swift */; };
 		30B40F1B2769E39100B22DCC /* SearchPlayerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B49062768C37200103100 /* SearchPlayerResult.swift */; };
 		30B40F24276A2C8C00B22DCC /* MatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B40F23276A2C8C00B22DCC /* MatchEvent.swift */; };
 		30B40F27276A2FC700B22DCC /* MatchDetailToEventsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B40F26276A2FC700B22DCC /* MatchDetailToEventsConverter.swift */; };
@@ -103,7 +105,6 @@
 		EC1415E8276728F200715D00 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F72762304300A7A0EF /* HTTPMethod.swift */; };
 		EC1415E9276728FE00715D00 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FC9F92762334900A7A0EF /* HTTPError.swift */; };
 		EC1415EA2767290800715D00 /* HTTPNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300FCA0027623F0A00A7A0EF /* HTTPNetworkResponse.swift */; };
-		EC1415EB2767290F00715D00 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		EC1415F4276749A200715D00 /* MatchDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1415F3276749A200715D00 /* MatchDetailService.swift */; };
 		EC1415F5276749A200715D00 /* MatchDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1415F3276749A200715D00 /* MatchDetailService.swift */; };
 		EC1415F827674C2000715D00 /* MatchDetailServiceReceivingDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1415F627674C2000715D00 /* MatchDetailServiceReceivingDataTest.swift */; };
@@ -161,6 +162,8 @@
 		303AC4E12767873E00A8C462 /* PlayerSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchService.swift; sourceTree = "<group>"; };
 		303AC4E42767888500A8C462 /* PlayerSearchServiceReceivingDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchServiceReceivingDataTest.swift; sourceTree = "<group>"; };
 		303AC4E62767933700A8C462 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		307F5CAA276CB61B000B6548 /* PreferredDataViewModePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredDataViewModePickerCell.swift; sourceTree = "<group>"; };
+		307F5CAC276D03F0000B6548 /* PickedDisplayingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedDisplayingMode.swift; sourceTree = "<group>"; };
 		307F5CA6276C9080000B6548 /* RegionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsService.swift; sourceTree = "<group>"; };
 		30B40F23276A2C8C00B22DCC /* MatchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEvent.swift; sourceTree = "<group>"; };
 		30B40F26276A2FC700B22DCC /* MatchDetailToEventsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailToEventsConverter.swift; sourceTree = "<group>"; };
@@ -514,6 +517,7 @@
 				CEFEF692276A28E800CAE93B /* MainMatchInfo.swift */,
 				CEFEF693276A28E800CAE93B /* TeamMatchInfo.swift */,
 				CEFEF694276A28E800CAE93B /* MatchTableViewCellType.swift */,
+				307F5CAC276D03F0000B6548 /* PickedDisplayingMode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -529,6 +533,7 @@
 				CEFEF6A8276A2B7B00CAE93B /* CopyIdButton.swift */,
 				CEFEF6A9276A2B7B00CAE93B /* MainMatchInfoTableViewCell.swift */,
 				CEFEF6AA276A2B7B00CAE93B /* AdditionalMatchInfoTableViewCell.swift */,
+				307F5CAA276CB61B000B6548 /* PreferredDataViewModePickerCell.swift */,
 				EC4B5CA9276C8104008037CB /* WardsMapTableViewCell.swift */,
 			);
 			path = View;
@@ -853,7 +858,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC1415F827674C2000715D00 /* MatchDetailServiceReceivingDataTest.swift in Sources */,
-				EC1415EB2767290F00715D00 /* (null) in Sources */,
 				3CF8F5212763C55900AC0DD4 /* MatchDetailDecodingTest.swift in Sources */,
 				ECAA0D0A2764F6BF00DF81ED /* MatchesServiceReceivingDataTest.swift in Sources */,
 				303AC4D82764EFBA00A8C462 /* MatchDetail.swift in Sources */,
@@ -913,6 +917,7 @@
 				5EE31DC327678EE200A3667B /* TournamentViewState.swift in Sources */,
 				F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */,
 				CEFEF6AE276A2B7B00CAE93B /* PlayersTableHeaderCell.swift in Sources */,
+				307F5CAD276D03F0000B6548 /* PickedDisplayingMode.swift in Sources */,
 				CEFEF699276A28E800CAE93B /* PlayerList.swift in Sources */,
 				F01B49092768C3A700103100 /* ImageNetworkService.swift in Sources */,
 				5D9C6BCF276CC83900BAAEA6 /* PlayerWLCell.swift in Sources */,
@@ -961,6 +966,7 @@
 				5D9C6BD2276CC83900BAAEA6 /* PlayerMatchCell.swift in Sources */,
 				F09C5B45276B29CD00413011 /* TeamShortInfo.swift in Sources */,
 				6035383F2767459500CC32AD /* ErrorView.swift in Sources */,
+				307F5CAB276CB61B000B6548 /* PreferredDataViewModePickerCell.swift in Sources */,
 				CEFEF6A0276A28E800CAE93B /* MatchTableViewCellType.swift in Sources */,
 				CEFEF69A276A28E800CAE93B /* AdditionalMatchInfo.swift in Sources */,
 				5ED64A922764D57500E4CF5B /* MainTabBarController.swift in Sources */,
