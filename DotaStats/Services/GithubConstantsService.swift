@@ -3,6 +3,7 @@ import Foundation
 protocol GithubConstantsService: AnyObject {
     @discardableResult
     func requestImagesHero(completion: @escaping (Result<[String: HeroImage], HTTPError>) -> Void) -> Cancellable?
+    @discardableResult
     func requestGameModes(completion: @escaping (Result<[String: GameMode], HTTPError>) -> Void) -> Cancellable?
 }
 
