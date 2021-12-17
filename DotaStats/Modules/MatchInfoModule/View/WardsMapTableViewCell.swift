@@ -32,6 +32,7 @@ final class WardsMapTableViewCell: UITableViewCell {
     }
 
     private func setupLayout() {
+        selectionStyle = .none
         contentView.addSubview(map)
         map.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
