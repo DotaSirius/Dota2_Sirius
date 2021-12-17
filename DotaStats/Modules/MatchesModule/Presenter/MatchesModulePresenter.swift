@@ -53,7 +53,7 @@ final class MatchesModulePresenter {
     }
 
     private func convert(_ matches: [Match]) {
-        for match in matches.sorted() {
+        for match in matches.sorted(by: >) {
             let newMatch = convertTo(match)
 
             if let index = tournaments.firstIndex(where: { $0.tournament.leagueName == match.leagueName }) {
