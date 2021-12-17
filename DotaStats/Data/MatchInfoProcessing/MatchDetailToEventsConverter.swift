@@ -1,24 +1,24 @@
 import Foundation
 
-class MatchDetailToEventsConverter {
+final class MatchDetailToEventsConverter {
     typealias ConvertedEventsDictionary = [Int: [MatchEvent]]
 
     static func convert(_ details: MatchDetail) -> ConvertedEventsDictionary {
-        var dictionaryToReturn: ConvertedEventsDictionary = [:]
+        var convertedEventsDictionary: ConvertedEventsDictionary = [:]
 
-        dictionaryToReturn = dictionaryToReturn.merging(convertMatchObjectivesDetails(details)) { current, new in
+        convertedEventsDictionary = convertedEventsDictionary.merging(convertMatchObjectivesDetails(details)) { current, new in
             current + new
         }
 
-        dictionaryToReturn = dictionaryToReturn.merging(convertMatchTeamFightsDetails(details)) { current, new in
+        convertedEventsDictionary = convertedEventsDictionary.merging(convertMatchTeamFightsDetails(details)) { current, new in
             current + new
         }
 
-        dictionaryToReturn = dictionaryToReturn.merging(convertMatchWardsDetails(details)) { current, new in
+        convertedEventsDictionary = convertedEventsDictionary.merging(convertMatchWardsDetails(details)) { current, new in
             current + new
         }
 
-        return dictionaryToReturn
+        return convertedEventsDictionary
     }
 
     private static func convertMatchObjectivesDetails(_ details: MatchDetail) -> ConvertedEventsDictionary {
