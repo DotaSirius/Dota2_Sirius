@@ -8,5 +8,5 @@ struct PlayerList {
     let playerDeathsText: String
     let playerAssitsText: String
     let playerGoldText: String
-    let playerImage: UIImage
+    let playerImage: String
 }
