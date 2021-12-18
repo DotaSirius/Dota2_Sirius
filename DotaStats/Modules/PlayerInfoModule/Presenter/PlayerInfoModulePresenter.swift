@@ -159,7 +159,7 @@ final class PlayerInfoModulePresenter {
             deaths: playerMatch.deaths ?? 0,
             assists: playerMatch.assists ?? 0,
             skill: skill,
-            gameMode: gameModes[String(playerMatch.gameMode ?? 0)] ?? "Game mode unknown"
+            gameMode: gameModes[String(playerMatch.gameMode ?? 0)] ?? "Unknown mode"
         )
     }
 
@@ -222,7 +222,7 @@ extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
     func getRowsInSection(section: Int) -> Int {
         switch section {
         case 0:
-            return 4
+            return 3
         case 1:
             return playerMatch.count
         default:

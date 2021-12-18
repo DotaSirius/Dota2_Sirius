@@ -34,7 +34,6 @@ final class SearchPlayerModuleViewController: UIViewController {
 
         view.addSubview(searchBar)
         view.addSubview(tableView)
-        view.addSubview(loadingCircle)
         view.addSubview(errorView)
         view.addSubview(startScreenImage)
         view.addSubview(emptyScreenImage)
@@ -49,7 +48,6 @@ final class SearchPlayerModuleViewController: UIViewController {
 
         setUpErrorViewConstraints()
         setUpSearchBarConstraints()
-        setUpLoadingCircleConstraints()
         setUpTableViewConstraints()
         setUpImagesConstraint(imageView: startScreenImage)
         setUpImagesConstraint(imageView: emptyScreenImage)
@@ -89,7 +87,7 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     // MARK: Spinner
 
-    private lazy var loadingCircle = SquareLoadingView()
+    private lazy var loadingView = SquareLoadingView()
 
     // MARK: ErrorView
 
@@ -148,16 +146,6 @@ final class SearchPlayerModuleViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-    }
-
-    // MARK: LoadingCircle Constraints
-
-    private func setUpLoadingCircleConstraints() {
-        loadingCircle.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            loadingCircle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingCircle.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 
@@ -283,7 +271,7 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
     func updateState(_ state: SearchPlayerModuleViewState) {
         switch state {
         case .startScreen:
-            loadingCircle.stopAnimation()
+            loadingView.stopAnimation()
             tableView.isHidden = true
             startScreenImage.isHidden = false
             emptyScreenImage.isHidden = true
@@ -299,10 +287,12 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
             errorScreenImage.isHidden = true
             hideError()
             tableView.isHidden = true
-            loadingCircle.startAnimation()
+            view.addSubview(loadingView)
+            loadingView.center = view.center
+            loadingView.startAnimation()
         case .success:
             hideError()
-            loadingCircle.stopAnimation()
+            loadingView.stopAnimation()
             tableView.reloadData()
             tableView.isHidden = false
             emptyScreenImage.isHidden = true
@@ -310,6 +300,7 @@ extension SearchPlayerModuleViewController: SearchPlayerModuleViewInput {
             errorScreenImage.isHidden = true
         case .failure:
             showError()
+            loadingView.stopAnimation()
             emptyScreenImage.isHidden = true
             startScreenImage.isHidden = true
             errorScreenImage.isHidden = false
