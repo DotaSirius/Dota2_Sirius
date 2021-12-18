@@ -37,7 +37,7 @@ final class RecentMatchesHeader: UITableViewCell {
 
     private lazy var kill: UILabel = {
         let name = UILabel()
-        name.textColor = ColorPalette.lose
+        name.textColor = ColorPalette.win
         name.font = UIFont.systemFont(ofSize: 13)
         name.textAlignment = .center
         name.numberOfLines = 1
@@ -47,7 +47,7 @@ final class RecentMatchesHeader: UITableViewCell {
 
     private lazy var death: UILabel = {
         let name = UILabel()
-        name.textColor = ColorPalette.win
+        name.textColor = ColorPalette.lose
         name.font = UIFont.systemFont(ofSize: 13)
         name.textAlignment = .center
         name.numberOfLines = 1
