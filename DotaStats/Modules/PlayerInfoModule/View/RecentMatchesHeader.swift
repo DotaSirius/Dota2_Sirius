@@ -1,6 +1,6 @@
 import UIKit
 
-final class RecentMatchesHeader: UITableViewCell {
+final class RecentMatchesHeader: UITableViewHeaderFooterView {
     static let reuseIdentifier = "RecentMatchesHeader"
 
     // MARK: - Properties
@@ -65,24 +65,31 @@ final class RecentMatchesHeader: UITableViewCell {
         return name
     }()
 
-    // MARK: - Init
-
-    override init(style: UITableViewCell.CellStyle,
-                  reuseIdentifier: String?) {
-        super.init(style: style,
-                   reuseIdentifier: reuseIdentifier)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setUp()
         setUpConstraints()
+        configure()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+}
 
-    // MARK: - Set up constraints
+// MARK: - Configurate
 
-    private func setUp() {
-        self.selectionStyle = .none
+private extension RecentMatchesHeader {
+    func configure() {
+        hero.text = "Hero"
+        gameMode.text = "Game mode"
+        duration.text = "Duration, min"
+        kill.text = "K"
+        death.text = "D"
+        assistant.text = "A"
+    }
+
+    func setUp() {
         contentView.addSubview(hero)
         contentView.addSubview(gameMode)
         contentView.addSubview(duration)
@@ -91,11 +98,10 @@ final class RecentMatchesHeader: UITableViewCell {
         contentView.addSubview(assistant)
     }
 
-    private func setUpConstraints() {
+    func setUpConstraints() {
         NSLayoutConstraint.activate([
             hero.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             hero.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            hero.heightAnchor.constraint(equalToConstant: 30),
             hero.widthAnchor.constraint(equalToConstant: 50),
 
             gameMode.leadingAnchor.constraint(equalTo: hero.trailingAnchor),
@@ -104,9 +110,7 @@ final class RecentMatchesHeader: UITableViewCell {
 
             duration.trailingAnchor.constraint(equalTo: kill.leadingAnchor),
             duration.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            duration.widthAnchor.constraint(equalToConstant: 60),
-            duration.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            duration.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
+            duration.widthAnchor.constraint(equalToConstant: 60),t
 
             kill.trailingAnchor.constraint(equalTo: death.leadingAnchor),
             kill.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -120,23 +124,5 @@ final class RecentMatchesHeader: UITableViewCell {
             assistant.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             assistant.widthAnchor.constraint(equalToConstant: 30)
         ])
-    }
-
-    private func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
-        stackView.axis = axis
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .center
-        stackView.spacing = spacing
-    }
-}
-
-extension RecentMatchesHeader: PlayerInfoCellConfigurable {
-    func configure(with data: PlayerTableViewCellData) {
-        hero.text = "Hero"
-        gameMode.text = "Game mode"
-        duration.text = "Duration, min"
-        kill.text = "K"
-        death.text = "D"
-        assistant.text = "A"
     }
 }
