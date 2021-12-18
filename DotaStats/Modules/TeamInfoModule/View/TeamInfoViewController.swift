@@ -9,38 +9,38 @@ final class TeamInfoModuleViewController: UIViewController {
     private var errorConstraint: NSLayoutConstraint?
     private lazy var loadingView = SquareLoadingView()
     var data: TeamInfoTableViewCellData?
-
+    
     init(output: TeamInfoModuleViewOutput) {
         super.init(nibName: nil, bundle: nil)
         self.output = output
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private lazy var tableView: UITableView = {
-            let tableView = UITableView()
-            tableView.register(MainTeamInfoTableViewCell.self,
-                    forCellReuseIdentifier: MainTeamInfoTableViewCell.reuseIdentifier)
-            tableView.register(TeamButtonsInfoTableViewCell.self,
-                    forCellReuseIdentifier: TeamButtonsInfoTableViewCell.reuseIdentifier)
-            tableView.register(TeamsInfoMatchesHeader.self,
-                    forCellReuseIdentifier: TeamsInfoMatchesHeader.reuseIdentifier)
-            tableView.register(CurrentPlayersCell.self,
-                    forCellReuseIdentifier: CurrentPlayersCell.reuseIdentifier)
-            tableView.register(TeamsInfoMatches.self,
-                    forCellReuseIdentifier: TeamsInfoMatches.reuseIdentifier)
+        let tableView = UITableView()
+        tableView.register(MainTeamInfoTableViewCell.self,
+                           forCellReuseIdentifier: MainTeamInfoTableViewCell.reuseIdentifier)
+        tableView.register(TeamButtonsInfoTableViewCell.self,
+                           forCellReuseIdentifier: TeamButtonsInfoTableViewCell.reuseIdentifier)
+        tableView.register(TeamsInfoMatchesHeader.self,
+                           forCellReuseIdentifier: TeamsInfoMatchesHeader.reuseIdentifier)
+        tableView.register(CurrentPlayersCell.self,
+                           forCellReuseIdentifier: CurrentPlayersCell.reuseIdentifier)
+        tableView.register(TeamsInfoMatches.self,
+                           forCellReuseIdentifier: TeamsInfoMatches.reuseIdentifier)
         tableView.register(GamesInfoHeader.self,
                            forCellReuseIdentifier: GamesInfoHeader.reuseIdentifier)
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.backgroundColor = ColorPalette.mainBackground
-            tableView.translatesAutoresizingMaskIntoConstraints = false
-            tableView.separatorStyle = .none
-            return tableView
-        }()
-
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = ColorPalette.mainBackground
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
     private lazy var errorView: ErrorView = {
         let view = ErrorView()
         view.alpha = 0
@@ -50,7 +50,7 @@ final class TeamInfoModuleViewController: UIViewController {
         view.addGestureRecognizer(tapActionHideError)
         return view
     }()
-
+    
     private func setupErrorViewConstraints() {
         view.addSubview(errorView)
         let errorConstraint = errorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
@@ -62,9 +62,9 @@ final class TeamInfoModuleViewController: UIViewController {
         ])
         self.errorConstraint = errorConstraint
     }
-
+    
     // MARK: Show/hide errors function
-
+    
     func showError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
@@ -74,7 +74,7 @@ final class TeamInfoModuleViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-
+    
     func hideError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
@@ -84,16 +84,16 @@ final class TeamInfoModuleViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-
+    
     @objc func handleTap(_: UITapGestureRecognizer) {
         hideError()
     }
-
+    
     private func setupLoading() {
         view.addSubview(loadingView)
         loadingView.center = view.center
     }
-
+    
     func setupConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -102,7 +102,7 @@ final class TeamInfoModuleViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorPalette.mainBackground
@@ -113,14 +113,14 @@ final class TeamInfoModuleViewController: UIViewController {
 extension TeamInfoModuleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard
-                    let output = output
-                else {
-                    // TODO: - Error handling
-                    return 0
-                }
-                return output.getRowsCountInSection(0)
+            let output = output
+        else {
+            // TODO: - Error handling
+            return 0
+        }
+        return output.getRowsCountInSection(0)
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let data = output?.getCellData(for: indexPath.row),
@@ -140,25 +140,26 @@ extension TeamInfoModuleViewController: UITableViewDelegate, UITableViewDataSour
         cell.backgroundColor = (isEven && matchPlayersCellIndexes) ? ColorPalette.alternativeBackground : ColorPalette.mainBackground
         // swiftlint:enable line_length
         cell.configure(with: data)
+        cell.selectionStyle = .none
         return cell
     }
 }
 
 extension TeamInfoModuleViewController: TeamInfoModuleViewInput {
     func update(state: TeamInfoModuleViewState) {
-            switch state {
-            case .loading:
-                setupLoading()
-                loadingView.startAnimation()
-            case .error:
-                loadingView.stopAnimation()
-                showError()
-            case .success:
-                loadingView.stopAnimation()
-                view.addSubview(tableView)
-                setupConstraints()
-            case .update:
-                tableView.reloadData()
-            }
+        switch state {
+        case .loading:
+            setupLoading()
+            loadingView.startAnimation()
+        case .error:
+            loadingView.stopAnimation()
+            showError()
+        case .success:
+            loadingView.stopAnimation()
+            view.addSubview(tableView)
+            setupConstraints()
+        case .update:
+            tableView.reloadData()
         }
+    }
 }

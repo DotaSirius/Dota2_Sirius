@@ -163,6 +163,7 @@
 		F0DF32A32767850C004670C0 /* PlayerInfoFromSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF32A22767850C004670C0 /* PlayerInfoFromSearch.swift */; };
 		F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE492764D06200EAB7E5 /* SearchPlayerModulePresenter.swift */; };
 		F0F2EE4C2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F2EE4B2764D0CE00EAB7E5 /* SearchPlayerModuleViewController.swift */; };
+		F155F9B1E95C1B80FD2E5B44 /* Pods_DotaStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75479F8330BE93CCA0C245FF /* Pods_DotaStats.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +197,7 @@
 		30B40F23276A2C8C00B22DCC /* MatchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEvent.swift; sourceTree = "<group>"; };
 		30B40F26276A2FC700B22DCC /* MatchDetailToEventsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailToEventsConverter.swift; sourceTree = "<group>"; };
 		30B40F29276B2D9F00B22DCC /* MatchEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEventType.swift; sourceTree = "<group>"; };
+		3B9DFC97AE5822AAF27904B5 /* Pods-DotaStats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaStats.release.xcconfig"; path = "Target Support Files/Pods-DotaStats/Pods-DotaStats.release.xcconfig"; sourceTree = "<group>"; };
 		3C40C18A276D8E5400BE430F /* Heroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heroes.swift; sourceTree = "<group>"; };
 		3C40C18C276D8ECF00BE430F /* HeroesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesService.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailDecodingTest.swift; sourceTree = "<group>"; };
@@ -240,6 +242,8 @@
 		5EE31DC227678EE200A3667B /* TournamentViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewState.swift; sourceTree = "<group>"; };
 		603538392766619800CC32AD /* SearchPlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		6035383E2767459500CC32AD /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		75479F8330BE93CCA0C245FF /* Pods_DotaStats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DotaStats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8222AB8F19865A4BBBE2CDD2 /* Pods-DotaStats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaStats.debug.xcconfig"; path = "Target Support Files/Pods-DotaStats/Pods-DotaStats.debug.xcconfig"; sourceTree = "<group>"; };
 		837AED9B27690ADB0009589E /* SearchPlayerModuleViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlayerModuleViewState.swift; sourceTree = "<group>"; };
 		837AED9C27690ADB0009589E /* SearchPlayerModulePresenterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlayerModulePresenterState.swift; sourceTree = "<group>"; };
 		98FFE34D276B3F4F00C3839D /* TeamInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoService.swift; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F155F9B1E95C1B80FD2E5B44 /* Pods_DotaStats.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +442,16 @@
 				30B40F23276A2C8C00B22DCC /* MatchEvent.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5084FBBA270EC4E9923BDC95 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8222AB8F19865A4BBBE2CDD2 /* Pods-DotaStats.debug.xcconfig */,
+				3B9DFC97AE5822AAF27904B5 /* Pods-DotaStats.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		5D4C51622764DB8800BC6B30 /* View */ = {
@@ -547,6 +562,8 @@
 				B61F59472760A4FB00D08CEA /* DotaStats */,
 				300FCA0927625B8500A7A0EF /* DotaStatsTests */,
 				B61F59462760A4FB00D08CEA /* Products */,
+				5084FBBA270EC4E9923BDC95 /* Pods */,
+				FBA06D0EC88B7FBBD18D5902 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -842,6 +859,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		FBA06D0EC88B7FBBD18D5902 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75479F8330BE93CCA0C245FF /* Pods_DotaStats.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -867,10 +892,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B61F59592760A4FD00D08CEA /* Build configuration list for PBXNativeTarget "DotaStats" */;
 			buildPhases = (
+				C4C793B4E420D3F7D604DF4F /* [CP] Check Pods Manifest.lock */,
 				B61F59412760A4FB00D08CEA /* Sources */,
 				B61F59422760A4FB00D08CEA /* Frameworks */,
 				B61F59432760A4FB00D08CEA /* Resources */,
 				EC4978D42769D496005D2653 /* ShellScript */,
+				7E1FBD7A4C06CF5B8692DD6C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -942,6 +969,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7E1FBD7A4C06CF5B8692DD6C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DotaStats/Pods-DotaStats-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DotaStats/Pods-DotaStats-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DotaStats/Pods-DotaStats-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4C793B4E420D3F7D604DF4F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DotaStats-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EC4978D42769D496005D2653 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1311,6 +1377,7 @@
 		};
 		B61F595A2760A4FD00D08CEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8222AB8F19865A4BBBE2CDD2 /* Pods-DotaStats.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1340,6 +1407,7 @@
 		};
 		B61F595B2760A4FD00D08CEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B9DFC97AE5822AAF27904B5 /* Pods-DotaStats.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

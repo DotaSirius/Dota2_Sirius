@@ -1,8 +1,10 @@
-import Foundation
+import UIKit
 
 protocol PlayerInfoModuleInput: AnyObject {}
 
-protocol PlayerInfoModuleOutput: AnyObject {}
+protocol PlayerInfoModuleOutput: AnyObject {
+    func openMatch(id: Int, on viewController: UIViewController)
+}
 
 final class PlayerInfoModulePresenter {
     weak var view: PlayerInfoModuleViewInput? {
@@ -228,5 +230,10 @@ extension PlayerInfoModulePresenter: PlayerInfoModuleViewOutput {
         default:
             return 0
         }
+    }
+
+    func selectRowAt(indexPath: IndexPath, on viewController: UIViewController) {
+        let match = playerMatch[indexPath.row]
+        output.openMatch(id: match.matchId, on: viewController)
     }
 }

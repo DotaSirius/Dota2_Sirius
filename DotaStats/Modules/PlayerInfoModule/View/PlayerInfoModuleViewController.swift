@@ -7,6 +7,7 @@ protocol PlayerInfoModuleViewInput: AnyObject {
 protocol PlayerInfoModuleViewOutput: AnyObject {
     func getCellData(forIndexPath: IndexPath) -> PlayerTableViewCellData
     func getRowsInSection(section: Int) -> Int
+    func selectRowAt(indexPath: IndexPath, on viewController: UIViewController)
 }
 
 final class PlayerInfoModuleViewController: UIViewController {
@@ -87,6 +88,7 @@ final class PlayerInfoModuleViewController: UIViewController {
     // MARK: ErrorView Constraints
 
     private func setupErrorViewConstraints() {
+        errorView.isHidden = true
         view.addSubview(errorView)
         let errorConstraint = errorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         NSLayoutConstraint.activate([
@@ -175,6 +177,10 @@ extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSo
         default:
             return 0
         }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output?.selectRowAt(indexPath: indexPath, on: self)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
