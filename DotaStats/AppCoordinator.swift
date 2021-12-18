@@ -5,35 +5,42 @@ final class AppCoordinator {
     let tabBarController: MainTabBarController = .init()
 
     init() {
-        let playersModule = playersBuilder()
+        let teamsModule = teamsModuleBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
 
         let viewControllers = [
-            playersModule.viewController,
-            matchesModule.viewController,
-            playerSearchModule.viewController,
+            CustomNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
+            CustomNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
+            CustomNavigationController(rootViewController: playerSearchModule.viewController, title: "Search")
         ]
 
         let tabImageNames = [
             NSLocalizedString("players", comment: ""),
             NSLocalizedString("matches", comment: ""),
-            NSLocalizedString("search", comment: ""),
+            NSLocalizedString("search", comment: "")
         ]
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
 
         tabBarController.configureTabs()
+        setupNavigationBarAppereance()
+    }
+
+    private func setupNavigationBarAppereance() {
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.mainText]
+        UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
+        UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
+        UINavigationBar.appearance().barTintColor = ColorPalette.alternativeBackground
     }
 }
 
 extension AppCoordinator {
-    private func playersBuilder() -> PlayersModuleBuilder {
-        PlayersModuleBuilder(
-            output: self,
-            networkService: NetworkServiceImp()
-        )
+    private func teamsModuleBuilder() -> TeamsModuleBuilder {
+        let networkClient = NetworkClientImp(urlSession: .init(configuration: .default))
+        let teamsService = TeamsServiceImp(networkClient: networkClient)
+        return TeamsModuleBuilder(output: self, teamsService: teamsService)
     }
 
     private func matchesBuilder() -> MatchesModuleBuilder {
@@ -60,28 +67,72 @@ extension AppCoordinator {
         )
     }
 
-    private func teamInfoModuleBuilder() -> TeamInfoModuleBuilder {
+    private func makeMatchInfoModuleBuilder() -> MatchInfoModuleBuilder {
+        MatchInfoModuleBuilder(
+            output: self,
+            networkService: MatchDetailImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            regionsService: RegionsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            converter: MatchInfoConverterImp()
+        )
+    }
+
+    private func makePlayerInfoModuleBuilder(playerId: Int) -> PlayerInfoModuleBuilder {
+        PlayerInfoModuleBuilder(
+            output: self,
+            playerInfoService: PlayerInfoServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            constantsService: GithubConstantsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
+            playerId: playerId
+        )
+    }
+
+    private func teamInfoModuleBuilder(teamId: Int) -> TeamInfoModuleBuilder {
         TeamInfoModuleBuilder(
             converter: TeamInfoConverterImp(), output: self,
             teamInfoService: TeamInfoImp(
                 networkClient: NetworkClientImp(
                     urlSession: URLSession(configuration: .default)
                 )
-            ), teamId: 15
+            ), teamId: teamId
         )
     }
-}
 
-extension AppCoordinator: PlayersModuleOutput {
-    func playersModule(_ module: PlayersModuleInput, didSelectPlayer playerId: Int) {
-        // let playerInfoBuilder =
-        // playerInfoModuleBuilder(output: self, networkService: NetworkServiceImp(), playerId: playerId)
+    private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
+        let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
+        viewController?.present(playerInfoModule.viewController, animated: true)
+    }
+
+    private func presentTeamInfo(on viewController: UIViewController?, teamId: Int) {
+        let teamInfoModule = teamInfoModuleBuilder(teamId: teamId)
+        viewController?.present(teamInfoModule.viewController, animated: true)
+    }
+}
+extension AppCoordinator: TeamsModuleOutput {
+    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int) {
+        presentTeamInfo(on: tabBarController, teamId: teamId)
     }
 }
 
 extension AppCoordinator: MatchesModuleOutput {
     func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
-        // todo
+        let matchInfoModule = makeMatchInfoModuleBuilder()
+        matchInfoModule.input.setMatchId(matchId)
+        tabBarController.present(matchInfoModule.viewController, animated: true)
     }
 }
 
@@ -91,7 +142,19 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     }
 }
 
-extension AppCoordinator: TeamInfoModuleOutput {}
+extension AppCoordinator: PlayerInfoModuleOutput {}
+
+extension AppCoordinator: MatchInfoModuleOutput {
+    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
+        presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
+    }
+}
+
+extension AppCoordinator: TeamInfoModuleOutput {
+    func teamInfoModule(_ module: TeamInfoModulePresenter, didSelectTeam teamId: Int) {
+        
+    }
+}
 
 final class StubImageNetworkService: ImageNetworkService {
     func loadImageFromURL(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
@@ -100,5 +163,4 @@ final class StubImageNetworkService: ImageNetworkService {
         }
         return nil
     }
-
 }

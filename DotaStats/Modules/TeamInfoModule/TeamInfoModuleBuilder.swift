@@ -15,7 +15,7 @@ final class TeamInfoModuleBuilder {
             converter: converter,
             teamInfoService: teamInfoService,
             output: output,
-            teamId: 15
+            teamId: teamId
         )
         viewController = TeamInfoModuleViewController(output: presenter)
         presenter.view = viewController
