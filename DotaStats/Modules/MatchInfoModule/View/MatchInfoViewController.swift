@@ -91,7 +91,7 @@ final class MatchInfoViewController: UIViewController {
             errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             errorConstraint,
-            errorView.heightAnchor.constraint(equalToConstant: 90)
+            errorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         self.errorConstraint = errorConstraint
     }

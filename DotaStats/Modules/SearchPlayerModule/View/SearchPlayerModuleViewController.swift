@@ -178,7 +178,7 @@ final class SearchPlayerModuleViewController: UIViewController {
             errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             errorConstraint,
-            errorView.heightAnchor.constraint(equalToConstant: 90)
+            errorView.heightAnchor.constraint(equalToConstant: 40)
         ])
         self.errorConstraint = errorConstraint
     }
