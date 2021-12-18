@@ -16,6 +16,7 @@ protocol MatchInfoConverter: AnyObject {
     func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int: [MatchEvent]]
+    func plotInfo(from rawMatchInfo: MatchDetail, heroes: [Hero]) -> [PlotGpmInfo]
 }
 
 class MatchInfoConverterImp {
@@ -43,6 +44,9 @@ class MatchInfoConverterImp {
             return playerName
         }
     }
+
+    // TODO: - Приходит в виде Int. Ранги в доте называются "Legend", "Immortal" и тд.
+    // Сделать правильную конвертацию из цифр в ранги
 
     private func convert(playerRankTier: Int?, ranks: [String: String]) -> String {
         guard
@@ -158,7 +162,8 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         let matchEndTimeLabelText = convert(startTime: rawMatchInfo.startTime, duration: rawMatchInfo.duration)
         if let radiantName = rawMatchInfo.radiantTeam?.name,
            let direName = rawMatchInfo.direTeam?.name,
-           let radiantWin = rawMatchInfo.radiantWin {
+           let radiantWin = rawMatchInfo.radiantWin
+        {
             winnersLabelText = radiantWin ? radiantName : direName
         }
         return MainMatchInfo(
@@ -240,5 +245,38 @@ extension MatchInfoConverterImp: MatchInfoConverter {
             teamNameLabelText: teamNameLabelText,
             teamWinLabel: teamWinLabel
         )
+    }
+
+    func plotInfo(from rawMatchInfo: MatchDetail, heroes: [Hero]) -> [PlotGpmInfo] {
+        var res = [PlotGpmInfo]()
+        let players = rawMatchInfo.players
+        // TODO: Insert nice colors
+        let arrayOfColors: [UIColor] = [ColorPalette.line1,
+                                        ColorPalette.line2,
+                                        ColorPalette.line3,
+                                        ColorPalette.line4,
+                                        ColorPalette.line5,
+                                        ColorPalette.line6,
+                                        ColorPalette.line7,
+                                        ColorPalette.line8,
+                                        ColorPalette.line9,
+                                        ColorPalette.line10]
+
+        for i in 0 ..< players.count {
+            var heroName = String()
+            for hero in heroes {
+                guard let heroId = players[i].heroId else {
+                    heroName = "Unknowned"
+                    break
+                }
+                if hero.id == heroId {
+                    heroName = hero.localizedName
+                }
+            }
+            let shortGmpData = PlotGpmInfo(heroName: heroName,
+                                           gpm: players[i].goldT ?? [], color: arrayOfColors[i])
+            res.append(shortGmpData)
+        }
+        return res
     }
 }

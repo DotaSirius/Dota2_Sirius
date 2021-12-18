@@ -32,10 +32,14 @@
 		30B40F24276A2C8C00B22DCC /* MatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B40F23276A2C8C00B22DCC /* MatchEvent.swift */; };
 		30B40F27276A2FC700B22DCC /* MatchDetailToEventsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B40F26276A2FC700B22DCC /* MatchDetailToEventsConverter.swift */; };
 		30B40F2A276B2D9F00B22DCC /* MatchEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B40F29276B2D9F00B22DCC /* MatchEventType.swift */; };
+		3C40C18B276D8E5500BE430F /* Heroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C40C18A276D8E5400BE430F /* Heroes.swift */; };
+		3C40C18D276D8ECF00BE430F /* HeroesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C40C18C276D8ECF00BE430F /* HeroesService.swift */; };
 		3CF8F5212763C55900AC0DD4 /* MatchDetailDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */; };
 		3CF8F5252763C75700AC0DD4 /* PlayerDecodingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */; };
 		3CF8F5262763C87C00AC0DD4 /* MockMatchDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */; };
 		3CF8F5272763C87F00AC0DD4 /* MockPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8F5232763C72600AC0DD4 /* MockPlayer.json */; };
+		3CFB2996276D1FAE002AAA54 /* PlotGpmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFB2995276D1FAE002AAA54 /* PlotGpmTableViewCell.swift */; };
+		3CFB2998276D26DA002AAA54 /* PlotGpmInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFB2997276D26D9002AAA54 /* PlotGpmInfo.swift */; };
 		5D2518612768BE7F0005374B /* MatchesModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2518602768BE7F0005374B /* MatchesModuleBuilder.swift */; };
 		5D2518652768BE8F0005374B /* MatchesModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2518622768BE8F0005374B /* MatchesModuleViewController.swift */; };
 		5D2518662768BE8F0005374B /* ListTournamentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2518632768BE8F0005374B /* ListTournamentsCell.swift */; };
@@ -194,10 +198,14 @@
 		30B40F26276A2FC700B22DCC /* MatchDetailToEventsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailToEventsConverter.swift; sourceTree = "<group>"; };
 		30B40F29276B2D9F00B22DCC /* MatchEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEventType.swift; sourceTree = "<group>"; };
 		3B9DFC97AE5822AAF27904B5 /* Pods-DotaStats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaStats.release.xcconfig"; path = "Target Support Files/Pods-DotaStats/Pods-DotaStats.release.xcconfig"; sourceTree = "<group>"; };
+		3C40C18A276D8E5400BE430F /* Heroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heroes.swift; sourceTree = "<group>"; };
+		3C40C18C276D8ECF00BE430F /* HeroesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesService.swift; sourceTree = "<group>"; };
 		3CF8F5202763C55900AC0DD4 /* MatchDetailDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailDecodingTest.swift; sourceTree = "<group>"; };
 		3CF8F5222763C5C000AC0DD4 /* MockMatchDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMatchDetail.json; sourceTree = "<group>"; };
 		3CF8F5232763C72600AC0DD4 /* MockPlayer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockPlayer.json; sourceTree = "<group>"; };
 		3CF8F5242763C75700AC0DD4 /* PlayerDecodingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDecodingTest.swift; sourceTree = "<group>"; };
+		3CFB2995276D1FAE002AAA54 /* PlotGpmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGpmTableViewCell.swift; sourceTree = "<group>"; };
+		3CFB2997276D26D9002AAA54 /* PlotGpmInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotGpmInfo.swift; sourceTree = "<group>"; };
 		5D2518602768BE7F0005374B /* MatchesModuleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesModuleBuilder.swift; sourceTree = "<group>"; };
 		5D2518622768BE8F0005374B /* MatchesModuleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesModuleViewController.swift; sourceTree = "<group>"; };
 		5D2518632768BE8F0005374B /* ListTournamentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTournamentsCell.swift; sourceTree = "<group>"; };
@@ -618,6 +626,7 @@
 			children = (
 				CEFEF68D276A28E800CAE93B /* PlayerList.swift */,
 				CEFEF68E276A28E800CAE93B /* AdditionalMatchInfo.swift */,
+				3CFB2997276D26D9002AAA54 /* PlotGpmInfo.swift */,
 				CEFEF68F276A28E800CAE93B /* MatchTableViewData.swift */,
 				CEFEF690276A28E800CAE93B /* MatchesInfoModuleState.swift */,
 				CEFEF691276A28E800CAE93B /* MatchTableViewCellData.swift */,
@@ -642,6 +651,7 @@
 				CEFEF6AA276A2B7B00CAE93B /* AdditionalMatchInfoTableViewCell.swift */,
 				307F5CAA276CB61B000B6548 /* PreferredDataViewModePickerCell.swift */,
 				EC4B5CA9276C8104008037CB /* WardsMapTableViewCell.swift */,
+				3CFB2995276D1FAE002AAA54 /* PlotGpmTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -650,6 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				5D9C6BDA276CC8DE00BAAEA6 /* PlayerMainInfo.swift */,
+				3C40C18A276D8E5400BE430F /* Heroes.swift */,
 				5D9C6BDB276CC8DE00BAAEA6 /* PlayerMatch.swift */,
 				5D9C6BDC276CC8DE00BAAEA6 /* PlayerWL.swift */,
 				5D9C6B8E276CBF7500BAAEA6 /* GameMode.swift */,
@@ -775,6 +786,7 @@
 			isa = PBXGroup;
 			children = (
 				5D9C6BD8276CC8CF00BAAEA6 /* PlayerInfoService.swift */,
+				3C40C18C276D8ECF00BE430F /* HeroesService.swift */,
 				5D9C6B8A276CBF4000BAAEA6 /* GithubConstantsService.swift */,
 				F01B49082768C3A700103100 /* ImageNetworkService.swift */,
 				EC4E6FA82764C85E0085B61D /* NetworkService.swift */,
@@ -1089,6 +1101,7 @@
 				5D2518612768BE7F0005374B /* MatchesModuleBuilder.swift in Sources */,
 				5EE31DC327678EE200A3667B /* TournamentViewState.swift in Sources */,
 				F0F2EE4A2764D06200EAB7E5 /* SearchPlayerModulePresenter.swift in Sources */,
+				3C40C18D276D8ECF00BE430F /* HeroesService.swift in Sources */,
 				CEFEF6AE276A2B7B00CAE93B /* PlayersTableHeaderCell.swift in Sources */,
 				307F5CAD276D03F0000B6548 /* PickedDisplayingMode.swift in Sources */,
 				CEFEF699276A28E800CAE93B /* PlayerList.swift in Sources */,
@@ -1132,6 +1145,7 @@
 				837AED9D27690ADB0009589E /* SearchPlayerModuleViewState.swift in Sources */,
 				5D9C6B8D276CBF6200BAAEA6 /* HeroImage.swift in Sources */,
 				5D9C6BD0276CC83900BAAEA6 /* RecentMatchesHeader.swift in Sources */,
+				3C40C18B276D8E5500BE430F /* Heroes.swift in Sources */,
 				CEFEF6AC276A2B7B00CAE93B /* DetailedMatchInfoCellConfigurable.swift in Sources */,
 				B61F59492760A4FB00D08CEA /* AppDelegate.swift in Sources */,
 				F0153D8D276D206A00D26E12 /* Extensions.swift in Sources */,
@@ -1146,11 +1160,13 @@
 				98FFE374276C8D5900C3839D /* CurrentPlayersTableViewCell.swift in Sources */,
 				5D25186E2768BEA70005374B /* MatchCollectionPresenterData.swift in Sources */,
 				ECAA0D052764ED8B00DF81ED /* MatchesService.swift in Sources */,
+				3CFB2998276D26DA002AAA54 /* PlotGpmInfo.swift in Sources */,
 				5D9C6BC0276CC82700BAAEA6 /* PlayerMatchViewState.swift in Sources */,
 				5D9C6BD2276CC83900BAAEA6 /* PlayerMatchCell.swift in Sources */,
 				F09C5B45276B29CD00413011 /* TeamShortInfo.swift in Sources */,
 				98FFE368276BB5D100C3839D /* TeamMainInfo.swift in Sources */,
 				6035383F2767459500CC32AD /* ErrorView.swift in Sources */,
+				3CFB2996276D1FAE002AAA54 /* PlotGpmTableViewCell.swift in Sources */,
 				307F5CAB276CB61B000B6548 /* PreferredDataViewModePickerCell.swift in Sources */,
 				CEFEF6A0276A28E800CAE93B /* MatchTableViewCellType.swift in Sources */,
 				CEFEF69A276A28E800CAE93B /* AdditionalMatchInfo.swift in Sources */,

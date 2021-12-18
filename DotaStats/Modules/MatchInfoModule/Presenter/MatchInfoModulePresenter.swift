@@ -28,55 +28,14 @@ final class MatchInfoModulePresenter {
     private var regions: [String: String] = [:]
     private let heroImagesService: GithubConstantsService
     private var heroImages: [String: HeroImage] = [:]
+    private var heroes: [Hero] = []
+    private let heroesService: HeroesService
 
     private var state: MatchesInfoModuleViewState {
         didSet {
             switch state {
             case .success:
-                convertedData = [
-                    MatchTableViewCellType.mainMatchInfo(
-                            converter.mainMatchInfo(from: rawMatchInfo)
-                    ),
-                    MatchTableViewCellType.additionalMatchInfo(
-                            converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
-                    ),
-                    MatchTableViewCellType.preferredDataViewModePicker(
-                        pickedDisplayingMode
-                    ),
-                    MatchTableViewCellType.teamMatchInfo(
-                            converter.radiantMatchInfo(from: rawMatchInfo)
-                    ),
-                    MatchTableViewCellType.matchPlayerHeaderInfo
-                ]
-                for index in 0..<5 {
-                    convertedData.append(
-                        MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(
-                                from: rawMatchInfo,
-                                playerNumber: index,
-                                ranks: ConstanceStorage.instance.ranks,
-                                heroImages: self.heroImages
-                            )
-                        )
-                    )
-                }
-                convertedData.append(
-                        MatchTableViewCellType.teamMatchInfo(
-                                converter.direMatchInfo(from: rawMatchInfo)
-                        )
-                )
-                for index in 5..<10 {
-                    convertedData.append(
-                        MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(
-                                from: rawMatchInfo,
-                                playerNumber: index,
-                                ranks: ConstanceStorage.instance.ranks,
-                                heroImages: self.heroImages
-                            )
-                        )
-                    )
-                }
+                updateDisplayData()
                 view?.update(state: .success)
             case .error:
                 view?.update(state: .error)
@@ -93,13 +52,15 @@ final class MatchInfoModulePresenter {
         output: MatchInfoModuleOutput,
         networkService: MatchDetailService,
         regionsService: RegionsService,
-        heroImagesService: GithubConstantsService
+        heroImagesService: GithubConstantsService,
+        heroesService: HeroesService
     ) {
         self.converter = converter
         self.output = output
         self.networkService = networkService
         self.regionsService = regionsService
         self.heroImagesService = heroImagesService
+        self.heroesService = heroesService
         state = .loading
         matchId = 1
     }
@@ -108,6 +69,7 @@ final class MatchInfoModulePresenter {
         state = .loading
         requestHeroImage()
         requestRegionsData()
+        requestHeroesData()
         requestMatchDetail()
     }
 
@@ -148,6 +110,21 @@ final class MatchInfoModulePresenter {
             }
         }
     }
+    
+    private func requestHeroesData() {
+        heroesService.requestHeroes { [weak self] result in
+            guard
+                let self = self
+            else {
+                return
+            }
+            switch result {
+            case .success(let heroes):
+                self.heroes = heroes
+            case .failure: break
+            }
+        }
+    }
 
     private func requestMatchDetail() {
         networkService.requestMatchDetail(id: matchId) { [weak self] result in
@@ -166,6 +143,17 @@ final class MatchInfoModulePresenter {
             }
         }
     }
+    
+    private func updateDisplayData() {
+        switch pickedDisplayingMode {
+        case .overview:
+            showOverviewData()
+        case .graph:
+            showGraphsData()
+        case .vision:
+            showVisionData()
+        }
+    }
 
     private func showOverviewData() {
         clearDisplayingData()
@@ -174,16 +162,16 @@ final class MatchInfoModulePresenter {
 
         convertedData = [
             MatchTableViewCellType.mainMatchInfo(
-                    converter.mainMatchInfo(from: rawMatchInfo)
+                converter.mainMatchInfo(from: rawMatchInfo)
             ),
             MatchTableViewCellType.additionalMatchInfo(
-                    converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
                 pickedDisplayingMode
             ),
             MatchTableViewCellType.teamMatchInfo(
-                    converter.radiantMatchInfo(from: rawMatchInfo)
+                converter.radiantMatchInfo(from: rawMatchInfo)
             ),
             MatchTableViewCellType.matchPlayerHeaderInfo
         ]
@@ -193,15 +181,16 @@ final class MatchInfoModulePresenter {
                     converter.playerInfo(
                         from: rawMatchInfo,
                         playerNumber: index,
-                        ranks: ConstanceStorage.instance.ranks, heroImages: self.heroImages
+                        ranks: ConstanceStorage.instance.ranks, 
+						heroImages: self.heroImages
                     )
                 )
             )
         }
         convertedData.append(
-                MatchTableViewCellType.teamMatchInfo(
-                        converter.direMatchInfo(from: rawMatchInfo)
-                )
+            MatchTableViewCellType.teamMatchInfo(
+                converter.direMatchInfo(from: rawMatchInfo)
+            )
         )
         for index in 5..<10 {
             convertedData.append(
@@ -209,7 +198,8 @@ final class MatchInfoModulePresenter {
                     converter.playerInfo(
                         from: rawMatchInfo,
                         playerNumber: index,
-                        ranks: ConstanceStorage.instance.ranks, heroImages: self.heroImages
+                        ranks: ConstanceStorage.instance.ranks, 
+						heroImages: self.heroImages
                     )
                 )
             )
@@ -224,15 +214,19 @@ final class MatchInfoModulePresenter {
 
         convertedData = [
             MatchTableViewCellType.mainMatchInfo(
-                    converter.mainMatchInfo(from: rawMatchInfo)
+                converter.mainMatchInfo(from: rawMatchInfo)
             ),
             MatchTableViewCellType.additionalMatchInfo(
-                    converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
                 pickedDisplayingMode
             )
         ]
+
+        convertedData.append(
+            MatchTableViewCellType.plotGpmInfo(
+                converter.plotInfo(from: rawMatchInfo, heroes: heroes)))
 
         view?.update(state: .update)
     }
@@ -244,10 +238,10 @@ final class MatchInfoModulePresenter {
 
         convertedData = [
             MatchTableViewCellType.mainMatchInfo(
-                    converter.mainMatchInfo(from: rawMatchInfo)
+                converter.mainMatchInfo(from: rawMatchInfo)
             ),
             MatchTableViewCellType.additionalMatchInfo(
-                    converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
                 pickedDisplayingMode
@@ -255,8 +249,7 @@ final class MatchInfoModulePresenter {
         ]
 
         convertedData.append(
-                MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
-
+            MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
         view?.update(state: .update)
     }
 
