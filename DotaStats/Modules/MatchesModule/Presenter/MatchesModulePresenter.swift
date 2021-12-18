@@ -1,9 +1,9 @@
-import Foundation
+import UIKit
 
 protocol MatchesModuleInput: AnyObject {}
 
 protocol MatchesModuleOutput: AnyObject {
-    func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int)
+    func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int, on viewController: UIViewController)
 }
 
 final class MatchesModulePresenter {
@@ -110,8 +110,12 @@ extension MatchesModulePresenter: MatchesModuleViewOutput {
         tournaments[section].tournament
     }
 
-    func matchTapped(indexPath: IndexPath) {
-        output.matchesModule(self, didSelectMatch: tournaments[indexPath.section].matches[indexPath.row].id)
+    func matchTapped(on viewController: UIViewController, indexPath: IndexPath) {
+        output.matchesModule(
+            self,
+            didSelectMatch: tournaments[indexPath.section].matches[indexPath.row].id,
+            on: viewController
+        )
     }
 
     func tournamentTapped(section: Int) {

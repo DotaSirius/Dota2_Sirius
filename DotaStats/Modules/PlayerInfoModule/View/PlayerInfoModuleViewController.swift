@@ -64,6 +64,7 @@ final class PlayerInfoModuleViewController: UIViewController {
     init(output: PlayerInfoModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
+        self.title = "Player"
     }
 
     required init?(coder: NSCoder) {
