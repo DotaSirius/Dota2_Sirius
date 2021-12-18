@@ -3,8 +3,16 @@ import UIKit
 
 protocol MatchInfoConverter: AnyObject {
     func mainMatchInfo(from rawMatchInfo: MatchDetail) -> MainMatchInfo
-    func additionalMatchInfo(from rawMatchInfo: MatchDetail, regions: [String: String]) -> AdditionalMatchInfo
-    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int, ranks:[String:String]) -> PlayerList
+    func additionalMatchInfo(
+        from rawMatchInfo: MatchDetail,
+        regions: [String: String]
+    ) -> AdditionalMatchInfo
+    func playerInfo(
+        from rawMatchInfo: MatchDetail,
+        playerNumber: Int,
+        ranks: [String: String],
+        heroImages: [String: HeroImage]
+    ) -> PlayerList
     func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int: [MatchEvent]]
@@ -12,6 +20,16 @@ protocol MatchInfoConverter: AnyObject {
 
 class MatchInfoConverterImp {
     // MARK: - PlayerList converters
+
+    private func convert(heroImages: [String: HeroImage], heroId: Int?) -> String {
+        guard
+            let heroId = heroId,
+            let heroUrl = heroImages[String(heroId)]?.img
+        else {
+            return "https://offers-api.agregatoreat.ru/api/file/649bf689-2165-46b1-8e5c-0ec89a54c05f"
+        }
+        return "https://api.opendota.com" + heroUrl
+    }
 
     private func convert(playerName: String?, playerProName: String?) -> String {
         guard
@@ -26,10 +44,7 @@ class MatchInfoConverterImp {
         }
     }
 
-    // TODO: - Приходит в виде Int. Ранги в доте называются "Legend", "Immortal" и тд.
-    // Сделать правильную конвертацию из цифр в ранги
-
-    private func convert(playerRankTier: Int?, ranks:[String:String]) -> String {
+    private func convert(playerRankTier: Int?, ranks: [String: String]) -> String {
         guard
             let playerRankTier = playerRankTier,
             let firstNumberString = String(playerRankTier).first,
@@ -98,10 +113,14 @@ class MatchInfoConverterImp {
         return "\(score)"
     }
 
-    // How long ago match was ended. Not implemented yet,
-    // because in future startTime will be converted from Int to Date in Networking
     private func convert(startTime: Date?, duration: Int?) -> String {
-        "0 HOURS AGO."
+        guard
+            let duration = duration,
+            let startTime = startTime?.addingTimeInterval(Double(duration))
+        else {
+            return "Ended Long Time Ago.".uppercased()
+        }
+        return "Ended \(Converter.convertDate(startTime))".uppercased()
     }
 
     // MARK: - AdditionalMatchInfo converters
@@ -127,7 +146,7 @@ class MatchInfoConverterImp {
 }
 
 extension MatchInfoConverterImp: MatchInfoConverter {
-    func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int : [MatchEvent]] {
+    func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int: [MatchEvent]] {
         MatchDetailToEventsConverter.convert(rawMatchInfo)
     }
 
@@ -163,7 +182,11 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         )
     }
 
-    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int, ranks: [String : String]) -> PlayerList {
+    func playerInfo(
+        from rawMatchInfo: MatchDetail,
+        playerNumber: Int, ranks: [String: String],
+        heroImages: [String: HeroImage]
+    ) -> PlayerList {
         var safeNumber: Int
         if playerNumber < rawMatchInfo.players.count {
             safeNumber = playerNumber
@@ -177,6 +200,8 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         let playerDeathsText = convert(stat: player.deaths)
         let playerAssitsText = convert(stat: player.assists)
         let playerGoldText = convert(networth: player.totalGold)
+        let playerImage = convert(heroImages: heroImages, heroId: player.heroId)
+        print(playerImage)
         return PlayerList(
             playerId: player.accountId ?? 0,
             playerNameLabelText: playerNameLabelText,
@@ -185,7 +210,7 @@ extension MatchInfoConverterImp: MatchInfoConverter {
             playerDeathsText: playerDeathsText,
             playerAssitsText: playerAssitsText,
             playerGoldText: playerGoldText,
-            playerImage: UIImage(named: "morphling") ?? UIImage()
+            playerImage: playerImage
         )
     }
 

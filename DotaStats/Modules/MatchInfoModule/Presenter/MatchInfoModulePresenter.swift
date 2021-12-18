@@ -22,6 +22,8 @@ final class MatchInfoModulePresenter {
     private let networkService: MatchDetailService
     private let regionsService: RegionsService
     private var regions: [String: String] = [:]
+    private let heroImagesService: GithubConstantsService
+    private var heroImages: [String: HeroImage] = [:]
 
     private var state: MatchesInfoModuleViewState {
         didSet {
@@ -48,7 +50,8 @@ final class MatchInfoModulePresenter {
                             converter.playerInfo(
                                 from: rawMatchInfo,
                                 playerNumber: index,
-                                ranks: ConstanceStorage.instance.ranks
+                                ranks: ConstanceStorage.instance.ranks,
+                                heroImages: self.heroImages
                             )
                         )
                     )
@@ -64,7 +67,8 @@ final class MatchInfoModulePresenter {
                             converter.playerInfo(
                                 from: rawMatchInfo,
                                 playerNumber: index,
-                                ranks: ConstanceStorage.instance.ranks
+                                ranks: ConstanceStorage.instance.ranks,
+                                heroImages: self.heroImages
                             )
                         )
                     )
@@ -84,19 +88,45 @@ final class MatchInfoModulePresenter {
         converter: MatchInfoConverter,
         output: MatchInfoModuleOutput,
         networkService: MatchDetailService,
-        regionsService: RegionsService
+        regionsService: RegionsService,
+        heroImagesService: GithubConstantsService
     ) {
         self.converter = converter
         self.output = output
         self.networkService = networkService
         self.regionsService = regionsService
+        self.heroImagesService = heroImagesService
         state = .loading
         matchId = 1
     }
 
     private func requestData() {
         state = .loading
+        requestHeroImage()
+        requestRegionsData()
+        requestMatchDetail()
+    }
 
+    private func requestHeroImage() {
+        if let heroImagesData = ConstanceStorage.instance.heroImages {
+            heroImages = heroImagesData
+        } else {
+            heroImagesService.requestImagesHero { [weak self] result in
+                guard
+                    let self = self
+                else {
+                    return
+                }
+                switch result {
+                case .success(let heroImagesData):
+                    self.heroImages = heroImagesData
+                case .failure: break
+                }
+            }
+        }
+    }
+
+    private func requestRegionsData() {
         if let regionsData = ConstanceStorage.instance.regionsData {
             regions = regionsData
         } else {
@@ -113,7 +143,9 @@ final class MatchInfoModulePresenter {
                 }
             }
         }
+    }
 
+    private func requestMatchDetail() {
         networkService.requestMatchDetail(id: matchId) { [weak self] result in
             guard
                 let self = self
@@ -153,11 +185,11 @@ final class MatchInfoModulePresenter {
         ]
         for index in 0..<5 {
             convertedData.append(
-                    MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(
-                                    from: rawMatchInfo,
-                                    playerNumber: index,
-                                    ranks: ConstanceStorage.instance.ranks)
+                MatchTableViewCellType.matchPlayerInfo(
+                    converter.playerInfo(
+                        from: rawMatchInfo,
+                        playerNumber: index,
+                        ranks: ConstanceStorage.instance.ranks, heroImages: self.heroImages
                     )
                 )
         }
@@ -168,11 +200,11 @@ final class MatchInfoModulePresenter {
         )
         for index in 5..<10 {
             convertedData.append(
-                    MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(
-                                    from: rawMatchInfo,
-                                    playerNumber: index,
-                                    ranks: ConstanceStorage.instance.ranks)
+                MatchTableViewCellType.matchPlayerInfo(
+                    converter.playerInfo(
+                        from: rawMatchInfo,
+                        playerNumber: index,
+                        ranks: ConstanceStorage.instance.ranks, heroImages: self.heroImages
                     )
                 )
         }
