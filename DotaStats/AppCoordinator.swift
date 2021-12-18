@@ -122,14 +122,14 @@ extension AppCoordinator {
         viewController?.navigationController?.pushViewController(playerInfoModule.viewController, animated: true)
     }
 
-    private func presentTeamInfo(on viewController: UIViewController?, teamId: Int) {
+    private func presentTeamInfo(on viewController: UIViewController, teamId: Int) {
         let teamInfoModule = teamInfoModuleBuilder(teamId: teamId)
-        viewController?.present(teamInfoModule.viewController, animated: true)
+        viewController.navigationController?.pushViewController(teamInfoModule.viewController, animated: true)
     }
 }
 extension AppCoordinator: TeamsModuleOutput {
-    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int) {
-        presentTeamInfo(on: tabBarController, teamId: teamId)
+    func teamsModule(on viewController: UIViewController, _ module: TeamsModuleInput, didSelectTeam teamId: Int) {
+        presentTeamInfo(on: viewController, teamId: teamId)
     }
 }
 

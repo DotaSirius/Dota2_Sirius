@@ -34,7 +34,7 @@ final class Converter {
             return .systemIndigo
         }
     }
-    
+
     static func convertGameAmountToColor(_ rating: Float) -> UIColor {
         switch rating {
         case 0...30:
@@ -51,7 +51,6 @@ final class Converter {
             return .systemIndigo
         }
     }
-
 
     static func convertDate(_ date: Date?) -> String {
         guard let date = date else { return "long ago" }
