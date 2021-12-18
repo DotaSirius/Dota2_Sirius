@@ -1,10 +1,13 @@
 import Foundation
 import UIKit
+import TouchVisualizer
 
 final class AppCoordinator {
     let tabBarController: MainTabBarController = .init()
 
     init() {
+        Visualizer.start()
+        
         let teamsModule = teamsModuleBuilder()
         let matchesModule = matchesBuilder()
         let playerSearchModule = searchPlayerModuleBuilder()
