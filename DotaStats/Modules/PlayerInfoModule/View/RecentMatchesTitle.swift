@@ -39,7 +39,7 @@ final class RecentMatchesTitle: UITableViewCell {
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             name.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            name.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            name.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             name.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor)
         ])
     }

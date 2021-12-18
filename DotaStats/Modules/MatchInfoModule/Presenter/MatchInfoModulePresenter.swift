@@ -1,11 +1,15 @@
-import Foundation
+import UIKit
 
 protocol MatchInfoModuleInput: AnyObject {
     func setMatchId(_ id: Int)
 }
 
 protocol MatchInfoModuleOutput: AnyObject {
-    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int)
+    func matchInfoModule(
+        _ module: MatchInfoModulePresenter,
+        didSelectPlayer playerId: Int,
+        on viewController: UIViewController
+    )
 }
 
 final class MatchInfoModulePresenter {
@@ -22,6 +26,8 @@ final class MatchInfoModulePresenter {
     private let networkService: MatchDetailService
     private let regionsService: RegionsService
     private var regions: [String: String] = [:]
+    private let heroImagesService: GithubConstantsService
+    private var heroImages: [String: HeroImage] = [:]
     private var heroes: [Hero] = []
     private let heroesService: HeroesService
 
@@ -50,7 +56,8 @@ final class MatchInfoModulePresenter {
                             converter.playerInfo(
                                 from: rawMatchInfo,
                                 playerNumber: index,
-                                ranks: ConstanceStorage.instance.ranks
+                                ranks: ConstanceStorage.instance.ranks,
+                                heroImages: self.heroImages
                             )
                         )
                     )
@@ -66,7 +73,8 @@ final class MatchInfoModulePresenter {
                             converter.playerInfo(
                                 from: rawMatchInfo,
                                 playerNumber: index,
-                                ranks: ConstanceStorage.instance.ranks
+                                ranks: ConstanceStorage.instance.ranks,
+                                heroImages: self.heroImages
                             )
                         )
                     )
@@ -89,12 +97,14 @@ final class MatchInfoModulePresenter {
         output: MatchInfoModuleOutput,
         networkService: MatchDetailService,
         regionsService: RegionsService,
+        heroImagesService: GithubConstantsService,
         heroesService: HeroesService
     ) {
         self.converter = converter
         self.output = output
         self.networkService = networkService
         self.regionsService = regionsService
+        self.heroImagesService = heroImagesService
         self.heroesService = heroesService
         state = .loading
         matchId = 1
@@ -102,7 +112,31 @@ final class MatchInfoModulePresenter {
 
     private func requestData() {
         state = .loading
+        requestHeroImage()
+        requestRegionsData()
+        requestMatchDetail()
+    }
 
+    private func requestHeroImage() {
+        if let heroImagesData = ConstanceStorage.instance.heroImages {
+            heroImages = heroImagesData
+        } else {
+            heroImagesService.requestImagesHero { [weak self] result in
+                guard
+                    let self = self
+                else {
+                    return
+                }
+                switch result {
+                case .success(let heroImagesData):
+                    self.heroImages = heroImagesData
+                case .failure: break
+                }
+            }
+        }
+    }
+
+    private func requestRegionsData() {
         if let regionsData = ConstanceStorage.instance.regionsData {
             regions = regionsData
         } else {
@@ -119,7 +153,9 @@ final class MatchInfoModulePresenter {
                 }
             }
         }
+    }
 
+    private func requestMatchDetail() {
         heroesService.requestHeroes { [weak self] result in
             guard
                 let self = self
@@ -176,7 +212,8 @@ final class MatchInfoModulePresenter {
                     converter.playerInfo(
                         from: rawMatchInfo,
                         playerNumber: index,
-                        ranks: ConstanceStorage.instance.ranks
+                        ranks: ConstanceStorage.instance.ranks, 
+						heroImages: self.heroImages
                     )
                 )
             )
@@ -192,7 +229,8 @@ final class MatchInfoModulePresenter {
                     converter.playerInfo(
                         from: rawMatchInfo,
                         playerNumber: index,
-                        ranks: ConstanceStorage.instance.ranks
+                        ranks: ConstanceStorage.instance.ranks, 
+						heroImages: self.heroImages
                     )
                 )
             )
@@ -273,10 +311,10 @@ extension MatchInfoModulePresenter: MatchInfoModuleInput {
 // MARK: - MatchInfoModuleViewOutput
 
 extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
-    func matchTapped(indexPath: IndexPath) {
+    func matchTapped(indexPath: IndexPath, on viewController: UIViewController) {
         switch convertedData[indexPath.row] {
         case .matchPlayerInfo(let player):
-            output.matchInfoModule(self, didSelectPlayer: player.playerId)
+            output.matchInfoModule(self, didSelectPlayer: player.playerId, on: viewController)
         default:
             break
         }

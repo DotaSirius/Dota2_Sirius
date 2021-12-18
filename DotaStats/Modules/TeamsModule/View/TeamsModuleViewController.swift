@@ -7,7 +7,7 @@ protocol TeamsModuleViewInput: AnyObject {
 protocol TeamsModuleViewOutput: AnyObject {
     var countOfRows: Int { get }
     func getData(at indexPath: IndexPath) -> TeamShortInfo
-    func selected(at indexPath: IndexPath)
+    func selected(at indexPath: IndexPath, on viewController: UIViewController)
 }
 
 final class TeamsModuleViewController: UIViewController {
@@ -122,7 +122,7 @@ extension TeamsModuleViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        output?.selected(at: indexPath)
+        output?.selected(at: indexPath, on: self)
     }
 }
 

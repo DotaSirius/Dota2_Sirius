@@ -11,7 +11,7 @@ final class AppCoordinator {
 
         let viewControllers = [
             CustomNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
-            CustomNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
+            CustomNavigationController(rootViewController: matchesModule.viewController, title: "Tournaments"),
             CustomNavigationController(rootViewController: playerSearchModule.viewController, title: "Search")
         ]
 
@@ -23,6 +23,7 @@ final class AppCoordinator {
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
+
         tabBarController.configureTabs()
         setupNavigationBarAppearance()
     }
@@ -79,12 +80,17 @@ extension AppCoordinator {
                     urlSession: URLSession(configuration: .default)
                 )
             ),
-            converter: MatchInfoConverterImp(),
+            heroImagesService: GithubConstantsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
             heroesService: HeroesServiceImp(
                 networkClient: NetworkClientImp(
                     urlSession: URLSession(configuration: .default)
                 )
-            )
+            ),
+ 			converter: MatchInfoConverterImp()
         )
     }
 
@@ -105,37 +111,66 @@ extension AppCoordinator {
         )
     }
 
+    private func teamInfoModuleBuilder(teamId: Int) -> TeamInfoModuleBuilder {
+        TeamInfoModuleBuilder(
+            converter: TeamInfoConverterImp(), output: self,
+            teamInfoService: TeamInfoImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ), teamId: teamId
+        )
+    }
+
     private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
         let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
-        viewController?.present(playerInfoModule.viewController, animated: true)
+        viewController?.navigationController?.pushViewController(playerInfoModule.viewController, animated: true)
+    }
+
+    private func presentTeamInfo(on viewController: UIViewController, teamId: Int) {
+        let teamInfoModule = teamInfoModuleBuilder(teamId: teamId)
+        viewController.navigationController?.pushViewController(teamInfoModule.viewController, animated: true)
     }
 }
-
 extension AppCoordinator: TeamsModuleOutput {
-    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int) {
-        //
+    func teamsModule(on viewController: UIViewController, _ module: TeamsModuleInput, didSelectTeam teamId: Int) {
+        presentTeamInfo(on: viewController, teamId: teamId)
     }
 }
 
 extension AppCoordinator: MatchesModuleOutput {
-    func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
+    func matchesModule(
+        _ module: MatchesModuleInput,
+        didSelectMatch matchId: Int,
+        on viewController: UIViewController
+    ) {
         let matchInfoModule = makeMatchInfoModuleBuilder()
         matchInfoModule.input.setMatchId(matchId)
-        tabBarController.present(matchInfoModule.viewController, animated: true)
+        viewController.navigationController?.pushViewController(matchInfoModule.viewController, animated: true)
     }
 }
 
 extension AppCoordinator: SearchPlayerModuleOutput {
-    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch) {
-        // TODO: show player profile info
+    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch, on viewController: UIViewController) {
+        presentPlayerInfo(on: viewController, playerId: player.accountId)
     }
 }
 
 extension AppCoordinator: PlayerInfoModuleOutput {}
 
 extension AppCoordinator: MatchInfoModuleOutput {
-    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
-        presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
+    func matchInfoModule(
+        _ module: MatchInfoModulePresenter,
+        didSelectPlayer playerId: Int,
+        on viewController: UIViewController
+    ) {
+        presentPlayerInfo(on: viewController, playerId: playerId)
+    }
+}
+
+extension AppCoordinator: TeamInfoModuleOutput {
+    func teamInfoModule(_ module: TeamInfoModulePresenter, didSelectTeam teamId: Int) {
+
     }
 }
 

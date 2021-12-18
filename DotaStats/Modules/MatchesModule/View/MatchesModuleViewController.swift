@@ -13,7 +13,7 @@ protocol MatchesModuleViewOutput: AnyObject {
     func getRowsInSection(section: Int) -> Int
     func getDataMatch(indexPath: IndexPath) -> TournamentViewState.Match
     func getDataTournament(section: Int) -> TournamentViewState
-    func matchTapped(indexPath: IndexPath)
+    func matchTapped(on viewController: UIViewController, indexPath: IndexPath)
     func tournamentTapped(section: Int)
 }
 
@@ -22,7 +22,7 @@ final class MatchesModuleViewController: UIViewController {
 
     private var output: MatchesModuleViewOutput?
     private var errorConstraint: NSLayoutConstraint?
-    private let loadingView = SquareLoadingView()
+    private lazy var loadingView = SquareLoadingView()
 
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -198,7 +198,7 @@ extension MatchesModuleViewController: UITableViewDataSource {
 extension MatchesModuleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        output?.matchTapped(indexPath: indexPath)
+        output?.matchTapped(on: self, indexPath: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

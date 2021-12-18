@@ -8,12 +8,12 @@ protocol MatchInfoModuleViewOutput: AnyObject {
     func getSectionCount() -> Int
     func getRowsCountInSection(_ section: Int) -> Int
     func getCellData(for row: Int) -> MatchTableViewCellData
-    func matchTapped(indexPath: IndexPath)
+    func matchTapped(indexPath: IndexPath, on viewController: UIViewController)
     func pickSection(_ pickedSection: Int)
 }
 
 final class MatchInfoViewController: UIViewController {
-    private let loadingView = SquareLoadingView()
+    private lazy var loadingView = SquareLoadingView()
 
     var output: MatchInfoModuleViewOutput?
     var data: MatchTableViewCellData?
@@ -33,7 +33,7 @@ final class MatchInfoViewController: UIViewController {
         tableView.register(PlayersTableHeaderCell.self,
                            forCellReuseIdentifier: PlayersTableHeaderCell.reuseIdentifier)
         tableView.register(PreferredDataViewModePickerCell.self,
-                forCellReuseIdentifier: PreferredDataViewModePickerCell.reuseIdentifier)
+                           forCellReuseIdentifier: PreferredDataViewModePickerCell.reuseIdentifier)
         tableView.register(WardsMapTableViewCell.self,
                 forCellReuseIdentifier: WardsMapTableViewCell.reuseIdentifier)
         tableView.register(PlotGpmTableViewCell.self,
@@ -60,6 +60,7 @@ final class MatchInfoViewController: UIViewController {
 
     init(output: MatchInfoModuleViewOutput) {
         super.init(nibName: nil, bundle: nil)
+        self.title = "Match"
         self.output = output
     }
 
@@ -122,7 +123,6 @@ final class MatchInfoViewController: UIViewController {
     @objc func handleTapOnErrorScreen(_: UITapGestureRecognizer) {
         hideError()
     }
-
 }
 
 extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -141,7 +141,8 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
             let data = output?.getCellData(for: indexPath.row),
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: data.type.reuseIdentifier,
-                for: indexPath) as? UITableViewCell & DetailedMatchInfoCellConfigurable
+                for: indexPath
+            ) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
         else {
             // TODO: - Error handling
             return UITableViewCell()
@@ -162,7 +163,7 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        output?.matchTapped(indexPath: indexPath)
+        output?.matchTapped(indexPath: indexPath, on: self)
     }
 }
 

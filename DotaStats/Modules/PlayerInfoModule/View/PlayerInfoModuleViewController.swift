@@ -33,14 +33,13 @@ final class PlayerInfoModuleViewController: UIViewController {
                            forCellReuseIdentifier: PlayerWLCell.reuseIdentifier)
         tableView.register(RecentMatchesTitle.self,
                            forCellReuseIdentifier: RecentMatchesTitle.reuseIdentifier)
-        tableView.register(RecentMatchesHeader.self,
-                           forCellReuseIdentifier: RecentMatchesHeader.reuseIdentifier)
         tableView.register(PlayerMatchCell.self,
                            forCellReuseIdentifier: PlayerMatchCell.reuseIdentifier)
 
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = ColorPalette.mainBackground
+        tableView.sectionHeaderTopPadding = .zero
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         return tableView
@@ -64,6 +63,7 @@ final class PlayerInfoModuleViewController: UIViewController {
     init(output: PlayerInfoModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
+        self.title = "Player"
     }
 
     required init?(coder: NSCoder) {
@@ -152,6 +152,29 @@ extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         output?.getRowsInSection(section: section) ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let view = view as? RecentMatchesHeader else { return }
+        view.contentView.backgroundColor = ColorPalette.mainBackground
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 1:
+            return RecentMatchesHeader()
+        default:
+            return nil
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 1:
+            return 31.5
+        default:
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

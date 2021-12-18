@@ -5,7 +5,6 @@ final class SquareLoadingView: UIView {
         static let scaleTo: CGFloat = 0.01
         static let side: CGFloat = 50
         static let duration: TimeInterval = 1.0
-        static let fadeOutDuration: TimeInterval = 0.4
         static let fadeInDuration: TimeInterval = 0.4
     }
 
@@ -27,6 +26,8 @@ final class SquareLoadingView: UIView {
     private lazy var rightCenterView = makeView(.right, .center)
     private lazy var rightBottomView = makeView(.right, .bottom)
 
+    private var isAnimating: Bool = false
+
     var squareColor = ColorPalette.accent
     var duration: TimeInterval = Constant.duration
 
@@ -45,7 +46,20 @@ final class SquareLoadingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        if isAnimating {
+            startAnimation()
+        }
+    }
+
     func startAnimation() {
+        isAnimating = true
+
+        guard window != nil else {
+            return
+        }
+
         fadeIn()
 
         let array = [
@@ -56,31 +70,28 @@ final class SquareLoadingView: UIView {
             [rightBottomView]
         ]
 
-        for (index, viewArray) in array.enumerated() {
-            viewArray.forEach { view in
-                UIView.animate(withDuration: duration, delay: 0.1 * Double(index), options: [.autoreverse, .repeat]) {
-                    view.transform = CGAffineTransform(scaleX: Constant.scaleTo, y: Constant.scaleTo)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            for (index, viewArray) in array.enumerated() {
+                viewArray.forEach { view in
+                    UIView.animate(withDuration: self.duration, delay: 0.1 * Double(index),
+                                   options: [.autoreverse, .repeat], animations: {
+                        view.transform = CGAffineTransform(scaleX: Constant.scaleTo, y: Constant.scaleTo)
+                    }, completion: { _ in
+                        view.transform = .identity
+                    })
                 }
             }
         }
     }
 
     func stopAnimation() {
-        fadeOut()
-    }
-
-    private func fadeOut() {
-        UIView.animate(withDuration: Constant.fadeOutDuration) {
-            self.layer.opacity = 0
-        } completion: { _ in
-            self.layer.removeAllAnimations()
-            self.removeFromSuperview()
-        }
+        isAnimating = false
+        self.removeFromSuperview()
     }
 
     private func fadeIn() {
         UIView.animate(withDuration: Constant.fadeInDuration) {
-            self.layer.opacity = 1
+            self.alpha = 1
         }
     }
 

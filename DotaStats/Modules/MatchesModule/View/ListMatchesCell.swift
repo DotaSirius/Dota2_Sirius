@@ -50,12 +50,26 @@ final class ListMatchesCell: UITableViewCell {
     // MARK: - Cell configuration
 
     func configure(with data: TournamentViewState.Match) {
-        firstTeam.text = data.radiantTeam
-        secondTeam.text = data.direTeam
+        let radiantAttrText = NSMutableAttributedString(string: data.radiantTeam, attributes: [
+            .font: UIFont.systemFont(ofSize: 17, weight: .bold),
+            .foregroundColor: ColorPalette.win
+        ])
+        let direAttrText = NSMutableAttributedString(string: data.direTeam, attributes: [
+            .font: UIFont.systemFont(ofSize: 17, weight: .bold),
+            .foregroundColor: ColorPalette.lose
+        ])
+        let prizeAttrText = NSMutableAttributedString(string: "🏆 ", attributes: [
+            .font: UIFont.systemFont(ofSize: 12),
+            .baselineOffset: 2
+        ])
         if data.radiant {
-            firstTeam.text = "🏆 " + (firstTeam.text ?? "")
+            prizeAttrText.append(radiantAttrText)
+            firstTeam.attributedText = prizeAttrText
+            secondTeam.attributedText = direAttrText
         } else {
-            secondTeam.text = "🏆 " + (secondTeam.text ?? "")
+            prizeAttrText.append(direAttrText)
+            firstTeam.attributedText = radiantAttrText
+            secondTeam.attributedText = prizeAttrText
         }
         score.text = data.score
     }
