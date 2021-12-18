@@ -191,7 +191,7 @@ final class MatchInfoModulePresenter {
                     converter.playerInfo(
                         from: rawMatchInfo,
                         playerNumber: index,
-                        ranks: ConstanceStorage.instance.ranks
+                        ranks: ConstanceStorage.instance.ranks, heroImages: self.heroImages
                     )
                 )
             )
@@ -207,7 +207,7 @@ final class MatchInfoModulePresenter {
                     converter.playerInfo(
                         from: rawMatchInfo,
                         playerNumber: index,
-                        ranks: ConstanceStorage.instance.ranks
+                        ranks: ConstanceStorage.instance.ranks, heroImages: self.heroImages
                     )
                 )
             )

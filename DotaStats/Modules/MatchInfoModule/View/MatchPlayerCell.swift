@@ -11,8 +11,6 @@ final class MatchPlayerCell: UITableViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
-        image.widthAnchor.constraint(equalToConstant: 72).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 54).isActive = true
         return image
     }()
 
@@ -112,6 +110,8 @@ final class MatchPlayerCell: UITableViewCell {
         NSLayoutConstraint.activate([
             heroImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: smallInset),
             heroImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            heroImageView.widthAnchor.constraint(equalToConstant: 72),
+            heroImageView.heightAnchor.constraint(equalToConstant: 54),
 
             playerRankNameStack.leadingAnchor.constraint(equalTo: heroImageView.trailingAnchor, constant: smallInset),
             playerRankNameStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: smallInset),
