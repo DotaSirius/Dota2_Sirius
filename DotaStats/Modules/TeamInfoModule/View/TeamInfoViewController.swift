@@ -7,7 +7,7 @@ protocol TeamInfoModuleViewInput: AnyObject {
 final class TeamInfoModuleViewController: UIViewController {
     private var output: TeamInfoModuleViewOutput?
     private var errorConstraint: NSLayoutConstraint?
-    private lazy var spinnerView: UIActivityIndicatorView = .init(style: .large)
+    private lazy var loadingView = SquareLoadingView()
     var data: TeamInfoTableViewCellData?
 
     init(output: TeamInfoModuleViewOutput) {
@@ -90,9 +90,8 @@ final class TeamInfoModuleViewController: UIViewController {
     }
 
     private func setupLoading() {
-        spinnerView.color = ColorPalette.accent
-        view.addSubview(spinnerView)
-        spinnerView.center = view.center
+        view.addSubview(loadingView)
+        loadingView.center = view.center
     }
 
     func setupConstraints() {
@@ -149,14 +148,13 @@ extension TeamInfoModuleViewController: TeamInfoModuleViewInput {
     func update(state: TeamInfoModuleViewState) {
             switch state {
             case .loading:
-                spinnerView.color = ColorPalette.accent
-                view.addSubview(spinnerView)
-                spinnerView.center = view.center
-                spinnerView.startAnimating()
+                setupLoading()
+                loadingView.startAnimation()
             case .error:
-                spinnerView.removeFromSuperview()
+                loadingView.stopAnimation()
                 showError()
             case .success:
+                loadingView.stopAnimation()
                 view.addSubview(tableView)
                 setupConstraints()
             case .update:

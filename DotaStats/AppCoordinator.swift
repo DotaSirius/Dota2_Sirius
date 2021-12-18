@@ -157,7 +157,7 @@ extension AppCoordinator: MatchInfoModuleOutput {
 
 extension AppCoordinator: TeamInfoModuleOutput {
     func teamInfoModule(_ module: TeamInfoModulePresenter, didSelectTeam teamId: Int) {
-        
+
     }
 }
 

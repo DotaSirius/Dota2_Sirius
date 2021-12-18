@@ -15,7 +15,7 @@ final class ImageServiceImp: ImageService {
     }()
 
     static var shared: ImageServiceImp = .init()
-    
+
     private init() {}
 
     @discardableResult
