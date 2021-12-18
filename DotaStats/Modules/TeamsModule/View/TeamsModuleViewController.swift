@@ -137,7 +137,7 @@ extension TeamsModuleViewController: TeamsHeaderViewDelegate {
         //
     }
 
-    func winrateTapped() {
+    func winRateTapped() {
         //
     }
 }

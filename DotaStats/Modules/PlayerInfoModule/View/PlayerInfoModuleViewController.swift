@@ -63,6 +63,7 @@ final class PlayerInfoModuleViewController: UIViewController {
     init(output: PlayerInfoModuleViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
+        self.title = "Player"
     }
 
     required init?(coder: NSCoder) {
@@ -180,8 +181,8 @@ extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSo
         guard
             let data = output?.getCellData(forIndexPath: indexPath),
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: data.reuseIdentificator,
-                for: indexPath) as? (UITableViewCell & PlayerInfoCellConfigurable)
+                withIdentifier: data.reuseIdentifier,
+                for: indexPath) as? UITableViewCell & PlayerInfoCellConfigurable
         else {
             // TODO: - Error handling
             return UITableViewCell()

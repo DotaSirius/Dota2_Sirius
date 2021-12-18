@@ -84,7 +84,7 @@ class MatchInfoConverterImp {
         guard
             let isRadiantWin = isRadiantWin
         else {
-            return "Winner is not spesified"
+            return "Winner is not specified"
         }
         return isRadiantWin ? "Radiant Victory" : "Dire Victory"
     }
@@ -130,7 +130,7 @@ class MatchInfoConverterImp {
             let region = region,
             let regionString = regions[String(region)]
         else {
-            return "Unspesified"
+            return "Unspecified"
         }
         return regionString
     }

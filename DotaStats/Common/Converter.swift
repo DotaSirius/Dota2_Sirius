@@ -18,8 +18,8 @@ final class Converter {
         }
     }
 
-    static func convertWinrateToColor(_ winrate: Float) -> UIColor {
-        switch winrate {
+    static func convertWinRateToColor(_ winRate: Float) -> UIColor {
+        switch winRate {
         case 0...40:
             return .red
         case 40...48:

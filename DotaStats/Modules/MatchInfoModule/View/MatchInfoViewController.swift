@@ -8,7 +8,7 @@ protocol MatchInfoModuleViewOutput: AnyObject {
     func getSectionCount() -> Int
     func getRowsCountInSection(_ section: Int) -> Int
     func getCellData(for row: Int) -> MatchTableViewCellData
-    func matchTapped(indexPath: IndexPath)
+    func matchTapped(indexPath: IndexPath, on viewController: UIViewController)
     func pickSection(_ pickedSection: Int)
 }
 
@@ -58,6 +58,7 @@ final class MatchInfoViewController: UIViewController {
 
     init(output: MatchInfoModuleViewOutput) {
         super.init(nibName: nil, bundle: nil)
+        self.title = "Match"
         self.output = output
     }
 
@@ -137,7 +138,7 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
         guard
             let data = output?.getCellData(for: indexPath.row),
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: data.type.reuseIdentificator,
+                withIdentifier: data.type.reuseIdentifier,
                 for: indexPath
             ) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
         else {
@@ -160,7 +161,7 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        output?.matchTapped(indexPath: indexPath)
+        output?.matchTapped(indexPath: indexPath, on: self)
     }
 }
 

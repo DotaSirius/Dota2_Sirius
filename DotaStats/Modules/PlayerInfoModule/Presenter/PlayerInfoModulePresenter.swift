@@ -28,7 +28,7 @@ final class PlayerInfoModulePresenter {
         self.playerInfoService = playerInfoService
         self.constantsService = constantsService
         self.output = output
-        self.state = .none
+        state = .none
         self.playerId = playerId
     }
 
