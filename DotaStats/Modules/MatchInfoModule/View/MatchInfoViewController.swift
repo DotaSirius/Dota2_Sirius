@@ -33,9 +33,9 @@ final class MatchInfoViewController: UIViewController {
         tableView.register(PlayersTableHeaderCell.self,
                            forCellReuseIdentifier: PlayersTableHeaderCell.reuseIdentifier)
         tableView.register(PreferredDataViewModePickerCell.self,
-                forCellReuseIdentifier: PreferredDataViewModePickerCell.reuseIdentifier)
+                           forCellReuseIdentifier: PreferredDataViewModePickerCell.reuseIdentifier)
         tableView.register(WardsMapTableViewCell.self,
-                forCellReuseIdentifier: WardsMapTableViewCell.reuseIdentifier)
+                           forCellReuseIdentifier: WardsMapTableViewCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = ColorPalette.mainBackground
@@ -100,7 +100,8 @@ final class MatchInfoViewController: UIViewController {
     func showError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
-                       options: [.curveEaseInOut]) {
+                       options: [.curveEaseInOut])
+        {
             self.errorConstraint?.constant = 35
             self.errorView.alpha = 1
             self.view.layoutIfNeeded()
@@ -110,7 +111,8 @@ final class MatchInfoViewController: UIViewController {
     func hideError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
-                       options: [.curveEaseOut]) {
+                       options: [.curveEaseOut])
+        {
             self.errorConstraint?.constant = 0
             self.errorView.alpha = 0
             self.view.layoutIfNeeded()
@@ -120,7 +122,6 @@ final class MatchInfoViewController: UIViewController {
     @objc func handleTapOnErrorScreen(_: UITapGestureRecognizer) {
         hideError()
     }
-
 }
 
 extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -139,7 +140,8 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
             let data = output?.getCellData(for: indexPath.row),
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: data.type.reuseIdentificator,
-                for: indexPath) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
+                for: indexPath
+            ) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
         else {
             // TODO: - Error handling
             return UITableViewCell()

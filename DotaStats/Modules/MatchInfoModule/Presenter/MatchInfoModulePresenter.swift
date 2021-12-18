@@ -29,16 +29,16 @@ final class MatchInfoModulePresenter {
             case .success:
                 self.convertedData = [
                     MatchTableViewCellType.mainMatchInfo(
-                            converter.mainMatchInfo(from: self.rawMatchInfo)
+                        converter.mainMatchInfo(from: self.rawMatchInfo)
                     ),
                     MatchTableViewCellType.additionalMatchInfo(
-                            converter.additionalMatchInfo(from: self.rawMatchInfo, regions: regions)
+                        converter.additionalMatchInfo(from: self.rawMatchInfo, regions: regions)
                     ),
                     MatchTableViewCellType.preferredDataViewModePicker(
-                            pickedDisplayingMode
+                        pickedDisplayingMode
                     ),
                     MatchTableViewCellType.teamMatchInfo(
-                            converter.radiantMatchInfo(from: self.rawMatchInfo)
+                        converter.radiantMatchInfo(from: self.rawMatchInfo)
                     ),
                     MatchTableViewCellType.matchPlayerHeaderInfo
                 ]
@@ -54,9 +54,9 @@ final class MatchInfoModulePresenter {
                     )
                 }
                 self.convertedData.append(
-                        MatchTableViewCellType.teamMatchInfo(
-                                converter.direMatchInfo(from: self.rawMatchInfo)
-                        )
+                    MatchTableViewCellType.teamMatchInfo(
+                        converter.direMatchInfo(from: self.rawMatchInfo)
+                    )
                 )
                 for index in 5..<10 {
                     self.convertedData.append(
@@ -70,7 +70,7 @@ final class MatchInfoModulePresenter {
                     )
                 }
                 self.convertedData.append(
-                        MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: self.rawMatchInfo)))
+                    MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: self.rawMatchInfo)))
                 view?.update(state: .success)
             case .error:
                 view?.update(state: .error)
@@ -83,10 +83,10 @@ final class MatchInfoModulePresenter {
     }
 
     required init(
-            converter: MatchInfoConverter,
-            output: MatchInfoModuleOutput,
-            networkService: MatchDetailService,
-            regionsService: RegionsService
+        converter: MatchInfoConverter,
+        output: MatchInfoModuleOutput,
+        networkService: MatchDetailService,
+        regionsService: RegionsService
     ) {
         self.converter = converter
         self.output = output
@@ -104,8 +104,8 @@ final class MatchInfoModulePresenter {
         } else {
             regionsService.requestRegionsDetails { [weak self] result in
                 guard
-                        let self = self
-                        else {
+                    let self = self
+                else {
                     return
                 }
                 switch result {
@@ -118,8 +118,8 @@ final class MatchInfoModulePresenter {
 
         networkService.requestMatchDetail(id: matchId) { [weak self] result in
             guard
-                    let self = self
-                    else {
+                let self = self
+            else {
                 return
             }
             switch result {
@@ -138,48 +138,50 @@ final class MatchInfoModulePresenter {
 
         pickedDisplayingMode = PickedDisplayingMode.overview
 
-        self.convertedData = [
+        convertedData = [
             MatchTableViewCellType.mainMatchInfo(
-                    converter.mainMatchInfo(from: self.rawMatchInfo)
+                converter.mainMatchInfo(from: rawMatchInfo)
             ),
             MatchTableViewCellType.additionalMatchInfo(
-                    converter.additionalMatchInfo(from: self.rawMatchInfo, regions: regions)
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
-                    pickedDisplayingMode
+                pickedDisplayingMode
             ),
             MatchTableViewCellType.teamMatchInfo(
-                    converter.radiantMatchInfo(from: self.rawMatchInfo)
+                converter.radiantMatchInfo(from: rawMatchInfo)
             ),
             MatchTableViewCellType.matchPlayerHeaderInfo
         ]
         for index in 0..<5 {
-            self.convertedData.append(
-                    MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(
-                                    from: self.rawMatchInfo,
-                                    playerNumber: index,
-                                    ranks: ConstanceStorage.instance.ranks)
+            convertedData.append(
+                MatchTableViewCellType.matchPlayerInfo(
+                    converter.playerInfo(
+                        from: rawMatchInfo,
+                        playerNumber: index,
+                        ranks: ConstanceStorage.instance.ranks
                     )
+                )
             )
         }
-        self.convertedData.append(
-                MatchTableViewCellType.teamMatchInfo(
-                        converter.direMatchInfo(from: self.rawMatchInfo)
-                )
+        convertedData.append(
+            MatchTableViewCellType.teamMatchInfo(
+                converter.direMatchInfo(from: rawMatchInfo)
+            )
         )
         for index in 5..<10 {
-            self.convertedData.append(
-                    MatchTableViewCellType.matchPlayerInfo(
-                            converter.playerInfo(
-                                    from: self.rawMatchInfo,
-                                    playerNumber: index,
-                                    ranks: ConstanceStorage.instance.ranks)
+            convertedData.append(
+                MatchTableViewCellType.matchPlayerInfo(
+                    converter.playerInfo(
+                        from: rawMatchInfo,
+                        playerNumber: index,
+                        ranks: ConstanceStorage.instance.ranks
                     )
+                )
             )
         }
-        self.convertedData.append(
-                MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: self.rawMatchInfo)))
+        convertedData.append(
+            MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
         view?.update(state: .update)
     }
 
@@ -188,15 +190,15 @@ final class MatchInfoModulePresenter {
 
         pickedDisplayingMode = PickedDisplayingMode.graph
 
-        self.convertedData = [
+        convertedData = [
             MatchTableViewCellType.mainMatchInfo(
-                    converter.mainMatchInfo(from: self.rawMatchInfo)
+                converter.mainMatchInfo(from: rawMatchInfo)
             ),
             MatchTableViewCellType.additionalMatchInfo(
-                    converter.additionalMatchInfo(from: self.rawMatchInfo, regions: regions)
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
-                    pickedDisplayingMode
+                pickedDisplayingMode
             )
         ]
 
@@ -208,20 +210,20 @@ final class MatchInfoModulePresenter {
 
         pickedDisplayingMode = PickedDisplayingMode.vision
 
-        self.convertedData = [
+        convertedData = [
             MatchTableViewCellType.mainMatchInfo(
-                    converter.mainMatchInfo(from: self.rawMatchInfo)
+                converter.mainMatchInfo(from: rawMatchInfo)
             ),
             MatchTableViewCellType.additionalMatchInfo(
-                    converter.additionalMatchInfo(from: self.rawMatchInfo, regions: regions)
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
-                    pickedDisplayingMode
+                pickedDisplayingMode
             )
         ]
 
-        self.convertedData.append(
-                MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: self.rawMatchInfo)))
+        convertedData.append(
+            MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
 
         view?.update(state: .update)
     }
