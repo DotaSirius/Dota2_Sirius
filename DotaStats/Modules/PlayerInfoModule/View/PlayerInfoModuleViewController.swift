@@ -157,7 +157,7 @@ extension PlayerInfoModuleViewController: UITableViewDelegate, UITableViewDataSo
         guard let view = view as? RecentMatchesHeader else { return }
         view.contentView.backgroundColor = ColorPalette.mainBackground
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1:
