@@ -33,9 +33,9 @@ final class MatchInfoViewController: UIViewController {
         tableView.register(PlayersTableHeaderCell.self,
                            forCellReuseIdentifier: PlayersTableHeaderCell.reuseIdentifier)
         tableView.register(PreferredDataViewModePickerCell.self,
-                forCellReuseIdentifier: PreferredDataViewModePickerCell.reuseIdentifier)
+                           forCellReuseIdentifier: PreferredDataViewModePickerCell.reuseIdentifier)
         tableView.register(WardsMapTableViewCell.self,
-                forCellReuseIdentifier: WardsMapTableViewCell.reuseIdentifier)
+                           forCellReuseIdentifier: WardsMapTableViewCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = ColorPalette.mainBackground
@@ -120,7 +120,6 @@ final class MatchInfoViewController: UIViewController {
     @objc func handleTapOnErrorScreen(_: UITapGestureRecognizer) {
         hideError()
     }
-
 }
 
 extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -138,8 +137,9 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
         guard
             let data = output?.getCellData(for: indexPath.row),
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: data.type.reuseIdentifier,
-                for: indexPath) as? UITableViewCell & DetailedMatchInfoCellConfigurable
+                withIdentifier: data.type.reuseIdentificator,
+                for: indexPath
+            ) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
         else {
             // TODO: - Error handling
             return UITableViewCell()

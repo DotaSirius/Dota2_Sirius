@@ -35,7 +35,7 @@ final class MatchInfoModulePresenter {
                             converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
                     ),
                     MatchTableViewCellType.preferredDataViewModePicker(
-                            pickedDisplayingMode
+                        pickedDisplayingMode
                     ),
                     MatchTableViewCellType.teamMatchInfo(
                             converter.radiantMatchInfo(from: rawMatchInfo)
@@ -83,10 +83,10 @@ final class MatchInfoModulePresenter {
     }
 
     required init(
-            converter: MatchInfoConverter,
-            output: MatchInfoModuleOutput,
-            networkService: MatchDetailService,
-            regionsService: RegionsService
+        converter: MatchInfoConverter,
+        output: MatchInfoModuleOutput,
+        networkService: MatchDetailService,
+        regionsService: RegionsService
     ) {
         self.converter = converter
         self.output = output
@@ -104,8 +104,8 @@ final class MatchInfoModulePresenter {
         } else {
             regionsService.requestRegionsDetails { [weak self] result in
                 guard
-                        let self = self
-                        else {
+                    let self = self
+                else {
                     return
                 }
                 switch result {
@@ -118,8 +118,8 @@ final class MatchInfoModulePresenter {
 
         networkService.requestMatchDetail(id: matchId) { [weak self] result in
             guard
-                    let self = self
-                    else {
+                let self = self
+            else {
                 return
             }
             switch result {
@@ -146,7 +146,7 @@ final class MatchInfoModulePresenter {
                     converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
-                    pickedDisplayingMode
+                pickedDisplayingMode
             ),
             MatchTableViewCellType.teamMatchInfo(
                     converter.radiantMatchInfo(from: rawMatchInfo)
@@ -161,6 +161,7 @@ final class MatchInfoModulePresenter {
                                     playerNumber: index,
                                     ranks: ConstanceStorage.instance.ranks)
                     )
+                )
             )
         }
         convertedData.append(
@@ -176,6 +177,7 @@ final class MatchInfoModulePresenter {
                                     playerNumber: index,
                                     ranks: ConstanceStorage.instance.ranks)
                     )
+                )
             )
         }
         convertedData.append(
@@ -196,7 +198,7 @@ final class MatchInfoModulePresenter {
                     converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
-                    pickedDisplayingMode
+                pickedDisplayingMode
             )
         ]
 
@@ -216,7 +218,7 @@ final class MatchInfoModulePresenter {
                     converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
             ),
             MatchTableViewCellType.preferredDataViewModePicker(
-                    pickedDisplayingMode
+                pickedDisplayingMode
             )
         ]
 

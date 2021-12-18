@@ -1,7 +1,6 @@
 import UIKit
 
 final class TeamMatchInfoTableViewCell: UITableViewCell {
-
     static let reuseIdentifier = "TeamMatchInfoTableViewCell"
     let smallInset: CGFloat = 8
 
@@ -36,15 +35,16 @@ final class TeamMatchInfoTableViewCell: UITableViewCell {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     func setup() {
         selectionStyle = .none
         contentView.addSubview(teamNameWinStack)
         [teamNameLabel,
-         teamWinLabel
-        ].forEach {
+         teamWinLabel].forEach {
             teamNameWinStack.addArrangedSubview($0)
         }
     }
@@ -56,33 +56,33 @@ final class TeamMatchInfoTableViewCell: UITableViewCell {
         stackView.spacing = spacing
     }
 
-     func setupConstraints() {
-         teamNameWinStack.topAnchor.constraint(
-                 equalTo: contentView.topAnchor,
-                 constant: smallInset
-         ).isActive = true
-         teamNameWinStack.leadingAnchor.constraint(
+    func setupConstraints() {
+        teamNameWinStack.topAnchor.constraint(
+            equalTo: contentView.topAnchor,
+            constant: smallInset
+        ).isActive = true
+        teamNameWinStack.leadingAnchor.constraint(
             equalTo: contentView.leadingAnchor,
             constant: smallInset
-         ).isActive = true
-         teamNameWinStack.trailingAnchor.constraint(
+        ).isActive = true
+        teamNameWinStack.trailingAnchor.constraint(
             equalTo: contentView.trailingAnchor,
             constant: -smallInset
-         ).isActive = true
-         teamNameWinStack.bottomAnchor.constraint(
+        ).isActive = true
+        teamNameWinStack.bottomAnchor.constraint(
             equalTo: contentView.bottomAnchor,
             constant: -smallInset
-         ).isActive = true
+        ).isActive = true
     }
 }
 
-extension TeamMatchInfoTableViewCell:  DetailedMatchInfoCellConfigurable {
-        func configure(with data: MatchTableViewCellData) {
-            switch data.type {
-            case .teamMatchInfo(let data):
-                teamNameLabel.text = data.teamNameLabelText
-                teamWinLabel.text = data.teamWinLabel
-            default : assertionFailure("Произошла ошибка при заполнении ячейки данными")
-           }
+extension TeamMatchInfoTableViewCell: DetailedMatchInfoCellConfigurable {
+    func configure(with data: MatchTableViewCellData) {
+        switch data.type {
+        case .teamMatchInfo(let data):
+            teamNameLabel.text = data.teamNameLabelText
+            teamWinLabel.text = data.teamWinLabel
+        default: assertionFailure("Произошла ошибка при заполнении ячейки данными")
         }
     }
+}
