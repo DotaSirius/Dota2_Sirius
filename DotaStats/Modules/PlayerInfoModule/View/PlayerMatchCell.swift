@@ -176,6 +176,8 @@ extension PlayerMatchCell: PlayerInfoCellConfigurable {
             heroImageView.setImage(with: data.heroImage)
             gameModeLabel.text = data.gameMode.capitalizingFirstLetter()
             skillLabel.text = data.skill
+            let isUnknownSkill = data.skill == "Unknown skill"
+            skillLabel.layer.opacity = isUnknownSkill ? 0.5 : 1
             winLabel.text = data.win ? "🏆" : ""
             durationLabel.text = String(data.duration)
             killLabel.text = String(data.kills)
