@@ -22,7 +22,7 @@ final class MatchesModuleViewController: UIViewController {
 
     private var output: MatchesModuleViewOutput?
     private var errorConstraint: NSLayoutConstraint?
-    private let loadingView = SquareLoadingView()
+    private lazy var loadingView = SquareLoadingView()
 
     private lazy var tableView: UITableView = {
         let table = UITableView()

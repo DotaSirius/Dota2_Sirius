@@ -12,7 +12,7 @@ protocol MatchInfoModuleViewOutput: AnyObject {
 }
 
 final class MatchInfoViewController: UIViewController {
-    private let loadingView = SquareLoadingView()
+    private lazy var loadingView = SquareLoadingView()
 
     var output: MatchInfoModuleViewOutput?
     var data: MatchTableViewCellData?
