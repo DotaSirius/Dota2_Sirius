@@ -1,9 +1,9 @@
-import Foundation
+import UIKit
 
 protocol TeamsModuleInput: AnyObject {}
 
 protocol TeamsModuleOutput: AnyObject {
-    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int)
+    func teamsModule(on viewController: UIViewController, _ module: TeamsModuleInput, didSelectTeam teamId: Int)
 }
 
 final class TeamsModulePresenter {
@@ -89,8 +89,8 @@ extension TeamsModulePresenter: TeamsModuleViewOutput {
         return team
     }
 
-    func selected(at indexPath: IndexPath) {
+    func selected(at indexPath: IndexPath, on viewController: UIViewController) {
         let team = teams[indexPath.row]
-        output.teamsModule(self, didSelectTeam: team.teamId)
+        output.teamsModule(on: viewController, self, didSelectTeam: team.teamId)
     }
 }

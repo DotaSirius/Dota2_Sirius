@@ -23,6 +23,7 @@ final class AppCoordinator {
 
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
+
         tabBarController.configureTabs()
         setupNavigationBarAppearance()
     }
@@ -105,15 +106,30 @@ extension AppCoordinator {
         )
     }
 
+    private func teamInfoModuleBuilder(teamId: Int) -> TeamInfoModuleBuilder {
+        TeamInfoModuleBuilder(
+            converter: TeamInfoConverterImp(), output: self,
+            teamInfoService: TeamInfoImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ), teamId: teamId
+        )
+    }
+
     private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
         let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
         viewController?.navigationController?.pushViewController(playerInfoModule.viewController, animated: true)
     }
-}
 
+    private func presentTeamInfo(on viewController: UIViewController, teamId: Int) {
+        let teamInfoModule = teamInfoModuleBuilder(teamId: teamId)
+        viewController.navigationController?.pushViewController(teamInfoModule.viewController, animated: true)
+    }
+}
 extension AppCoordinator: TeamsModuleOutput {
-    func teamsModule(_ module: TeamsModuleInput, didSelectTeam teamId: Int) {
-        //
+    func teamsModule(on viewController: UIViewController, _ module: TeamsModuleInput, didSelectTeam teamId: Int) {
+        presentTeamInfo(on: viewController, teamId: teamId)
     }
 }
 
@@ -144,6 +160,12 @@ extension AppCoordinator: MatchInfoModuleOutput {
         on viewController: UIViewController
     ) {
         presentPlayerInfo(on: viewController, playerId: playerId)
+    }
+}
+
+extension AppCoordinator: TeamInfoModuleOutput {
+    func teamInfoModule(_ module: TeamInfoModulePresenter, didSelectTeam teamId: Int) {
+
     }
 }
 
