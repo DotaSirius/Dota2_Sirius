@@ -195,7 +195,7 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     func hideError() {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [.curveEaseInOut]) {
-            self.errorConstraint?.constant = 0
+            self.errorConstraint?.constant = 10
             self.errorView.alpha = 0
             self.view.layoutIfNeeded()
         }
