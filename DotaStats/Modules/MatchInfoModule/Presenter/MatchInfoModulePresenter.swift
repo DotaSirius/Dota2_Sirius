@@ -11,6 +11,8 @@ protocol MatchInfoModuleOutput: AnyObject {
 final class MatchInfoModulePresenter {
     weak var view: MatchInfoModuleViewInput?
 
+    private var pickedDisplayingMode = PickedDisplayingMode.overview
+
     let output: MatchInfoModuleOutput
     private let converter: MatchInfoConverter
     private var convertedData: [MatchTableViewCellType] = []
@@ -31,6 +33,9 @@ final class MatchInfoModulePresenter {
                     ),
                     MatchTableViewCellType.additionalMatchInfo(
                         converter.additionalMatchInfo(from: self.rawMatchInfo, regions: regions)
+                    ),
+                    MatchTableViewCellType.preferredDataViewModePicker(
+                        pickedDisplayingMode
                     ),
                     MatchTableViewCellType.teamMatchInfo(
                         converter.radiantMatchInfo(from: self.rawMatchInfo)
@@ -71,6 +76,8 @@ final class MatchInfoModulePresenter {
                 view?.update(state: .error)
             case .loading:
                 view?.update(state: .loading)
+            case .update:
+                view?.update(state: .update)
             }
         }
     }
@@ -125,6 +132,107 @@ final class MatchInfoModulePresenter {
             }
         }
     }
+
+    private func showOverviewData() {
+        clearDisplayingData()
+
+        pickedDisplayingMode = PickedDisplayingMode.overview
+
+        convertedData = [
+            MatchTableViewCellType.mainMatchInfo(
+                converter.mainMatchInfo(from: rawMatchInfo)
+            ),
+            MatchTableViewCellType.additionalMatchInfo(
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+            ),
+            MatchTableViewCellType.preferredDataViewModePicker(
+                pickedDisplayingMode
+            ),
+            MatchTableViewCellType.teamMatchInfo(
+                converter.radiantMatchInfo(from: rawMatchInfo)
+            ),
+            MatchTableViewCellType.matchPlayerHeaderInfo
+        ]
+        for index in 0..<5 {
+            convertedData.append(
+                MatchTableViewCellType.matchPlayerInfo(
+                    converter.playerInfo(
+                        from: rawMatchInfo,
+                        playerNumber: index,
+                        ranks: ConstanceStorage.instance.ranks
+                    )
+                )
+            )
+        }
+        convertedData.append(
+            MatchTableViewCellType.teamMatchInfo(
+                converter.direMatchInfo(from: rawMatchInfo)
+            )
+        )
+        for index in 5..<10 {
+            convertedData.append(
+                MatchTableViewCellType.matchPlayerInfo(
+                    converter.playerInfo(
+                        from: rawMatchInfo,
+                        playerNumber: index,
+                        ranks: ConstanceStorage.instance.ranks
+                    )
+                )
+            )
+        }
+        convertedData.append(
+            MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
+        view?.update(state: .update)
+    }
+
+    private func showGraphsData() {
+        clearDisplayingData()
+
+        pickedDisplayingMode = PickedDisplayingMode.graph
+
+        convertedData = [
+            MatchTableViewCellType.mainMatchInfo(
+                converter.mainMatchInfo(from: rawMatchInfo)
+            ),
+            MatchTableViewCellType.additionalMatchInfo(
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+            ),
+            MatchTableViewCellType.preferredDataViewModePicker(
+                pickedDisplayingMode
+            )
+        ]
+
+        view?.update(state: .update)
+    }
+
+    private func showVisionData() {
+        clearDisplayingData()
+
+        pickedDisplayingMode = PickedDisplayingMode.vision
+
+        convertedData = [
+            MatchTableViewCellType.mainMatchInfo(
+                converter.mainMatchInfo(from: rawMatchInfo)
+            ),
+            MatchTableViewCellType.additionalMatchInfo(
+                converter.additionalMatchInfo(from: rawMatchInfo, regions: regions)
+            ),
+            MatchTableViewCellType.preferredDataViewModePicker(
+                pickedDisplayingMode
+            )
+        ]
+
+        convertedData.append(
+            MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
+
+        view?.update(state: .update)
+    }
+
+    private func clearDisplayingData() {
+        convertedData.removeAll()
+
+        view?.update(state: .update)
+    }
 }
 
 // MARK: - MatchInfoModuleInput
@@ -158,5 +266,18 @@ extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
 
     func getCellData(for row: Int) -> MatchTableViewCellData {
         return MatchTableViewCellData(type: convertedData[row])
+    }
+
+    func pickSection(_ pickedSection: Int) {
+        switch pickedSection {
+        case 0:
+            showOverviewData()
+        case 1:
+            showGraphsData()
+        case 2:
+            showVisionData()
+        default:
+            showOverviewData()
+        }
     }
 }
