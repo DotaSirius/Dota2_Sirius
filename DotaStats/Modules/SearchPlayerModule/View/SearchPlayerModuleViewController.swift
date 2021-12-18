@@ -69,7 +69,7 @@ final class SearchPlayerModuleViewController: UIViewController {
 
     private lazy var emptyScreenImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "emtyImage")
+        view.image = UIImage(named: "emptyImage")
         view.alpha = 0.5
         view.contentMode = .scaleAspectFit
         return view

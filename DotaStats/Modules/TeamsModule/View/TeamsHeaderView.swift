@@ -3,7 +3,7 @@ import UIKit
 protocol TeamsHeaderViewDelegate: AnyObject {
     func nameTapped()
     func ratingTapped()
-    func winrateTapped()
+    func winRateTapped()
 }
 
 final class TeamsHeaderView: UITableViewHeaderFooterView {
@@ -13,11 +13,11 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
     private enum Constant {
         static let numWidth: CGFloat = 45
         static let ratingWidth: CGFloat = 70
-        static let winrateWidth: CGFloat = 75
+        static let winRateWidth: CGFloat = 75
         static let numTitle: String = NSLocalizedString("#", comment: "Номер команды в списке")
         static let nameTitle: String = NSLocalizedString("NAME", comment: "Название команды")
         static let ratingTitle: String = NSLocalizedString("RATING", comment: "Рейтинг команды")
-        static let winrateTitle: String = NSLocalizedString("WINRATE", comment: "Процент побед")
+        static let winRateTitle: String = NSLocalizedString("WINRATE", comment: "Процент побед")
         static let titleFontSize: CGFloat = 12
         static let headerHeight: CGFloat = 40
     }
@@ -36,9 +36,9 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
         return button
     }()
 
-    private lazy var winrateButton: UIButton = {
-        let button = makeButton(with: Constant.winrateTitle)
-        button.addTarget(nil, action: #selector(winrateButtonTapped), for: .touchUpInside)
+    private lazy var winRateButton: UIButton = {
+        let button = makeButton(with: Constant.winRateTitle)
+        button.addTarget(nil, action: #selector(winRateButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -65,11 +65,11 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
             ratingButton.widthAnchor.constraint(equalToConstant: Constant.ratingWidth),
             ratingButton.heightAnchor.constraint(equalTo: contentView.heightAnchor),
 
-            winrateButton.leadingAnchor.constraint(equalTo: ratingButton.trailingAnchor),
-            winrateButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            winrateButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            winrateButton.widthAnchor.constraint(equalToConstant: Constant.winrateWidth),
-            winrateButton.heightAnchor.constraint(equalTo: contentView.heightAnchor)
+            winRateButton.leadingAnchor.constraint(equalTo: ratingButton.trailingAnchor),
+            winRateButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            winRateButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            winRateButton.widthAnchor.constraint(equalToConstant: Constant.winRateWidth),
+            winRateButton.heightAnchor.constraint(equalTo: contentView.heightAnchor)
         ])
     }
 
@@ -77,7 +77,7 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
         contentView.addSubview(numButton)
         contentView.addSubview(nameButton)
         contentView.addSubview(ratingButton)
-        contentView.addSubview(winrateButton)
+        contentView.addSubview(winRateButton)
     }
 
     private func makeButton(with title: String) -> UIButton {
@@ -106,7 +106,7 @@ final class TeamsHeaderView: UITableViewHeaderFooterView {
     }
 
     @objc
-    private func winrateButtonTapped() {
-        delegate?.winrateTapped()
+    private func winRateButtonTapped() {
+        delegate?.winRateTapped()
     }
 }

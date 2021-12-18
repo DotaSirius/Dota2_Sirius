@@ -24,10 +24,10 @@ final class AppCoordinator {
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabImageNames = tabImageNames
         tabBarController.configureTabs()
-        setupNavigationBarAppereance()
+        setupNavigationBarAppearance()
     }
 
-    private func setupNavigationBarAppereance() {
+    private func setupNavigationBarAppearance() {
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: ColorPalette.mainText]
         UINavigationBar.appearance().titleTextAttributes = titleTextAttributes
         UINavigationBar.appearance().backgroundColor = ColorPalette.mainBackground
