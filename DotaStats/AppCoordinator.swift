@@ -11,7 +11,7 @@ final class AppCoordinator {
 
         let viewControllers = [
             CustomNavigationController(rootViewController: teamsModule.viewController, title: "Teams"),
-            CustomNavigationController(rootViewController: matchesModule.viewController, title: "Matches"),
+            CustomNavigationController(rootViewController: matchesModule.viewController, title: "Tournaments"),
             CustomNavigationController(rootViewController: playerSearchModule.viewController, title: "Search")
         ]
 
@@ -107,7 +107,7 @@ extension AppCoordinator {
 
     private func presentPlayerInfo(on viewController: UIViewController?, playerId: Int) {
         let playerInfoModule = makePlayerInfoModuleBuilder(playerId: playerId)
-        viewController?.present(playerInfoModule.viewController, animated: true)
+        viewController?.navigationController?.pushViewController(playerInfoModule.viewController, animated: true)
     }
 }
 
@@ -118,10 +118,14 @@ extension AppCoordinator: TeamsModuleOutput {
 }
 
 extension AppCoordinator: MatchesModuleOutput {
-    func matchesModule(_ module: MatchesModuleInput, didSelectMatch matchId: Int) {
+    func matchesModule(
+        _ module: MatchesModuleInput,
+        didSelectMatch matchId: Int,
+        on viewController: UIViewController
+    ) {
         let matchInfoModule = makeMatchInfoModuleBuilder()
         matchInfoModule.input.setMatchId(matchId)
-        tabBarController.present(matchInfoModule.viewController, animated: true)
+        viewController.navigationController?.pushViewController(matchInfoModule.viewController, animated: true)
     }
 }
 
@@ -134,8 +138,12 @@ extension AppCoordinator: SearchPlayerModuleOutput {
 extension AppCoordinator: PlayerInfoModuleOutput {}
 
 extension AppCoordinator: MatchInfoModuleOutput {
-    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int) {
-        presentPlayerInfo(on: tabBarController.presentedViewController, playerId: playerId)
+    func matchInfoModule(
+        _ module: MatchInfoModulePresenter,
+        didSelectPlayer playerId: Int,
+        on viewController: UIViewController
+    ) {
+        presentPlayerInfo(on: viewController, playerId: playerId)
     }
 }
 

@@ -1,11 +1,15 @@
-import Foundation
+import UIKit
 
 protocol MatchInfoModuleInput: AnyObject {
     func setMatchId(_ id: Int)
 }
 
 protocol MatchInfoModuleOutput: AnyObject {
-    func matchInfoModule(_ module: MatchInfoModulePresenter, didSelectPlayer playerId: Int)
+    func matchInfoModule(
+        _ module: MatchInfoModulePresenter,
+        didSelectPlayer playerId: Int,
+        on viewController: UIViewController
+    )
 }
 
 final class MatchInfoModulePresenter {
@@ -275,10 +279,10 @@ extension MatchInfoModulePresenter: MatchInfoModuleInput {
 // MARK: - MatchInfoModuleViewOutput
 
 extension MatchInfoModulePresenter: MatchInfoModuleViewOutput {
-    func matchTapped(indexPath: IndexPath) {
+    func matchTapped(indexPath: IndexPath, on viewController: UIViewController) {
         switch convertedData[indexPath.row] {
         case .matchPlayerInfo(let player):
-            output.matchInfoModule(self, didSelectPlayer: player.playerId)
+            output.matchInfoModule(self, didSelectPlayer: player.playerId, on: viewController)
         default:
             break
         }
