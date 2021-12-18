@@ -100,8 +100,7 @@ final class MatchInfoViewController: UIViewController {
     func showError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
-                       options: [.curveEaseInOut])
-        {
+                       options: [.curveEaseInOut]) {
             self.errorConstraint?.constant = 35
             self.errorView.alpha = 1
             self.view.layoutIfNeeded()
@@ -111,8 +110,7 @@ final class MatchInfoViewController: UIViewController {
     func hideError() {
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
-                       options: [.curveEaseOut])
-        {
+                       options: [.curveEaseOut]) {
             self.errorConstraint?.constant = 0
             self.errorView.alpha = 0
             self.view.layoutIfNeeded()
