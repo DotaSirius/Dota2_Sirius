@@ -40,4 +40,45 @@ class ColorPalette {
     static var error: UIColor {
         UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
     }
+
+    // Plot Lines
+    static var line1: UIColor {
+        UIColor(red: 233, green: 59, blue: 129, alpha: 1)
+    }
+
+    static var line2: UIColor {
+        UIColor(red: 245, green: 171, blue: 201, alpha: 1)
+    }
+
+    static var line3: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
+
+    static var line4: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
+
+    static var line5: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
+
+    static var line6: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
+
+    static var line7: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
+
+    static var line8: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
+
+    static var line9: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
+
+    static var line10: UIColor {
+        UIColor(red: 161/255, green: 1/255, blue: 1/255, alpha: 1)
+    }
 }

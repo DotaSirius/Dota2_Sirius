@@ -2,11 +2,12 @@ import Foundation
 
 final class MatchInfoModuleBuilder {
     let viewController: MatchInfoViewController
-    private let presenter:  MatchInfoModulePresenter
-    var output:  MatchInfoModuleOutput {
+    private let presenter: MatchInfoModulePresenter
+    var output: MatchInfoModuleOutput {
         presenter.output
     }
-    var input:  MatchInfoModuleInput {
+
+    var input: MatchInfoModuleInput {
         presenter
     }
 
@@ -14,13 +15,15 @@ final class MatchInfoModuleBuilder {
         output: MatchInfoModuleOutput,
         networkService: MatchDetailService,
         regionsService: RegionsService,
-        converter: MatchInfoConverter
+        converter: MatchInfoConverter,
+        heroesService: HeroesService
     ) {
         presenter = MatchInfoModulePresenter(
             converter: converter,
             output: output,
             networkService: networkService,
-            regionsService: regionsService
+            regionsService: regionsService,
+            heroesService: heroesService
         )
         viewController = MatchInfoViewController(output: presenter)
         presenter.view = viewController

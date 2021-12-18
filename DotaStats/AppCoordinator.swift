@@ -79,7 +79,12 @@ extension AppCoordinator {
                     urlSession: URLSession(configuration: .default)
                 )
             ),
-            converter: MatchInfoConverterImp()
+            converter: MatchInfoConverterImp(),
+            heroesService: HeroesServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            )
         )
     }
 

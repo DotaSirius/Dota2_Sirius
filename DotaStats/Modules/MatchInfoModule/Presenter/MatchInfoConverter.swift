@@ -4,11 +4,11 @@ import UIKit
 protocol MatchInfoConverter: AnyObject {
     func mainMatchInfo(from rawMatchInfo: MatchDetail) -> MainMatchInfo
     func additionalMatchInfo(from rawMatchInfo: MatchDetail, regions: [String: String]) -> AdditionalMatchInfo
-    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int, ranks:[String:String]) -> PlayerList
+    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int, ranks: [String: String]) -> PlayerList
     func direMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func radiantMatchInfo(from rawMatchInfo: MatchDetail) -> TeamMatchInfo
     func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int: [MatchEvent]]
-    func plotInfo(from rawMatchInfo: MatchDetail) -> [PlotGpmInfo]
+    func plotInfo(from rawMatchInfo: MatchDetail, heroes: [Hero]) -> [PlotGpmInfo]
 }
 
 class MatchInfoConverterImp {
@@ -30,7 +30,7 @@ class MatchInfoConverterImp {
     // TODO: - Приходит в виде Int. Ранги в доте называются "Legend", "Immortal" и тд.
     // Сделать правильную конвертацию из цифр в ранги
 
-    private func convert(playerRankTier: Int?, ranks:[String:String]) -> String {
+    private func convert(playerRankTier: Int?, ranks: [String: String]) -> String {
         guard
             let playerRankTier = playerRankTier,
             let firstNumberString = String(playerRankTier).first,
@@ -128,7 +128,7 @@ class MatchInfoConverterImp {
 }
 
 extension MatchInfoConverterImp: MatchInfoConverter {
-    func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int : [MatchEvent]] {
+    func wardsMapInfo(from rawMatchInfo: MatchDetail) -> [Int: [MatchEvent]] {
         MatchDetailToEventsConverter.convert(rawMatchInfo)
     }
 
@@ -140,7 +140,8 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         let matchEndTimeLabelText = convert(startTime: rawMatchInfo.startTime, duration: rawMatchInfo.duration)
         if let radiantName = rawMatchInfo.radiantTeam?.name,
            let direName = rawMatchInfo.direTeam?.name,
-           let radiantWin = rawMatchInfo.radiantWin {
+           let radiantWin = rawMatchInfo.radiantWin
+        {
             winnersLabelText = radiantWin ? radiantName : direName
         }
         return MainMatchInfo(
@@ -164,7 +165,7 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         )
     }
 
-    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int, ranks: [String : String]) -> PlayerList {
+    func playerInfo(from rawMatchInfo: MatchDetail, playerNumber: Int, ranks: [String: String]) -> PlayerList {
         var safeNumber: Int
         if playerNumber < rawMatchInfo.players.count {
             safeNumber = playerNumber
@@ -217,10 +218,11 @@ extension MatchInfoConverterImp: MatchInfoConverter {
             teamWinLabel: teamWinLabel
         )
     }
-    
-    func plotInfo(from rawMatchInfo: MatchDetail) -> [PlotGpmInfo] {
+
+    func plotInfo(from rawMatchInfo: MatchDetail, heroes: [Hero]) -> [PlotGpmInfo] {
         var res = [PlotGpmInfo]()
         let players = rawMatchInfo.players
+        // TODO: Insert nice colors
         let arrayOfColors: [UIColor] = [.magenta,
                                         .red,
                                         .blue,
@@ -232,9 +234,19 @@ extension MatchInfoConverterImp: MatchInfoConverter {
                                         .black,
                                         .orange]
 
-        for i in 0..<players.count {
-            let shortGmpData = PlotGpmInfo(heroId: players[i].heroId ?? 0,
-                                                gmp: players[i].goldT ?? [], color: arrayOfColors[i])
+        for i in 0 ..< players.count {
+            var heroName = String()
+            for hero in heroes {
+                guard let heroId = players[i].heroId else {
+                    heroName = "Unknowned"
+                    break
+                }
+                if hero.id == heroId {
+                    heroName = hero.localizedName
+                }
+            }
+            let shortGmpData = PlotGpmInfo(heroName: heroName,
+                                           gmp: players[i].goldT ?? [], color: arrayOfColors[i])
             res.append(shortGmpData)
         }
         return res

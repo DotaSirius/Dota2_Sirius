@@ -1,7 +1,7 @@
 import UIKit
 
 struct PlotGpmInfo {
-    let heroId : Int
-    let gmp : [Int]
-    let color : UIColor
+    let heroName: String
+    let gmp: [Int]
+    let color: UIColor
 }
