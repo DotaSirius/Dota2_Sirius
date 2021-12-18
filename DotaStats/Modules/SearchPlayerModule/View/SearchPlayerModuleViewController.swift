@@ -11,7 +11,7 @@ protocol SearchPlayerModuleViewOutput: AnyObject {
     func prefetchData(at indexPath: IndexPath)
 
     func search(_ name: String)
-    func playerTapped(at indexPath: IndexPath)
+    func playerTapped(at indexPath: IndexPath, on viewController: UIViewController)
 }
 
 // MARK: Search Player Module View Controller
@@ -237,6 +237,10 @@ extension SearchPlayerModuleViewController: UITableViewDelegate, UITableViewData
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        output?.playerTapped(at: indexPath, on: self)
     }
 }
 

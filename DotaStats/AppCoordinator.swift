@@ -146,8 +146,8 @@ extension AppCoordinator: MatchesModuleOutput {
 }
 
 extension AppCoordinator: SearchPlayerModuleOutput {
-    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch) {
-        // TODO: show player profile info
+    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch, on viewController: UIViewController) {
+        presentPlayerInfo(on: viewController, playerId: player.accountId)
     }
 }
 
