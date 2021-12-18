@@ -2,6 +2,6 @@ import UIKit
 
 struct PlotGpmInfo {
     let heroName: String
-    let gmp: [Int]
+    let gpm: [Int]
     let color: UIColor
 }

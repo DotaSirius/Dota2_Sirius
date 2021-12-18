@@ -4,13 +4,13 @@ final class PlotGpmTableViewCell: UITableViewCell {
     static let reuseIdentifier = "PlotGpmTableViewCell"
 
     private let scrollView = UIScrollView()
-    private let heightOfGmpView: CGFloat = 300
-    private var widthOfGmpView: CGFloat = 0
+    private let heightOfGpmView: CGFloat = 300
+    private var widthOfGpmView: CGFloat = 0
 
     private var plotLines: [CAShapeLayer] = []
     private var gridVerLines = CAShapeLayer()
     private var gridHorLines = CAShapeLayer()
-    private var gmpData: [PlotGpmInfo] = []
+    private var gpmData: [PlotGpmInfo] = []
     private var maxGold: CGFloat = 1
     private var marksInGoldAxis: [Int] = []
 
@@ -52,8 +52,9 @@ final class PlotGpmTableViewCell: UITableViewCell {
             label.layer.cornerRadius = 5
             label.layer.masksToBounds = true
             label.font = UIFont.systemFont(ofSize: 12)
-            label.layer.shadowOpacity = 15
-            label.layer.shadowRadius = 15
+            label.layer.shadowOpacity = 0.5
+            label.layer.shadowRadius = 1
+            label.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
 
             stackView.addArrangedSubview(label)
         }
@@ -83,13 +84,13 @@ final class PlotGpmTableViewCell: UITableViewCell {
         scrollView.isScrollEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentSize = CGSize(width: widthOfGmpView, height: heightOfGmpView)
+        scrollView.contentSize = CGSize(width: widthOfGpmView, height: heightOfGpmView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
             scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 1.25 * heightOfGmpView)
+            scrollView.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 1.25 * heightOfGpmView)
         ])
         NSLayoutConstraint.activate([
             colorButtonsStackView.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
@@ -106,13 +107,13 @@ final class PlotGpmTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             markStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 14),
             markStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            markStackView.bottomAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightOfGmpView - 16)
+            markStackView.bottomAnchor.constraint(equalTo: scrollView.topAnchor, constant: heightOfGpmView - 16)
         ])
     }
 
     private func makePlotView() -> UIView {
         let plotView = UIView(frame: CGRect(x: 0, y: 0,
-                                            width: widthOfGmpView, height: heightOfGmpView))
+                                            width: widthOfGpmView, height: heightOfGpmView))
         for line in plotLines {
             plotView.layer.addSublayer(line)
         }
@@ -124,22 +125,22 @@ final class PlotGpmTableViewCell: UITableViewCell {
     private func setUpLinesAndWidthOfPlot() {
         let space = CGPoint(x: 20, y: -20) // indent left bottom
         let widthOfMinute = (contentView.frame.size.width + 2 * space.x)/16
-        let minutesCount = gmpData[0].gmp.count
+        let minutesCount = gpmData[0].gpm.count
         let fillColorOfLines = contentView.backgroundColor
 
-        widthOfGmpView = widthOfMinute * CGFloat(minutesCount)
+        widthOfGpmView = widthOfMinute * CGFloat(minutesCount)
 
-        for data in gmpData {
-            maxGold = max(maxGold, CGFloat(data.gmp.max() ?? 1))
+        for data in gpmData {
+            maxGold = max(maxGold, CGFloat(data.gpm.max() ?? 1))
         }
 
-        let availableHeightOfGraph = heightOfGmpView + 3 * space.y // + is - in space.y
-        let availableHeightOfGrid = heightOfGmpView + 2 * space.y
+        let availableHeightOfGraph = heightOfGpmView + 3 * space.y // + is - in space.y
+        let availableHeightOfGrid = heightOfGpmView + 2 * space.y
 
-        let scaledGoldPoints = getScaledGoldT(gmpData: gmpData,
+        let scaledGoldPoints = getScaledGoldT(gmpData: gpmData,
                                               widthOfMinute: widthOfMinute,
                                               height: availableHeightOfGraph,
-                                              heightOfGmpView: heightOfGmpView,
+                                              heightOfGmpView: heightOfGpmView,
                                               maxGold: maxGold,
                                               space: space)
 
@@ -147,13 +148,13 @@ final class PlotGpmTableViewCell: UITableViewCell {
 
         let pointsHorLeftGrid = getScaledHorLeft(pointsInGoldAxis: marksInGoldAxis,
                                                  height: availableHeightOfGrid,
-                                                 heightOfGmpView: heightOfGmpView,
+                                                 heightOfGmpView: heightOfGpmView,
                                                  maxGold: maxGold,
                                                  space: space)
 
         let pointsHorRightGrid = getScaledHorRight(pointsInGoldAxis: marksInGoldAxis,
                                                    height: availableHeightOfGrid,
-                                                   heightOfGmpView: heightOfGmpView,
+                                                   heightOfGmpView: heightOfGpmView,
                                                    maxGold: maxGold,
                                                    minutesCount: minutesCount,
                                                    space: space,
@@ -161,12 +162,12 @@ final class PlotGpmTableViewCell: UITableViewCell {
 
         let pointdVerBottomGrid = getScaledVerBottom(minutesCount: minutesCount,
                                                      widthOfMinute: widthOfMinute,
-                                                     heightOfGmpView: heightOfGmpView,
+                                                     heightOfGmpView: heightOfGpmView,
                                                      space: space)
 
         let pointdVerTopGrid = getScaledVerTop(minutesCount: minutesCount,
                                                height: availableHeightOfGrid,
-                                               heightOfGmpView: heightOfGmpView,
+                                               heightOfGmpView: heightOfGpmView,
                                                space: space,
                                                maxGold: maxGold,
                                                widthOfMinute: widthOfMinute,
@@ -181,18 +182,21 @@ final class PlotGpmTableViewCell: UITableViewCell {
                                         fillColor: fillColorOfLines)
 
         plotLines = getPlotLines(form: scaledGoldPoints,
-                                 gmpData: gmpData,
+                                 gmpData: gpmData,
                                  fillColor: fillColorOfLines)
     }
 
     private func createButtons() -> [UIButton] {
         var buttons = [UIButton]()
 
-        for i in 0..<gmpData.count {
+        for i in 0..<gpmData.count {
             let button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-            button.backgroundColor = gmpData[i].color
+            button.backgroundColor = gpmData[i].color
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor(ciColor: .gray).cgColor
+            button.layer.borderColor = ColorPalette.mainBackground.cgColor
+            button.layer.shadowRadius = 1
+            button.layer.shadowOpacity = 0.5
+            button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             button.layer.cornerRadius = button.frame.width/2
             button.tag = i
             button.addTarget(nil, action: #selector(buttonAction(sender:)), for: .touchUpInside)
@@ -202,7 +206,7 @@ final class PlotGpmTableViewCell: UITableViewCell {
     }
 
     @objc private func buttonAction(sender: UIButton) {
-        let player = gmpData[sender.tag]
+        let player = gpmData[sender.tag]
         heroNameLabel.text = player.heroName
         heroNameLabel.textColor = player.color
         heroNameLabel.textAlignment = .center
@@ -220,7 +224,7 @@ final class PlotGpmTableViewCell: UITableViewCell {
         var res = [[CGPoint]]()
         for data in gmpData {
             var newArray = [CGPoint]()
-            let array = data.gmp
+            let array = data.gpm
             for i in 0..<array.count {
                 let scaledPoint = CGPoint(x: CGFloat(i) * multX,
                                           y: heightOfGmpView - CGFloat(array[i]) * multY)
@@ -233,7 +237,6 @@ final class PlotGpmTableViewCell: UITableViewCell {
 
     private func getPointsInGoldAxis(maxGold: CGFloat) -> [Int] {
         let maxMark = maxGold.round()
-        print(maxMark)
         let multipliyer = maxMark/4
         var array = [Int]()
         for i in 0 ... 4 {
@@ -347,6 +350,9 @@ final class PlotGpmTableViewCell: UITableViewCell {
             line.lineWidth = 2
             line.lineJoin = .round
             line.fillColor = fillColor?.cgColor
+            line.shadowRadius = 1
+            line.shadowOpacity = 0.3
+            line.shadowOffset = CGSize(width: 0.0, height: 2.0)
 
             lines.append(line)
         }
@@ -416,7 +422,7 @@ extension PlotGpmTableViewCell: DetailedMatchInfoCellConfigurable {
     func configure(with data: MatchTableViewCellData) {
         switch data.type {
         case .plotGpmInfo(let data):
-            gmpData = data
+            gpmData = data
             setUpLinesAndWidthOfPlot()
             setUpLayout()
         default: assertionFailure("Произошла ошибка при заполнении ячейки данными")

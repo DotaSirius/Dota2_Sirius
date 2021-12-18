@@ -223,16 +223,16 @@ extension MatchInfoConverterImp: MatchInfoConverter {
         var res = [PlotGpmInfo]()
         let players = rawMatchInfo.players
         // TODO: Insert nice colors
-        let arrayOfColors: [UIColor] = [.magenta,
-                                        .red,
-                                        .blue,
-                                        .brown,
-                                        .green,
-                                        .cyan,
-                                        .systemPink,
-                                        .systemPurple,
-                                        .black,
-                                        .orange]
+        let arrayOfColors: [UIColor] = [ColorPalette.line1,
+                                        ColorPalette.line2,
+                                        ColorPalette.line3,
+                                        ColorPalette.line4,
+                                        ColorPalette.line5,
+                                        ColorPalette.line6,
+                                        ColorPalette.line7,
+                                        ColorPalette.line8,
+                                        ColorPalette.line9,
+                                        ColorPalette.line10]
 
         for i in 0 ..< players.count {
             var heroName = String()
@@ -246,7 +246,7 @@ extension MatchInfoConverterImp: MatchInfoConverter {
                 }
             }
             let shortGmpData = PlotGpmInfo(heroName: heroName,
-                                           gmp: players[i].goldT ?? [], color: arrayOfColors[i])
+                                           gpm: players[i].goldT ?? [], color: arrayOfColors[i])
             res.append(shortGmpData)
         }
         return res
