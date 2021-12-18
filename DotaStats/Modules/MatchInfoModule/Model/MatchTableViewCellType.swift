@@ -1,5 +1,6 @@
 enum MatchTableViewCellType {
     case mainMatchInfo (MainMatchInfo)
+    case preferredDataViewModePicker (PickedDisplayingMode)
     case additionalMatchInfo (AdditionalMatchInfo)
     case matchPlayerInfo (PlayerList)
     case teamMatchInfo (TeamMatchInfo)
@@ -12,6 +13,8 @@ extension MatchTableViewCellType {
         switch self {
         case .mainMatchInfo:
             return MainMatchInfoTableViewCell.reuseIdentifier
+        case .preferredDataViewModePicker:
+            return PreferredDataViewModePickerCell.reuseIdentifier
         case .additionalMatchInfo:
             return AdditionalMatchInfoTableViewCell.reuseIdentifier
         case .matchPlayerInfo:

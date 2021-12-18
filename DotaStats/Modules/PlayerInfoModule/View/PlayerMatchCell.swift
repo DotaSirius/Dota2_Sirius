@@ -3,6 +3,11 @@ import UIKit
 final class PlayerMatchCell: UITableViewCell {
     static let reuseIdentifier = "PlayerMatchCell"
 
+    private enum Constant {
+        static let spacing: CGFloat = 10
+        static let heroImageWidth: CGFloat = 60
+        static let heroImageHeight: CGFloat = 40
+    }
     // MARK: - Properties
 
     private lazy var heroImageView: CachedImageView = {
@@ -15,9 +20,9 @@ final class PlayerMatchCell: UITableViewCell {
     private lazy var gameModeLabel: UILabel = {
         let name = UILabel()
         name.textColor = ColorPalette.mainText
-        name.font = UIFont.systemFont(ofSize: 20)
-        name.textAlignment = .center
-        name.numberOfLines = 1
+        name.font = UIFont.systemFont(ofSize: 17)
+        name.textAlignment = .left
+        name.numberOfLines = 2
         name.translatesAutoresizingMaskIntoConstraints = false
         return name
     }()
@@ -25,8 +30,8 @@ final class PlayerMatchCell: UITableViewCell {
     private lazy var skillLabel: UILabel = {
         let name = UILabel()
         name.textColor = ColorPalette.subtitle
-        name.font = UIFont.systemFont(ofSize: 15)
-        name.textAlignment = .center
+        name.font = UIFont.systemFont(ofSize: 13)
+        name.textAlignment = .left
         name.numberOfLines = 1
         name.translatesAutoresizingMaskIntoConstraints = false
         return name
@@ -42,7 +47,7 @@ final class PlayerMatchCell: UITableViewCell {
     private lazy var winLabel: UILabel = {
         let name = UILabel()
         name.textColor = ColorPalette.mainText
-        name.font = UIFont.systemFont(ofSize: 20)
+        name.font = UIFont.systemFont(ofSize: 17)
         name.textAlignment = .center
         name.numberOfLines = 1
         name.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +57,7 @@ final class PlayerMatchCell: UITableViewCell {
     private lazy var durationLabel: UILabel = {
         let name = UILabel()
         name.textColor = ColorPalette.mainText
-        name.font = UIFont.systemFont(ofSize: 20)
+        name.font = UIFont.systemFont(ofSize: 17)
         name.textAlignment = .center
         name.numberOfLines = 1
         name.translatesAutoresizingMaskIntoConstraints = false
@@ -61,8 +66,8 @@ final class PlayerMatchCell: UITableViewCell {
 
     private lazy var killLabel: UILabel = {
         let name = UILabel()
-        name.textColor = ColorPalette.lose
-        name.font = UIFont.systemFont(ofSize: 20)
+        name.textColor = ColorPalette.win
+        name.font = UIFont.systemFont(ofSize: 17)
         name.textAlignment = .center
         name.numberOfLines = 1
         name.translatesAutoresizingMaskIntoConstraints = false
@@ -71,8 +76,8 @@ final class PlayerMatchCell: UITableViewCell {
 
     private lazy var deathLabel: UILabel = {
         let name = UILabel()
-        name.textColor = ColorPalette.win
-        name.font = UIFont.systemFont(ofSize: 20)
+        name.textColor = ColorPalette.lose
+        name.font = UIFont.systemFont(ofSize: 17)
         name.textAlignment = .center
         name.numberOfLines = 1
         name.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +87,7 @@ final class PlayerMatchCell: UITableViewCell {
     private lazy var assistantLabel: UILabel = {
         let name = UILabel()
         name.textColor = ColorPalette.subtitle
-        name.font = UIFont.systemFont(ofSize: 20)
+        name.font = UIFont.systemFont(ofSize: 17)
         name.textAlignment = .center
         name.numberOfLines = 1
         name.translatesAutoresizingMaskIntoConstraints = false
@@ -120,15 +125,28 @@ final class PlayerMatchCell: UITableViewCell {
 
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
-            heroImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            heroImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                   constant: Constant.spacing),
             heroImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            heroImageView.heightAnchor.constraint(equalToConstant: 30),
-            heroImageView.widthAnchor.constraint(equalToConstant: 50),
+            heroImageView.heightAnchor.constraint(equalToConstant: Constant.heroImageHeight),
+            heroImageView.widthAnchor.constraint(equalToConstant: Constant.heroImageWidth),
 
-            assistantLabel.trailingAnchor.constraint(
-                equalTo: contentView.safeAreaLayoutGuide.trailingAnchor,
-                constant: -5
-            ),
+            gameSkillLabel.leadingAnchor.constraint(equalTo: heroImageView.trailingAnchor,
+                                                    constant: Constant.spacing),
+            gameSkillLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                                constant: Constant.spacing),
+            gameSkillLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                                   constant: -Constant.spacing),
+
+            gameModeLabel.trailingAnchor.constraint(equalTo: winLabel.leadingAnchor),
+
+            winLabel.trailingAnchor.constraint(equalTo: durationLabel.leadingAnchor,
+                                              constant: Constant.spacing),
+            winLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            winLabel.widthAnchor.constraint(equalToConstant: 20),
+
+            assistantLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor,
+                                                     constant: -Constant.spacing),
             assistantLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             assistantLabel.widthAnchor.constraint(equalToConstant: 30),
 
@@ -142,23 +160,14 @@ final class PlayerMatchCell: UITableViewCell {
 
             durationLabel.trailingAnchor.constraint(equalTo: killLabel.leadingAnchor),
             durationLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            durationLabel.widthAnchor.constraint(equalToConstant: 60),
-
-            winLabel.trailingAnchor.constraint(equalTo: durationLabel.leadingAnchor),
-            winLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            winLabel.widthAnchor.constraint(equalToConstant: 30),
-
-            gameSkillLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            gameSkillLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor),
-            gameSkillLabel.leadingAnchor.constraint(equalTo: heroImageView.trailingAnchor),
-            gameSkillLabel.trailingAnchor.constraint(equalTo: winLabel.leadingAnchor)
+            durationLabel.widthAnchor.constraint(equalToConstant: 60)
         ])
     }
 
     private func createStackView(stackView: UIStackView, axis: NSLayoutConstraint.Axis, spacing: CGFloat) {
         stackView.axis = axis
         stackView.distribution = .equalSpacing
-        stackView.alignment = .center
+        stackView.alignment = .leading
         stackView.spacing = spacing
     }
 }
@@ -168,8 +177,10 @@ extension PlayerMatchCell: PlayerInfoCellConfigurable {
         switch data {
         case .playerMatch(let data):
             heroImageView.setImage(with: data.heroImage)
-            gameModeLabel.text = data.gameMode
+            gameModeLabel.text = data.gameMode.capitalizingFirstLetter()
             skillLabel.text = data.skill
+            let isUnknownSkill = data.skill == "Unknown skill"
+            skillLabel.layer.opacity = isUnknownSkill ? 0.5 : 1
             winLabel.text = data.win ? "🏆" : ""
             durationLabel.text = String(data.duration)
             killLabel.text = String(data.kills)

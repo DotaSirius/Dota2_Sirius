@@ -9,10 +9,11 @@ protocol MatchInfoModuleViewOutput: AnyObject {
     func getRowsCountInSection(_ section: Int) -> Int
     func getCellData(for row: Int) -> MatchTableViewCellData
     func matchTapped(indexPath: IndexPath)
+    func pickSection(_ pickedSection: Int)
 }
 
 final class MatchInfoViewController: UIViewController {
-    private let loadingView = SquareLoadingView()
+    private lazy var loadingView = SquareLoadingView()
 
     var output: MatchInfoModuleViewOutput?
     var data: MatchTableViewCellData?
@@ -31,6 +32,8 @@ final class MatchInfoViewController: UIViewController {
                            forCellReuseIdentifier: TeamMatchInfoTableViewCell.reuseIdentifier)
         tableView.register(PlayersTableHeaderCell.self,
                            forCellReuseIdentifier: PlayersTableHeaderCell.reuseIdentifier)
+        tableView.register(PreferredDataViewModePickerCell.self,
+                           forCellReuseIdentifier: PreferredDataViewModePickerCell.reuseIdentifier)
         tableView.register(WardsMapTableViewCell.self,
                            forCellReuseIdentifier: WardsMapTableViewCell.reuseIdentifier)
         tableView.delegate = self
@@ -117,7 +120,6 @@ final class MatchInfoViewController: UIViewController {
     @objc func handleTapOnErrorScreen(_: UITapGestureRecognizer) {
         hideError()
     }
-
 }
 
 extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
@@ -136,15 +138,21 @@ extension MatchInfoViewController: UITableViewDelegate, UITableViewDataSource {
             let data = output?.getCellData(for: indexPath.row),
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: data.type.reuseIdentificator,
-                for: indexPath) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
+                for: indexPath
+            ) as? (UITableViewCell & DetailedMatchInfoCellConfigurable)
         else {
             // TODO: - Error handling
             return UITableViewCell()
         }
+
+        if let modeCell = cell as? PreferredDataViewModePickerCell {
+            modeCell.output = output
+        }
+
         let isEven = indexPath.row % 2 == 0
         let matchPlayersCellIndexes = indexPath.row > 3
         // swiftlint:disable line_length
-        cell.backgroundColor = (isEven && matchPlayersCellIndexes) ? ColorPalette.alternativeBackground : ColorPalette.mainBackground
+        cell.backgroundColor = (!isEven && matchPlayersCellIndexes) ? ColorPalette.alternativeBackground : ColorPalette.mainBackground
         // swiftlint:enable line_length
         cell.configure(with: data)
         return cell
@@ -170,6 +178,8 @@ extension MatchInfoViewController: MatchInfoModuleViewInput {
             loadingView.stopAnimation()
             view.addSubview(tableView)
             setupConstraints()
+        case .update:
+            tableView.reloadData()
         }
     }
 }

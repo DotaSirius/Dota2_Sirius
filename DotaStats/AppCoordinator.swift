@@ -80,6 +80,11 @@ extension AppCoordinator {
                     urlSession: URLSession(configuration: .default)
                 )
             ),
+            heroImagesService: GithubConstantsServiceImp(
+                networkClient: NetworkClientImp(
+                    urlSession: URLSession(configuration: .default)
+                )
+            ),
             converter: MatchInfoConverterImp()
         )
     }
