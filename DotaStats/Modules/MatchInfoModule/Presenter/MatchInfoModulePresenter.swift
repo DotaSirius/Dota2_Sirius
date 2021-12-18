@@ -69,8 +69,6 @@ final class MatchInfoModulePresenter {
                         )
                     )
                 }
-                convertedData.append(
-                        MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
                 view?.update(state: .success)
             case .error:
                 view?.update(state: .error)
@@ -162,7 +160,6 @@ final class MatchInfoModulePresenter {
                                     ranks: ConstanceStorage.instance.ranks)
                     )
                 )
-            )
         }
         convertedData.append(
                 MatchTableViewCellType.teamMatchInfo(
@@ -178,10 +175,7 @@ final class MatchInfoModulePresenter {
                                     ranks: ConstanceStorage.instance.ranks)
                     )
                 )
-            )
         }
-        convertedData.append(
-                MatchTableViewCellType.wardsMapInfo(converter.wardsMapInfo(from: rawMatchInfo)))
         view?.update(state: .update)
     }
 
