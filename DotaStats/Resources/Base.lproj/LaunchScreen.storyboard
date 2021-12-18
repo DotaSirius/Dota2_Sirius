@@ -15,21 +15,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="yd7-fS-jph">
-                                <rect key="frame" x="107" y="149" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="31V-KL-ytX"/>
-                                    <constraint firstAttribute="width" constant="200" id="6Ht-Kh-DOq"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="rAU-YM-kpa"/>
-                                    <constraint firstAttribute="height" constant="200" id="tVZ-0W-5eG"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ysB-4g-z4d">
+                                <rect key="frame" x="57.5" y="272" width="299" height="272"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="yd7-fS-jph">
+                                        <rect key="frame" x="49.5" y="0.0" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="31V-KL-ytX"/>
+                                            <constraint firstAttribute="width" constant="200" id="6Ht-Kh-DOq"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="rAU-YM-kpa"/>
+                                            <constraint firstAttribute="height" constant="200" id="tVZ-0W-5eG"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dota2 Stats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAm-mX-BeI">
+                                        <rect key="frame" x="0.0" y="200" width="299" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="yd7-fS-jph" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1YR-kN-43Z"/>
-                            <constraint firstItem="yd7-fS-jph" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="105" id="tVR-Lh-9Ww"/>
+                            <constraint firstItem="ysB-4g-z4d" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-40" id="YRd-hU-V8I"/>
+                            <constraint firstItem="ysB-4g-z4d" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="c24-ps-ifN"/>
                         </constraints>
                     </view>
                 </viewController>

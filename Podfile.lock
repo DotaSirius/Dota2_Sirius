@@ -1,0 +1,16 @@
+PODS:
+  - TouchVisualizer (4.0.0)
+
+DEPENDENCIES:
+  - TouchVisualizer (~> 4.0)
+
+SPEC REPOS:
+  trunk:
+    - TouchVisualizer
+
+SPEC CHECKSUMS:
+  TouchVisualizer: d342dc3a567b6dd289bc31b7ce8681302a93dfee
+
+PODFILE CHECKSUM: b1bc7ca9252c838ac2dabf35c68fe809712a0f66
+
+COCOAPODS: 1.11.2
