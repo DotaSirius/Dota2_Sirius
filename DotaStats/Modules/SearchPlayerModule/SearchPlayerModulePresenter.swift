@@ -1,9 +1,9 @@
-import Foundation
+import UIKit
 
 protocol SearchPlayerModuleInput: AnyObject {}
 
 protocol SearchPlayerModuleOutput: AnyObject {
-    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch)
+    func searchModule(_ module: SearchPlayerModuleInput, didSelectPlayer player: PlayerInfoFromSearch, on viewController: UIViewController)
 }
 
 final class SearchPlayerModulePresenter {
@@ -138,8 +138,8 @@ extension SearchPlayerModulePresenter: SearchPlayerModuleViewOutput {
         }
     }
 
-    func playerTapped(at indexPath: IndexPath) {
-        output.searchModule(self, didSelectPlayer: players[indexPath.row])
+    func playerTapped(at indexPath: IndexPath, on viewController: UIViewController) {
+        output.searchModule(self, didSelectPlayer: players[indexPath.row], on: viewController)
     }
 }
 
