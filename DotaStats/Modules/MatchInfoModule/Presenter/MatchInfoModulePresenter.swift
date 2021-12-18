@@ -192,6 +192,7 @@ final class MatchInfoModulePresenter {
                         ranks: ConstanceStorage.instance.ranks, heroImages: self.heroImages
                     )
                 )
+            )
         }
         convertedData.append(
                 MatchTableViewCellType.teamMatchInfo(
@@ -207,6 +208,7 @@ final class MatchInfoModulePresenter {
                         ranks: ConstanceStorage.instance.ranks, heroImages: self.heroImages
                     )
                 )
+            )
         }
         view?.update(state: .update)
     }
