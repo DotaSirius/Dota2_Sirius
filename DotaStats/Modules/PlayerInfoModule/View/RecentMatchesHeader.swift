@@ -9,7 +9,7 @@ final class RecentMatchesHeader: UITableViewCell {
         let name = UILabel()
         name.textColor = ColorPalette.mainText
         name.font = UIFont.systemFont(ofSize: 13)
-        name.textAlignment = .center
+        name.textAlignment = .left
         name.numberOfLines = 1
         name.translatesAutoresizingMaskIntoConstraints = false
         return name
