@@ -39,6 +39,7 @@ final class PlayerInfoModuleViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = ColorPalette.mainBackground
+        tableView.sectionHeaderTopPadding = .zero
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         return tableView

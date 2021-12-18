@@ -138,9 +138,12 @@ final class PlayerMatchCell: UITableViewCell {
             gameSkillLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
                                                    constant: -Constant.spacing),
 
-            winLabel.leadingAnchor.constraint(equalTo: gameSkillLabel.trailingAnchor,
+            gameModeLabel.trailingAnchor.constraint(equalTo: winLabel.leadingAnchor),
+            
+            winLabel.trailingAnchor.constraint(equalTo: durationLabel.leadingAnchor,
                                               constant: Constant.spacing),
             winLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            winLabel.widthAnchor.constraint(equalToConstant: 20),
 
             assistantLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor,
                                                      constant: -Constant.spacing),

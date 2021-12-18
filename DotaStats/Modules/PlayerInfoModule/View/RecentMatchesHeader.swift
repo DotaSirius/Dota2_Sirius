@@ -110,7 +110,7 @@ private extension RecentMatchesHeader {
 
             duration.trailingAnchor.constraint(equalTo: kill.leadingAnchor),
             duration.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            duration.widthAnchor.constraint(equalToConstant: 60),t
+            duration.widthAnchor.constraint(equalToConstant: 60),
 
             kill.trailingAnchor.constraint(equalTo: death.leadingAnchor),
             kill.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
