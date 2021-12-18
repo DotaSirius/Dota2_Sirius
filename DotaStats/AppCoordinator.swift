@@ -129,6 +129,12 @@ extension AppCoordinator {
         let teamInfoModule = teamInfoModuleBuilder(teamId: teamId)
         viewController.navigationController?.pushViewController(teamInfoModule.viewController, animated: true)
     }
+
+    private func presentMatchInfo(on viewController: UIViewController, matchId: Int) {
+        let matchInfoModule = makeMatchInfoModuleBuilder()
+        matchInfoModule.input.setMatchId(matchId)
+        viewController.navigationController?.pushViewController(matchInfoModule.viewController, animated: true)
+    }
 }
 extension AppCoordinator: TeamsModuleOutput {
     func teamsModule(on viewController: UIViewController, _ module: TeamsModuleInput, didSelectTeam teamId: Int) {
@@ -154,7 +160,11 @@ extension AppCoordinator: SearchPlayerModuleOutput {
     }
 }
 
-extension AppCoordinator: PlayerInfoModuleOutput {}
+extension AppCoordinator: PlayerInfoModuleOutput {
+    func openMatch(id: Int, on viewController: UIViewController) {
+        presentMatchInfo(on: viewController, matchId: id)
+    }
+}
 
 extension AppCoordinator: MatchInfoModuleOutput {
     func matchInfoModule(
